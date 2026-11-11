@@ -75,7 +75,7 @@ function applyReplacements(text, reps, terms) {
 // ---- journal bank (user-built from their own SCImago export; not distributed) ----
 let BANK = null;
 function loadBank(path) {
-  const fs = require("fs"); const p = path || process.env.QUARTILE_BANK || require("path").join(__dirname, "..", "data", "bank.json");
+  const fs = require("fs"); const env = (process.env.QUARTILE_BANK || "").startsWith("${") ? "" : process.env.QUARTILE_BANK; const p = path || env || require("path").join(__dirname, "..", "data", "bank.json");
   try { BANK = JSON.parse(fs.readFileSync(p, "utf8")); } catch (e) { BANK = []; }
   return BANK.length;
 }

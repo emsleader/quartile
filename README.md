@@ -43,6 +43,8 @@ node server.js --http     # Streamable HTTP on http://localhost:8787/mcp
 { "mcpServers": { "quartile": { "command": "node", "args": ["/path/to/quartile/mcp/server.js"], "env": { "QUARTILE_BANK": "/path/to/quartile/data/bank.json" } } } }
 ```
 
+**Claude Desktop, one click:** download `Quartile.mcpb` from the latest release and double-click it (or Settings → Extensions → Install extension). Claude Desktop runs it with its own Node.js, and everything stays on your computer. Build it yourself with `scripts/build-mcpb.sh`.
+
 **Claude Code:** `claude mcp add quartile -- node /path/to/quartile/mcp/server.js`
 
 **claude.ai (custom connector) and ChatGPT (developer mode):** both need a public HTTPS URL. Run `node server.js --http` on a server, or expose your local port with a tunnel (for example `cloudflared tunnel --url http://localhost:8787`), then add `https://<your-host>/mcp` as the connector URL. In ChatGPT: Settings → Apps & Connectors → Advanced → Developer mode, then create a connector with that URL. Set `QUARTILE_TOKEN` to require `Authorization: Bearer <token>` for clients that can send headers. ChatGPT connectors support no authentication or OAuth, so for ChatGPT keep the URL private and stop the tunnel when you are done. Manuscripts you send pass through that server.
