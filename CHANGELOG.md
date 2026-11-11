@@ -7,7 +7,7 @@
 - Statistics check: recomputed p for t, F, r, χ² and z; coefficient/SE vs t, p and stars; impossible values; p-clustering; last-digit test; software-output fingerprints.
 - Idea → paper: frames a research idea to a Q1-Q4 standard, citing only retrieved papers.
 - Target tier (Q1-Q4) for edits and issue replacements; replacements required for every language issue.
-- MCP server (stdio and Streamable HTTP) with 9 tools and 3 prompts.
+- MCP server (stdio and Streamable HTTP) with 9 tools, 3 prompts and an interactive result card (MCP Apps) for Claude and ChatGPT; Dockerfile and Render blueprint for permanent hosting.
 - Journal bank is no longer distributed; build it from your own SCImago export.
 
 ## 0.7.0

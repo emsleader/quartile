@@ -1,0 +1,10 @@
+# One-click deploy on Render: New > Blueprint > select this repository.
+services:
+  - type: web
+    name: quartile-mcp
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: QUARTILE_TOKEN
+        sync: false

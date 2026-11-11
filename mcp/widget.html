@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quartile</title>
+<style>
+:root{--bg:#f5f6fb;--panel:#fff;--ink:#141a33;--muted:#5d6480;--line:#e3e6f2;--accent:#4f46e5;--accent2:#eef0ff;--gold:#e5a52a;--ok:#0f8a5f;--okbg:#e3f6ee;--warn:#a86400;--warnbg:#fff3dc;--bad:#c2362b;--badbg:#fde9e7;--grad:linear-gradient(135deg,#4f46e5,#7c3aed)}
+.dark{--bg:#0b1024;--panel:#121a36;--ink:#e8eaf6;--muted:#9aa2c4;--line:#232c52;--accent:#8b85ff;--accent2:#1d2550;--ok:#4fd1a1;--okbg:#0f2f25;--warn:#f0b65a;--warnbg:#33290f;--bad:#ff8a80;--badbg:#3a1d1b}
+*{box-sizing:border-box}body{margin:0;font:14px/1.55 system-ui,-apple-system,"Segoe UI",Inter,sans-serif;color:var(--ink);background:transparent}
+.wrap{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--panel)}
+.top{display:flex;align-items:center;gap:10px;padding:12px 16px;background:#0e1530;color:#fff;background-image:radial-gradient(400px 120px at 90% -40%,rgba(124,58,237,.6),transparent 60%)}
+.top b{font:700 17px Georgia,serif}.top b span{color:#f6c453}.top .k{margin-left:auto;font-size:12px;color:#c9cdf0}
+.body{padding:14px 16px}
+.stats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.tile{flex:1 1 120px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:9px 12px}
+.tile .v{font:700 20px Georgia,serif}.tile .l{font-size:12px;color:var(--muted)}
+.pill{display:inline-block;border-radius:20px;padding:1px 9px;font-size:12px;font-weight:600;background:var(--accent2);color:var(--accent);margin:2px 4px 2px 0}
+.high{background:var(--badbg);color:var(--bad)}.med{background:var(--warnbg);color:var(--warn)}.ok{background:var(--okbg);color:var(--ok)}
+ul{margin:6px 0;padding-left:18px}li{margin:4px 0}
+h3{font-size:13px;margin:12px 0 4px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.q{font-size:12px;color:var(--muted)}.empty{color:var(--muted);padding:18px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><svg width="28" height="28" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#1b2450"/><rect x="11" y="11" width="19" height="19" rx="5" fill="#6d63f0" opacity=".6"/><rect x="34" y="11" width="19" height="19" rx="5" fill="#f2b33d"/><rect x="11" y="34" width="19" height="19" rx="5" fill="#6d63f0" opacity=".35"/><rect x="34" y="34" width="19" height="19" rx="5" fill="#7c3aed" opacity=".8"/></svg><b><span>Q</span>uartile</b><span class="k" id="kind">waiting for results</span></div>
+  <div class="body" id="out"><div class="empty">Results appear here when a Quartile tool runs.</div></div>
+</div>
+<script>
+const E = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const sev = s => s === "high" || s === "fail" ? "high" : s === "med" || s === "medium" || s === "warn" ? "med" : s === "low" || s === "ok" ? "ok" : "";
+const tile = (v, l) => `<div class="tile"><div class="v">${E(v)}</div><div class="l">${E(l)}</div></div>`;
+function render(d) {
+  if (!d) return; const o = document.getElementById("out"), k = document.getElementById("kind"); let h = "";
+  if (d.kind === "statistics") {
+    k.textContent = "Statistics check";
+    h += `<div class="stats">${tile(d.summary.problems, "problems")}${tile(d.summary.apaResults, "tests recomputed")}${tile(d.summary.tableCells, "table cells")}${tile(d.summary.software.join(", ") || "none", "software format")}</div>`;
+    h += d.problems.length ? `<ul>${d.problems.map(p => `<li><span class="pill ${sev(p.severity)}">${E(p.severity)}</span>${E(p.problem)}<div class="q">${E(p.text)}</div></li>`).join("")}</ul>` : `<p><span class="pill ok">consistent</span> No inconsistencies in the statistics that could be parsed.</p>`;
+    h += `<p class="q">${E(d.note)}</p>`;
+  } else if (d.kind === "verify") {
+    k.textContent = "Hallucination guard";
+    h += `<p><span class="pill ${d.pass ? "ok" : "high"}">${d.pass ? "PASS: meaning preserved" : "BLOCKED: keep the original"}</span></p>`;
+    if (d.blocking.length) h += `<h3>Blocking</h3><ul>${d.blocking.map(f => `<li>${E(f.type)}<div class="q">${E(f.detail)}</div></li>`).join("")}</ul>`;
+    if (d.warnings.length) h += `<h3>Check</h3><ul>${d.warnings.map(f => `<li>${E(f.type)}<div class="q">${E(f.detail)}</div></li>`).join("")}</ul>`;
+  } else if (d.kind === "desk") {
+    k.textContent = "Desk-rejection screen"; h += deskHtml(d);
+  } else if (d.kind === "analysis") {
+    k.textContent = "Manuscript audit";
+    h += `<div class="stats">${tile(d.words.toLocaleString(), "words")}${tile(d.sections.length, "sections")}${tile(d.references.references.length, "references")}${tile(d.aiStyle.per1k, "AI-style per 1,000 words")}${tile(d.statistics.problems, "statistics problems")}</div>`;
+    h += `<p><span class="pill">${E(d.design)}</span>${(d.namedTheories || []).map(t => `<span class="pill">${E(t)}</span>`).join("")}</p>`;
+    h += deskHtml(d.deskScreen);
+    const issues = [...(d.q1RuleFlags || []).map(f => ({ s: f.sev, t: "Q1 rule " + f.rule + ": " + f.detail })), ...(d.businessResearchIssues || []).map(x => ({ s: x.severity, t: x.problem })), ...(d.consistency || []).map(x => ({ s: x.severity, t: x.problem })), ...(d.citationStyle || []).map(x => ({ s: x.severity, t: x.problem }))];
+    if (issues.length) h += `<h3>Issues (${issues.length})</h3><ul>${issues.slice(0, 40).map(x => `<li><span class="pill ${sev(x.s)}">${E(x.s || "")}</span>${E(x.t)}</li>`).join("")}</ul>`;
+    const r = d.references; if (r.missingFromList.length) h += `<h3>Cited but not in the list</h3><p>${r.missingFromList.map(c => `<span class="pill high">${E(c)}</span>`).join("")}</p>`;
+  } else if (d.kind === "references") {
+    k.textContent = "References";
+    h += `<div class="stats">${tile(d.references.length, "references")}${tile(d.missingFromList.length, "cited, not listed")}${tile(d.neverCited.length, "listed, never cited")}${tile(d.last5Years, "from the last 5 years")}</div>`;
+    if (d.missingFromList.length) h += `<h3>Cited but not in the list</h3><p>${d.missingFromList.map(c => `<span class="pill high">${E(c)}</span>`).join("")}</p>`;
+    if (d.neverCited.length) h += `<h3>Never cited</h3><ul>${d.neverCited.map(t => `<li class="q">${E(t.slice(0, 160))}</li>`).join("")}</ul>`;
+  } else if (d.kind === "journals") {
+    k.textContent = "Journal bank";
+    h += d.results.length ? `<ul>${d.results.map(j => `<li><b>${E(j.title)}</b> <span class="pill">${E(j.quartile)}</span><span class="pill ${j.difficulty >= 80 ? "high" : j.difficulty >= 60 ? "med" : "ok"}">${E(j.level)} (${E(j.difficulty)})</span><div class="q">SJR ${E(j.sjr)} · ${E(j.mainCategory)}</div></li>`).join("")}</ul>` : `<p class="empty">${E(d.note || "No journals matched.")}</p>`;
+  } else { k.textContent = "Result"; h = `<pre style="white-space:pre-wrap;font-size:12px">${E(JSON.stringify(d, null, 2).slice(0, 4000))}</pre>`; }
+  o.innerHTML = h;
+}
+function deskHtml(r) {
+  if (!r) return "";
+  return `<h3>Desk-rejection risk</h3><p><span class="pill ${sev(r.risk)}">${E(r.risk)}</span></p><ul>${(r.criteria || []).map(c => `<li><span class="pill ${sev(c.status)}">${E(c.status)}</span><b>${E(c.criterion)}</b>${c.checks.filter(x => x.s !== "ok").map(x => `<div class="q">• ${E(x.t)}${x.fix ? " → " + E(x.fix) : ""}</div>`).join("")}</li>`).join("")}</ul>`;
+}
+// ChatGPT exposes the result on window.openai; MCP Apps hosts (Claude, ChatGPT) send it over the ui/* bridge.
+if (window.openai && window.openai.toolOutput) render(window.openai.toolOutput);
+window.addEventListener("openai:set_globals", () => window.openai && render(window.openai.toolOutput));
+if (matchMedia("(prefers-color-scheme: dark)").matches) document.documentElement.classList.add("dark");
+</script>
+<script type="module">
+/*__EXT_APPS__*/
+try {
+  const app = new window.__MCPApps.App({ name: "quartile-widget", version: "0.8.0" });
+  app.ontoolresult = r => render(r && r.structuredContent);
+  app.onhostcontextchanged = c => { if (c && c.theme) document.documentElement.classList.toggle("dark", c.theme === "dark"); };
+  await app.connect();
+  const c = app.getHostContext && app.getHostContext(); if (c && c.theme) document.documentElement.classList.toggle("dark", c.theme === "dark");
+} catch (e) { /* not inside an MCP Apps host */ }
+</script>
+</body>
+</html>

@@ -11,7 +11,21 @@ const VERSION = require("./package.json").version;
 const MAX = 400000; // characters per manuscript
 const txt = z.string().min(1).max(MAX);
 const terms = z.array(z.string()).optional().describe("Protected constructs that must stay verbatim, e.g. [\"financial flexibility\", \"investment reversibility\"]");
-const json = o => ({ content: [{ type: "text", text: JSON.stringify(o, null, 2) }], structuredContent: o });
+const json = (o, kind) => { const sc = kind ? { kind, ...o } : o; return { content: [{ type: "text", text: JSON.stringify(sc, null, 2) }], structuredContent: sc }; };
+
+// Interactive result card for MCP Apps hosts (Claude, ChatGPT). Self-contained: no external requests.
+const WIDGET_URI = "ui://quartile/report-v1.html";
+let WIDGET = null;
+function widgetHtml() {
+  if (WIDGET) return WIDGET;
+  const fs = require("fs"), path = require("path");
+  let lib = fs.readFileSync(require.resolve("@modelcontextprotocol/ext-apps/app-with-deps"), "utf8");
+  const m = lib.match(/export\s*\{([^}]*)\}\s*;?\s*$/);
+  if (m) lib = lib.slice(0, m.index) + "window.__MCPApps={" + m[1].split(",").map(x => { const [a, b] = x.trim().split(/\s+as\s+/); return (b || a) + ":" + a; }).join(",") + "};";
+  WIDGET = fs.readFileSync(path.join(__dirname, "widget.html"), "utf8").replace("/*__EXT_APPS__*/", () => lib.replace(/<\/script/gi, "<\\/script"));
+  return WIDGET;
+}
+const ui = (invoking, invoked) => ({ ui: { resourceUri: WIDGET_URI }, "ui/resourceUri": WIDGET_URI, "openai/outputTemplate": WIDGET_URI, "openai/toolInvocation/invoking": invoking, "openai/toolInvocation/invoked": invoked });
 const RO = { readOnlyHint: true, openWorldHint: false, destructiveHint: false };
 
 function build() {
@@ -20,29 +34,32 @@ function build() {
   s.registerTool("q1_style_guide", { title: "Q1 style guide", description: "Writing, argument and framing standard for a target tier (Q1-Q4), writing type (A empirical finance, B theory model, C small business, D service and management theory) and section role. Use before rewriting or framing a paper.", inputSchema: { tier: z.enum(["Q1", "Q2", "Q3", "Q4"]).default("Q1"), writing_type: z.enum(["A", "B", "C", "D"]).default("A"), role: z.enum(L.Style.ROLES).optional() }, annotations: RO },
     async ({ tier, writing_type, role }) => json(L.styleGuide(tier, writing_type, role)));
 
-  s.registerTool("analyze_manuscript", { title: "Analyze manuscript", description: "Full deterministic audit of a manuscript in plain text or markdown (headings as '# Heading'): sections and roles, word count, AI-style density, research design, Q1 rule flags, business-research gaps, terminology consistency, APA citation style, desk-rejection screen, reference cross-check and a statistics summary.", inputSchema: { text: txt, protected_terms: terms, journal: z.string().optional(), guidelines: z.string().max(20000).optional() }, annotations: RO },
-    async ({ text, protected_terms, journal, guidelines }) => json(L.analyze(text, { terms: protected_terms, journal, guidelines })));
+  s.registerTool("analyze_manuscript", { title: "Analyze manuscript", description: "Full deterministic audit of a manuscript in plain text or markdown (headings as '# Heading'): sections and roles, word count, AI-style density, research design, Q1 rule flags, business-research gaps, terminology consistency, APA citation style, desk-rejection screen, reference cross-check and a statistics summary.", inputSchema: { text: txt, protected_terms: terms, journal: z.string().optional(), guidelines: z.string().max(20000).optional() }, annotations: RO, _meta: ui("Auditing the manuscript", "Audit ready") },
+    async ({ text, protected_terms, journal, guidelines }) => json(L.analyze(text, { terms: protected_terms, journal, guidelines }), "analysis"));
 
-  s.registerTool("desk_screen", { title: "Desk-rejection screen", description: "Rule-based screen of the five usual desk-rejection reasons (contribution, structure, writing, literature grounding, fit), with a risk level and a fix for each failed check.", inputSchema: { text: txt, journal: z.string().optional(), guidelines: z.string().max(20000).optional() }, annotations: RO },
-    async ({ text, journal, guidelines }) => json(L.desk(L.parse(text), { journal, guidelines })));
+  s.registerTool("desk_screen", { title: "Desk-rejection screen", description: "Rule-based screen of the five usual desk-rejection reasons (contribution, structure, writing, literature grounding, fit), with a risk level and a fix for each failed check.", inputSchema: { text: txt, journal: z.string().optional(), guidelines: z.string().max(20000).optional() }, annotations: RO, _meta: ui("Screening", "Screen ready") },
+    async ({ text, journal, guidelines }) => json(L.desk(L.parse(text), { journal, guidelines }), "desk"));
 
-  s.registerTool("check_statistics", { title: "Check statistics", description: "statcheck-style recomputation of p from t, F, r, chi-square and z; coefficient/SE vs reported t, p and significance stars; impossible values (R2, adjusted R2, alpha, AVE, r, p = .000); p-value clustering below .05; last-digit uniformity; software output fingerprints (Stata, R, SPSS, EViews, statsmodels, SmartPLS, AMOS/Mplus). Cannot prove whether a number came from software, a person or an AI.", inputSchema: { text: txt }, annotations: RO },
-    async ({ text }) => json(L.Stats.checkAll(text)));
+  s.registerTool("check_statistics", { title: "Check statistics", description: "statcheck-style recomputation of p from t, F, r, chi-square and z; coefficient/SE vs reported t, p and significance stars; impossible values (R2, adjusted R2, alpha, AVE, r, p = .000); p-value clustering below .05; last-digit uniformity; software output fingerprints (Stata, R, SPSS, EViews, statsmodels, SmartPLS, AMOS/Mplus). Cannot prove whether a number came from software, a person or an AI.", inputSchema: { text: txt }, annotations: RO, _meta: ui("Recomputing statistics", "Statistics checked") },
+    async ({ text }) => json(L.Stats.checkAll(text), "statistics"));
 
-  s.registerTool("check_references", { title: "Check references", description: "Cross-checks in-text citations against the reference list: cited but missing, listed but never cited, numeric or author-year style, references from the last five years. Offline; verify DOIs separately.", inputSchema: { text: txt }, annotations: RO },
-    async ({ text }) => json(L.references(L.parse(text))));
+  s.registerTool("check_references", { title: "Check references", description: "Cross-checks in-text citations against the reference list: cited but missing, listed but never cited, numeric or author-year style, references from the last five years. Offline; verify DOIs separately.", inputSchema: { text: txt }, annotations: RO, _meta: ui("Checking references", "References checked") },
+    async ({ text }) => json(L.references(L.parse(text)), "references"));
 
-  s.registerTool("verify_rewrite", { title: "Verify rewrite (hallucination guard)", description: "Compares an original passage with a revision. pass = false when the revision adds, removes or changes numbers, citations, protected terms, new names or causal claims. Call it on every rewritten paragraph; if pass is false, keep the original.", inputSchema: { original: z.string().min(1).max(60000), revised: z.string().min(1).max(60000), protected_terms: terms }, annotations: RO },
-    async ({ original, revised, protected_terms }) => json(L.verify(original, revised, protected_terms)));
+  s.registerTool("verify_rewrite", { title: "Verify rewrite (hallucination guard)", description: "Compares an original passage with a revision. pass = false when the revision adds, removes or changes numbers, citations, protected terms, new names or causal claims. Call it on every rewritten paragraph; if pass is false, keep the original.", inputSchema: { original: z.string().min(1).max(60000), revised: z.string().min(1).max(60000), protected_terms: terms }, annotations: RO, _meta: ui("Verifying", "Verified") },
+    async ({ original, revised, protected_terms }) => json(L.verify(original, revised, protected_terms), "verify"));
 
   s.registerTool("apply_replacements", { title: "Apply replacements safely", description: "Applies exact quote-to-replacement edits to a text and returns the new text. Each edit is applied only if the quote is found exactly and the replacement passes verify_rewrite and is not much longer than the quote. The input text is not stored or changed anywhere else.", inputSchema: { text: txt, replacements: z.array(z.object({ quote: z.string().min(1), replacement: z.string(), occurrence: z.number().int().positive().optional() })).max(500), protected_terms: terms }, annotations: { readOnlyHint: true, openWorldHint: false } },
     async ({ text, replacements, protected_terms }) => json(L.applyReplacements(text, replacements, protected_terms)));
 
-  s.registerTool("journal_lookup", { title: "Journal lookup", description: "Looks up a journal by title or ISSN in the local journal bank built from the user's own SCImago export: quartile, SJR, H-index, citations per document, output, and a difficulty score (0-100) within its main category.", inputSchema: { query: z.string().min(2) }, annotations: RO },
-    async ({ query }) => { const r = L.journalLookup(query); return json(r.length ? { results: r } : { results: [], note: "No match, or no journal bank loaded. Build one with scripts/build-bank.js and set QUARTILE_BANK." }); });
+  s.registerTool("journal_lookup", { title: "Journal lookup", description: "Looks up a journal by title or ISSN in the local journal bank built from the user's own SCImago export: quartile, SJR, H-index, citations per document, output, and a difficulty score (0-100) within its main category.", inputSchema: { query: z.string().min(2) }, annotations: RO, _meta: ui("Looking up", "Found") },
+    async ({ query }) => { const r = L.journalLookup(query); return json(r.length ? { results: r } : { results: [], note: "No match, or no journal bank loaded. Build one with scripts/build-bank.js and set QUARTILE_BANK." }, "journals"); });
 
-  s.registerTool("journal_suggest", { title: "Suggest journals", description: "Lists journals from the local bank by keyword in title or category, quartile and maximum difficulty, hardest first.", inputSchema: { keywords: z.array(z.string()).default([]), quartile: z.enum(["Q1", "Q2", "Q3", "Q4"]).optional(), max_difficulty: z.number().min(0).max(100).default(100), limit: z.number().int().min(1).max(50).default(15) }, annotations: RO },
-    async ({ keywords, quartile, max_difficulty, limit }) => json({ results: L.journalSuggest({ keywords, quartile, maxDifficulty: max_difficulty, limit }) }));
+  s.registerTool("journal_suggest", { title: "Suggest journals", description: "Lists journals from the local bank by keyword in title or category, quartile and maximum difficulty, hardest first.", inputSchema: { keywords: z.array(z.string()).default([]), quartile: z.enum(["Q1", "Q2", "Q3", "Q4"]).optional(), max_difficulty: z.number().min(0).max(100).default(100), limit: z.number().int().min(1).max(50).default(15) }, annotations: RO, _meta: ui("Searching the bank", "Journals listed") },
+    async ({ keywords, quartile, max_difficulty, limit }) => json({ results: L.journalSuggest({ keywords, quartile, maxDifficulty: max_difficulty, limit }) }, "journals"));
+
+  s.registerResource("quartile-report", WIDGET_URI, { title: "Quartile result card", description: "Interactive card that shows Quartile results", mimeType: "text/html;profile=mcp-app" },
+    async () => ({ contents: [{ uri: WIDGET_URI, mimeType: "text/html;profile=mcp-app", text: widgetHtml(), _meta: { ui: { prefersBorder: false, csp: { connectDomains: [], resourceDomains: [] } }, "openai/widgetDescription": "Shows Quartile manuscript checks: audit, desk screen, statistics, guard result, references or journals.", "openai/widgetPrefersBorder": false } }] }));
 
   // Prompts: workflows the host model runs, with the guard built in.
   s.registerPrompt("q1_edit", { title: "Edit to the Q1 standard", description: "Rewrite paragraphs to a target tier without changing the science.", argsSchema: { tier: z.string().optional(), level: z.string().optional() } },

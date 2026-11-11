@@ -47,6 +47,16 @@ node server.js --http     # Streamable HTTP on http://localhost:8787/mcp
 
 **claude.ai (custom connector) and ChatGPT (developer mode):** both need a public HTTPS URL. Run `node server.js --http` on a server, or expose your local port with a tunnel (for example `cloudflared tunnel --url http://localhost:8787`), then add `https://<your-host>/mcp` as the connector URL. In ChatGPT: Settings → Apps & Connectors → Advanced → Developer mode, then create a connector with that URL. Set `QUARTILE_TOKEN` to require `Authorization: Bearer <token>` for clients that can send headers. ChatGPT connectors support no authentication or OAuth, so for ChatGPT keep the URL private and stop the tunnel when you are done. Manuscripts you send pass through that server.
 
+### Interactive result card
+In clients that support MCP Apps (Claude and ChatGPT), the audit, desk screen, statistics, guard, reference and journal tools show a Quartile result card inside the chat instead of raw JSON. The card is self-contained and makes no network requests.
+
+### Permanent hosting (one URL for Claude and ChatGPT)
+Deploy the included `Dockerfile` to any container host. On Render: New → Blueprint → pick this repository (`render.yaml` is included). You get `https://quartile-mcp-xxxx.onrender.com/mcp`, which you can add once:
+- **ChatGPT:** Settings → Apps & Connectors → Advanced → Developer mode → Create, paste the URL, Authentication: No authentication. Leave `QUARTILE_TOKEN` empty for ChatGPT.
+- **Claude (claude.ai, desktop and mobile):** Settings → Connectors → Add custom connector, paste the URL.
+
+The server is stateless and stores nothing, but manuscripts pass through the host you deploy to. A free Render instance sleeps when idle, so the first call can take about a minute.
+
 ### 3. As a library
 ```js
 const Q = require("./core/lib.js");
