@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.9.1 (2026-11-11)
+- Integrity screen aligned with the COPE flowchart "Plagiarism in a submitted manuscript" (doi:10.24318/cope.2019.2.1) and its redundancy companion: 8-word overlap per sentence against your earlier papers, your sources and (locally) the corpus; grades none / minor / substantial; separates redundancy with own work; flags uncited, unquoted and number reuse; states what an editor following COPE would do and what to fix; drafts a cover-letter disclosure. MCP tool `integrity_screen` and an app card. Workflow wording is Quartile's own (the COPE flowcharts are CC BY-NC-ND).
+
 ## 0.9.0 (2026-11-11)
 - Private full-text corpus for local installs: `corpus_build` (background download of up to 500 open-access, CC-licensed Q1 papers into a folder such as Google Drive), `corpus_analyse`, `corpus_status`, `corpus_compare` (section by section), `corpus_search` (closest papers, 40-word snippets) and `corpus_originality` (8-word overlap guard). PDF (pdf.js) and Word (mammoth) extraction in Node. Patterns only; texts never leave the folder.
 - CI smoke test downloads a few real open-access PDFs, measures them and keeps nothing.

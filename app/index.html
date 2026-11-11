@@ -86,7 +86,7 @@ mark{background:var(--goldbg);color:inherit;border-bottom:2px solid var(--gold)}
 <body>
 <div class="hero"><header>
   <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Quartile logo">  <defs>    <linearGradient id="qg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6C453"/><stop offset="1" stop-color="#E08A1E"/></linearGradient>    <linearGradient id="qb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4F46E5"/><stop offset="1" stop-color="#7C3AED"/></linearGradient>  </defs>  <rect width="64" height="64" rx="16" fill="#0E1530"/>  <rect x="11" y="11" width="19" height="19" rx="5" fill="url(#qb)" opacity=".55"/>  <rect x="34" y="11" width="19" height="19" rx="5" fill="url(#qg)"/>  <rect x="11" y="34" width="19" height="19" rx="5" fill="url(#qb)" opacity=".35"/>  <rect x="34" y="34" width="19" height="19" rx="5" fill="url(#qb)" opacity=".75"/>  <path d="M46 46 L56 56" stroke="#F6C453" stroke-width="4.5" stroke-linecap="round"/></svg></div>
-  <div><h1><span class="q">Q</span>uartile <span class="tag">v0.8.2</span></h1>
+  <div><h1><span class="q">Q</span>uartile <span class="tag">v0.9.1</span></h1>
   <div class="sub">Write at Q1. Keep every number. Academic editing, journal-editor simulation and statistics checks for business and economics research.</div></div>
 </header></div>
 <div class="navwrap"><nav id="tabs"></nav></div>
@@ -200,6 +200,17 @@ mark{background:var(--goldbg);color:inherit;border-bottom:2px solid var(--gold)}
     <p class="help">Instant, rule-based and without AI. Checks the five reasons editors most often give for desk rejection: no original or substantive contribution, weak structure, weak writing, thin grounding in the literature, and poor fit to the journal. Paste the journal's guidelines in step 6 to check its formal requirements as well.</p>
     <div class="row"><button class="btn" id="deskBtn">Run desk screen</button></div>
     <div id="deskOut"></div>
+  </div>
+  <div class="card">
+    <h2>Integrity screen (COPE-aligned)</h2>
+    <p class="help">Checks your manuscript for reused wording before submission, following the logic of the COPE flowchart <a href="https://doi.org/10.24318/cope.2019.2.1" target="_blank" rel="noopener">Plagiarism in a submitted manuscript</a>. Add your own earlier papers (overlap there is redundancy, which needs citation and disclosure) and any sources you worked from. Each sentence is compared for runs of 8 or more identical words; overlap is graded as none, minor or substantial, with what an editor following COPE would do and what to fix. Files are read in this page only. This is not a web-wide plagiarism check.</p>
+    <div class="grid2">
+      <div><h3>Your earlier papers</h3><input type="file" id="intOwn" multiple accept=".pdf,.docx,.md,.txt"></div>
+      <div><h3>Sources you used</h3><input type="file" id="intSrc" multiple accept=".pdf,.docx,.md,.txt"></div>
+    </div>
+    <div class="row" style="margin-top:10px"><button class="btn" id="intBtn">Run integrity screen</button></div>
+    <div class="status" id="intStatus"></div>
+    <div id="intOut"></div>
   </div>
   <div class="card">
     <h2>Style compared with 500 Q1 papers</h2>
@@ -333,7 +344,7 @@ mark{background:var(--goldbg);color:inherit;border-bottom:2px solid var(--gold)}
   <div class="card"><h2>Preview</h2><div id="expPreview" style="font-family:'Source Serif 4',Georgia,serif;white-space:pre-wrap"></div></div>
 </section>
 </main>
-<div class="foot">Quartile v0.8.2 · MIT licence · Seyed Mehdi Alavi, EMS International Kft · Checks consistency and protects meaning; it does not predict editorial decisions or prove the origin of numbers.</div>
+<div class="foot">Quartile v0.9.1 · MIT licence · Seyed Mehdi Alavi, EMS International Kft · Checks consistency and protects meaning; it does not predict editorial decisions or prove the origin of numbers.</div>
 
 <script>
 // Deterministic text analysis for the Q1 engine. No network, no model calls.
@@ -1014,6 +1025,60 @@ const Stats = (() => {
 })();
 
 
+</script>
+<script>
+const IntegrityM = (() => {
+// Pre-submission integrity screen, aligned with the logic of the COPE flowchart
+// "Plagiarism in a submitted manuscript" (COPE Council, https://doi.org/10.24318/cope.2019.2.1) and its companion on
+// redundant (duplicate) publication. Wording here is Quartile's own; the COPE flowcharts are CC BY-NC-ND.
+// The screen compares a manuscript with texts the user supplies (earlier papers, sources) and, in a local install,
+// with the private corpus. It grades the overlap and says what an editor following COPE would do and what the
+// author should fix before submitting. It is a screening aid, not a finding of misconduct.
+const NG = 8;
+const norm = t => (String(t).toLowerCase().match(/[\p{L}\p{N}]+/gu) || []);
+const sentencesOf = t => String(t).replace(/\s+/g, " ").split(/(?<=[.!?])\s+(?=[A-Z0-9“"(])/).map(s => s.trim()).filter(s => s.split(" ").length >= 6);
+const hasCite = s => /\((?:[^()]*?(?:19|20)\d{2}[a-z]?|[^()]*n\.d\.)[^()]*\)|\[\d+(?:[,–-]\s*\d+)*\]|\b[A-Z][a-z]+(?: et al\.)? \((?:19|20)\d{2}/.test(s);
+const quoted = s => /[“"][^”"]{15,}[”"]/.test(s);
+
+function shingles(text) { const w = norm(text), set = new Map(); for (let k = 0; k + NG <= w.length; k++) { const g = w.slice(k, k + NG).join(" "); if (!set.has(g)) set.set(g, k); } return set; }
+
+// sources: [{ id, title, text, own: true|false }]
+function screen(text, sources = [], extraLookup = null) {
+  const S = sentencesOf(text), index = sources.map(src => ({ ...src, sh: shingles(src.text) }));
+  const hits = [];
+  S.forEach((s, i) => {
+    const w = norm(s); let best = null;
+    for (const src of index) { let run = 0, maxRun = 0; for (let k = 0; k + NG <= w.length; k++) { if (src.sh.has(w.slice(k, k + NG).join(" "))) { run++; maxRun = Math.max(maxRun, run); } else run = 0; } if (maxRun) { const covered = Math.min(1, (maxRun + NG - 1) / w.length); if (!best || covered > best.covered) best = { src, covered }; } }
+    if (!best && extraLookup) { const e = extraLookup(s); if (e) best = { src: { id: e.id, title: e.title, own: false, corpus: true }, covered: e.covered || 0.5 }; }
+    if (best) hits.push({ i, sentence: s, sourceId: best.src.id, source: best.src.title, own: !!best.src.own, corpus: !!best.src.corpus, covered: +best.covered.toFixed(2), cited: hasCite(s), quoted: quoted(s), hasNumbers: /\d[\d.,]*\s*(%|percent|per cent)|\b\d+\.\d+\b/.test(s) });
+  });
+  // runs of consecutive overlapping sentences (paragraph-level reuse)
+  let longestRun = 0, run = 0, prev = -2; hits.forEach(h => { run = h.i === prev + 1 ? run + 1 : 1; prev = h.i; longestRun = Math.max(longestRun, run); });
+  const other = hits.filter(h => !h.own), own = hits.filter(h => h.own);
+  const unattributed = other.filter(h => !h.cited && !h.quoted), share = hits.length / Math.max(S.length, 1);
+  const dataReuse = other.some(h => h.hasNumbers && !h.cited);
+  // grading: Quartile's screening heuristics. COPE sets no numeric threshold; the nature of what is copied matters as much as the amount.
+  let grade = "none";
+  if (unattributed.length) grade = unattributed.length <= 3 && longestRun < 2 && !dataReuse && unattributed.every(h => h.covered < 0.8) ? "minor" : "substantial";
+  const redundancy = own.length ? (own.length >= 5 || longestRun >= 3 ? "substantial" : "minor") : "none";
+  const actions = [];
+  if (grade === "none" && redundancy === "none") actions.push("No overlap with the supplied texts or the corpus. Keep the originality statement in the cover letter truthful and specific.");
+  if (grade === "minor") actions.push("Minor overlap: short phrases reused without attribution. An editor following COPE would ask you to rephrase them or present them as direct quotations with references. Fix every flagged sentence before submitting.");
+  if (grade === "substantial") actions.push("Substantial overlap: whole sentences, consecutive passages or numbers reused without attribution. An editor following COPE would treat this as clear plagiarism: contact the corresponding author with the evidence, normally reject the manuscript, and may inform the author's institution. Rewrite these passages in your own words and cite the source, or quote and cite them, before submitting.");
+  if (redundancy !== "none") actions.push(`Overlap with your own earlier work (${own.length} sentences). COPE handles this under redundant (duplicate) publication: ${redundancy === "minor" ? "limited reuse, for example in methods, is often acceptable if the earlier paper is cited." : "extensive reuse needs the earlier work cited and disclosed to the editor, and may be redundant publication."} Cite the earlier paper where the text or data reappear and disclose the overlap in the cover letter.`);
+  if (other.some(h => h.cited && !h.quoted && h.covered >= 0.8)) actions.push("Some sentences are cited but copied almost verbatim. Citation alone is not enough for copied wording: paraphrase or use quotation marks.");
+  const disclosure = own.length ? `Parts of this manuscript overlap with our earlier work (${[...new Set(own.map(h => h.source))].join("; ")}). The earlier work is cited where the overlap occurs. The present manuscript differs in [state what is new: data, analysis, argument].` : null;
+  return {
+    kind: "integrity", grade, redundancy, sentencesChecked: S.length, overlappingSentences: hits.length, share: +share.toFixed(3), longestConsecutiveRun: longestRun,
+    unattributed: unattributed.length, dataReuseSuspected: dataReuse,
+    flagged: hits.slice(0, 60).map(h => ({ sentence: h.sentence, source: h.source, own: h.own, covered: h.covered, cited: h.cited, quoted: h.quoted, fix: h.own ? "Cite your earlier paper here, or rewrite and disclose the overlap." : h.quoted && h.cited ? "Quoted and cited: acceptable if the quotation is short and necessary." : h.cited ? "Cited but copied: paraphrase or put the copied words in quotation marks." : "Unattributed: rewrite in your own words and cite the source, or quote and cite it." })),
+    actions, coverLetterDisclosure: disclosure,
+    basis: "Screening aligned with COPE Council, 'Plagiarism in a submitted manuscript' (https://doi.org/10.24318/cope.2019.2.1) and the COPE flowchart on redundant publication in a submitted manuscript. Grades are Quartile's heuristics: COPE sets no numeric threshold, and an editor judges what was copied as well as how much. Only overlap with the texts supplied (and the local corpus) can be found; this is not a web-wide plagiarism check."
+  };
+}
+return { screen };
+
+})();
 </script>
 <script>
 const StyleM = (() => {
@@ -2301,6 +2366,27 @@ $("#styleBtn").onclick = () => {
   $("#styleOut").innerHTML = `<div class="row" style="margin:10px 0"><span class="pill ${r.distance <= 20 ? "ok" : r.distance <= 40 ? "med" : "high"}" style="font-size:14px">${r.distance}% of measures outside the Q1 middle range</span><span class="pill">${r.withinProfile}/${r.metricsChecked} within range</span><span class="pill">Profile: ${E(prof.name)}, ${prof.n} abstracts</span></div>
   <table><tr><th>Measure</th><th>Your abstract</th><th>Q1 median</th><th>Middle half</th><th>Fix</th></tr>${StyleM.METRICS.map(k => { const g = r.allGaps.find(x => x.metric === k), pm = prof.metrics[k]; return `<tr><td>${E(StyleM.LABEL[k])}</td><td>${g ? `<span class="pill ${g.size > 1.5 ? "high" : "med"}">${E(r.measured[k])}</span>` : E(r.measured[k])}</td><td>${E(pm.median)}</td><td>${E(pm.p25)}–${E(pm.p75)}</td><td class="small">${g ? E(g.fix) : ""}</td></tr>`; }).join("")}</table>
   ${r.moveNotes.length ? `<h3>Structure</h3><ul>${r.moveNotes.map(x => `<li>${E(x)}</li>`).join("")}</ul>` : ""}<p class="small">Opening move: ${E(r.measured.firstMove)} · sequence: ${E(r.measured.moveSequence)}. ${E(r.note)}</p>`;
+};
+
+// ---------- integrity screen ----------
+async function readAnyFile(f) {
+  if (/\.pdf$/i.test(f.name)) return pdfToMs(await f.arrayBuffer());
+  if (/\.docx$/i.test(f.name)) { if (!window.mammoth) await new Promise((res, rej) => { const s = document.createElement("script"); s.src = "https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"; s.onload = res; s.onerror = rej; document.head.appendChild(s); }); const r = await mammoth.convertToHtml({ arrayBuffer: await f.arrayBuffer() }); return htmlToMs(r.value); }
+  return f.text();
+}
+$("#intBtn").onclick = async () => {
+  const st = $("#intStatus"); if (!S.paras.length) { st.textContent = "Analyze the manuscript first."; return; }
+  const files = [...$("#intOwn").files].map(f => ({ f, own: true })).concat([...$("#intSrc").files].map(f => ({ f, own: false })));
+  if (!files.length) { st.textContent = "Add at least one earlier paper or source to compare with."; return; }
+  const sources = []; for (const [i, x] of files.entries()) { st.textContent = `Reading ${x.f.name}...`; try { sources.push({ id: "s" + i, title: x.f.name, text: await readAnyFile(x.f), own: x.own }); } catch (e) { st.textContent = "Could not read " + x.f.name; } }
+  const body = S.paras.filter(p => !p.isRef && !p.isHeading && !["references", "declarations"].includes(roleOf(p.id))).map(p => p.text).join("\n\n");
+  const r = IntegrityM.screen(body, sources); S.integrity = { grade: r.grade, redundancy: r.redundancy, n: r.overlappingSentences }; save();
+  const pill = { none: "ok", minor: "med", substantial: "high" };
+  $("#intOut").innerHTML = `<div class="row" style="margin:10px 0"><span class="pill ${pill[r.grade]}" style="font-size:14px">Other work: ${E(r.grade)}</span><span class="pill ${pill[r.redundancy]}">Own work: ${E(r.redundancy)}</span><span class="pill">${r.overlappingSentences} of ${r.sentencesChecked} sentences overlap</span><span class="pill">${r.unattributed} unattributed</span></div>
+  <ul>${r.actions.map(a => `<li>${E(a)}</li>`).join("")}</ul>
+  ${r.flagged.length ? `<table><tr><th>Sentence</th><th>Source</th><th>Status</th><th>Fix</th></tr>${r.flagged.map(f => `<tr><td class="small">${E(f.sentence)}</td><td class="small">${E(f.source)}${f.own ? ' <span class="pill">own</span>' : ""}</td><td class="small">${f.cited ? "cited" : '<span class="pill high">not cited</span>'}${f.quoted ? ", quoted" : ""}</td><td class="small">${E(f.fix)}</td></tr>`).join("")}</table>` : ""}
+  ${r.coverLetterDisclosure ? `<h3>Cover-letter disclosure (draft)</h3><p>${E(r.coverLetterDisclosure)}</p>` : ""}<p class="small">${E(r.basis)}</p>`;
+  st.textContent = `Compared with ${sources.length} file(s).`;
 };
 </script>
 </body>

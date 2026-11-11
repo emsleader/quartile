@@ -58,6 +58,13 @@ ok(L.Stats.ciP("the difference was 11.14 pp [2.84, 19.44] (p = 0.009; Figure 2)"
   const r = L.compareStyle("# Abstract\n\nWe find that small firms with audited accounts invest more. Using a panel of 9,037 firms, we show that the effect is larger where banks dominate. These results inform lenders and policymakers.\n", { field: "finance" });
   ok(typeof r.distance === "number" && r.measured.dataClause === 1 && r.measured.moves.includes("finding"), "compare_style measures an abstract"); }
 
+// integrity screen (COPE-aligned)
+{ const src = "Small firms face binding credit constraints when collateral is scarce and lenders cannot observe quality. This pattern holds across emerging markets and over several decades of evidence from enterprise surveys.";
+  const ms = "# Introduction\n\nSmall firms face binding credit constraints when collateral is scarce and lenders cannot observe quality. This pattern holds across emerging markets and over several decades of evidence from enterprise surveys. We add new data.\n";
+  const r = L.Integrity.screen(ms, [{ id: "a", title: "Other paper", text: src }]); ok(r.grade === "substantial" && r.longestConsecutiveRun >= 2, "consecutive uncited copying is substantial");
+  const r2 = L.Integrity.screen("As Beck (2006) put it, \u201cSmall firms face binding credit constraints when collateral is scarce\u201d in many markets today.", [{ id: "a", title: "Other", text: src }]); ok(r2.grade === "none", "quoted and cited reuse is not flagged as unattributed");
+  const r3 = L.Integrity.screen(ms, [{ id: "o", title: "Our 2024 paper", text: src, own: true }]); ok(r3.redundancy !== "none" && r3.grade === "none" && r3.coverLetterDisclosure, "own-work overlap is redundancy with a disclosure");
+  ok(L.Integrity.screen("Entirely new words written for this study about firms and banks today.", [{ id: "a", title: "x", text: src }]).grade === "none", "no overlap"); }
 let corpusDone = Promise.resolve();
 // private corpus (local folder; synthetic Markdown papers)
 { const os = require("os"), fs = require("fs"), dir = fs.mkdtempSync(os.tmpdir() + "/qc-"); process.env.QUARTILE_CORPUS = dir; fs.mkdirSync(dir + "/finance");
@@ -77,7 +84,7 @@ let corpusDone = Promise.resolve();
   const c = new Client({ name: "test", version: "1" });
   await c.connect(new StdioClientTransport({ command: process.execPath, args: [path.join(__dirname, "..", "mcp", "server.js")] }));
   const tools = (await c.listTools()).tools.map(t => t.name);
-  ok(tools.length === 16 && tools.includes("corpus_originality"), "16 tools");
+  ok(tools.length === 17 && tools.includes("integrity_screen"), "17 tools");
   const r = await c.callTool({ name: "verify_rewrite", arguments: { original: "Sales rose 5%.", revised: "Sales rose 7%." } });
   ok(r.structuredContent.pass === false, "tool call over stdio");
   const pr = (await c.listPrompts()).prompts.map(p => p.name); ok(pr.length === 3, "3 prompts");

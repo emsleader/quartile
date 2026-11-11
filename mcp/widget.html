@@ -77,6 +77,14 @@ function render(d) {
   } else if (d.kind === "originality") {
     k.textContent = "Originality against the corpus";
     h += d.error ? `<p class="empty">${E(d.error)}</p>` : `<p><span class="pill ${d.pass ? "ok" : "high"}">${d.pass ? "Original wording" : d.overlapping.length + " sentence(s) copy 8+ words"}</span></p><ul>${d.overlapping.map(x => `<li>${E(x.sentence)}<div class="q">shares "${E(x.overlap)}" with ${E((x.source && x.source.title) || "a corpus paper")}</div></li>`).join("")}</ul><p class="q">${E(d.rule)}</p>`;
+  } else if (d.kind === "integrity") {
+    k.textContent = "Integrity screen (COPE-aligned)";
+    const pg = { none: "ok", minor: "med", substantial: "high" };
+    h += `<div class="stats">${tile(d.grade, "overlap with other work")}${tile(d.redundancy, "overlap with own work")}${tile(d.overlappingSentences + "/" + d.sentencesChecked, "sentences overlapping")}${tile(d.unattributed, "unattributed")}</div>`;
+    h += `<ul>${d.actions.map(a => `<li>${E(a)}</li>`).join("")}</ul>`;
+    if (d.flagged.length) h += `<h3>Flagged sentences</h3><ul>${d.flagged.slice(0, 15).map(f => `<li>${E(f.sentence)}<div class="q">${E(f.source)} · ${f.cited ? "cited" : "not cited"}${f.quoted ? ", quoted" : ""} · ${E(f.fix)}</div></li>`).join("")}</ul>`;
+    if (d.coverLetterDisclosure) h += `<h3>Cover-letter disclosure (draft)</h3><p>${E(d.coverLetterDisclosure)}</p>`;
+    h += `<p class="q">${E(d.basis)}</p>`;
   } else if (d.kind === "references") {
     k.textContent = "References";
     h += `<div class="stats">${tile(d.references.length, "references")}${tile(d.missingFromList.length, "cited, not listed")}${tile(d.neverCited.length, "listed, never cited")}${tile(d.last5Years, "from the last 5 years")}</div>`;

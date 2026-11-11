@@ -133,4 +133,5 @@ function styleGuide(tier = "Q1", type = "A", role) {
     nonNegotiable: ["Keep every number, statistic, unit, sample size and p-value exactly.", "Keep every citation attached to the same claim.", "Keep protected constructs verbatim and distinct.", "Never strengthen a hedge or turn association into causation.", "Never add claims, findings, names, references or numbers; every revised sentence must come from an original sentence.", "Run verify_rewrite on every revised paragraph and keep the original if pass is false."] };
 }
 
-module.exports = { compareStyle, profileSummary, loadProfile, Core, Stats, Style, parse, analyze, references, desk, verify, applyReplacements, loadBank, setBank, fetchBank, journalLookup, journalSuggest, styleGuide, diffLevel };
+const Integrity = require("./integrity.js");
+module.exports = { Integrity, compareStyle, profileSummary, loadProfile, Core, Stats, Style, parse, analyze, references, desk, verify, applyReplacements, loadBank, setBank, fetchBank, journalLookup, journalSuggest, styleGuide, diffLevel };

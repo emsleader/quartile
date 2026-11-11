@@ -28,6 +28,7 @@ function widgetHtml() {
 const ui = (invoking, invoked) => ({ ui: { resourceUri: WIDGET_URI }, "ui/resourceUri": WIDGET_URI, "openai/outputTemplate": WIDGET_URI, "openai/toolInvocation/invoking": invoking, "openai/toolInvocation/invoked": invoked });
 const RO = { readOnlyHint: true, openWorldHint: false, destructiveHint: false };
 
+const CP = require("./corpus.js");
 function build() {
   const s = new McpServer({ name: "quartile", version: VERSION }, { instructions: "Quartile checks academic business and economics manuscripts without changing their science. Call q1_style_guide before rewriting. After rewriting any paragraph, call verify_rewrite with the original and the revision and keep the original whenever pass is false. Never present simulated reviewer output as a real journal decision. Statistics checks show consistency, not who produced a number. The full-text corpus is for patterns only (structure, section lengths, moves, voice): never copy wording from it, and run corpus_originality on any text written with its help." });
 
@@ -56,7 +57,6 @@ function build() {
     async ({ text, field, journal, is_abstract }) => json(L.compareStyle(text, { field, journal, isAbstract: is_abstract }), "style"));
 
   // ---- private full-text corpus (local installs only: Claude Desktop extension or a local server) ----
-  const CP = require("./corpus.js");
   s.registerTool("corpus_status", { title: "Corpus status", description: "Shows the private full-text corpus in the user's folder (for example a Google Drive folder synced to the computer): papers per field, how many are measured, and the progress of any running download or analysis.", inputSchema: {}, annotations: RO },
     async () => json(CP.status(), "corpus_status"));
   s.registerTool("corpus_build", { title: "Build the full-text corpus", description: "Starts a background job on the user's computer: downloads open-access, Creative-Commons-licensed Q1 articles (finance, small business, management; 2019 or later) as PDFs from the publishers' open-access copies into the corpus folder, then extracts and measures every section. Takes a while; check corpus_status. Texts stay in the folder; only measurements are written to corpus-profile.json.", inputSchema: { target: z.number().int().min(10).max(1000).default(500), fields: z.array(z.enum(["finance", "small_business", "management"])).optional(), per_journal: z.number().int().min(1).max(20).default(6) }, annotations: { readOnlyHint: false, openWorldHint: true, destructiveHint: false } },
@@ -69,6 +69,9 @@ function build() {
     async ({ query, k }) => json(await CP.search(query, k), "corpus_search"));
   s.registerTool("corpus_originality", { title: "Originality check against the corpus", description: "Flags any sentence that shares 8 or more consecutive words with a paper in the corpus. Call it on every rewrite inspired by the corpus; rewrite flagged sentences in the author's own words.", inputSchema: { text: txt }, annotations: RO },
     async ({ text }) => json(await CP.originality(text), "originality"));
+
+  s.registerTool("integrity_screen", { title: "Integrity screen (COPE-aligned)", description: "Pre-submission plagiarism and text-recycling screen aligned with the COPE flowchart 'Plagiarism in a submitted manuscript' (doi:10.24318/cope.2019.2.1). Compares the manuscript with texts you supply (your earlier papers marked own: true, or sources) and, in a local install, with the private corpus. Grades overlap as none / minor / substantial, separates redundancy with your own work, flags uncited or unquoted copying and reused numbers, says what an editor following COPE would do, and drafts a cover-letter disclosure. Not a web-wide plagiarism check and not a finding of misconduct.", inputSchema: { text: txt, sources: z.array(z.object({ title: z.string(), text: z.string().min(50).max(400000), own: z.boolean().default(false) })).max(20).default([]), use_corpus: z.boolean().default(true) }, annotations: RO, _meta: ui("Screening for overlap", "Integrity screen ready") },
+    async ({ text, sources, use_corpus }) => { const look = use_corpus ? await CP.sentenceLookup().catch(() => null) : null; return json(L.Integrity.screen(text, sources.map((x, i) => ({ id: "s" + i, ...x })), look), "integrity"); });
 
   s.registerTool("journal_lookup", { title: "Journal lookup", description: "Looks up a journal by title or ISSN in the local journal bank built from the user's own SCImago export: quartile, SJR, H-index, citations per document, output, and a difficulty score (0-100) within its main category.", inputSchema: { query: z.string().min(2) }, annotations: RO, _meta: ui("Looking up", "Found") },
     async ({ query }) => { const r = L.journalLookup(query); return json(r.length ? { results: r } : { results: [], note: "No match, or no journal bank loaded. Build one with scripts/build-bank.js and set QUARTILE_BANK." }, "journals"); });

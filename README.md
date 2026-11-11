@@ -15,6 +15,7 @@ Most AI editors make a manuscript sound fluent, and some of them quietly change 
 | Hallucination guard | Blocks revisions that add or change numbers, citations, protected terms, new names or causal wording, or add sentences | No |
 | Desk-rejection screen | The five usual desk-rejection reasons (contribution, structure, writing, literature, fit), each with a fix | No |
 | Statistics check | statcheck-style recomputation of p from t, F, r, χ² and z; coefficient ÷ SE vs reported t, p and stars; impossible R², adjusted R², alpha, AVE, r and p; p-values clustered below .05; last-digit test; output fingerprints of Stata, R, SPSS, EViews, statsmodels, SmartPLS, AMOS/Mplus | No |
+| Integrity screen (COPE-aligned) | Overlap with your earlier papers, sources and the local corpus, graded none / minor / substantial following the logic of the COPE flowchart on plagiarism in a submitted manuscript (doi:10.24318/cope.2019.2.1), with fixes and a cover-letter disclosure | No |
 | References | Cited-but-missing, listed-but-uncited, recency, APA 7 style | No |
 | Journal bank | Quartile, SJR, H-index and a 0-100 difficulty score within the subject category, from your own SCImago export | No |
 | Issues list | Every problem listed first, each with a ready replacement; apply, ignore or comment per item | For language issues |
@@ -37,7 +38,7 @@ node server.js            # stdio (Claude Desktop, Claude Code)
 node server.js --http     # Streamable HTTP on http://localhost:8787/mcp
 ```
 
-**Tools:** `q1_style_guide`, `compare_style`, `analyze_manuscript`, `desk_screen`, `check_statistics`, `check_references`, `verify_rewrite`, `apply_replacements`, `journal_lookup`, `journal_suggest`. **Prompts:** `q1_edit`, `journal_editor`, `idea_to_paper`. All tools are read-only and stateless; nothing is stored.
+**Tools:** `q1_style_guide`, `compare_style`, `integrity_screen`, `corpus_*` (local), `analyze_manuscript`, `desk_screen`, `check_statistics`, `check_references`, `verify_rewrite`, `apply_replacements`, `journal_lookup`, `journal_suggest`. **Prompts:** `q1_edit`, `journal_editor`, `idea_to_paper`. All tools are read-only and stateless; nothing is stored.
 
 **Claude Desktop** (`claude_desktop_config.json`):
 ```json
