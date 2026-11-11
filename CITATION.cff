@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use Quartile, please cite it as below."
+title: "Quartile: a meaning-preserving Q1 academic writing engine with journal-editor simulation and statistics checks"
+version: 0.8.0
+date-released: 2026-11-11
+license: MIT
+type: software
+authors:
+  - family-names: Alavi
+    given-names: Seyed Mehdi
+    affiliation: EMS International Kft
+keywords:
+  - academic writing
+  - research integrity
+  - statcheck
+  - model context protocol
+  - business research
+  - journal selection

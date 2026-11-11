@@ -1,0 +1,11 @@
+{
+  "title": "Quartile: a meaning-preserving Q1 academic writing engine with journal-editor simulation and statistics checks",
+  "upload_type": "software",
+  "description": "<p>Quartile edits business, management, finance and economics manuscripts toward the conventions of Q1 journals while keeping the science unchanged. A deterministic guard blocks any revision that adds or changes numbers, citations, protected constructs, names or causal claims. It includes a desk-rejection screen, a statcheck-style recomputation of reported test statistics and regression-table consistency checks, reference cross-checks, a journal-editor and reviewer simulation, an idea-to-paper framing tool, and an MCP server that exposes the checks to Claude, ChatGPT and other MCP clients.</p>",
+  "creators": [{ "name": "Alavi, Seyed Mehdi", "affiliation": "EMS International Kft" }],
+  "license": "MIT",
+  "access_right": "open",
+  "keywords": ["academic writing", "research integrity", "statcheck", "hallucination guard", "model context protocol", "journal selection", "business research"],
+  "version": "0.8.0",
+  "language": "eng"
+}

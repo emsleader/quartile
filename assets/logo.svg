@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Quartile logo">
+  <defs>
+    <linearGradient id="qg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6C453"/><stop offset="1" stop-color="#E08A1E"/></linearGradient>
+    <linearGradient id="qb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4F46E5"/><stop offset="1" stop-color="#7C3AED"/></linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#0E1530"/>
+  <rect x="11" y="11" width="19" height="19" rx="5" fill="url(#qb)" opacity=".55"/>
+  <rect x="34" y="11" width="19" height="19" rx="5" fill="url(#qg)"/>
+  <rect x="11" y="34" width="19" height="19" rx="5" fill="url(#qb)" opacity=".35"/>
+  <rect x="34" y="34" width="19" height="19" rx="5" fill="url(#qb)" opacity=".75"/>
+  <path d="M46 46 L56 56" stroke="#F6C453" stroke-width="4.5" stroke-linecap="round"/>
+</svg>

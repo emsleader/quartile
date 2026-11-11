@@ -1,0 +1,25 @@
+{
+  "name": "q1-engine-mcp",
+  "version": "0.8.0",
+  "description": "MCP server for the Q1 Engine: deterministic academic-manuscript checks (hallucination guard, desk-rejection screen, statistics recomputation, references, Q1 style rules, journal bank) for Claude, ChatGPT and any MCP client.",
+  "type": "commonjs",
+  "main": "server.js",
+  "bin": {
+    "q1-engine-mcp": "server.js"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "http": "node server.js --http",
+    "test": "node ../tests/run.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "author": "Seyed Mehdi Alavi (EMS International Kft)",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "express": "5.3.0",
+    "zod": "4.6.7"
+  }
+}
