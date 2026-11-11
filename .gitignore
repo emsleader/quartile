@@ -6,3 +6,5 @@ data/*.csv
 .env
 *.mcpb
 !data/style-profile.json
+!data/corpus-profile.json
+!data/corpus-sources.json

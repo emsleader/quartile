@@ -1,0 +1,25 @@
+name: Build full-text corpus profile (measurements only)
+on:
+  workflow_dispatch:
+  push:
+    paths: ["scripts/corpus-ci.js", ".github/workflows/corpus-build.yml"]
+permissions:
+  contents: write
+concurrency: { group: corpus, cancel-in-progress: true }
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: cd mcp && npm ci --omit=dev
+      - run: node scripts/corpus-ci.js 500 2>&1 | grep -v "polyfill\|Require stack\|node_modules/\|\[eval\]"
+      - name: Commit measurements only
+        run: |
+          git config user.name "quartile-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -f data/corpus-profile.json data/corpus-sources.json
+          git diff --cached --quiet || git commit -m "Update full-text corpus profile (measurements and metadata only)"
+          git pull --rebase && git push
