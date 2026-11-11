@@ -15,11 +15,13 @@ const Core = (() => {
     const REFH = /^(\d+\.?\s*)?(references|reference list|bibliography|works cited|literature cited)\s*:?$/i, ENDREF = /^(#+\s*)?(appendix|appendices|tables?|figures?|notes|endnotes|supplementary)\b/i;
     let inRefs = false; const meta = [];
     const push = (t, kind) => { blocks.push(t); meta.push(kind); };
-    const flush2 = () => { if (cur.length) { push(cur.join(" ").replace(/\s+/g, " ").trim(), inRefs ? "ref" : "p"); cur = []; } };
+    const flush2 = () => { if (cur.isMd) { if (cur.length) push("⟦TABLE⟧ " + cur.join(" || "), "table"); cur = []; return; } if (cur.length) { push(cur.join(" ").replace(/\s+/g, " ").trim(), inRefs ? "ref" : "p"); cur = []; } };
     for (const raw of lines) {
       const l = raw.trim();
       if (!l) { flush2(); continue; }
       if (/^⟦TABLE⟧/.test(l)) { flush2(); push(l, "table"); continue; }
+      if (/^\|.*\|$/.test(l) && !inRefs) { if (!(cur.length && cur.isMd)) { flush2(); cur = []; cur.isMd = true; } if (!/^\|[\s:|-]+\|$/.test(l)) cur.push(l.replace(/^\|\s*|\s*\|$/g, "").replace(/\s*\|\s*/g, " | ")); continue; }
+      if (cur.isMd) flush2();
       if (REFH.test(l.replace(/^#+\s*/, ""))) { flush2(); push(l, "h"); inRefs = true; continue; }
       if (inRefs && (/^#{1,6}\s/.test(l) || (ENDREF.test(l) && isHeading(l)) || (isHeading(l) && !/(19|20)\d{2}/.test(l)))) { flush2(); push(l, "h"); inRefs = false; continue; }
       if (inRefs) { flush2(); push(l, "ref"); continue; }
@@ -53,14 +55,14 @@ const Core = (() => {
     const re = /(?:\b[pPtFrRzβbBnNdM]\s*(?:\([^)]{0,12}\))?\s*)?[<>=≤≥]?\s*[-−–]?(?:\d+(?:[.,]\d+)*|[.,]\d+)\s*%?/g;
     return (clean.match(re) || []).map(s => s.replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/,(?=\d{3}\b)/g, "")).filter(s => /\d/.test(s) && !/^(?:19|20)\d{2}$/.test(s));
   }
-  const PART = "(?:(?:van|von|de|der|den|da|di|le|la|du|dos|del)\\s+)?", SN = "[\\p{Lu}][\\p{L}'’-]+";
+  const PART = "(?:(?:van|von|de|der|den|da|di|le|la|du|dos|del)\\s+)?", SN = "[\\p{Lu}](?:[\\p{Ll}]|['’][\\p{L}])[\\p{L}'’-]*";
   const stripP = n => n.replace(/^(?:van|von|de|der|den|da|di|le|la|du|dos|del)\s+/i, "");
   function citations(text) {
     const keys = []; let m;
-    const par = /\(([^()]*?(?:19|20)\d{2}[a-z]?[^()]*)\)/gu;
-    const partRe = new RegExp("^(?:e\\.g\\.,?|see(?:\\s+also)?|cf\\.|i\\.e\\.,?)?\\s*(" + PART + SN + ")[^\\d;]*?((?:19|20)\\d{2}[a-z]?)", "u");
+    const par = /\(([^()]*?(?:(?:19|20)\d{2}[a-z]?|n\.d\.)[^()]*)\)/gu;
+    const partRe = new RegExp("^(?:e\\.g\\.,?|see(?:\\s+also)?|cf\\.|i\\.e\\.,?)?\\s*(" + PART + "(?:" + SN + "|[\\p{Lu}]{2,}(?=,)|[\\p{Lu}](?=\\s[\\p{Lu}])))[^\\d;]*?((?:19|20)\\d{2}[a-z]?|n\\.d\\.)", "u");
     while ((m = par.exec(text))) m[1].split(";").forEach(part => { const mm = part.trim().match(partRe); if (mm) keys.push(stripP(mm[1]) + " " + mm[2]); });
-    const nar = new RegExp("(" + PART + SN + ")((?:,\\s*" + SN + ")*,?\\s+(?:and|&)\\s+" + PART + SN + "|\\s+et\\s+al\\.?)?\\s+\\(((?:19|20)\\d{2}[a-z]?)(?:[,;][^)]*)?\\)", "gu");
+    const nar = new RegExp("(?<![\\p{L}])(" + PART + SN + ")((?:,\\s*" + SN + ")*,?\\s+(?:and|&)\\s+" + PART + SN + "|\\s+et\\s+al\\.?)?\\s+\\(((?:19|20)\\d{2}[a-z]?)(?:[,;][^)]*)?\\)", "gu");
     while ((m = nar.exec(text))) keys.push(stripP(m[1]) + " " + m[3]);
     const br = /\[(\d+(?:\s*[–,-]\s*\d+)*)\]/g;
     while ((m = br.exec(text))) keys.push("[" + m[1].replace(/\s+/g, "") + "]");
@@ -93,7 +95,7 @@ const Core = (() => {
     const mean = lens.reduce((a, b) => a + b, 0) / Math.max(lens.length, 1);
     const sd = Math.sqrt(lens.reduce((a, b) => a + (b - mean) ** 2, 0) / Math.max(lens.length, 1));
     const aiW = countList(text, AI_WORDS), aiP = countList(text, AI_PHRASES);
-    const dashes = (text.match(/[—–]|\s--\s/g) || []).length;
+    const dashes = (text.match(/—|\s–\s|\s--\s/g) || []).length;
     const passive = (text.match(/\b(?:is|are|was|were|been|being|be)\s+(?:\w+ly\s+)?\w+(?:ed|en)\b/gi) || []).length;
     const notBut = (text.match(/\bnot\s+(?:only|just|merely|simply)\b[^.]{0,120}\bbut\b|\bnot\s+\w+(?:\s+\w+){0,6},?\s+but\s+(?:rather\s+)?/gi) || []).length;
     let repeatedOpenings = 0;
@@ -186,6 +188,22 @@ const Core = (() => {
   const BG_OPENER = /^(in recent years|over the (past|last)|in today['’]?s|with the (rise|growth|advent|development)|it is (well )?known|nowadays|in the modern|since the|recently,)/i;
   const IDENT = ["natural experiment","quasi-natural","exogenous","instrumental variable","difference-in-differences","regression discontinuity","randomi","event study","exogenously","plausibly exogenous"];
   const STRONG_CAUSAL = ["cause","causes","caused","leads to","led to","results in","resulted in","drives","determines","impact of","effect of","effects of","attributable to"];
+
+  const isCaption = t => /^(#+\s*)?(table|figure|fig\.|exhibit|panel)\s+[\dA-Z]+[.:]?\s/i.test(t || "");
+  function headingLevel(t) { const h = (t.match(/^(#+)\s/) || [])[1]; const num = (t.replace(/^#+\s*/, "").match(/^(\d+(?:\.\d+)*)[.\s]/) || [])[1]; const byNum = num ? num.split(".").filter(Boolean).length : 0; return Math.max(h ? h.length : 1, byNum || 1); }
+  // Assign a role to each section. A sub-heading whose own words give no role takes the role of its nearest parent heading.
+  function sectionRoles(secs) {
+    const stack = []; const out = [];
+    for (const x of secs) {
+      if (x.id === "_start") { if (x.paras.length) out.push({ ...x, role: "opening" }); continue; }
+      const lvl = headingLevel(x.raw || x.title); let role = detectRole(x.title);
+      while (stack.length && stack[stack.length - 1].lvl >= lvl) stack.pop();
+      if (role === "other" && stack.length) role = stack[stack.length - 1].role;
+      stack.push({ lvl, role });
+      if (x.paras.length) out.push({ ...x, role });
+    }
+    return out;
+  }
   function detectRole(title) {
     const t = (title || "").toLowerCase();
     if (/^(#+\s*)?(\d+\.?\s*)?(references|reference list|bibliography|works cited|literature cited)/.test(t)) return "references";
@@ -212,7 +230,7 @@ const Core = (() => {
       const t = opening.paras.map(paraText).join(" "), first = sentences(t)[0] || t.slice(0, 200);
       if (BG_OPENER.test(first.trim())) out.push({ rule: 1, sev: "med", where: opening.title, detail: "Opens with background (\"" + first.slice(0, 60) + "...\"). Put the finding or question first." });
       if (!conceptual && !/\d/.test(t.replace(/\(?(19|20)\d{2}\)?/g, ""))) out.push({ rule: 5, sev: "low", where: opening.title, detail: "No number in the opening. Q1 abstracts usually report one or two key results." });
-      if (!conceptual && !/\b\d[\d,]*\s+(firms|companies|enterprises|smes|studios|observations|respondents|firm-years|countries|businesses)\b|\bn\s*=\s*\d/i.test(t)) out.push({ rule: 2, sev: "low", where: opening.title, detail: "The sample is not described by size in the opening." });
+      if (!conceptual && !/\b\d[\d,]*\s+(?:[a-z-]+\s+){0,2}(firms|companies|enterprises|establishments|smes|studios|observations|respondents|households|banks|plants|employees|records|firm-years|countries|businesses)\b|\bn\s*=\s*\d/i.test(t)) out.push({ rule: 2, sev: "low", where: opening.title, detail: "The sample is not described by size in the opening." });
     }
     for (const sec of sections) {
       if (["references", "declarations"].includes(sec.role)) continue;
@@ -220,7 +238,8 @@ const Core = (() => {
       for (const g of GAP_CLICHES) { const n = countPhrase(t, g); if (n) out.push({ rule: 3, sev: "med", where: sec.title, detail: "\"" + g + "\": name the exact contradiction or omission in prior work instead." }); }
       if (!hasIdent && ["abstract","results","discussion","conclusion"].includes(sec.role) || (!hasIdent && sec === opening)) {
         const SAFE = /\b(not|no|neither|nor|cannot|can't|never|without|whether|if|would|could|might|may|establish\w*|identif\w*|estimat\w*|test\w*|examin\w*|isolat\w*|future|hypothes\w*|proposition\w*)\b/i;
-        const bad = sentences(t).filter(se => words(se).length >= 7 && STRONG_CAUSAL.some(w => countPhrase(se, w) > 0) && !SAFE.test(se));
+        const STAT = /\b(marginal|fixed|random|interaction|main|treatment|time|year|wave|period|country|firm|industry|sector|spillover|size|net)\s+effects?\b|\beffect sizes?\b/gi;
+        const bad = sentences(t).filter(se => { const s2 = se.replace(STAT, ""); return words(s2).length >= 7 && STRONG_CAUSAL.some(w => countPhrase(s2, w) > 0) && !SAFE.test(s2); });
         if (bad.length) out.push({ rule: 4, sev: "high", where: sec.title, detail: "Causal wording without an identification design named anywhere in the text, e.g. \"" + bad[0].slice(0, 110) + "\". Use \"associated with\" unless the design identifies causation." });
       }
       if (["discussion","conclusion"].includes(sec.role) || sec === sections[sections.length - 1]) {
@@ -240,7 +259,8 @@ const Core = (() => {
     const year = yearM ? yearM[1] : "";
     const num = (t.match(/^\[(\d+)\]|^(\d+)\.\s/) || []).slice(1).find(Boolean) || "";
     const body = t.replace(/^\[\d+\]\s*|^\d+\.\s+/, "");
-    const surname = (body.match(/^(?:(?:van|von|de|der|den|da|di|le|la|du|dos|del)\s+)?([\p{Lu}][\p{L}'’-]+)/u) || ["", ""])[1];
+    let surname = (body.match(/^(?:(?:van|von|de|der|den|da|di|le|la|du|dos|del)\s+)?([\p{Lu}][\p{L}'’-]+)/u) || ["", ""])[1];
+    if (!surname) surname = (body.match(/^([\p{Lu}][\p{L}'’-]*)/u) || ["", ""])[1];
     let title = "";
     const afterYear = yearM ? body.slice(body.indexOf(yearM[0]) + yearM[0].length).replace(/^[\s.,:)]+/, "") : "";
     if (afterYear) title = (afterYear.match(/^[“"]?([^.?!“”"]{8,250}[?!]?)/) || ["", ""])[1].trim();
@@ -249,7 +269,7 @@ const Core = (() => {
   }
   function citeKey(s, y) { return (s || "").toLowerCase() + " " + (y || ""); }
   const AI_TELLS = ["delve","crucial","pivotal","landscape","underscore","underscores","showcase","tapestry","testament","multifaceted","notably","furthermore","moreover","additionally","comprehensive","leverage","foster","navigate","realm","holistic","seamless","meticulous","vibrant","interplay","nuanced","paramount","it is important to note","it is worth noting","plays a crucial role","plays a key role","plays a pivotal role","in today's","in the realm of","shed light on","sheds light on","a growing body of","paves the way","serves as a","stands as a","not only","in conclusion","overall,"];
-  function aiTells(text) { const c = countList(text, AI_TELLS).total + (text.match(/[—–]|\s--\s/g) || []).length; const w = Math.max(words(text).length, 1); return { count: c, per1k: +(c * 1000 / w).toFixed(1) }; }
+  function aiTells(text) { const c = countList(text, AI_TELLS).total + (text.match(/—|\s–\s|\s--\s/g) || []).length; const w = Math.max(words(text).length, 1); return { count: c, per1k: +(c * 1000 / w).toFixed(1) }; }
   function similar(a, b) { const t = x => new Set((x || "").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, " ").split(/\s+/).filter(w => w.length > 2)); const A = t(a), B = t(b); if (!A.size || !B.size) return 0; let n = 0; A.forEach(w => { if (B.has(w)) n++; }); return n / Math.max(A.size, B.size); }
   function deskScreen(o) {
     // o: {sections:[{title,role,paras}], text(id), refs:[{year,...}], verified:{}, guidelines, journal, year}
@@ -344,7 +364,7 @@ const Core = (() => {
     const capF = new Set((paras.filter(p => /^(#+\s*)?(Figure|Fig\.)\s+\d+/i.test(p.text)).map(p => +p.text.match(/(?:Figure|Fig\.)\s+(\d+)/i)[1])));
     const refT = new Set((all.match(/\bTables?\s+(\d+)/g) || []).map(x => +x.match(/\d+/)[0])), refF = new Set((all.match(/\b(?:Figures?|Fig\.)\s+(\d+)/g) || []).map(x => +x.match(/\d+/)[0]));
     refT.forEach(n => { if (capT.size && !capT.has(n)) out.push({ scope: "doc", category: "consistency", severity: "high", problem: `Table ${n} is referred to in the text but there is no Table ${n}.`, suggestion: "Correct the number or add the table.", author: true }); });
-    capT.forEach(n => { if (![...body].some(p => new RegExp("\\bTables?\\s+" + n + "\\b").test(p.text) && !/^Table/.test(p.text))) out.push({ scope: "doc", category: "consistency", severity: "med", problem: `Table ${n} is never referred to in the text.`, suggestion: `Refer to Table ${n} where its content is discussed.`, author: true }); });
+    capT.forEach(n => { if (![...body].some(p => new RegExp("\\bTables?\\s+" + n + "\\b").test(p.text) && !/^Table\s+\d+\s*[.:]/.test(p.text))) out.push({ scope: "doc", category: "consistency", severity: "med", problem: `Table ${n} is never referred to in the text.`, suggestion: `Refer to Table ${n} where its content is discussed.`, author: true }); });
     refF.forEach(n => { if (capF.size && !capF.has(n)) out.push({ scope: "doc", category: "consistency", severity: "high", problem: `Figure ${n} is referred to but not present.`, suggestion: "Correct the number or add the figure.", author: true }); });
     ["H", "P"].forEach(L => { const nums = [...new Set((all.match(new RegExp("\\b" + L + "(\\d{1,2})[a-c]?\\b", "g")) || []).map(x => +x.slice(1).replace(/[a-c]$/, "")))].sort((a, b) => a - b);
       if (nums.length >= 2) for (let k = nums[0]; k < nums[nums.length - 1]; k++) if (!nums.includes(k)) out.push({ scope: "doc", category: "consistency", severity: "high", problem: `${L === "H" ? "Hypotheses" : "Propositions"} jump from ${L}${k - 1} to ${L}${k + 1}: ${L}${k} is missing.`, suggestion: "Renumber or add the missing one.", author: true }); });
@@ -374,12 +394,13 @@ const Core = (() => {
     return out;
   }
   // ---- business research checks (MBA / DBA / management and finance) ----
-  const THEORIES = ["resource-based view","resource based view","agency theory","transaction cost","institutional theory","dynamic capabilities","stakeholder theory","real options","pecking order","trade-off theory","signalling theory","signaling theory","upper echelons","contingency theory","technology acceptance","utaut","diffusion of innovation","social exchange","stewardship theory","legitimacy theory","prospect theory","behavioral theory of the firm","behavioural theory of the firm","knowledge-based view","financial constraints theory","life cycle theory","balanced scorecard","levers of control","cybernetic","goal-setting theory","expectancy theory","organizational learning","absorptive capacity","effectuation","bricolage"];
+  const THEORIES = ["financing hierarchy","pecking-order","credit rationing","asymmetric information","information asymmetry","relationship lending","resource-based view","resource based view","agency theory","transaction cost","institutional theory","dynamic capabilities","stakeholder theory","real options","pecking order","trade-off theory","signalling theory","signaling theory","upper echelons","contingency theory","technology acceptance","utaut","diffusion of innovation","social exchange","stewardship theory","legitimacy theory","prospect theory","behavioral theory of the firm","behavioural theory of the firm","knowledge-based view","financial constraints theory","life cycle theory","balanced scorecard","levers of control","cybernetic","goal-setting theory","expectancy theory","organizational learning","absorptive capacity","effectuation","bricolage"];
   function bizChecks(paras, secs) {
     const out = [], body = paras.filter(p => !p.isRef && !p.isTable).map(p => p.text).join(" "), L = body.toLowerCase();
     const has = re => re.test(L), n = re => (L.match(re) || []).length;
     const quant = n(/\b(regression|coefficient|panel data|fixed effects?|ols|logit|probit|gmm|estimat\w+|significant at)\b/g) >= 4;
-    const survey = n(/\b(survey|questionnaire|likert|respondents?|structural equation|pls-sem|cb-sem|measurement model)\b/g) >= 3;
+    const secondary = has(/\b(enterprise surveys?|wbes|world bank enterprise|orbis|amadeus|compustat|crsp|census|administrative (data|records)|household survey|labou?r force survey|panel file|\.dta\b|secondary data)\b/);
+    const survey = !secondary && n(/\b(questionnaire|likert|structural equation|pls-sem|cb-sem|measurement model|survey instrument|we surveyed|respondents? (rated|answered|completed))\b/g) >= 2;
     const qual = n(/\b(interviews?|interviewees|case stud(y|ies)|thematic analysis|coding|grounded theory|focus groups?)\b/g) >= 4;
     const conceptual = !quant && !survey && !qual && has(/\b(conceptual|propositions?)\b/);
     const method = survey ? "survey" : quant ? "quantitative" : qual ? "qualitative" : conceptual ? "conceptual" : "unclear";
@@ -390,15 +411,15 @@ const Core = (() => {
     need(has(/\b(limitations?|caveats?|boundar(y|ies))\b/), "med", "Limitations are not discussed.", "Add a limitations paragraph stated as conditions on the findings.");
     need(has(/\b(future (research|studies|work|tests?)|further research|research agenda|programme for testing|program for testing)\b/), "low", "No direction for future research.", "Name one or two specific next studies.");
     if (method === "quantitative" || method === "survey") {
-      need(has(/\b(descriptive statistics|summary statistics|mean|standard deviation)\b/), "med", "Descriptive statistics are not reported.", "Report means, standard deviations and a correlation matrix.");
+      need(has(/\b(descriptive statistics|summary statistics|means?|standard deviations?|weighted (estimates|means?|shares?|percentages?)|descriptive (comparisons?|estimates|benchmark))\b/), "med", "Descriptive statistics are not reported.", "Report means, standard deviations and a correlation matrix.");
       need(has(/\b(correlation matrix|pearson|correlations?)\b/), "low", "No correlation matrix mentioned.", "Include a correlation table.");
-      need(has(/\b(vif|variance inflation|multicollinearity)\b/), "med", "Multicollinearity is not checked.", "Report VIF values.");
+      need(has(/\b(vif|variance inflation|multicollinearity|collinear\w*)\b/), "low", "Multicollinearity is not checked.", "Report VIF values.");
       need(has(/\b(robust\w*|sensitivity analysis|alternative (measures?|specifications?))\b/), "med", "No robustness checks.", "Add alternative measures, samples or estimators.");
     }
     if (method === "quantitative") {
-      need(has(/\b(endogeneity|reverse causality|instrumental variables?|2sls|heckman|selection bias|omitted variable)\b/), "high", "Endogeneity is not addressed. This is one of the most common reasons business and finance reviewers reject empirical papers.", "Discuss reverse causality and omitted variables; use lags, fixed effects, instruments or a natural experiment where possible.");
-      need(has(/\b(clustered|robust standard errors?|heteroskedasticity|heteroscedasticity)\b/), "med", "Standard errors: clustering or heteroskedasticity-robust errors are not mentioned.", "State how standard errors are computed.");
-      need(has(/\b(fixed effects?|industry dumm\w+|year dumm\w+|time dumm\w+)\b/), "low", "No fixed effects or industry/year controls mentioned.", "Control for industry and year, or explain why not.");
+      need(has(/\b(endogeneity|reverse causality|instrumental variables?|2sls|heckman|selection bias|omitted variables?|simultaneity|causal (effect|relation|explanation|interpretation)|not causal|does not identify|associational)\b/), "high", "Endogeneity is not addressed. This is one of the most common reasons business and finance reviewers reject empirical papers.", "Discuss reverse causality and omitted variables; use lags, fixed effects, instruments or a natural experiment where possible.");
+      need(has(/\b(clustered|robust standard errors?|heteroskedasticity|heteroscedasticity|design-based|survey-design standard errors?|delta-method|bootstrap\w*|sampling design)\b/), "med", "Standard errors: clustering or heteroskedasticity-robust errors are not mentioned.", "State how standard errors are computed.");
+      need(has(/\b(fixed effects?|industry dumm\w+|year dumm\w+|time dumm\w+|controls? for|controlling for|adjusting for|sector controls?|industry controls?)\b/), "low", "No fixed effects or industry/year controls mentioned.", "Control for industry and year, or explain why not.");
     }
     if (method === "survey") {
       need(has(/\b(cronbach|composite reliability|\bcr\b)/), "high", "Reliability (Cronbach's alpha or composite reliability) is not reported.", "Report alpha and CR for every construct.");
@@ -423,7 +444,7 @@ const Core = (() => {
     [["firm performance", "company performance", "organizational performance", "organisational performance", "business performance"], ["SMEs", "small and medium-sized enterprises", "small firms", "small businesses"], ["financial flexibility", "financial slack"]].forEach(set => { const used = set.filter(t => L.includes(t.toLowerCase())); if (used.length > 1) out.push({ scope: "doc", category: "terminology", severity: "med", problem: `Several names for what may be one construct: ${used.map(u => '"' + u + '"').join(", ")}.`, suggestion: "If they mean the same construct, pick one term and use it throughout; if they differ, define each.", author: true }); });
     return { method, theories: th, issues: out };
   }
-  return { consistency, citeStyle, bizChecks, deskScreen, parseRef, citeKey, aiTells, similar, detectRole, ruleChecks, HEDGES, CAUSAL, DEFAULT_TERMS, esc, splitParagraphs, numbers, citations, termCounts, multisetDiff, diagnostics, knowledgeFacts, compare, wordDiff, parseJSON, normDoi, csv, countList, words };
+  return { isCaption, headingLevel, sectionRoles, consistency, citeStyle, bizChecks, deskScreen, parseRef, citeKey, aiTells, similar, detectRole, ruleChecks, HEDGES, CAUSAL, DEFAULT_TERMS, esc, splitParagraphs, numbers, citations, termCounts, multisetDiff, diagnostics, knowledgeFacts, compare, wordDiff, parseJSON, normDoi, csv, countList, words };
 })();
 
 if (typeof module !== "undefined") module.exports = Core;

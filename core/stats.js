@@ -142,7 +142,7 @@ const Stats = (() => {
   }
   function lastDigits(text) {
     // terminal-digit uniformity over many reported decimals (fabricated numbers often fail it)
-    const ds = (text.match(/\d\.\d{2,}/g) || []).map(x => +x[x.length - 1]);
+    const ds = [...new Set(text.match(/\d\.\d{2,}/g) || [])].map(x => +x[x.length - 1]); // unique values: a number repeated in text and table counts once
     if (ds.length < 60) return null;
     const f = Array(10).fill(0); ds.forEach(d => f[d]++); const e = ds.length / 10;
     const chi = f.reduce((a, o) => a + (o - e) ** 2 / e, 0), p = pChi(chi, 9);
@@ -161,16 +161,47 @@ const Stats = (() => {
   ];
   function software(text) { return FP.filter(f => f.re.test(text)).map(f => f.sw); }
 
+
+  // ---- 7. percentages written as "x of y (z%)" ----
+  function shares(text) {
+    const out = [], T = text.replace(/\s+/g, " "), n = v => parseFloat(String(v).replace(/,/g, ""));
+    const re = /\b(\d[\d,]*)\s+(?:of|out of)\s+(?:the\s+)?(\d[\d,]*)\b[^().%]{0,60}?\(\s*(\d+(?:\.\d+)?)\s*%\s*\)/g; let m;
+    while ((m = re.exec(T))) {
+      const a = n(m[1]), b = n(m[2]), rep = +m[3]; if (!b || a > b) continue;
+      const calc = 100 * a / b, d = decimals(m[3]), tol = 0.5 * Math.pow(10, -d) + 1e-9;
+      const item = { text: m[0], computed: calc.toFixed(Math.max(d, 1)) + "%", ok: Math.abs(calc - rep) <= tol };
+      if (!item.ok) { item.severity = Math.abs(calc - rep) > 1 ? "high" : "med"; item.problem = `${m[1]} of ${m[2]} is ${calc.toFixed(Math.max(d, 1))}%, not ${m[3]}%.`; }
+      out.push(item);
+    }
+    return out;
+  }
+  // ---- 8. estimate with a 95% CI and a reported p ----
+  function ciP(text) {
+    const out = [], T = text.replace(/\s+/g, " ").replace(/[−–]/g, "-");
+    const re = /([+-]?\d*\.?\d+)\s*(?:pp|percentage points)?\s*\[\s*([+-]?\d*\.?\d+)\s*,\s*([+-]?\d*\.?\d+)\s*\][^.;]{0,40}?\(\s*p\s*([<=>])\s*(\d?\.\d+)\s*[;)]/g; let m;
+    while ((m = re.exec(T))) {
+      const est = +m[1], lo = +m[2], hi = +m[3]; if (!(hi > lo)) continue;
+      const se = (hi - lo) / 3.92, z = Math.abs(est) / se, p = pZ(z), mid = (lo + hi) / 2;
+      const item = { text: m[0], computedP: fmtP(p), ok: true };
+      const rp = +m[5], half = 0.5 * Math.pow(10, -Math.max(decimals(m[5]), 1));
+      const tolP = Math.max(half, 0.15 * p); // CI bounds are rounded, so allow some slack
+      if (m[4] === "=" && Math.abs(p - rp) > tolP + half) { item.ok = false; item.severity = (p < 0.05) !== (rp < 0.05) ? "high" : "med"; item.problem = `The 95% CI [${m[2]}, ${m[3]}] implies p ≈ ${p.toFixed(3)}, but p = ${m[5]} is reported.`; }
+      if (m[4] === "<" && p > rp * 1.2) { item.ok = false; item.severity = "med"; item.problem = `The 95% CI implies p ≈ ${p.toFixed(3)}, not p < ${m[5]}.`; }
+      if (Math.abs(mid - est) > Math.max(0.15 * (hi - lo), 0.02)) { item.note = "Interval is not centred on the estimate (asymmetric CI): p check is approximate."; if (!item.ok) item.severity = "low"; }
+      out.push(item);
+    }
+    return out;
+  }
   function checkAll(text) {
-    const apa = apaResults(text), coef = coefChecks(text), cells = tableCells(text), imp = impossible(text), ps = pSignals(text), ld = lastDigits(text), sw = software(text);
-    const problems = [...apa, ...coef, ...cells, ...imp, ...ps.out].filter(x => !x.ok);
-    if (ld && !ld.ok) problems.push({ text: "last-digit test", ok: false, severity: "med", problem: ld.problem });
+    const sh = shares(text), cip = ciP(text), apa = apaResults(text), coef = coefChecks(text), cells = tableCells(text), imp = impossible(text), ps = pSignals(text), ld = lastDigits(text), sw = software(text);
+    const problems = [...apa, ...coef, ...cells, ...imp, ...sh, ...cip, ...ps.out].filter(x => !x.ok);
+    if (ld && !ld.ok) problems.push({ text: "last-digit test", ok: false, severity: "low", problem: ld.problem + " This is a screening signal only: rounding conventions and derived numbers (CIs, shares) can also break uniformity." });
     return {
-      summary: { apaResults: apa.length, coefficientStatements: coef.length, tableCells: cells.length, pValues: ps.n, problems: problems.length, software: sw },
-      apa, coef, cells, impossible: imp, lastDigits: ld, problems,
+      summary: { shares: sh.length, ciPairs: cip.length, apaResults: apa.length, coefficientStatements: coef.length, tableCells: cells.length, pValues: ps.n, problems: problems.length, software: sw },
+      apa, coef, cells, shares: sh, ciP: cip, impossible: imp, lastDigits: ld, problems,
       note: "These checks test internal consistency and plausibility. They can show that numbers do not fit together or look atypical for software output; they cannot prove whether a number came from R, Stata, a person or an AI. Recomputed p-values assume two-sided tests and, for coefficient/SE, a large-sample normal approximation."
     };
   }
-  return { checkAll, apaResults, coefChecks, tableCells, impossible, software, lastDigits, pT, pF, pChi, pZ, pR };
+  return { checkAll, shares, ciP, apaResults, coefChecks, tableCells, impossible, software, lastDigits, pT, pF, pChi, pZ, pR };
 })();
 if (typeof module !== "undefined") module.exports = Stats;
