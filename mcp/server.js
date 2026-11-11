@@ -77,16 +77,19 @@ async function main() {
     const { StreamableHTTPServerTransport } = require("@modelcontextprotocol/sdk/server/streamableHttp.js");
     const app = express(); app.use(express.json({ limit: "6mb" }));
     const token = process.env.QUARTILE_TOKEN;
-    app.get("/", (_, res) => res.send("Quartile MCP server " + VERSION + ". Endpoint: POST /mcp"));
-    app.post("/mcp", async (req, res) => {
+    app.get("/", (_, res) => res.send("Quartile MCP server " + VERSION + "."));
+    // QUARTILE_SECRET: serve only at /mcp/<secret>. Works with clients that cannot send headers (ChatGPT, claude.ai "no auth" connectors).
+    const secret = process.env.QUARTILE_SECRET, route = secret ? "/mcp/" + secret : "/mcp";
+    if (secret && secret.length < 24) { console.error("QUARTILE_SECRET must be at least 24 characters."); process.exit(1); }
+    app.post(route, async (req, res) => {
       if (token && req.headers.authorization !== "Bearer " + token) return res.status(401).json({ error: "unauthorized" });
       const server = build(), transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
       res.on("close", () => { transport.close(); server.close(); });
       await server.connect(transport); await transport.handleRequest(req, res, req.body);
     });
     const deny = (_, res) => res.status(405).json({ jsonrpc: "2.0", error: { code: -32000, message: "Method not allowed (stateless server)" }, id: null });
-    app.get("/mcp", deny); app.delete("/mcp", deny);
-    const port = +process.env.PORT || 8787; app.listen(port, () => console.error(`Quartile MCP on http://localhost:${port}/mcp${token ? " (bearer token required)" : ""}`));
+    app.get(route, deny); app.delete(route, deny);
+    const port = +process.env.PORT || 8787; app.listen(port, () => console.error(`Quartile MCP on http://localhost:${port}${secret ? "/mcp/<secret>" : "/mcp"}${token ? " (bearer token required)" : ""}`));
   } else {
     const { StdioServerTransport } = require("@modelcontextprotocol/sdk/server/stdio.js");
     await build().connect(new StdioServerTransport());

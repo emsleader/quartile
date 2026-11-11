@@ -53,8 +53,8 @@ node server.js --http     # Streamable HTTP on http://localhost:8787/mcp
 In clients that support MCP Apps (Claude and ChatGPT), the audit, desk screen, statistics, guard, reference and journal tools show a Quartile result card inside the chat instead of raw JSON. The card is self-contained and makes no network requests.
 
 ### Permanent hosting (one URL for Claude and ChatGPT)
-Deploy the included `Dockerfile` to any container host. On Render: New → Blueprint → pick this repository (`render.yaml` is included). You get `https://quartile-mcp-xxxx.onrender.com/mcp`, which you can add once:
-- **ChatGPT:** Settings → Apps & Connectors → Advanced → Developer mode → Create, paste the URL, Authentication: No authentication. Leave `QUARTILE_TOKEN` empty for ChatGPT.
+Deploy the included `Dockerfile` to any container host. On Render: New → Blueprint → pick this repository (`render.yaml` is included). Render generates a random `QUARTILE_SECRET`, and the server then answers only at `https://quartile-mcp-xxxx.onrender.com/mcp/<QUARTILE_SECRET>` (copy the value from the service's Environment tab). Anyone without the full URL gets 404. Add that URL once:
+- **ChatGPT:** Settings → Apps & Connectors → Advanced → Developer mode → Create, paste the URL, Authentication: No authentication.
 - **Claude (claude.ai, desktop and mobile):** Settings → Connectors → Add custom connector, paste the URL.
 
 The server is stateless and stores nothing, but manuscripts pass through the host you deploy to. A free Render instance sleeps when idle, so the first call can take about a minute.
