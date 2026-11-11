@@ -128,7 +128,7 @@ const Stats = (() => {
     const al = /(?:cronbach'?s?\s*)?(?:alpha|α)\s*=\s*(\d*\.?\d+)/gi; while ((m = al.exec(T))) { const v = num(m[1]); if (v > 1) add(m[0], "high", "Cronbach's alpha cannot exceed 1."); }
     const ave = /\bAVE\s*=\s*(\d*\.?\d+)/g; while ((m = ave.exec(T))) { const v = num(m[1]); if (v > 1) add(m[0], "high", "AVE cannot exceed 1."); else if (v < 0.5) add(m[0], "low", "AVE below 0.50: convergent validity is usually considered inadequate."); }
     const ns = [...new Set((T.match(/\b[Nn]\s*=\s*(\d[\d,]*)/g) || []).map(x => x.replace(/\D/g, "")))];
-    if (ns.length > 3) out.push({ text: "N = " + ns.slice(0, 6).join(", "), ok: false, severity: "low", problem: `${ns.length} different sample sizes are reported. Check that each table states which sample it uses and why N changes.` });
+    if (ns.length > 3) out.push({ text: "N = " + ns.slice(0, 6).join(", "), ok: false, info: true, severity: "info", problem: `${ns.length} different sample sizes are reported. Check that each table states which sample it uses and why N changes.` });
     return out;
   }
 
@@ -192,13 +192,13 @@ const Stats = (() => {
     }
     return out;
   }
-  function checkAll(text) {
-    const sh = shares(text), cip = ciP(text), apa = apaResults(text), coef = coefChecks(text), cells = tableCells(text), imp = impossible(text), ps = pSignals(text), ld = lastDigits(text), sw = software(text);
-    const problems = [...apa, ...coef, ...cells, ...imp, ...sh, ...cip, ...ps.out].filter(x => !x.ok);
+  function checkAll(text, opts = {}) {
+    const sh = shares(text), cip = ciP(text), apa = apaResults(text), coef = coefChecks(text), cells = tableCells(text), imp = impossible(text), ps = pSignals(text), ld = opts.rawData ? lastDigits(text) : null, sw = software(text);
+    const info = imp.filter(x => x.info); const problems = [...apa, ...coef, ...cells, ...imp.filter(x => !x.info), ...sh, ...cip, ...ps.out].filter(x => !x.ok);
     if (ld && !ld.ok) problems.push({ text: "last-digit test", ok: false, severity: "low", problem: ld.problem + " This is a screening signal only: rounding conventions and derived numbers (CIs, shares) can also break uniformity." });
     return {
       summary: { shares: sh.length, ciPairs: cip.length, apaResults: apa.length, coefficientStatements: coef.length, tableCells: cells.length, pValues: ps.n, problems: problems.length, software: sw },
-      apa, coef, cells, shares: sh, ciP: cip, impossible: imp, lastDigits: ld, problems,
+      apa, coef, cells, shares: sh, ciP: cip, impossible: imp.filter(x => !x.info), info, lastDigitsNote: opts.rawData ? undefined : "Last-digit test not applied: it is meaningful only for raw data or long output columns, not for rounded reported results.", lastDigits: ld, problems,
       note: "These checks test internal consistency and plausibility. They can show that numbers do not fit together or look atypical for software output; they cannot prove whether a number came from R, Stata, a person or an AI. Recomputed p-values assume two-sided tests and, for coefficient/SE, a large-sample normal approximation."
     };
   }

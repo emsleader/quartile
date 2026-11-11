@@ -32,6 +32,26 @@ ok(a.sections.length === 3 && a.sections[0].role === "abstract", "sections");
 ok(a.references.missingFromList.some(c => /Jones/.test(c)), "missing citation");
 ok(L.styleGuide("Q2").tierStandard.startsWith("Q2"), "style guide");
 
+
+// ---- regression tests from the manuscript test of 11 Nov 2026 (each locks in one fixed false alarm) ----
+const C = L.Core;
+ok(C.detectRole("Robust decision methods") === "other" && C.detectRole("3. Data and sample") === "methods", "methods only from leading words");
+ok(C.detectRole("**References**") === "references", "bold References heading");
+{ const d = L.parse("# 4. RESULTS\n\n## 4.1 Sample\n\nText one here.\n\n## 4.2 Models\n\nText two here.\n"); ok(d.sections.every(x => x.role === "results"), "sub-headings inherit the parent role"); }
+{ const d = L.parse("# Results\n\nText.\n\n## Table 1. Flow\n\n| A | B |\n| :-: | :-: |\n| 1 | 2 |\n\nNote.\n"); ok(d.sections.length === 1 && d.paras.some(p => p.isTable), "captions and markdown tables do not start sections"); }
+ok(!C.citations("Latin American SMEs, and Alduraywish (2023) linked").some(k => /^Es /.test(k)), "acronyms are not authors");
+ok(C.citations("Kovács – Szabó (2019) and (Rejc Buhovac, 2010) and European Commission (n.d.-a)").length >= 2, "Hungarian and n.d.-a citations");
+{ const r = L.references(L.parse("# Intro\n\nWe use R (R Core Team, 2024) and data (World Bank, n.d.) from (India 2022) collected in (April 2024).\n\n# References\n\nR Core Team. (2024). R: A language.\n\nWorld Bank. (n.d.). Enterprise Surveys.\n")); ok(r.missingFromList.length === 0 && r.neverCited.length === 0, "corporate authors, n.d., countries and dates"); }
+{ const r = L.references(L.parse("# Intro\n\nAs Rejc Buhovac (2010) shows.\n\n# References\n\nRejc Buhovac, A. (2010). Title of the work.\n")); ok(r.missingFromList.length === 0 && r.neverCited.length === 0, "compound surnames"); }
+{ const a = L.analyze("# Introduction\n\nWe use World Bank Enterprise Surveys (WBES) microdata. Respondents answered. The survey covers firms. Regression estimates with design-based standard errors, controls for sector, sensitivity specifications. We report survey-weighted estimates. Our estimates are associational and do not identify causal effects. The average marginal effect was 2.8 pp.\n\n# Results\n\nThe coefficient was positive in the regression. Estimates differ. The logit estimation and the fixed estimation agree. Policy implications follow.\n"); ok(a.design === "quantitative" && !a.businessResearchIssues.some(x => /alpha|AVE|common method|Endogeneity|Standard errors/.test(x.problem)), "secondary data and design-based errors"); ok(!a.q1RuleFlags.some(f => /Causal wording/.test(f.detail)), "marginal effect is not causal"); }
+{ const a = L.analyze("# Abstract\n\nThis conceptual paper develops propositions.\n\n# Propositions\n\nP1. A regression of outcomes would show more. P2. Estimates may differ.\n"); ok(a.design === "conceptual" && !a.businessResearchIssues.some(x => /Endogeneity|Standard errors|Multicollinearity|fixed effects|Descriptive/.test(x.problem)), "conceptual papers skip empirical checks"); }
+ok(C.aiTells("As Foster et al. (2019) note, firms ranging 5–99 workers (Benjamini–Hochberg).").count === 0, "names, ranges and paired names are not AI tells");
+{ const a = L.analyze("# Methods\n\nWe report a 95% confidence interval [CI] and use the CI in every table. GDP and OECD data. The CI is shown.\n"); ok(!a.consistency.some(x => /"(CI|GDP|OECD)"/.test(x.problem)), "bracket definitions and standard abbreviations"); }
+{ const a = L.analyze("# Results\n\nTable 1 records the flow.\n\n**Table 1**\n\n| A | B |\n| 1 | 2 |\n"); ok(!a.consistency.some(x => /Table 1 is never/.test(x.problem)), "'Table 1 records' is a reference"); }
+ok(L.Stats.checkAll("x 1.234 1.567 ".repeat(40)).lastDigits === null, "last-digit test off for reported results");
+ok(L.Stats.shares("318 of 1,247 eligible cases (28.5%)")[0].ok === false && L.Stats.shares("318 of 1,247 eligible cases (25.5%)")[0].ok, "x of y (z%) check");
+ok(L.Stats.ciP("the difference was 11.14 pp [2.84, 19.44] (p = 0.009; Figure 2)")[0].ok, "CI and p agree");
+
 // MCP over stdio
 (async () => {
   const { Client } = require("../mcp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/index.js");

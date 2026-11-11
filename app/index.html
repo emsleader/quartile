@@ -86,7 +86,7 @@ mark{background:var(--goldbg);color:inherit;border-bottom:2px solid var(--gold)}
 <body>
 <div class="hero"><header>
   <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Quartile logo">  <defs>    <linearGradient id="qg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6C453"/><stop offset="1" stop-color="#E08A1E"/></linearGradient>    <linearGradient id="qb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4F46E5"/><stop offset="1" stop-color="#7C3AED"/></linearGradient>  </defs>  <rect width="64" height="64" rx="16" fill="#0E1530"/>  <rect x="11" y="11" width="19" height="19" rx="5" fill="url(#qb)" opacity=".55"/>  <rect x="34" y="11" width="19" height="19" rx="5" fill="url(#qg)"/>  <rect x="11" y="34" width="19" height="19" rx="5" fill="url(#qb)" opacity=".35"/>  <rect x="34" y="34" width="19" height="19" rx="5" fill="url(#qb)" opacity=".75"/>  <path d="M46 46 L56 56" stroke="#F6C453" stroke-width="4.5" stroke-linecap="round"/></svg></div>
-  <div><h1><span class="q">Q</span>uartile <span class="tag">v0.8</span></h1>
+  <div><h1><span class="q">Q</span>uartile <span class="tag">v0.8.1</span></h1>
   <div class="sub">Write at Q1. Keep every number. Academic editing, journal-editor simulation and statistics checks for business and economics research.</div></div>
 </header></div>
 <div class="navwrap"><nav id="tabs"></nav></div>
@@ -327,7 +327,7 @@ mark{background:var(--goldbg);color:inherit;border-bottom:2px solid var(--gold)}
   <div class="card"><h2>Preview</h2><div id="expPreview" style="font-family:'Source Serif 4',Georgia,serif;white-space:pre-wrap"></div></div>
 </section>
 </main>
-<div class="foot">Quartile v0.8 · MIT licence · Seyed Mehdi Alavi, EMS International Kft · Checks consistency and protects meaning; it does not predict editorial decisions or prove the origin of numbers.</div>
+<div class="foot">Quartile v0.8.1 · MIT licence · Seyed Mehdi Alavi, EMS International Kft · Checks consistency and protects meaning; it does not predict editorial decisions or prove the origin of numbers.</div>
 
 <script>
 // Deterministic text analysis for the Q1 engine. No network, no model calls.
@@ -355,7 +355,7 @@ const Core = (() => {
       if (/^⟦TABLE⟧/.test(l)) { flush2(); push(l, "table"); continue; }
       if (/^\|.*\|$/.test(l) && !inRefs) { if (!(cur.length && cur.isMd)) { flush2(); cur = []; cur.isMd = true; } if (!/^\|[\s:|-]+\|$/.test(l)) cur.push(l.replace(/^\|\s*|\s*\|$/g, "").replace(/\s*\|\s*/g, " | ")); continue; }
       if (cur.isMd) flush2();
-      if (REFH.test(l.replace(/^#+\s*/, ""))) { flush2(); push(l, "h"); inRefs = true; continue; }
+      if (REFH.test(l.replace(/^#+\s*/, "").replace(/[*_`]+/g, "").trim())) { flush2(); push(l, "h"); inRefs = true; continue; }
       if (inRefs && (/^#{1,6}\s/.test(l) || (ENDREF.test(l) && isHeading(l)) || (isHeading(l) && !/(19|20)\d{2}/.test(l)))) { flush2(); push(l, "h"); inRefs = false; continue; }
       if (inRefs) { flush2(); push(l, "ref"); continue; }
       if (isHeading(l)) { flush2(); push(l, "h"); continue; }
@@ -392,10 +392,10 @@ const Core = (() => {
   const stripP = n => n.replace(/^(?:van|von|de|der|den|da|di|le|la|du|dos|del)\s+/i, "");
   function citations(text) {
     const keys = []; let m;
-    const par = /\(([^()]*?(?:(?:19|20)\d{2}[a-z]?|n\.d\.)[^()]*)\)/gu;
-    const partRe = new RegExp("^(?:e\\.g\\.,?|see(?:\\s+also)?|cf\\.|i\\.e\\.,?)?\\s*(" + PART + "(?:" + SN + "|[\\p{Lu}]{2,}(?=,)|[\\p{Lu}](?=\\s[\\p{Lu}])))[^\\d;]*?((?:19|20)\\d{2}[a-z]?|n\\.d\\.)", "u");
+    const par = /\(([^()]*?(?:(?:19|20)\d{2}[a-z]?|n\.d\.(?:-[a-z])?)[^()]*)\)/gu;
+    const partRe = new RegExp("^(?:e\\.g\\.,?|see(?:\\s+also)?|cf\\.|i\\.e\\.,?)?\\s*(" + PART + "(?:" + SN + "|[\\p{Lu}]{2,}(?=,)|[\\p{Lu}](?=\\s[\\p{Lu}])))[^\\d;]*?((?:19|20)\\d{2}[a-z]?|n\\.d\\.(?:-[a-z])?)", "u");
     while ((m = par.exec(text))) m[1].split(";").forEach(part => { const mm = part.trim().match(partRe); if (mm) keys.push(stripP(mm[1]) + " " + mm[2]); });
-    const nar = new RegExp("(?<![\\p{L}])(" + PART + SN + ")((?:,\\s*" + SN + ")*,?\\s+(?:and|&)\\s+" + PART + SN + "|\\s+et\\s+al\\.?)?\\s+\\(((?:19|20)\\d{2}[a-z]?)(?:[,;][^)]*)?\\)", "gu");
+    const nar = new RegExp("(?<![\\p{L}])(" + PART + SN + ")((?:,\\s*" + SN + ")*,?\\s+(?:and|&|–|-)\\s+" + PART + SN + "|\\s+et\\s+al\\.?)?\\s+\\(((?:19|20)\\d{2}[a-z]?)(?:[,;][^)]*)?\\)", "gu");
     while ((m = nar.exec(text))) keys.push(stripP(m[1]) + " " + m[3]);
     const br = /\[(\d+(?:\s*[–,-]\s*\d+)*)\]/g;
     while ((m = br.exec(text))) keys.push("[" + m[1].replace(/\s+/g, "") + "]");
@@ -522,7 +522,7 @@ const Core = (() => {
   const IDENT = ["natural experiment","quasi-natural","exogenous","instrumental variable","difference-in-differences","regression discontinuity","randomi","event study","exogenously","plausibly exogenous"];
   const STRONG_CAUSAL = ["cause","causes","caused","leads to","led to","results in","resulted in","drives","determines","impact of","effect of","effects of","attributable to"];
 
-  const isCaption = t => /^(#+\s*)?(table|figure|fig\.|exhibit|panel)\s+[\dA-Z]+[.:]?\s/i.test(t || "");
+  const isCaption = t => /^(#+\s*)?(table|figure|fig\.|exhibit|panel)\s+[\dA-Z]+[.:]?(\s|$)/i.test((t || "").replace(/[*_`]+/g, "").trim());
   function headingLevel(t) { const h = (t.match(/^(#+)\s/) || [])[1]; const num = (t.replace(/^#+\s*/, "").match(/^(\d+(?:\.\d+)*)[.\s]/) || [])[1]; const byNum = num ? num.split(".").filter(Boolean).length : 0; return Math.max(h ? h.length : 1, byNum || 1); }
   // Assign a role to each section. A sub-heading whose own words give no role takes the role of its nearest parent heading.
   function sectionRoles(secs) {
@@ -531,14 +531,15 @@ const Core = (() => {
       if (x.id === "_start") { if (x.paras.length) out.push({ ...x, role: "opening" }); continue; }
       const lvl = headingLevel(x.raw || x.title); let role = detectRole(x.title);
       while (stack.length && stack[stack.length - 1].lvl >= lvl) stack.pop();
-      if (role === "other" && stack.length) role = stack[stack.length - 1].role;
+      const parent = stack.length ? stack[stack.length - 1].role : null;
+      if (parent && (role === "other" || (["methods", "results"].includes(parent) && ["methods", "results"].includes(role)))) role = parent;
       stack.push({ lvl, role });
       if (x.paras.length) out.push({ ...x, role });
     }
     return out;
   }
   function detectRole(title) {
-    const t = (title || "").toLowerCase();
+    const t = (title || "").replace(/[*_`]+/g, "").trim().toLowerCase();
     if (/^(#+\s*)?(\d+\.?\s*)?(references|reference list|bibliography|works cited|literature cited)/.test(t)) return "references";
     if (/declaration|disclosure|funding|acknowledg|conflict of interest|competing interest|ai-assisted|use of ai|generative ai|data availability|ethic|author contribution/.test(t)) return "declarations";
     if (/abstract|summary/.test(t)) return "abstract";
@@ -588,7 +589,7 @@ const Core = (() => {
   }
   function parseRef(t) {
     const doi = (t.match(/\b10\.\d{4,9}\/[^\s,;]+[^\s,;.)]/) || [""])[0];
-    const yearM = t.match(/\((\d{4}[a-z]?|n\.d\.)\)/) || t.match(/\b((?:19|20)\d{2}[a-z]?)\b/);
+    const yearM = t.match(/\((\d{4}[a-z]?|n\.d\.(?:-[a-z])?)\)/) || t.match(/\b((?:19|20)\d{2}[a-z]?)\b/);
     const year = yearM ? yearM[1] : "";
     const num = (t.match(/^\[(\d+)\]|^(\d+)\.\s/) || []).slice(1).find(Boolean) || "";
     const body = t.replace(/^\[\d+\]\s*|^\d+\.\s+/, "");
@@ -602,7 +603,8 @@ const Core = (() => {
   }
   function citeKey(s, y) { return (s || "").toLowerCase() + " " + (y || ""); }
   const AI_TELLS = ["delve","crucial","pivotal","landscape","underscore","underscores","showcase","tapestry","testament","multifaceted","notably","furthermore","moreover","additionally","comprehensive","leverage","foster","navigate","realm","holistic","seamless","meticulous","vibrant","interplay","nuanced","paramount","it is important to note","it is worth noting","plays a crucial role","plays a key role","plays a pivotal role","in today's","in the realm of","shed light on","sheds light on","a growing body of","paves the way","serves as a","stands as a","not only","in conclusion","overall,"];
-  function aiTells(text) { const c = countList(text, AI_TELLS).total + (text.match(/—|\s–\s|\s--\s/g) || []).length; const w = Math.max(words(text).length, 1); return { count: c, per1k: +(c * 1000 / w).toFixed(1) }; }
+  function prose(text) { return String(text).replace(/\([^()]*(?:19|20)\d{2}[a-z]?[^()]*\)/g, " ").replace(/([^.!?\s]\s+)[A-Z][\p{L}'’-]+/gu, "$1"); }
+  function aiTells(text) { const t = prose(text); const c = countList(t, AI_TELLS).total + (t.match(/—|\s–\s|\s--\s/g) || []).length; const w = Math.max(words(text).length, 1); return { count: c, per1k: +(c * 1000 / w).toFixed(1) }; }
   function similar(a, b) { const t = x => new Set((x || "").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, " ").split(/\s+/).filter(w => w.length > 2)); const A = t(a), B = t(b); if (!A.size || !B.size) return 0; let n = 0; A.forEach(w => { if (B.has(w)) n++; }); return n / Math.max(A.size, B.size); }
   function deskScreen(o) {
     // o: {sections:[{title,role,paras}], text(id), refs:[{year,...}], verified:{}, guidelines, journal, year}
@@ -661,11 +663,13 @@ const Core = (() => {
     } else fit.push({ s: "warn", t: o.journal ? `Target: ${o.journal}; guidelines not pasted` : "No target journal or guidelines given", fix: "Paste the journal's aims, scope and author guidelines in step 6 to check fit and formal requirements." });
     add("Fit to the journal", fit);
     const fails = C.filter(c => c.status === "fail").length, warns = C.filter(c => c.status === "warn").length;
-    return { risk: fails >= 2 ? "high" : fails === 1 || warns >= 3 ? "medium" : "low", criteria: C, words: W };
+    const decisive = C.flatMap(c => c.checks.filter(k => k.s === "fail").map(k => c.criterion + ": " + k.t)).concat(C.flatMap(c => c.checks.filter(k => k.s === "warn").map(k => c.criterion + ": " + k.t))).slice(0, 3);
+    return { risk: fails >= 2 ? "high" : fails === 1 || warns >= 3 ? "medium" : "low", reasons: decisive, criteria: C, words: W };
   }
   // ---- consistency checks (Paperpal-style, deterministic) ----
   const UKUS = [["organisation","organization"],["organisations","organizations"],["organisational","organizational"],["optimisation","optimization"],["optimise","optimize"],["analyse","analyze"],["analysed","analyzed"],["analysing","analyzing"],["behaviour","behavior"],["behaviours","behaviors"],["behavioural","behavioral"],["favour","favor"],["favourable","favorable"],["centre","center"],["modelling","modeling"],["modelled","modeled"],["labour","labor"],["defence","defense"],["utilise","utilize"],["utilised","utilized"],["recognise","recognize"],["recognised","recognized"],["emphasise","emphasize"],["emphasised","emphasized"],["minimise","minimize"],["maximise","maximize"],["prioritise","prioritize"],["realise","realize"],["realised","realized"],["characterise","characterize"],["characterised","characterized"],["summarise","summarize"],["categorise","categorize"],["standardised","standardized"],["capitalise","capitalize"],["capitalisation","capitalization"],["internationalisation","internationalization"],["globalisation","globalization"],["colour","color"],["endeavour","endeavor"],["travelled","traveled"],["fulfil","fulfill"],["enrol","enroll"]];
   const ABBR_OK = new Set(["USA","US","UK","EU","GDP","CEO","CFO","OECD","IMF","UN","ROA","ROE","OLS","GMM","R&D","NASDAQ","NYSE","IPO","DOI","ISSN","AI","IT","HR","USD","EUR","HUF","COVID","SPSS","PLS","SEM","AMOS","II","III","IV","VI","JEL","APA","CA","NA","OK","PhD","MBA","DBA"]);
+  const STD_ABBR = new Set(["GDP","OECD","EU","US","USA","UK","UN","IMF","JEL","SME","CEO","CFO","ICT","IT","AI","R&D","OLS","GMM","VAT","ISO","COVID","USD","EUR","HUF","ID","PhD","MBA","DBA","NGO","IPO"]);
   function consistency(paras) {
     const out = []; const body = paras.filter(p => !p.isHeading && !p.isRef && !p.isTable);
     const all = body.map(p => p.text).join("\n");
@@ -686,18 +690,18 @@ const Core = (() => {
     const pc = { "%": (all.match(/\d\s?%/g) || []).length, percent: (all.match(/\bpercent\b/gi) || []).length, "per cent": (all.match(/\bper cent\b/gi) || []).length };
     if (Object.values(pc).filter(Boolean).length > 1) out.push({ scope: "doc", category: "consistency", severity: "low", problem: `Percentages written in more than one way (${Object.entries(pc).filter(e => e[1]).map(e => e[0] + " ×" + e[1]).join(", ")}).`, suggestion: "Use one form; most business journals use the % sign with numerals.", author: true });
     // abbreviations
-    const defs = new Map(); occ(/\b([A-Z][A-Za-z\-]+(?:\s+(?:and|of|for|the|&|[A-Z][A-Za-z\-]+)){1,7})\s+\(([A-Z][A-Za-z&]{1,9}s?)\)/g).forEach(h => { const ab = h.m[2]; if (!defs.has(ab)) defs.set(ab, { pid: h.pid, long: h.m[1], pos: all.indexOf(h.m[0]) }); else out.push({ pid: h.pid, category: "consistency", severity: "low", quote: h.m[0], replacement: ab, problem: `"${ab}" is defined again; it was already defined earlier.`, suggestion: `Use "${ab}" alone after the first definition.` }); });
+    const defs = new Map(); occ(/\b([A-Za-z][A-Za-z\-]+(?:\s+[A-Za-z&\-]+){1,7})\s*[(\[]([A-Z][A-Za-z&]{1,9}s?)[)\]]/g).forEach(h => { const ab = h.m[2]; if (!defs.has(ab)) defs.set(ab, { pid: h.pid, long: h.m[1], pos: all.indexOf(h.m[0]) }); else out.push({ pid: h.pid, category: "consistency", severity: "low", quote: h.m[0], replacement: ab, problem: `"${ab}" is defined again; it was already defined earlier.`, suggestion: `Use "${ab}" alone after the first definition.` }); });
     const abUse = new Map(); (all.match(/\b[A-Z]{2,6}s?\b/g) || []).forEach(a => abUse.set(a.replace(/s$/, ""), (abUse.get(a.replace(/s$/, "")) || 0) + 1));
     abUse.forEach((n, ab) => { if (ABBR_OK.has(ab) || n < 2) return; const d = defs.get(ab) || defs.get(ab + "s");
       const first = all.search(new RegExp("\\b" + ab + "s?\\b"));
-      if (!d) out.push({ scope: "doc", category: "consistency", severity: n >= 10 ? "low" : "med", problem: `"${ab}" is used ${n} times but never spelled out.`, suggestion: `If ${ab} is an abbreviation, write it out in full at first use, followed by (${ab}). If it is a name, ignore this.`, author: true });
-      else if (first < d.pos) out.push({ scope: "doc", category: "consistency", severity: "med", problem: `"${ab}" is used before it is defined (${d.long} (${ab})).`, suggestion: "Move the definition to the first use.", author: true }); });
+      if (!d && !STD_ABBR.has(ab.replace(/s$/, ""))) out.push({ scope: "doc", category: "consistency", severity: n >= 10 ? "low" : "med", problem: `"${ab}" is used ${n} times but never spelled out.`, suggestion: `If ${ab} is an abbreviation, write it out in full at first use, followed by (${ab}). If it is a name, ignore this.`, author: true });
+      else if (d && first < d.pos) out.push({ scope: "doc", category: "consistency", severity: "med", problem: `"${ab}" is used before it is defined (${d.long} (${ab})).`, suggestion: "Move the definition to the first use.", author: true }); });
     // tables, figures, hypotheses
     const capT = new Set((paras.filter(p => /^(#+\s*)?Table\s+\d+/i.test(p.text)).map(p => +p.text.match(/Table\s+(\d+)/i)[1])));
     const capF = new Set((paras.filter(p => /^(#+\s*)?(Figure|Fig\.)\s+\d+/i.test(p.text)).map(p => +p.text.match(/(?:Figure|Fig\.)\s+(\d+)/i)[1])));
     const refT = new Set((all.match(/\bTables?\s+(\d+)/g) || []).map(x => +x.match(/\d+/)[0])), refF = new Set((all.match(/\b(?:Figures?|Fig\.)\s+(\d+)/g) || []).map(x => +x.match(/\d+/)[0]));
     refT.forEach(n => { if (capT.size && !capT.has(n)) out.push({ scope: "doc", category: "consistency", severity: "high", problem: `Table ${n} is referred to in the text but there is no Table ${n}.`, suggestion: "Correct the number or add the table.", author: true }); });
-    capT.forEach(n => { if (![...body].some(p => new RegExp("\\bTables?\\s+" + n + "\\b").test(p.text) && !/^Table\s+\d+\s*[.:]/.test(p.text))) out.push({ scope: "doc", category: "consistency", severity: "med", problem: `Table ${n} is never referred to in the text.`, suggestion: `Refer to Table ${n} where its content is discussed.`, author: true }); });
+    capT.forEach(n => { if (![...body].some(p => new RegExp("\\bTables?\\s+" + n + "\\b").test(p.text) && !/^[*_]*Table\s+\d+[*_]*\s*([.:]|$)/.test(p.text))) out.push({ scope: "doc", category: "consistency", severity: "med", problem: `Table ${n} is never referred to in the text.`, suggestion: `Refer to Table ${n} where its content is discussed.`, author: true }); });
     refF.forEach(n => { if (capF.size && !capF.has(n)) out.push({ scope: "doc", category: "consistency", severity: "high", problem: `Figure ${n} is referred to but not present.`, suggestion: "Correct the number or add the figure.", author: true }); });
     ["H", "P"].forEach(L => { const nums = [...new Set((all.match(new RegExp("\\b" + L + "(\\d{1,2})[a-c]?\\b", "g")) || []).map(x => +x.slice(1).replace(/[a-c]$/, "")))].sort((a, b) => a - b);
       if (nums.length >= 2) for (let k = nums[0]; k < nums[nums.length - 1]; k++) if (!nums.includes(k)) out.push({ scope: "doc", category: "consistency", severity: "high", problem: `${L === "H" ? "Hypotheses" : "Propositions"} jump from ${L}${k - 1} to ${L}${k + 1}: ${L}${k} is missing.`, suggestion: "Renumber or add the missing one.", author: true }); });
@@ -735,19 +739,23 @@ const Core = (() => {
     const secondary = has(/\b(enterprise surveys?|wbes|world bank enterprise|orbis|amadeus|compustat|crsp|census|administrative (data|records)|household survey|labou?r force survey|panel file|\.dta\b|secondary data)\b/);
     const survey = !secondary && n(/\b(questionnaire|likert|structural equation|pls-sem|cb-sem|measurement model|survey instrument|we surveyed|respondents? (rated|answered|completed))\b/g) >= 2;
     const qual = n(/\b(interviews?|interviewees|case stud(y|ies)|thematic analysis|coding|grounded theory|focus groups?)\b/g) >= 4;
-    const conceptual = !quant && !survey && !qual && has(/\b(conceptual|propositions?)\b/);
-    const method = survey ? "survey" : quant ? "quantitative" : qual ? "qualitative" : conceptual ? "conceptual" : "unclear";
+    const roles = new Set((secs || []).map(x => x.role));
+    // a paper that says it is conceptual, states propositions and has no results section is conceptual, even if it discusses regressions
+    const declaredConceptual = has(/\b(this|our|the present) (conceptual|theoretical) (paper|article|study)|\bconceptual (paper|article|framework|model)\b|\bpropositions?\s*(p?\d|\(p\d)/) && !roles.has("results");
+    const review = has(/\b(systematic (literature )?review|scoping review|meta-analysis|prisma)\b/) && !quant;
+    const conceptual = declaredConceptual || (!quant && !survey && !qual && has(/\b(conceptual|propositions?)\b/));
+    const method = declaredConceptual ? "conceptual" : review ? "review" : survey ? "survey" : quant ? "quantitative" : qual ? "qualitative" : conceptual ? "conceptual" : "unclear";
     const need = (cond, sev, problem, suggestion) => { if (!cond) out.push({ scope: "doc", category: "business research", severity: sev, problem, suggestion, author: true }); };
     const th = THEORIES.filter(t => L.includes(t));
     need(th.length > 0, "high", "No named theory. Business and management reviewers expect the argument to rest on an explicit theory (for example agency theory, resource-based view, real options).", "Name the theory in the introduction and use it to derive hypotheses or propositions.");
-    need(has(/\b(managerial|practical) (implications?|relevance|contributions?)|implications for (managers|practice|practitioners|policy)|for practitioners\b/), "med", "No managerial or practical implications.", "Add a short section on what managers or policymakers should do differently, grounded in the findings.");
+    need(has(/\b(managerial|practical) (implications?|relevance|contributions?)|implications for (managers|practice|practitioners|policy|policymakers|regulators|the|ministries|banks|lenders)|policy (implications?|recommendations?|relevance)|for practitioners\b/), "med", "No managerial or practical implications.", "Add a short section on what managers or policymakers should do differently, grounded in the findings.");
     need(has(/\b(limitations?|caveats?|boundar(y|ies))\b/), "med", "Limitations are not discussed.", "Add a limitations paragraph stated as conditions on the findings.");
     need(has(/\b(future (research|studies|work|tests?)|further research|research agenda|programme for testing|program for testing)\b/), "low", "No direction for future research.", "Name one or two specific next studies.");
     if (method === "quantitative" || method === "survey") {
       need(has(/\b(descriptive statistics|summary statistics|means?|standard deviations?|weighted (estimates|means?|shares?|percentages?)|descriptive (comparisons?|estimates|benchmark))\b/), "med", "Descriptive statistics are not reported.", "Report means, standard deviations and a correlation matrix.");
       need(has(/\b(correlation matrix|pearson|correlations?)\b/), "low", "No correlation matrix mentioned.", "Include a correlation table.");
       need(has(/\b(vif|variance inflation|multicollinearity|collinear\w*)\b/), "low", "Multicollinearity is not checked.", "Report VIF values.");
-      need(has(/\b(robust\w*|sensitivity analysis|alternative (measures?|specifications?))\b/), "med", "No robustness checks.", "Add alternative measures, samples or estimators.");
+      need(has(/\b(robust\w*|sensitivity (analys[ie]s|specifications?|tests?|checks?)|alternative (measures?|specifications?|samples?|estimators?)|placebo)\b/), "med", "No robustness checks.", "Add alternative measures, samples or estimators.");
     }
     if (method === "quantitative") {
       need(has(/\b(endogeneity|reverse causality|instrumental variables?|2sls|heckman|selection bias|omitted variables?|simultaneity|causal (effect|relation|explanation|interpretation)|not causal|does not identify|associational)\b/), "high", "Endogeneity is not addressed. This is one of the most common reasons business and finance reviewers reject empirical papers.", "Discuss reverse causality and omitted variables; use lags, fixed effects, instruments or a natural experiment where possible.");
@@ -784,6 +792,10 @@ if (typeof module !== "undefined") module.exports = Core;
 
 </script>
 <script>
+// Statistical reporting checks for the Q1 engine.
+// statcheck-style recomputation of p-values (t, F, r, chi-square, z), regression-table consistency
+// (coefficient / SE / t / p / stars), impossible values, and software-output fingerprints.
+// These are consistency and plausibility checks. They cannot prove who or what produced a number.
 // Statistical reporting checks for the Q1 engine.
 // statcheck-style recomputation of p-values (t, F, r, chi-square, z), regression-table consistency
 // (coefficient / SE / t / p / stars), impossible values, and software-output fingerprints.
@@ -918,7 +930,7 @@ const Stats = (() => {
     const al = /(?:cronbach'?s?\s*)?(?:alpha|α)\s*=\s*(\d*\.?\d+)/gi; while ((m = al.exec(T))) { const v = num(m[1]); if (v > 1) add(m[0], "high", "Cronbach's alpha cannot exceed 1."); }
     const ave = /\bAVE\s*=\s*(\d*\.?\d+)/g; while ((m = ave.exec(T))) { const v = num(m[1]); if (v > 1) add(m[0], "high", "AVE cannot exceed 1."); else if (v < 0.5) add(m[0], "low", "AVE below 0.50: convergent validity is usually considered inadequate."); }
     const ns = [...new Set((T.match(/\b[Nn]\s*=\s*(\d[\d,]*)/g) || []).map(x => x.replace(/\D/g, "")))];
-    if (ns.length > 3) out.push({ text: "N = " + ns.slice(0, 6).join(", "), ok: false, severity: "low", problem: `${ns.length} different sample sizes are reported. Check that each table states which sample it uses and why N changes.` });
+    if (ns.length > 3) out.push({ text: "N = " + ns.slice(0, 6).join(", "), ok: false, info: true, severity: "info", problem: `${ns.length} different sample sizes are reported. Check that each table states which sample it uses and why N changes.` });
     return out;
   }
 
@@ -982,13 +994,13 @@ const Stats = (() => {
     }
     return out;
   }
-  function checkAll(text) {
-    const sh = shares(text), cip = ciP(text), apa = apaResults(text), coef = coefChecks(text), cells = tableCells(text), imp = impossible(text), ps = pSignals(text), ld = lastDigits(text), sw = software(text);
-    const problems = [...apa, ...coef, ...cells, ...imp, ...sh, ...cip, ...ps.out].filter(x => !x.ok);
+  function checkAll(text, opts = {}) {
+    const sh = shares(text), cip = ciP(text), apa = apaResults(text), coef = coefChecks(text), cells = tableCells(text), imp = impossible(text), ps = pSignals(text), ld = opts.rawData ? lastDigits(text) : null, sw = software(text);
+    const info = imp.filter(x => x.info); const problems = [...apa, ...coef, ...cells, ...imp.filter(x => !x.info), ...sh, ...cip, ...ps.out].filter(x => !x.ok);
     if (ld && !ld.ok) problems.push({ text: "last-digit test", ok: false, severity: "low", problem: ld.problem + " This is a screening signal only: rounding conventions and derived numbers (CIs, shares) can also break uniformity." });
     return {
       summary: { shares: sh.length, ciPairs: cip.length, apaResults: apa.length, coefficientStatements: coef.length, tableCells: cells.length, pValues: ps.n, problems: problems.length, software: sw },
-      apa, coef, cells, shares: sh, ciP: cip, impossible: imp, lastDigits: ld, problems,
+      apa, coef, cells, shares: sh, ciP: cip, impossible: imp.filter(x => !x.info), info, lastDigitsNote: opts.rawData ? undefined : "Last-digit test not applied: it is meaningful only for raw data or long output columns, not for rounded reported results.", lastDigits: ld, problems,
       note: "These checks test internal consistency and plausibility. They can show that numbers do not fit together or look atypical for software output; they cannot prove whether a number came from R, Stata, a person or an AI. Recomputed p-values assume two-sided tests and, for coefficient/SE, a large-sample normal approximation."
     };
   }
@@ -1429,7 +1441,7 @@ async function checkRefs(verify) {
     const nums = new Set(); cites.filter(c => c.startsWith("[")).forEach(c => c.slice(1, -1).split(",").forEach(part => { const [a, b] = part.split(/[–-]/).map(Number); for (let k = a; k <= (b || a); k++) nums.add(k); }));
     nums.forEach(n => { if (n > refs.length) missing.push("[" + n + "]"); else used.add(refs[n - 1].id); });
   } else {
-    cites.forEach(c => { const [nm, yr] = [c.slice(0, c.lastIndexOf(" ")), c.slice(c.lastIndexOf(" ") + 1)]; const r = refKeys.get(Core.citeKey(nm, yr)); if (r) used.add(r.id); else if (!/^(Table|Figure|Section|Appendix|Model|Eq|Equation|Hypothesis|H|Wave|Panel|Survey|Sample|Study|Phase|Round|Year|India|China|Pakistan|Bangladesh|Nepal|Indonesia|Sri Lanka|Turkey|Türkiye|Hungary|Germany|France|Europe|Asia|Africa|EU|UK|US|USA)$/i.test(nm)) missing.push(c); });
+    cites.forEach(c => { const [nm, yr] = [c.slice(0, c.lastIndexOf(" ")), c.slice(c.lastIndexOf(" ") + 1)]; const r = refKeys.get(Core.citeKey(nm, yr)); if (r) used.add(r.id); else if (!/^(January|February|March|April|May|June|July|August|September|October|November|December|FY|Table|Figure|Section|Appendix|Model|Eq|Equation|Hypothesis|H|Wave|Panel|Survey|Sample|Study|Phase|Round|Year|India|China|Pakistan|Bangladesh|Nepal|Indonesia|Sri Lanka|Turkey|Türkiye|Hungary|Germany|France|Europe|Asia|Africa|EU|UK|US|USA)$/i.test(nm)) missing.push(c); });
   }
   const uncited = refs.filter(r => !used.has(r.id));
   S.refCheck = { at: new Date().toISOString(), refs, missing, uncited: uncited.map(r => r.id), numeric, verified: {} };

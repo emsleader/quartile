@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.8.1 (2026-11-11)
+Accuracy release from a hand-checked test on the author's manuscripts (ORBIT, JEMF; roadmap section 2).
+- Design detection: declared conceptual papers and systematic reviews are recognised; secondary data (Enterprise Surveys, Orbis, Compustat, census) never gets questionnaire checks; conceptual papers skip empirical checks.
+- Parsing: sub-headings (2.1, 4.3) take their parent section's role; bold or italic headings and captions are recognised; table and figure captions do not start sections; markdown tables are table blocks.
+- Citations: acronyms are not authors; Hungarian "Author – Author (Year)"; compound surnames; corporate authors; n.d., n.d.-a and 2025a; months, fiscal years and country names are not citations.
+- Writing: names and citations are not AI stock words; en dashes in ranges and paired names are not counted; more synonyms for robustness, standard errors, controls and policy implications.
+- Abbreviations defined in brackets [CI] count as defined; standard abbreviations (GDP, OECD, EU, JEL...) need no definition.
+- Statistics: new "x of y (z%)" and 95% CI versus p checks; the last-digit test runs only on raw output (rawData option); "several sample sizes" is information, not a problem.
+- Verdict: the desk screen returns the 1-3 decisive reasons.
+- 17 regression tests lock in each fix (38 tests in total).
+
 ## 0.8.0 (2026-11-11)
 - New name and design: Quartile.
 - PDF input (pdf.js), alongside Word (.docx), Markdown and text.

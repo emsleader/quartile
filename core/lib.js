@@ -14,7 +14,7 @@ function parse(text) {
   return { paras, sections, roleOf, byId: id => paras.find(p => p.id === id) };
 }
 
-const NOT_AUTHOR = /^(Table|Figure|Section|Appendix|Model|Eq|Equation|Hypothesis|H|Wave|Panel|Survey|Sample|Study|Phase|Round|Year|Fiscal|Q[1-4]|India|China|Pakistan|Bangladesh|Nepal|Indonesia|Sri Lanka|Turkey|Türkiye|Hungary|Germany|France|Italy|Spain|Poland|Romania|Austria|Brazil|Mexico|Nigeria|Kenya|Ghana|Egypt|Vietnam|Thailand|Malaysia|Philippines|Japan|Korea|Iran|Russia|Ukraine|Europe|Asia|Africa|America|EU|UK|US|USA)$/i;
+const NOT_AUTHOR = /^(January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec|FY|Spring|Summer|Autumn|Fall|Winter|Table|Figure|Section|Appendix|Model|Eq|Equation|Hypothesis|H|Wave|Panel|Survey|Sample|Study|Phase|Round|Year|Fiscal|Q[1-4]|India|China|Pakistan|Bangladesh|Nepal|Indonesia|Sri Lanka|Turkey|Türkiye|Hungary|Germany|France|Italy|Spain|Poland|Romania|Austria|Brazil|Mexico|Nigeria|Kenya|Ghana|Egypt|Vietnam|Thailand|Malaysia|Philippines|Japan|Korea|Iran|Russia|Ukraine|Europe|Asia|Africa|America|EU|UK|US|USA)$/i;
 function references(doc) {
   const refs = doc.paras.filter(p => p.isRef || doc.roleOf(p.id) === "references").map(p => ({ id: p.id, text: p.text, ...Core.parseRef(p.text) }));
   const body = doc.paras.filter(p => !p.isHeading && !p.isRef && !["references", "declarations"].includes(doc.roleOf(p.id))).map(p => p.text).join(" ");
@@ -27,6 +27,8 @@ function references(doc) {
   } else cites.forEach(c => { const i = c.lastIndexOf(" "), nm = c.slice(0, i), yr = c.slice(i + 1); const r = keys.get(Core.citeKey(nm, yr)); if (r) used.add(r.id); else if (!NOT_AUTHOR.test(nm)) missing.push(c); });
   // fallback: a reference whose author string and year appear together in the text is cited (corporate authors, unusual names)
   refs.forEach(r => { if (used.has(r.id) || !r.year) return; const au = (r.text.split(/\s*\(/)[0] || "").replace(/[.,]\s*$/, "").split(/,|\s&\s|\sand\s/)[0].trim(); if (au.length < 2) return; const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); if (new RegExp(esc(au) + "[^()]{0,40}?\\(?\\s*" + esc(r.year), "u").test(body)) used.add(r.id); });
+  // a "missing" citation whose name is part of a listed author string with the same year is a parsing artefact (compound surnames: Rejc Buhovac)
+  for (let k = missing.length - 1; k >= 0; k--) { const c = missing[k], i = c.lastIndexOf(" "), nm = c.slice(0, i), yr = c.slice(i + 1); if (refs.some(r => r.year === yr && new RegExp("(^|[\\s,])" + nm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "[\\s,.]", "u").test(r.text.split("(")[0]))) missing.splice(k, 1); }
   const now = new Date().getFullYear(), years = refs.map(r => parseInt(r.year)).filter(Boolean);
   return { references: refs.map(r => ({ id: r.id, surname: r.surname, year: r.year, doi: r.doi || null, text: r.text })), inTextCitations: cites, missingFromList: missing, neverCited: refs.filter(r => !used.has(r.id)).map(r => r.text), last5Years: years.filter(y => y >= now - 5).length };
 }
@@ -47,7 +49,7 @@ function analyze(text, opts = {}) {
     sections: doc.sections.map(s => ({ title: s.title, role: s.role, paragraphs: s.paras.length })),
     diagnostics: Core.diagnostics(body), aiStyle: Core.aiTells(body), design: biz.method, namedTheories: biz.theories,
     q1RuleFlags: Core.ruleChecks(doc.sections, txt), businessResearchIssues: biz.issues, consistency: Core.consistency(doc.paras), citationStyle: Core.citeStyle(doc.paras),
-    deskScreen: desk(doc, opts), references: references(doc), statistics: Stats.checkAll(doc.paras.map(p => p.text).join("\n\n")).summary,
+    deskScreen: desk(doc, opts), verdict: (d => ({ risk: d.risk, reasons: d.reasons }))(desk(doc, opts)), references: references(doc), statistics: Stats.checkAll(doc.paras.map(p => p.text).join("\n\n")).summary,
     protectedTerms: terms
   };
 }
