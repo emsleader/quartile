@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.0 (2026-11-11)
+- Private full-text corpus for local installs: `corpus_build` (background download of up to 500 open-access, CC-licensed Q1 papers into a folder such as Google Drive), `corpus_analyse`, `corpus_status`, `corpus_compare` (section by section), `corpus_search` (closest papers, 40-word snippets) and `corpus_originality` (8-word overlap guard). PDF (pdf.js) and Word (mammoth) extraction in Node. Patterns only; texts never leave the folder.
+- CI smoke test downloads a few real open-access PDFs, measures them and keeps nothing.
+
 ## 0.8.2 (2026-11-11)
 - Q1 style profile: measurements of 501 abstracts from 76 Q1 journals in three fields (OpenAlex; no text stored), built by a GitHub Action.
 - New `compare_style` tool and app card: distance from the Q1 profile, the three largest gaps with fixes, and rhetorical-move notes; per field or per journal (73 journal profiles).

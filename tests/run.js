@@ -58,14 +58,26 @@ ok(L.Stats.ciP("the difference was 11.14 pp [2.84, 19.44] (p = 0.009; Figure 2)"
   const r = L.compareStyle("# Abstract\n\nWe find that small firms with audited accounts invest more. Using a panel of 9,037 firms, we show that the effect is larger where banks dominate. These results inform lenders and policymakers.\n", { field: "finance" });
   ok(typeof r.distance === "number" && r.measured.dataClause === 1 && r.measured.moves.includes("finding"), "compare_style measures an abstract"); }
 
+let corpusDone = Promise.resolve();
+// private corpus (local folder; synthetic Markdown papers)
+{ const os = require("os"), fs = require("fs"), dir = fs.mkdtempSync(os.tmpdir() + "/qc-"); process.env.QUARTILE_CORPUS = dir; fs.mkdirSync(dir + "/finance");
+  const sec = (h, n, t) => "# " + h + "\n\n" + Array.from({ length: n }, (_, i) => `We find that ${t} is associated with investment among small firms in paragraph ${i} (Smith, 2019). Using a panel of 900 firms, we estimate the role of ${t} for lenders. These results inform policymakers who monitor ${t} in markets. However, little is known about how ${t} shapes service firms over time.`).join("\n\n") + "\n\n";
+  ["leverage", "audit", "cash", "credit", "tax", "trade", "collateral", "growth", "banks", "equity", "debt", "risk"].forEach(t => fs.writeFileSync(`${dir}/finance/${t}.md`, sec("Abstract", 1, t) + sec("1. Introduction", 6, t) + sec("2. Literature review", 8, t) + sec("3. Data and methods", 6, t) + sec("4. Results", 9, t) + sec("5. Discussion", 5, t) + sec("6. Conclusion", 3, t) + "# References\n\nSmith, J. (2019). Credit. Journal of Finance, 1, 1-2.\n"));
+  const CP = require("../mcp/corpus.js");
+  corpusDone = (async () => { const p = await CP.analyse(); ok(p.n === 12 && p.fields.finance && p.fields.finance.roles.results, "corpus analysed by field and section");
+    const c = CP.compare(fs.readFileSync(dir + "/finance/audit.md", "utf8"), "finance"); ok(c.recognisedSections.length >= 6 && typeof c.distance === "number", "corpus_compare section by section");
+    const sr = await CP.search("audit and investment", 3); ok(sr.results.length && sr.results.every(r => r.snippet.split(" ").length <= 41), "corpus_search short snippets");
+    const o = await CP.originality("However, little is known about how audit shapes service firms over time. This sentence is entirely my own writing here."); ok(!o.pass && o.overlapping.length === 1, "originality flags copied wording"); })(); }
+
 // MCP over stdio
 (async () => {
+  await corpusDone;
   const { Client } = require("../mcp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/index.js");
   const { StdioClientTransport } = require("../mcp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/stdio.js");
   const c = new Client({ name: "test", version: "1" });
   await c.connect(new StdioClientTransport({ command: process.execPath, args: [path.join(__dirname, "..", "mcp", "server.js")] }));
   const tools = (await c.listTools()).tools.map(t => t.name);
-  ok(tools.length === 10 && tools.includes("compare_style"), "10 tools");
+  ok(tools.length === 16 && tools.includes("corpus_originality"), "16 tools");
   const r = await c.callTool({ name: "verify_rewrite", arguments: { original: "Sales rose 5%.", revised: "Sales rose 7%." } });
   ok(r.structuredContent.pass === false, "tool call over stdio");
   const pr = (await c.listPrompts()).prompts.map(p => p.name); ok(pr.length === 3, "3 prompts");

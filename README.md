@@ -71,6 +71,14 @@ Q.analyze(text);                                          // full audit
 ## Q1 style profile
 `data/style-profile.json` holds measurements of 501 abstracts from 76 Q1 journals (finance, small business and entrepreneurship, management; 2020 or later; the most-cited articles of each journal, at most 6-8 per journal), collected from OpenAlex by `scripts/build-style-brain.js` and the "Build Q1 style profile" GitHub Action. For each field and for 73 journals it stores the median and middle half of abstract length, sentence length and variety, active "we" voice, passive voice, hedges, causal verbs, stock words, numbers reported, how often the sample size is stated, and how often each rhetorical move (background, gap, aim, method, finding, implication) appears and opens or closes the abstract. No abstract text is stored, only these numbers and the DOIs of the measured papers. `compare_style` and the app's "Style compared with 500 Q1 papers" card compare a manuscript with this profile, and the AI edit, issue and idea prompts receive it as targets for the abstract.
 
+## Private full-text corpus (local install)
+With the Claude Desktop extension (or a local server), choose a **corpus folder**, for example a folder inside your Google Drive (Google Drive for desktop syncs it to your Mac). Then ask Claude to run `corpus_build`:
+- Quartile downloads up to 500 open-access, Creative-Commons-licensed Q1 articles (finance, small business, management; 2019 or later; at most 6 per journal) as PDFs into that folder, in the background. You can also drop your own PDF, Word or Markdown papers into it.
+- It extracts every section and writes `corpus-profile.json`: section shares, words per paragraph, citations per 1,000 words, sentence length, voice, hedging, causal verbs and how introductions open, by field.
+- `corpus_compare` compares a manuscript with it section by section; `corpus_search` finds the closest papers and passages (40-word snippets with DOIs); `corpus_originality` flags any sentence that repeats 8 or more consecutive words from a corpus paper.
+
+The corpus is for **patterns only** (structure, proportions, moves, voice), never for wording. Full texts stay in your folder and are never uploaded; hosted connections (Render, ChatGPT) cannot read it. Text and data mining of lawfully accessible works for research is permitted in the EU (Directive 2019/790, Articles 3 and 4); respect each paper's licence for anything beyond private analysis.
+
 ## Journal bank
 SCImago data are not stored in this repository. In HTTP mode the server downloads the public journal list from [scimagojr.com](https://www.scimagojr.com) at start-up and keeps the Business, Economics and Decision Sciences journals in memory (`QUARTILE_BANK_AREAS` changes the areas, `QUARTILE_FETCH_BANK=0` turns this off). Data: SCImago, SJR — SCImago Journal & Country Rank, https://www.scimagojr.com. To use your own export instead, build a file and set `QUARTILE_BANK`:
 ```bash

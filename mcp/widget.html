@@ -60,6 +60,23 @@ function render(d) {
     if (d.largestGaps.length) h += `<h3>Largest gaps</h3><ul>${d.largestGaps.map(g => `<li><b>${E(g.label)}</b>: ${E(g.value)} <span class="q">(Q1 median ${E(g.median)}, middle half ${E(g.p25)}–${E(g.p75)})</span><div class="q">${E(g.fix)}</div></li>`).join("")}</ul>`;
     if (d.moveNotes.length) h += `<h3>Structure</h3><ul>${d.moveNotes.map(x => `<li>${E(x)}</li>`).join("")}</ul>`;
     h += `<p class="q">${E(d.note)}</p>`;
+  } else if (d.kind === "corpus_status") {
+    k.textContent = "Full-text corpus";
+    if (d.error || d.available === false) { o.innerHTML = `<p class="empty">${E(d.error || d.note)}</p>`; return; }
+    const j = d.job || {};
+    h += `<div class="stats">${tile(d.papers, "papers in the folder")}${tile(d.measured, "measured")}${tile(j.phase || "idle", j.running ? `${j.done}/${j.total}` : "job")}</div>`;
+    h += `<p class="q">${E(d.folder || "")}</p>` + (j.recent && j.recent.length ? `<ul>${j.recent.slice(-6).map(x => `<li class="q">${E(x)}</li>`).join("")}</ul>` : "");
+  } else if (d.kind === "corpus") {
+    k.textContent = "Compared with the full-text corpus";
+    if (d.error) { o.innerHTML = `<p class="empty">${E(d.error)}</p>`; return; }
+    h += `<div class="stats">${tile(d.distance + "%", "outside the corpus middle range")}${tile(d.profile.n, "corpus papers (" + d.profile.field + ")")}</div>`;
+    h += `<h3>Largest gaps</h3><ul>${(d.largestGaps || []).map(g => `<li><b>${E(g.role)}</b>: ${E(g.label)} ${E(g.value)} <span class="q">(corpus median ${E(g.median)})</span></li>`).join("")}</ul>` + (d.notes || []).map(x => `<p class="q">${E(x)}</p>`).join("");
+  } else if (d.kind === "corpus_search") {
+    k.textContent = "Closest corpus papers";
+    h += d.error ? `<p class="empty">${E(d.error)}</p>` : `<ul>${d.results.map(r => `<li><b>${E(r.title || "")}</b> <span class="q">${E(r.journal || "")} ${E(r.year || "")} · ${E(r.section || "")}</span><div class="q">${E(r.snippet)}</div>${r.doi ? `<div class="q">doi: ${E(r.doi)}</div>` : ""}</li>`).join("")}</ul><p class="q">${E(d.note)}</p>`;
+  } else if (d.kind === "originality") {
+    k.textContent = "Originality against the corpus";
+    h += d.error ? `<p class="empty">${E(d.error)}</p>` : `<p><span class="pill ${d.pass ? "ok" : "high"}">${d.pass ? "Original wording" : d.overlapping.length + " sentence(s) copy 8+ words"}</span></p><ul>${d.overlapping.map(x => `<li>${E(x.sentence)}<div class="q">shares "${E(x.overlap)}" with ${E((x.source && x.source.title) || "a corpus paper")}</div></li>`).join("")}</ul><p class="q">${E(d.rule)}</p>`;
   } else if (d.kind === "references") {
     k.textContent = "References";
     h += `<div class="stats">${tile(d.references.length, "references")}${tile(d.missingFromList.length, "cited, not listed")}${tile(d.neverCited.length, "listed, never cited")}${tile(d.last5Years, "from the last 5 years")}</div>`;

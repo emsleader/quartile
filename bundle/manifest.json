@@ -2,40 +2,152 @@
   "manifest_version": "0.3",
   "name": "quartile",
   "display_name": "Quartile",
-  "version": "0.8.2",
+  "version": "0.9.0",
   "description": "Write at Q1. Keep every number. Manuscript checks for business and economics research: hallucination guard, desk-rejection screen, statistics recomputation, references and journal bank.",
-  "long_description": "Quartile checks academic manuscripts without changing their science. verify_rewrite blocks any revision that adds or changes numbers, citations, protected constructs, names or causal claims. check_statistics recomputes p-values from reported t, F, r, chi-square and z, and checks coefficient/SE against reported t, p and significance stars. analyze_manuscript and desk_screen run the five usual desk-rejection checks. Results appear as an interactive Quartile card. All checks run locally on your computer; nothing is sent anywhere.",
-  "author": { "name": "Seyed Mehdi Alavi", "url": "https://github.com/emsleader" },
+  "long_description": "Quartile checks academic manuscripts without changing their science. verify_rewrite blocks any revision that adds or changes numbers, citations, protected constructs, names or causal claims. check_statistics recomputes p-values from reported t, F, r, chi-square and z, and checks coefficient/SE against reported t, p and significance stars. analyze_manuscript and desk_screen run the five usual desk-rejection checks. Results appear as an interactive Quartile card. All checks run locally on your computer; nothing is sent anywhere. The optional full-text corpus (a private folder, for example in Google Drive) lets Quartile learn section-level patterns from up to 500 open-access Q1 papers; it is used for patterns only and every inspired rewrite is checked for copied wording.",
+  "author": {
+    "name": "Seyed Mehdi Alavi",
+    "url": "https://github.com/emsleader"
+  },
   "license": "MIT",
   "icon": "icon.png",
-  "keywords": ["academic writing", "research integrity", "statistics", "journals", "business research"],
+  "keywords": [
+    "academic writing",
+    "research integrity",
+    "statistics",
+    "journals",
+    "business research"
+  ],
   "server": {
     "type": "node",
     "entry_point": "server/mcp/server.js",
     "mcp_config": {
       "command": "node",
-      "args": ["${__dirname}/server/mcp/server.js"],
-      "env": { "QUARTILE_BANK": "${user_config.journal_bank}" }
+      "args": [
+        "${__dirname}/server/mcp/server.js"
+      ],
+      "env": {
+        "QUARTILE_BANK": "${user_config.journal_bank}",
+        "QUARTILE_CORPUS": "${user_config.corpus_folder}"
+      }
     }
   },
   "tools": [
-    { "name": "q1_style_guide", "description": "Q1-Q4 writing, argument and framing standard" },
-    { "name": "analyze_manuscript", "description": "Full deterministic manuscript audit" },
-    { "name": "desk_screen", "description": "Desk-rejection screen with fixes" },
-    { "name": "check_statistics", "description": "Recompute p-values and check regression tables" },
-    { "name": "check_references", "description": "Cross-check citations and the reference list" },
-    { "name": "verify_rewrite", "description": "Hallucination guard for any rewrite" },
-    { "name": "apply_replacements", "description": "Apply only edits that pass the guard" },
-    { "name": "journal_lookup", "description": "Journal quartile, SJR and difficulty from your bank" },
-    { "name": "journal_suggest", "description": "Suggest journals by topic, quartile and difficulty" }
+    {
+      "name": "q1_style_guide",
+      "description": "Q1-Q4 writing, argument and framing standard"
+    },
+    {
+      "name": "analyze_manuscript",
+      "description": "Full deterministic manuscript audit"
+    },
+    {
+      "name": "desk_screen",
+      "description": "Desk-rejection screen with fixes"
+    },
+    {
+      "name": "check_statistics",
+      "description": "Recompute p-values and check regression tables"
+    },
+    {
+      "name": "check_references",
+      "description": "Cross-check citations and the reference list"
+    },
+    {
+      "name": "verify_rewrite",
+      "description": "Hallucination guard for any rewrite"
+    },
+    {
+      "name": "apply_replacements",
+      "description": "Apply only edits that pass the guard"
+    },
+    {
+      "name": "journal_lookup",
+      "description": "Journal quartile, SJR and difficulty from your bank"
+    },
+    {
+      "name": "journal_suggest",
+      "description": "Suggest journals by topic, quartile and difficulty"
+    },
+    {
+      "name": "compare_style",
+      "description": "Compare the abstract with the 501-abstract Q1 profile"
+    },
+    {
+      "name": "corpus_status",
+      "description": "Status of your private full-text corpus"
+    },
+    {
+      "name": "corpus_build",
+      "description": "Download and measure up to 500 open-access Q1 papers"
+    },
+    {
+      "name": "corpus_analyse",
+      "description": "Re-measure every paper in the corpus folder"
+    },
+    {
+      "name": "corpus_compare",
+      "description": "Compare a manuscript section by section with the corpus"
+    },
+    {
+      "name": "corpus_search",
+      "description": "Find the closest corpus papers and passages"
+    },
+    {
+      "name": "corpus_originality",
+      "description": "Flag sentences that copy 8+ words from the corpus"
+    }
   ],
   "prompts": [
-    { "name": "q1_edit", "description": "Edit to the Q1 standard with the guard", "arguments": ["tier", "level"], "text": "Edit my manuscript to the ${arguments.tier} standard at the ${arguments.level} level. Call q1_style_guide first and verify_rewrite after every revised paragraph." },
-    { "name": "journal_editor", "description": "Act as a named journal's editor and three reviewers", "arguments": ["journal"], "text": "Act as the handling editor of ${arguments.journal} and three reviewers. Call journal_lookup, analyze_manuscript and check_statistics first." },
-    { "name": "idea_to_paper", "description": "Frame a research idea as a tier-level paper", "arguments": ["tier"], "text": "Frame my research idea as a ${arguments.tier} paper. Call q1_style_guide first. Never invent literature or results." }
+    {
+      "name": "q1_edit",
+      "description": "Edit to the Q1 standard with the guard",
+      "arguments": [
+        "tier",
+        "level"
+      ],
+      "text": "Edit my manuscript to the ${arguments.tier} standard at the ${arguments.level} level. Call q1_style_guide first and verify_rewrite after every revised paragraph."
+    },
+    {
+      "name": "journal_editor",
+      "description": "Act as a named journal's editor and three reviewers",
+      "arguments": [
+        "journal"
+      ],
+      "text": "Act as the handling editor of ${arguments.journal} and three reviewers. Call journal_lookup, analyze_manuscript and check_statistics first."
+    },
+    {
+      "name": "idea_to_paper",
+      "description": "Frame a research idea as a tier-level paper",
+      "arguments": [
+        "tier"
+      ],
+      "text": "Frame my research idea as a ${arguments.tier} paper. Call q1_style_guide first. Never invent literature or results."
+    }
   ],
   "user_config": {
-    "journal_bank": { "type": "file", "title": "Journal bank (optional)", "description": "bank.json built from your SCImago export with scripts/build-bank.js. Leave empty if you have none.", "required": false, "default": "" }
+    "journal_bank": {
+      "type": "file",
+      "title": "Journal bank (optional)",
+      "description": "bank.json built from your SCImago export with scripts/build-bank.js. Leave empty if you have none.",
+      "required": false,
+      "default": ""
+    },
+    "corpus_folder": {
+      "type": "directory",
+      "title": "Corpus folder (optional)",
+      "description": "A private folder for the full-text Q1 corpus, for example a folder inside your Google Drive (Google Drive for desktop). Quartile downloads open-access papers here and measures them. Texts never leave this folder.",
+      "required": false
+    }
   },
-  "compatibility": { "platforms": ["darwin", "win32", "linux"], "runtimes": { "node": ">=18.0.0" } }
+  "compatibility": {
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ],
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  }
 }
