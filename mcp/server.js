@@ -89,6 +89,8 @@ async function main() {
     });
     const deny = (_, res) => res.status(405).json({ jsonrpc: "2.0", error: { code: -32000, message: "Method not allowed (stateless server)" }, id: null });
     app.get(route, deny); app.delete(route, deny);
+    // Journal bank: a local file (QUARTILE_BANK) if present, otherwise the public SCImago list downloaded at start-up.
+    if (!L.loadBank() && process.env.QUARTILE_FETCH_BANK !== "0") L.fetchBank().then(n => console.error(`Journal bank: ${n} journals loaded from SCImago`)).catch(e => console.error("Journal bank not loaded: " + e.message));
     const port = +process.env.PORT || 8787; app.listen(port, () => console.error(`Quartile MCP on http://localhost:${port}${secret ? "/mcp/<secret>" : "/mcp"}${token ? " (bearer token required)" : ""}`));
   } else {
     const { StdioServerTransport } = require("@modelcontextprotocol/sdk/server/stdio.js");

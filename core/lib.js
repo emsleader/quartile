@@ -79,6 +79,15 @@ function loadBank(path) {
   try { BANK = JSON.parse(fs.readFileSync(p, "utf8")); } catch (e) { BANK = []; }
   return BANK.length;
 }
+function setBank(list) { BANK = Array.isArray(list) ? list : []; return BANK.length; }
+// Download the public SCImago journal list at start-up and build the bank in memory (nothing is stored or redistributed).
+async function fetchBank({ url = process.env.QUARTILE_BANK_URL || "https://www.scimagojr.com/journalrank.php?out=xls", areas = (process.env.QUARTILE_BANK_AREAS || "Business,Economics,Decision").split(",").map(x => x.trim()).filter(Boolean) } = {}) {
+  const res = await fetch(url, { headers: { "User-Agent": "Quartile/0.8 (academic journal lookup; https://github.com/emsleader/quartile)" } });
+  if (!res.ok) throw new Error("SCImago download failed: HTTP " + res.status);
+  const list = require("./bank.js").buildBank(await res.text(), areas);
+  if (!list.length) throw new Error("SCImago download returned no journals");
+  return setBank(list);
+}
 const jnorm = t => (t || "").toLowerCase().replace(/&amp;/g, "and").replace(/&/g, "and").replace(/^the\s+/, "").replace(/[^a-z0-9]+/g, " ").trim();
 const diffLevel = x => x >= 80 ? "Very hard" : x >= 60 ? "Hard" : x >= 40 ? "Moderate" : "Accessible";
 function journalLookup(q) {
@@ -98,4 +107,4 @@ function styleGuide(tier = "Q1", type = "A", role) {
     nonNegotiable: ["Keep every number, statistic, unit, sample size and p-value exactly.", "Keep every citation attached to the same claim.", "Keep protected constructs verbatim and distinct.", "Never strengthen a hedge or turn association into causation.", "Never add claims, findings, names, references or numbers; every revised sentence must come from an original sentence.", "Run verify_rewrite on every revised paragraph and keep the original if pass is false."] };
 }
 
-module.exports = { Core, Stats, Style, parse, analyze, references, desk, verify, applyReplacements, loadBank, journalLookup, journalSuggest, styleGuide, diffLevel };
+module.exports = { Core, Stats, Style, parse, analyze, references, desk, verify, applyReplacements, loadBank, setBank, fetchBank, journalLookup, journalSuggest, styleGuide, diffLevel };

@@ -69,7 +69,7 @@ Q.analyze(text);                                          // full audit
 ```
 
 ## Journal bank
-SCImago data are not redistributed here. Export the journal list from [scimagojr.com](https://www.scimagojr.com) as CSV and build your own bank:
+SCImago data are not stored in this repository. In HTTP mode the server downloads the public journal list from [scimagojr.com](https://www.scimagojr.com) at start-up and keeps the Business, Economics and Decision Sciences journals in memory (`QUARTILE_BANK_AREAS` changes the areas, `QUARTILE_FETCH_BANK=0` turns this off). Data: SCImago, SJR — SCImago Journal & Country Rank, https://www.scimagojr.com. To use your own export instead, build a file and set `QUARTILE_BANK`:
 ```bash
 node scripts/build-bank.js scimagojr_2024.csv --areas "Business,Economics,Decision" --out data/bank.json
 ```
