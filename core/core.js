@@ -194,8 +194,9 @@ const Core = (() => {
     if (/introduc/.test(t)) return "introduction";
     if (/literature|theor|background|hypothes|framework|prior|proposition/.test(t)) return "literature";
     if (/boundar|rival|alternative explanation/.test(t)) return "discussion";
-    if (/method|data|sample|research design|empirical (strategy|design)|measur|variables/.test(t)) return "methods";
-    if (/result|finding|analysis|estimat|robust/.test(t)) return "results";
+    const lead = t.replace(/^#+\s*/, "").replace(/^(\d+(\.\d+)*\.?|[ivx]+\.)\s*/, "");
+    if (/^(data|methods?|methodology|materials|sample|research (design|method)|empirical (strategy|design|setting)|measur|variables|study design|identification)\b/.test(lead) || /\b(data and (methods?|sample)|methodology|research design)\b/.test(t)) return "methods";
+    if (/^(results?|findings|empirical (results|analysis|evidence)|analysis|estimat|robustness)\b/.test(lead) || /\b(results|findings)\b/.test(t)) return "results";
     if (/discussion|implication/.test(t)) return "discussion";
     if (/conclu|limitation|future/.test(t)) return "conclusion";
     return "other";
