@@ -1,0 +1,3920 @@
+{
+ "built": "2026-11-11",
+ "source": "OpenAlex (CC0 metadata); abstracts of Q1 journal articles published 2020 or later, most cited first. Only measurements are stored.",
+ "target": 500,
+ "n": 501,
+ "overall": {
+  "n": 501,
+  "metrics": {
+   "words": {
+    "p25": 138,
+    "median": 163,
+    "p75": 197
+   },
+   "sentences": {
+    "p25": 5,
+    "median": 7,
+    "p75": 8
+   },
+   "meanSentence": {
+    "p25": 21.2,
+    "median": 24.7,
+    "p75": 28.5
+   },
+   "sdSentence": {
+    "p25": 6.2,
+    "median": 8.3,
+    "p75": 11.2
+   },
+   "longSentenceShare": {
+    "p25": 0,
+    "median": 0.143,
+    "p75": 0.25
+   },
+   "weShare": {
+    "p25": 0,
+    "median": 0.364,
+    "p75": 0.6
+   },
+   "passiveShare": {
+    "p25": 0,
+    "median": 0.143,
+    "p75": 0.25
+   },
+   "hedgesPer100": {
+    "p25": 0,
+    "median": 0,
+    "p75": 0.72
+   },
+   "causalPer100": {
+    "p25": 0,
+    "median": 0,
+    "p75": 0.52
+   },
+   "stockPer1k": {
+    "p25": 0,
+    "median": 0,
+    "p75": 3.98
+   },
+   "numbers": {
+    "p25": 0,
+    "median": 1,
+    "p75": 2
+   }
+  },
+  "dataClauseShare": 0.126,
+  "firstMove": {
+   "background": 0.629,
+   "aim": 0.166,
+   "method": 0.096,
+   "implication": 0.058,
+   "finding": 0.036,
+   "gap": 0.016
+  },
+  "lastMove": {
+   "background": 0.553,
+   "implication": 0.198,
+   "aim": 0.102,
+   "finding": 0.074,
+   "method": 0.06,
+   "gap": 0.014
+  },
+  "movePresence": {
+   "background": 0.968,
+   "gap": 0.18,
+   "aim": 0.681,
+   "method": 0.545,
+   "finding": 0.509,
+   "implication": 0.511
+  }
+ },
+ "fields": {
+  "finance": {
+   "n": 167,
+   "metrics": {
+    "words": {
+     "p25": 104,
+     "median": 139,
+     "p75": 174
+    },
+    "sentences": {
+     "p25": 5,
+     "median": 6,
+     "p75": 7
+    },
+    "meanSentence": {
+     "p25": 19.85,
+     "median": 23.8,
+     "p75": 27.55
+    },
+    "sdSentence": {
+     "p25": 5.8,
+     "median": 7.8,
+     "p75": 11
+    },
+    "longSentenceShare": {
+     "p25": 0,
+     "median": 0.111,
+     "p75": 0.25
+    },
+    "weShare": {
+     "p25": 0,
+     "median": 0.375,
+     "p75": 0.6
+    },
+    "passiveShare": {
+     "p25": 0,
+     "median": 0.125,
+     "p75": 0.236
+    },
+    "hedgesPer100": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0.945
+    },
+    "causalPer100": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0.635
+    },
+    "stockPer1k": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0
+    },
+    "numbers": {
+     "p25": 0,
+     "median": 1,
+     "p75": 2
+    }
+   },
+   "dataClauseShare": 0.126,
+   "firstMove": {
+    "background": 0.557,
+    "aim": 0.21,
+    "method": 0.144,
+    "implication": 0.048,
+    "finding": 0.042
+   },
+   "lastMove": {
+    "background": 0.617,
+    "finding": 0.138,
+    "implication": 0.138,
+    "method": 0.054,
+    "aim": 0.042,
+    "gap": 0.012
+   },
+   "movePresence": {
+    "background": 0.946,
+    "gap": 0.108,
+    "aim": 0.617,
+    "method": 0.605,
+    "finding": 0.623,
+    "implication": 0.359
+   }
+  },
+  "small_business": {
+   "n": 167,
+   "metrics": {
+    "words": {
+     "p25": 147,
+     "median": 176,
+     "p75": 214.5
+    },
+    "sentences": {
+     "p25": 5,
+     "median": 7,
+     "p75": 8.5
+    },
+    "meanSentence": {
+     "p25": 21.7,
+     "median": 25,
+     "p75": 28.7
+    },
+    "sdSentence": {
+     "p25": 6.6,
+     "median": 8.8,
+     "p75": 11.45
+    },
+    "longSentenceShare": {
+     "p25": 0,
+     "median": 0.143,
+     "p75": 0.25
+    },
+    "weShare": {
+     "p25": 0.167,
+     "median": 0.429,
+     "p75": 0.6
+    },
+    "passiveShare": {
+     "p25": 0,
+     "median": 0.143,
+     "p75": 0.25
+    },
+    "hedgesPer100": {
+     "p25": 0,
+     "median": 0.41,
+     "p75": 0.705
+    },
+    "causalPer100": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0.505
+    },
+    "stockPer1k": {
+     "p25": 0,
+     "median": 0,
+     "p75": 4.21
+    },
+    "numbers": {
+     "p25": 0,
+     "median": 1,
+     "p75": 3
+    }
+   },
+   "dataClauseShare": 0.168,
+   "firstMove": {
+    "background": 0.653,
+    "aim": 0.168,
+    "method": 0.06,
+    "implication": 0.06,
+    "finding": 0.036,
+    "gap": 0.024
+   },
+   "lastMove": {
+    "background": 0.491,
+    "implication": 0.246,
+    "aim": 0.108,
+    "method": 0.078,
+    "finding": 0.066,
+    "gap": 0.012
+   },
+   "movePresence": {
+    "background": 0.976,
+    "gap": 0.198,
+    "aim": 0.689,
+    "method": 0.557,
+    "finding": 0.551,
+    "implication": 0.551
+   }
+  },
+  "management": {
+   "n": 167,
+   "metrics": {
+    "words": {
+     "p25": 148,
+     "median": 177,
+     "p75": 201
+    },
+    "sentences": {
+     "p25": 6,
+     "median": 7,
+     "p75": 8
+    },
+    "meanSentence": {
+     "p25": 21.85,
+     "median": 24.9,
+     "p75": 28.75
+    },
+    "sdSentence": {
+     "p25": 6.2,
+     "median": 8.4,
+     "p75": 10.6
+    },
+    "longSentenceShare": {
+     "p25": 0,
+     "median": 0.143,
+     "p75": 0.25
+    },
+    "weShare": {
+     "p25": 0,
+     "median": 0.286,
+     "p75": 0.528
+    },
+    "passiveShare": {
+     "p25": 0,
+     "median": 0.167,
+     "p75": 0.286
+    },
+    "hedgesPer100": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0.615
+    },
+    "causalPer100": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0.45
+    },
+    "stockPer1k": {
+     "p25": 0,
+     "median": 0,
+     "p75": 4.49
+    },
+    "numbers": {
+     "p25": 0,
+     "median": 0,
+     "p75": 2
+    }
+   },
+   "dataClauseShare": 0.084,
+   "firstMove": {
+    "background": 0.677,
+    "aim": 0.12,
+    "method": 0.084,
+    "implication": 0.066,
+    "finding": 0.03,
+    "gap": 0.024
+   },
+   "lastMove": {
+    "background": 0.551,
+    "implication": 0.21,
+    "aim": 0.156,
+    "method": 0.048,
+    "finding": 0.018,
+    "gap": 0.018
+   },
+   "movePresence": {
+    "background": 0.982,
+    "gap": 0.234,
+    "aim": 0.737,
+    "method": 0.473,
+    "finding": 0.353,
+    "implication": 0.623
+   }
+  }
+ },
+ "journals": {
+  "American Economic Review": {
+   "n": 15,
+   "metrics": {
+    "words": {
+     "p25": 101.5,
+     "median": 105,
+     "p75": 114.5
+    },
+    "sentences": {
+     "p25": 5,
+     "median": 6,
+     "p75": 6.5
+    },
+    "meanSentence": {
+     "p25": 16.9,
+     "median": 17.6,
+     "p75": 23.2
+    },
+    "sdSentence": {
+     "p25": 6.65,
+     "median": 8.7,
+     "p75": 11.9
+    },
+    "longSentenceShare": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0.15
+    },
+    "weShare": {
+     "p25": 0.2,
+     "median": 0.25,
+     "p75": 0.5
+    },
+    "passiveShare": {
+     "p25": 0,
+     "median": 0.2,
+     "p75": 0.225
+    },
+    "hedgesPer100": {
+     "p25": 0,
+     "median": 0.94,
+     "p75": 1.32
+    },
+    "causalPer100": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0
+    },
+    "stockPer1k": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0
+    },
+    "numbers": {
+     "p25": 0,
+     "median": 0,
+     "p75": 1
+    }
+   },
+   "dataClauseShare": 0,
+   "firstMove": {
+    "background": 0.6,
+    "method": 0.133,
+    "aim": 0.133,
+    "implication": 0.067,
+    "finding": 0.067
+   },
+   "lastMove": {
+    "background": 1
+   },
+   "movePresence": {
+    "background": 1,
+    "gap": 0,
+    "aim": 0.333,
+    "method": 0.467,
+    "finding": 0.8,
+    "implication": 0.133
+   }
+  },
+  "Journal of Marketing": {
+   "n": 19,
+   "metrics": {
+    "words": {
+     "p25": 172.5,
+     "median": 182,
+     "p75": 183.5
+    },
+    "sentences": {
+     "p25": 6,
+     "median": 7,
+     "p75": 7.5
+    },
+    "meanSentence": {
+     "p25": 24.75,
+     "median": 27.8,
+     "p75": 29.65
+    },
+    "sdSentence": {
+     "p25": 7.05,
+     "median": 9.6,
+     "p75": 9.9
+    },
+    "longSentenceShare": {
+     "p25": 0.146,
+     "median": 0.167,
+     "p75": 0.286
+    },
+    "weShare": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0
+    },
+    "passiveShare": {
+     "p25": 0,
+     "median": 0.143,
+     "p75": 0.167
+    },
+    "hedgesPer100": {
+     "p25": 0,
+     "median": 0.55,
+     "p75": 0.555
+    },
+    "causalPer100": {
+     "p25": 0,
+     "median": 0.54,
+     "p75": 0.575
+    },
+    "stockPer1k": {
+     "p25": 0,
+     "median": 0,
+     "p75": 5.49
+    },
+    "numbers": {
+     "p25": 0,
+     "median": 2,
+     "p75": 4
+    }
+   },
+   "dataClauseShare": 0.105,
+   "firstMove": {
+    "background": 0.895,
+    "implication": 0.105
+   },
+   "lastMove": {
+    "background": 0.526,
+    "implication": 0.316,
+    "finding": 0.158
+   },
+   "movePresence": {
+    "background": 1,
+    "gap": 0.316,
+    "aim": 0.526,
+    "method": 0.263,
+    "finding": 0.316,
+    "implication": 0.789
+   }
+  },
+  "Journal of the Academy of Marketing Science": {
+   "n": 37,
+   "metrics": {
+    "words": {
+     "p25": 149,
+     "median": 155,
+     "p75": 174
+    },
+    "sentences": {
+     "p25": 6,
+     "median": 6,
+     "p75": 7
+    },
+    "meanSentence": {
+     "p25": 21.9,
+     "median": 24.8,
+     "p75": 26.7
+    },
+    "sdSentence": {
+     "p25": 6.2,
+     "median": 8.1,
+     "p75": 10.5
+    },
+    "longSentenceShare": {
+     "p25": 0,
+     "median": 0.167,
+     "p75": 0.333
+    },
+    "weShare": {
+     "p25": 0.111,
+     "median": 0.25,
+     "p75": 0.5
+    },
+    "passiveShare": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0.286
+    },
+    "hedgesPer100": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0.66
+    },
+    "causalPer100": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0.53
+    },
+    "stockPer1k": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0
+    },
+    "numbers": {
+     "p25": 0,
+     "median": 2,
+     "p75": 3
+    }
+   },
+   "dataClauseShare": 0,
+   "firstMove": {
+    "background": 0.811,
+    "method": 0.135,
+    "finding": 0.054
+   },
+   "lastMove": {
+    "background": 0.595,
+    "implication": 0.216,
+    "aim": 0.108,
+    "finding": 0.054,
+    "method": 0.027
+   },
+   "movePresence": {
+    "background": 0.946,
+    "gap": 0.27,
+    "aim": 0.649,
+    "method": 0.432,
+    "finding": 0.432,
+    "implication": 0.541
+   }
+  },
+  "Journal of Innovation & Knowledge": {
+   "n": 27,
+   "metrics": {
+    "words": {
+     "p25": 147,
+     "median": 218,
+     "p75": 232
+    },
+    "sentences": {
+     "p25": 7,
+     "median": 8,
+     "p75": 10
+    },
+    "meanSentence": {
+     "p25": 20.75,
+     "median": 23.3,
+     "p75": 27.9
+    },
+    "sdSentence": {
+     "p25": 6.9,
+     "median": 8.4,
+     "p75": 9.1
+    },
+    "longSentenceShare": {
+     "p25": 0,
+     "median": 0.125,
+     "p75": 0.183
+    },
+    "weShare": {
+     "p25": 0,
+     "median": 0.1,
+     "p75": 0.143
+    },
+    "passiveShare": {
+     "p25": 0.083,
+     "median": 0.125,
+     "p75": 0.2
+    },
+    "hedgesPer100": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0.32
+    },
+    "causalPer100": {
+     "p25": 0,
+     "median": 0.31,
+     "p75": 0.68
+    },
+    "stockPer1k": {
+     "p25": 0,
+     "median": 0,
+     "p75": 4.55
+    },
+    "numbers": {
+     "p25": 0,
+     "median": 1,
+     "p75": 2.5
+    }
+   },
+   "dataClauseShare": 0.519,
+   "firstMove": {
+    "background": 0.593,
+    "aim": 0.222,
+    "method": 0.185
+   },
+   "lastMove": {
+    "background": 0.519,
+    "implication": 0.222,
+    "aim": 0.111,
+    "finding": 0.074,
+    "method": 0.074
+   },
+   "movePresence": {
+    "background": 0.889,
+    "gap": 0.148,
+    "aim": 0.778,
+    "method": 0.741,
+    "finding": 0.741,
+    "implication": 0.481
+   }
+  },
+  "Management Science": {
+   "n": 26,
+   "metrics": {
+    "words": {
+     "p25": 151.25,
+     "median": 187.5,
+     "p75": 221
+    },
+    "sentences": {
+     "p25": 6.25,
+     "median": 9,
+     "p75": 10.75
+    },
+    "meanSentence": {
+     "p25": 20.275,
+     "median": 21.8,
+     "p75": 22.725
+    },
+    "sdSentence": {
+     "p25": 7.425,
+     "median": 8.9,
+     "p75": 10.5
+    },
+    "longSentenceShare": {
+     "p25": 0,
+     "median": 0.111,
+     "p75": 0.143
+    },
+    "weShare": {
+     "p25": 0.333,
+     "median": 0.422,
+     "p75": 0.542
+    },
+    "passiveShare": {
+     "p25": 0.149,
+     "median": 0.227,
+     "p75": 0.333
+    },
+    "hedgesPer100": {
+     "p25": 0.105,
+     "median": 0.565,
+     "p75": 0.863
+    },
+    "causalPer100": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0.457
+    },
+    "stockPer1k": {
+     "p25": 0,
+     "median": 0,
+     "p75": 4.438
+    },
+    "numbers": {
+     "p25": 0,
+     "median": 1.5,
+     "p75": 6.25
+    }
+   },
+   "dataClauseShare": 0.192,
+   "firstMove": {
+    "background": 0.346,
+    "method": 0.269,
+    "aim": 0.192,
+    "implication": 0.115,
+    "finding": 0.077
+   },
+   "lastMove": {
+    "aim": 0.654,
+    "background": 0.346
+   },
+   "movePresence": {
+    "background": 1,
+    "gap": 0.115,
+    "aim": 1,
+    "method": 0.692,
+    "finding": 0.692,
+    "implication": 0.462
+   }
+  },
+  "Business Strategy and the Environment": {
+   "n": 19,
+   "metrics": {
+    "words": {
+     "p25": 152,
+     "median": 179,
+     "p75": 227.5
+    },
+    "sentences": {
+     "p25": 6,
+     "median": 7,
+     "p75": 8.5
+    },
+    "meanSentence": {
+     "p25": 22.45,
+     "median": 25.6,
+     "p75": 29.5
+    },
+    "sdSentence": {
+     "p25": 6.5,
+     "median": 7.8,
+     "p75": 11.7
+    },
+    "longSentenceShare": {
+     "p25": 0.056,
+     "median": 0.2,
+     "p75": 0.333
+    },
+    "weShare": {
+     "p25": 0.226,
+     "median": 0.333,
+     "p75": 0.453
+    },
+    "passiveShare": {
+     "p25": 0.094,
+     "median": 0.167,
+     "p75": 0.236
+    },
+    "hedgesPer100": {
+     "p25": 0,
+     "median": 0.52,
+     "p75": 0.685
+    },
+    "causalPer100": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0.465
+    },
+    "stockPer1k": {
+     "p25": 0,
+     "median": 0,
+     "p75": 4.73
+    },
+    "numbers": {
+     "p25": 1,
+     "median": 1,
+     "p75": 2.5
+    }
+   },
+   "dataClauseShare": 0.368,
+   "firstMove": {
+    "background": 0.632,
+    "aim": 0.211,
+    "gap": 0.053,
+    "implication": 0.053,
+    "method": 0.053
+   },
+   "lastMove": {
+    "background": 0.579,
+    "implication": 0.316,
+    "aim": 0.053,
+    "method": 0.053
+   },
+   "movePresence": {
+    "background": 1,
+    "gap": 0.211,
+    "aim": 0.789,
+    "method": 0.895,
+    "finding": 0.632,
+    "implication": 0.632
+   }
+  },
+  "Journal of Business Research": {
+   "n": 25,
+   "metrics": {
+    "words": {
+     "p25": 141,
+     "median": 147,
+     "p75": 151
+    },
+    "sentences": {
+     "p25": 6,
+     "median": 7,
+     "p75": 7
+    },
+    "meanSentence": {
+     "p25": 20.3,
+     "median": 21.4,
+     "p75": 26.7
+    },
+    "sdSentence": {
+     "p25": 4.6,
+     "median": 6.9,
+     "p75": 11.5
+    },
+    "longSentenceShare": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0.167
+    },
+    "weShare": {
+     "p25": 0,
+     "median": 0.125,
+     "p75": 0.5
+    },
+    "passiveShare": {
+     "p25": 0,
+     "median": 0.143,
+     "p75": 0.286
+    },
+    "hedgesPer100": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0.68
+    },
+    "causalPer100": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0
+    },
+    "stockPer1k": {
+     "p25": 0,
+     "median": 0,
+     "p75": 6.76
+    },
+    "numbers": {
+     "p25": 0,
+     "median": 1,
+     "p75": 1
+    }
+   },
+   "dataClauseShare": 0.12,
+   "firstMove": {
+    "background": 0.68,
+    "aim": 0.16,
+    "implication": 0.08,
+    "method": 0.04,
+    "gap": 0.04
+   },
+   "lastMove": {
+    "background": 0.4,
+    "implication": 0.36,
+    "aim": 0.2,
+    "method": 0.04
+   },
+   "movePresence": {
+    "background": 1,
+    "gap": 0.32,
+    "aim": 0.8,
+    "method": 0.64,
+    "finding": 0.4,
+    "implication": 0.68
+   }
+  }
+ },
+ "sources": [
+  {
+   "doi": "10.1257/aer.20181169",
+   "year": 2020,
+   "journal": "American Economic Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1257/aer.20191823",
+   "year": 2022,
+   "journal": "American Economic Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jfineco.2022.01.004",
+   "year": 2022,
+   "journal": "Journal of Financial Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/rfs/hhaa009",
+   "year": 2020,
+   "journal": "Review of Financial Studies",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1257/aer.20181047",
+   "year": 2020,
+   "journal": "American Economic Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/qje/qjaa004",
+   "year": 2020,
+   "journal": "The Quarterly Journal of Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/qje/qjz041",
+   "year": 2020,
+   "journal": "The Quarterly Journal of Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jfineco.2023.103745",
+   "year": 2020,
+   "journal": "Journal of Financial Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/qje/qjae044",
+   "year": 2024,
+   "journal": "The Quarterly Journal of Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/restud/rdad018",
+   "year": 2023,
+   "journal": "The Review of Economic Studies",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/qje/qjac038",
+   "year": 2022,
+   "journal": "The Quarterly Journal of Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1257/aer.20190159",
+   "year": 2021,
+   "journal": "American Economic Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/0022242920953847",
+   "year": 2020,
+   "journal": "Journal of Marketing",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1111/jofi.13219",
+   "year": 2023,
+   "journal": "The Journal of Finance",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/qje/qjaa044",
+   "year": 2020,
+   "journal": "The Quarterly Journal of Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/qje/qjad054",
+   "year": 2023,
+   "journal": "The Quarterly Journal of Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/restud/rdaa019",
+   "year": 2020,
+   "journal": "The Review of Economic Studies",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1257/aer.20170011",
+   "year": 2020,
+   "journal": "American Economic Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1111/jofi.13272",
+   "year": 2023,
+   "journal": "The Journal of Finance",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1257/aer.20180338",
+   "year": 2020,
+   "journal": "American Economic Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/rfs/hhaa079",
+   "year": 2020,
+   "journal": "Review of Financial Studies",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/0149206321993576",
+   "year": 2021,
+   "journal": "Journal of Management",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1257/aer.20191330",
+   "year": 2020,
+   "journal": "American Economic Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1257/aer.20190658",
+   "year": 2020,
+   "journal": "American Economic Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/qje/qjaa024",
+   "year": 2020,
+   "journal": "The Quarterly Journal of Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1111/1475-679x.12548",
+   "year": 2021,
+   "journal": "Journal of Accounting Research",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/0022242920957347",
+   "year": 2020,
+   "journal": "Journal of Marketing",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1111/jofi.12909",
+   "year": 2020,
+   "journal": "The Journal of Finance",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/rfs/hhaa075",
+   "year": 2020,
+   "journal": "Review of Financial Studies",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/rfs/hhad002",
+   "year": 2023,
+   "journal": "Review of Financial Studies",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1111/jofi.13090",
+   "year": 2021,
+   "journal": "The Journal of Finance",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/00222429211045687",
+   "year": 2021,
+   "journal": "Journal of Marketing",
+   "field": "finance"
+  },
+  {
+   "doi": "10.3982/ecta19815",
+   "year": 2022,
+   "journal": "Econometrica",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/0149206320960533",
+   "year": 2020,
+   "journal": "Journal of Management",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1257/aer.20201063",
+   "year": 2022,
+   "journal": "American Economic Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1257/aer.20190623",
+   "year": 2020,
+   "journal": "American Economic Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.3982/ecta17813",
+   "year": 2021,
+   "journal": "Econometrica",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1111/jofi.12883",
+   "year": 2020,
+   "journal": "The Journal of Finance",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/0022242921996646",
+   "year": 2021,
+   "journal": "Journal of Marketing",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/01492063211021655",
+   "year": 2021,
+   "journal": "Journal of Management",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1086/713733",
+   "year": 2021,
+   "journal": "Journal of Political Economy",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jfineco.2021.05.047",
+   "year": 2021,
+   "journal": "Journal of Financial Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1257/aer.20191777",
+   "year": 2021,
+   "journal": "American Economic Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/00222429221102889",
+   "year": 2022,
+   "journal": "Journal of Marketing",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1257/aer.20171201",
+   "year": 2020,
+   "journal": "American Economic Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1257/aer.20211218",
+   "year": 2022,
+   "journal": "American Economic Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/01492063241268459",
+   "year": 2024,
+   "journal": "Journal of Management",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1257/aer.20191414",
+   "year": 2020,
+   "journal": "American Economic Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1257/aer.20180975",
+   "year": 2020,
+   "journal": "American Economic Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1111/jofi.13183",
+   "year": 2022,
+   "journal": "The Journal of Finance",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1007/s11747-020-00749-9",
+   "year": 2020,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1007/s11747-019-00718-x",
+   "year": 2020,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/1042258719899425",
+   "year": 2020,
+   "journal": "Entrepreneurship Theory and Practice",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1007/s11747-020-00733-3",
+   "year": 2020,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/1042258721998948",
+   "year": 2021,
+   "journal": "Entrepreneurship Theory and Practice",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1057/s41267-020-00304-2",
+   "year": 2020,
+   "journal": "Journal of International Business Studies",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1007/s11747-022-00845-y",
+   "year": 2022,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1007/s11142-022-09697-x",
+   "year": 2021,
+   "journal": "Review of Accounting Studies",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/1042258720934581",
+   "year": 2020,
+   "journal": "Entrepreneurship Theory and Practice",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1007/s11747-022-00892-5",
+   "year": 2022,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1007/s11142-021-09611-x",
+   "year": 2021,
+   "journal": "Review of Accounting Studies",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1007/s11747-022-00908-0",
+   "year": 2022,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/rof/rfad013",
+   "year": 2023,
+   "journal": "European Finance Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/ej/ueab009",
+   "year": 2021,
+   "journal": "The Economic Journal",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/rof/rfaa004",
+   "year": 2020,
+   "journal": "European Finance Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1007/s11142-022-09693-1",
+   "year": 2022,
+   "journal": "Review of Accounting Studies",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/1042258719899415",
+   "year": 2020,
+   "journal": "Entrepreneurship Theory and Practice",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1162/rest_a_00946",
+   "year": 2020,
+   "journal": "The Review of Economics and Statistics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1007/s11747-024-01064-3",
+   "year": 2024,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/ej/ueac032",
+   "year": 2022,
+   "journal": "The Economic Journal",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/00222437211002477",
+   "year": 2021,
+   "journal": "Journal of Marketing Research",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/ej/ueaa073",
+   "year": 2020,
+   "journal": "The Economic Journal",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1007/s11747-024-01052-7",
+   "year": 2024,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1057/s41267-020-00318-w",
+   "year": 2020,
+   "journal": "Journal of International Business Studies",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/ej/ueab033",
+   "year": 2021,
+   "journal": "The Economic Journal",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jacceco.2023.101640",
+   "year": 2023,
+   "journal": "Journal of Accounting and Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1007/s11747-022-00858-7",
+   "year": 2022,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/rof/rfac045",
+   "year": 2022,
+   "journal": "European Finance Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1007/s11747-021-00805-y",
+   "year": 2021,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/10422587211028736",
+   "year": 2021,
+   "journal": "Entrepreneurship Theory and Practice",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/10422587211013795",
+   "year": 2021,
+   "journal": "Entrepreneurship Theory and Practice",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1007/s11747-022-00862-x",
+   "year": 2022,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1007/s11747-022-00876-5",
+   "year": 2022,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/1042258721998946",
+   "year": 2021,
+   "journal": "Entrepreneurship Theory and Practice",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/0022243720947682",
+   "year": 2020,
+   "journal": "Journal of Marketing Research",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1162/rest_a_00922",
+   "year": 2020,
+   "journal": "The Review of Economics and Statistics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1007/s11747-022-00889-0",
+   "year": 2022,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1007/s11747-020-00723-5",
+   "year": 2020,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/rof/rfac052",
+   "year": 2022,
+   "journal": "European Finance Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1007/s11747-020-00753-z",
+   "year": 2020,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/rof/rfae010",
+   "year": 2024,
+   "journal": "European Finance Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/0022243720941832",
+   "year": 2020,
+   "journal": "Journal of Marketing Research",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1162/rest_a_01042",
+   "year": 2021,
+   "journal": "The Review of Economics and Statistics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/rof/rfac064",
+   "year": 2022,
+   "journal": "European Finance Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/1042258720930996",
+   "year": 2020,
+   "journal": "Entrepreneurship Theory and Practice",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1007/s11747-024-01044-7",
+   "year": 2024,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1177/1042258720922460",
+   "year": 2020,
+   "journal": "Entrepreneurship Theory and Practice",
+   "field": "finance"
+  },
+  {
+   "doi": "10.2308/tar-2019-0506",
+   "year": 2021,
+   "journal": "The Accounting Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/rapstu/raaa008",
+   "year": 2020,
+   "journal": "The Review of Asset Pricing Studies",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/rcfs/cfaa011",
+   "year": 2020,
+   "journal": "The Review of Corporate Finance Studies",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/rcfs/cfaa012",
+   "year": 2020,
+   "journal": "The Review of Corporate Finance Studies",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/rapstu/raaa009",
+   "year": 2020,
+   "journal": "The Review of Asset Pricing Studies",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.eneco.2022.106209",
+   "year": 2022,
+   "journal": "Energy Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/ectj/utac017",
+   "year": 2022,
+   "journal": "Econometrics Journal",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/rapstu/raaa013",
+   "year": 2020,
+   "journal": "The Review of Asset Pricing Studies",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/rcfs/cfaa013",
+   "year": 2020,
+   "journal": "The Review of Corporate Finance Studies",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1017/s0022109020000757",
+   "year": 2020,
+   "journal": "Journal of Financial and Quantitative Analysis",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/ectj/utac010",
+   "year": 2020,
+   "journal": "Econometrics Journal",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.eneco.2020.104783",
+   "year": 2020,
+   "journal": "Energy Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jwb.2022.101326",
+   "year": 2022,
+   "journal": "Journal of World Business",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jinteco.2020.103297",
+   "year": 2020,
+   "journal": "Journal of International Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1080/07350015.2021.1906687",
+   "year": 2021,
+   "journal": "Journal of Business and Economic Statistics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/rcfs/cfaa009",
+   "year": 2020,
+   "journal": "The Review of Corporate Finance Studies",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1017/s0022109020000782",
+   "year": 2020,
+   "journal": "Journal of Financial and Quantitative Analysis",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/rapstu/raaa015",
+   "year": 2020,
+   "journal": "The Review of Asset Pricing Studies",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jwb.2022.101399",
+   "year": 2022,
+   "journal": "Journal of World Business",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.eneco.2022.105951",
+   "year": 2022,
+   "journal": "Energy Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1017/s0022109021000326",
+   "year": 2020,
+   "journal": "Journal of Financial and Quantitative Analysis",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jinteco.2022.103608",
+   "year": 2022,
+   "journal": "Journal of International Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.eneco.2020.104978",
+   "year": 2020,
+   "journal": "Energy Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.eneco.2021.105190",
+   "year": 2021,
+   "journal": "Energy Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/ectj/utad016",
+   "year": 2023,
+   "journal": "Econometrics Journal",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1080/07350015.2021.1930012",
+   "year": 2021,
+   "journal": "Journal of Business and Economic Statistics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1111/1756-2171.12383",
+   "year": 2021,
+   "journal": "The RAND Journal of Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jinteco.2021.103539",
+   "year": 2021,
+   "journal": "Journal of International Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.2308/tar-2018-0144",
+   "year": 2020,
+   "journal": "The Accounting Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jwb.2020.101165",
+   "year": 2020,
+   "journal": "Journal of World Business",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.eneco.2023.107225",
+   "year": 2023,
+   "journal": "Energy Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/rcfs/cfab026",
+   "year": 2021,
+   "journal": "The Review of Corporate Finance Studies",
+   "field": "finance"
+  },
+  {
+   "doi": "10.3982/qe1596",
+   "year": 2021,
+   "journal": "Quantitative Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1111/1756-2171.12408",
+   "year": 2020,
+   "journal": "The RAND Journal of Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/ectj/utac003",
+   "year": 2022,
+   "journal": "Econometrics Journal",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.eneco.2024.107736",
+   "year": 2024,
+   "journal": "Energy Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.eneco.2023.106734",
+   "year": 2023,
+   "journal": "Energy Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1017/s0022109023000716",
+   "year": 2020,
+   "journal": "Journal of Financial and Quantitative Analysis",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1353/eca.2020.0005",
+   "year": 2020,
+   "journal": "Brookings Papers on Economic Activity",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1017/s0022109021000387",
+   "year": 2021,
+   "journal": "Journal of Financial and Quantitative Analysis",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jwb.2021.101221",
+   "year": 2021,
+   "journal": "Journal of World Business",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.eneco.2022.106068",
+   "year": 2022,
+   "journal": "Energy Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.eneco.2022.105856",
+   "year": 2020,
+   "journal": "Energy Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jinteco.2021.103513",
+   "year": 2021,
+   "journal": "Journal of International Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.eneco.2021.105335",
+   "year": 2021,
+   "journal": "Energy Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.2308/tar-2017-0601",
+   "year": 2021,
+   "journal": "The Accounting Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.2308/tar-2017-0425",
+   "year": 2020,
+   "journal": "The Accounting Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.2139/ssrn.3799531",
+   "year": 2020,
+   "journal": "Journal of World Business",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jdeveco.2020.102606",
+   "year": 2021,
+   "journal": "Journal of Development Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1111/1911-3846.12832",
+   "year": 2020,
+   "journal": "Contemporary Accounting Research",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jik.2022.100198",
+   "year": 2022,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jik.2020.08.001",
+   "year": 2020,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jeem.2020.102360",
+   "year": 2020,
+   "journal": "Journal of Environmental Economics and Management",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jik.2022.100272",
+   "year": 2022,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jeem.2022.102758",
+   "year": 2022,
+   "journal": "Journal of Environmental Economics and Management",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jik.2022.100171",
+   "year": 2022,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jcorpfin.2020.101665",
+   "year": 2020,
+   "journal": "Journal of Corporate Finance",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jik.2022.100231",
+   "year": 2022,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jik.2023.100317",
+   "year": 2023,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jik.2023.100334",
+   "year": 2023,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jik.2021.04.001",
+   "year": 2021,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jue.2020.103278",
+   "year": 2020,
+   "journal": "Journal of Urban Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jik.2020.07.003",
+   "year": 2020,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jfi.2021.100945",
+   "year": 2020,
+   "journal": "Journal of Financial Intermediation",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jue.2020.103312",
+   "year": 2020,
+   "journal": "Journal of Urban Economics",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jik.2022.100203",
+   "year": 2022,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jik.2022.100170",
+   "year": 2022,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1093/wbro/lkab006",
+   "year": 2021,
+   "journal": "The World Bank Research Observer",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1002/sej.1344",
+   "year": 2020,
+   "journal": "Strategic Entrepreneurship Journal",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jik.2023.100332",
+   "year": 2023,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jfineco.2022.01.004",
+   "year": 2022,
+   "journal": "Journal of Financial Economics",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11747-020-00749-9",
+   "year": 2020,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/0022242920953847",
+   "year": 2020,
+   "journal": "Journal of Marketing",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11747-019-00718-x",
+   "year": 2020,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11747-020-00733-3",
+   "year": 2020,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/1042258721998948",
+   "year": 2021,
+   "journal": "Entrepreneurship Theory and Practice",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/00222429211045687",
+   "year": 2021,
+   "journal": "Journal of Marketing",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/smj.3250",
+   "year": 2020,
+   "journal": "Strategic Management Journal",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/smj.3161",
+   "year": 2020,
+   "journal": "Strategic Management Journal",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11747-022-00845-y",
+   "year": 2022,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jfineco.2021.05.047",
+   "year": 2021,
+   "journal": "Journal of Financial Economics",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/00222429221102889",
+   "year": 2022,
+   "journal": "Journal of Marketing",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/1042258720934581",
+   "year": 2020,
+   "journal": "Entrepreneurship Theory and Practice",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jfineco.2021.08.017",
+   "year": 2021,
+   "journal": "Journal of Financial Economics",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.5465/amr.2019.0186",
+   "year": 2020,
+   "journal": "Academy of Management Review",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jfineco.2022.07.008",
+   "year": 2022,
+   "journal": "Journal of Financial Economics",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/0149206320969791",
+   "year": 2020,
+   "journal": "Journal of Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/0149206321991212",
+   "year": 2021,
+   "journal": "Journal of Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11747-022-00892-5",
+   "year": 2022,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11747-022-00908-0",
+   "year": 2022,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/01492063211006458",
+   "year": 2021,
+   "journal": "Journal of Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11747-024-01064-3",
+   "year": 2024,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/0149206320902528",
+   "year": 2020,
+   "journal": "Journal of Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1287/orsc.2023.18430",
+   "year": 2024,
+   "journal": "Organization Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.5465/annals.2019.0051",
+   "year": 2020,
+   "journal": "Academy of Management Annals",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.5465/annals.2018.0127",
+   "year": 2020,
+   "journal": "Academy of Management Annals",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/0149206319900539",
+   "year": 2020,
+   "journal": "Journal of Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/01492063211045023",
+   "year": 2021,
+   "journal": "Journal of Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/0022242920957007",
+   "year": 2020,
+   "journal": "Journal of Marketing",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/00222429221125131",
+   "year": 2022,
+   "journal": "Journal of Marketing",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11747-022-00858-7",
+   "year": 2022,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/0022242920908227",
+   "year": 2020,
+   "journal": "Journal of Marketing",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/0149206320914694",
+   "year": 2020,
+   "journal": "Journal of Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.5465/amr.2019.0441",
+   "year": 2020,
+   "journal": "Academy of Management Review",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/10422587211013795",
+   "year": 2021,
+   "journal": "Entrepreneurship Theory and Practice",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/0149206320929088",
+   "year": 2020,
+   "journal": "Journal of Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/smj.3365",
+   "year": 2020,
+   "journal": "Strategic Management Journal",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11747-022-00862-x",
+   "year": 2022,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/1094428120943288",
+   "year": 2020,
+   "journal": "Organizational Research Methods",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11747-022-00876-5",
+   "year": 2022,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/10944281221127292",
+   "year": 2022,
+   "journal": "Organizational Research Methods",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/2631787719879937",
+   "year": 2020,
+   "journal": "Organization Theory",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jfineco.2024.103972",
+   "year": 2024,
+   "journal": "Journal of Financial Economics",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11747-022-00889-0",
+   "year": 2022,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/0149206319900537",
+   "year": 2020,
+   "journal": "Journal of Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/smj.3145",
+   "year": 2020,
+   "journal": "Strategic Management Journal",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11747-020-00723-5",
+   "year": 2020,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11747-020-00753-z",
+   "year": 2020,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/smj.3532",
+   "year": 2023,
+   "journal": "Strategic Management Journal",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/smj.3237",
+   "year": 2020,
+   "journal": "Strategic Management Journal",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1057/s41267-020-00304-2",
+   "year": 2020,
+   "journal": "Journal of International Business Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1287/mnsc.2023.4685",
+   "year": 2023,
+   "journal": "Management Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11142-022-09697-x",
+   "year": 2021,
+   "journal": "Review of Accounting Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11142-021-09611-x",
+   "year": 2021,
+   "journal": "Review of Accounting Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11142-022-09693-1",
+   "year": 2022,
+   "journal": "Review of Accounting Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jwb.2022.101326",
+   "year": 2022,
+   "journal": "Journal of World Business",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1057/s41267-020-00318-w",
+   "year": 2020,
+   "journal": "Journal of International Business Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/1476127020979329",
+   "year": 2020,
+   "journal": "Strategic Organization",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jwb.2022.101399",
+   "year": 2022,
+   "journal": "Journal of World Business",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jbusvent.2022.106258",
+   "year": 2021,
+   "journal": "Journal of Business Venturing",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1111/joms.12569",
+   "year": 2020,
+   "journal": "Journal of Management Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.5465/amp.2019.0053",
+   "year": 2020,
+   "journal": "Academy of Management Perspectives",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/joom.1236",
+   "year": 2023,
+   "journal": "Journal of Operations Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1287/mnsc.2020.3741",
+   "year": 2020,
+   "journal": "Management Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1287/mnsc.2021.3986",
+   "year": 2021,
+   "journal": "Management Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1111/joms.12760",
+   "year": 2021,
+   "journal": "Journal of Management Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1287/mnsc.2023.4851",
+   "year": 2023,
+   "journal": "Management Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1111/joms.12580",
+   "year": 2020,
+   "journal": "Journal of Management Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jwb.2020.101165",
+   "year": 2020,
+   "journal": "Journal of World Business",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1287/mnsc.2020.3636",
+   "year": 2020,
+   "journal": "Management Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11142-022-09738-5",
+   "year": 2023,
+   "journal": "Review of Accounting Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1111/joms.12642",
+   "year": 2020,
+   "journal": "Journal of Management Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1287/mnsc.2020.3608",
+   "year": 2020,
+   "journal": "Management Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jwb.2021.101221",
+   "year": 2021,
+   "journal": "Journal of World Business",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11142-022-09718-9",
+   "year": 2022,
+   "journal": "Review of Accounting Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1111/joms.12718",
+   "year": 2021,
+   "journal": "Journal of Management Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1057/s41267-021-00425-2",
+   "year": 2021,
+   "journal": "Journal of International Business Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1287/mnsc.2021.4199",
+   "year": 2021,
+   "journal": "Management Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1287/mnsc.2020.3695",
+   "year": 2020,
+   "journal": "Management Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11142-024-09833-9",
+   "year": 2024,
+   "journal": "Review of Accounting Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1111/joms.12994",
+   "year": 2023,
+   "journal": "Journal of Management Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.2139/ssrn.3799531",
+   "year": 2020,
+   "journal": "Journal of World Business",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1111/joms.12811",
+   "year": 2022,
+   "journal": "Journal of Management Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1287/mnsc.2021.3998",
+   "year": 2021,
+   "journal": "Management Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1287/mnsc.2021.4209",
+   "year": 2022,
+   "journal": "Management Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/joom.1272",
+   "year": 2023,
+   "journal": "Journal of Operations Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1287/mnsc.2021.4031",
+   "year": 2021,
+   "journal": "Management Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jbusvent.2022.106268",
+   "year": 2022,
+   "journal": "Journal of Business Venturing",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1287/mnsc.2023.4869",
+   "year": 2023,
+   "journal": "Management Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1057/s41267-021-00435-0",
+   "year": 2021,
+   "journal": "Journal of International Business Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/joom.1225",
+   "year": 2022,
+   "journal": "Journal of Operations Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1287/mnsc.2021.4156",
+   "year": 2021,
+   "journal": "Management Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/joom.1128",
+   "year": 2020,
+   "journal": "Journal of Operations Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1287/msom.2020.0952",
+   "year": 2021,
+   "journal": "Manufacturing & Service Operations Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1057/s41267-022-00521-x",
+   "year": 2022,
+   "journal": "Journal of International Business Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1287/mnsc.2019.3370",
+   "year": 2020,
+   "journal": "Management Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.5465/amp.2020.0015",
+   "year": 2020,
+   "journal": "Academy of Management Perspectives",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1287/msom.2020.0960",
+   "year": 2021,
+   "journal": "Manufacturing & Service Operations Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/joom.1179",
+   "year": 2022,
+   "journal": "Journal of Operations Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1093/rcfs/cfaa011",
+   "year": 2020,
+   "journal": "The Review of Corporate Finance Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1093/rcfs/cfaa012",
+   "year": 2020,
+   "journal": "The Review of Corporate Finance Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/bse.2937",
+   "year": 2021,
+   "journal": "Business Strategy and the Environment",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jik.2022.100198",
+   "year": 2022,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/bse.2906",
+   "year": 2021,
+   "journal": "Business Strategy and the Environment",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/bse.3160",
+   "year": 2022,
+   "journal": "Business Strategy and the Environment",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/bse.2554",
+   "year": 2020,
+   "journal": "Business Strategy and the Environment",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.intmar.2020.04.007",
+   "year": 2020,
+   "journal": "Journal of Interactive Marketing",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/bse.3219",
+   "year": 2022,
+   "journal": "Business Strategy and the Environment",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/hrm.22153",
+   "year": 2022,
+   "journal": "Human Resource Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/bse.2748",
+   "year": 2021,
+   "journal": "Business Strategy and the Environment",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jik.2022.100272",
+   "year": 2022,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1111/jpim.12656",
+   "year": 2023,
+   "journal": "Journal of Product Innovation Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1111/jpim.12698",
+   "year": 2023,
+   "journal": "Journal of Product Innovation Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/bse.3177",
+   "year": 2022,
+   "journal": "Business Strategy and the Environment",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jik.2022.100171",
+   "year": 2022,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/bse.2684",
+   "year": 2020,
+   "journal": "Business Strategy and the Environment",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jik.2022.100231",
+   "year": 2022,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/bse.2771",
+   "year": 2020,
+   "journal": "Business Strategy and the Environment",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jik.2023.100317",
+   "year": 2023,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.intmar.2020.04.002",
+   "year": 2020,
+   "journal": "Journal of Interactive Marketing",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jik.2023.100334",
+   "year": 2023,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jik.2021.04.001",
+   "year": 2021,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jik.2020.07.003",
+   "year": 2020,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/bse.2492",
+   "year": 2020,
+   "journal": "Business Strategy and the Environment",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/bse.2967",
+   "year": 2022,
+   "journal": "Business Strategy and the Environment",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jik.2022.100203",
+   "year": 2022,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/bse.2727",
+   "year": 2021,
+   "journal": "Business Strategy and the Environment",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.intmar.2020.04.006",
+   "year": 2020,
+   "journal": "Journal of Interactive Marketing",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/bse.2837",
+   "year": 2021,
+   "journal": "Business Strategy and the Environment",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/bse.2513",
+   "year": 2020,
+   "journal": "Business Strategy and the Environment",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jik.2022.100170",
+   "year": 2022,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/hrm.22133",
+   "year": 2022,
+   "journal": "Human Resource Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/hrm.22021",
+   "year": 2020,
+   "journal": "Human Resource Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/bse.2730",
+   "year": 2021,
+   "journal": "Business Strategy and the Environment",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/bse.3259",
+   "year": 2022,
+   "journal": "Business Strategy and the Environment",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/bse.2895",
+   "year": 2021,
+   "journal": "Business Strategy and the Environment",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jik.2023.100332",
+   "year": 2023,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1111/jpim.12546",
+   "year": 2020,
+   "journal": "Journal of Product Innovation Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1287/stsc.2024.0190",
+   "year": 2024,
+   "journal": "Strategy Science",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1093/rcfs/cfaa009",
+   "year": 2020,
+   "journal": "The Review of Corporate Finance Studies",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jik.2024.100610",
+   "year": 2024,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jik.2020.06.001",
+   "year": 2020,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1111/jpim.12594",
+   "year": 2021,
+   "journal": "Journal of Product Innovation Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1108/josm-05-2019-0156",
+   "year": 2020,
+   "journal": "Journal of service management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/bse.3339",
+   "year": 2022,
+   "journal": "Business Strategy and the Environment",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1002/bse.2956",
+   "year": 2021,
+   "journal": "Business Strategy and the Environment",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.tourman.2022.104681",
+   "year": 2022,
+   "journal": "Tourism Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1111/ijmr.12332",
+   "year": 2023,
+   "journal": "International Journal of Management Reviews",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1111/ijmr.12299",
+   "year": 2022,
+   "journal": "International Journal of Management Reviews",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.ijpe.2020.107776",
+   "year": 2020,
+   "journal": "International Journal of Production Economics",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.lrp.2020.102045",
+   "year": 2020,
+   "journal": "Long Range Planning",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s10551-022-05049-6",
+   "year": 2022,
+   "journal": "Journal of Business Ethics",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.ijpe.2020.107992",
+   "year": 2020,
+   "journal": "International Journal of Production Economics",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.ijpe.2023.108790",
+   "year": 2023,
+   "journal": "International Journal of Production Economics",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11187-021-00544-y",
+   "year": 2021,
+   "journal": "Small Business Economics",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s10551-020-04441-4",
+   "year": 2020,
+   "journal": "Journal of Business Ethics",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.ijpe.2022.108495",
+   "year": 2022,
+   "journal": "International Journal of Production Economics",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s10551-021-04850-z",
+   "year": 2021,
+   "journal": "Journal of Business Ethics",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s10551-021-04847-8",
+   "year": 2021,
+   "journal": "Journal of Business Ethics",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.ijhm.2020.102723",
+   "year": 2020,
+   "journal": "International Journal of Hospitality Management",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s10551-021-04843-y",
+   "year": 2021,
+   "journal": "Journal of Business Ethics",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.jcorpfin.2020.101665",
+   "year": 2020,
+   "journal": "Journal of Corporate Finance",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.ijpe.2022.108618",
+   "year": 2022,
+   "journal": "International Journal of Production Economics",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.ijpe.2023.108913",
+   "year": 2023,
+   "journal": "International Journal of Production Economics",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.ijpe.2022.108496",
+   "year": 2022,
+   "journal": "International Journal of Production Economics",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1007/s11187-020-00316-0",
+   "year": 2020,
+   "journal": "Small Business Economics",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1177/0007650320930638",
+   "year": 2020,
+   "journal": "Business & Society",
+   "field": "small_business"
+  },
+  {
+   "doi": "10.1016/j.ijinfomgt.2023.102642",
+   "year": 2023,
+   "journal": "International Journal of Information Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.ijinfomgt.2020.102168",
+   "year": 2020,
+   "journal": "International Journal of Information Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.5465/amr.2018.0072",
+   "year": 2020,
+   "journal": "Academy of Management Review",
+   "field": "management"
+  },
+  {
+   "doi": "10.5465/annals.2018.0057",
+   "year": 2020,
+   "journal": "Academy of Management Annals",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.ijinfomgt.2022.102542",
+   "year": 2022,
+   "journal": "International Journal of Information Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1007/s11747-020-00749-9",
+   "year": 2020,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.ijinfomgt.2021.102310",
+   "year": 2021,
+   "journal": "International Journal of Information Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.ijinfomgt.2021.102466",
+   "year": 2021,
+   "journal": "International Journal of Information Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/1094428120968614",
+   "year": 2020,
+   "journal": "Organizational Research Methods",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/0022242920953847",
+   "year": 2020,
+   "journal": "Journal of Marketing",
+   "field": "management"
+  },
+  {
+   "doi": "10.1287/orsc.2025.21838",
+   "year": 2026,
+   "journal": "Organization Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1007/s11747-019-00718-x",
+   "year": 2020,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1007/s11747-020-00733-3",
+   "year": 2020,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.ijinfomgt.2020.102183",
+   "year": 2020,
+   "journal": "International Journal of Information Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/0022242920957347",
+   "year": 2020,
+   "journal": "Journal of Marketing",
+   "field": "management"
+  },
+  {
+   "doi": "10.5465/amr.2019.0298",
+   "year": 2020,
+   "journal": "Academy of Management Review",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/00222429211045687",
+   "year": 2021,
+   "journal": "Journal of Marketing",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/1094428120935507",
+   "year": 2020,
+   "journal": "Organizational Research Methods",
+   "field": "management"
+  },
+  {
+   "doi": "10.2139/ssrn.3682667",
+   "year": 2020,
+   "journal": "Academy of Management Review",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.ijinfomgt.2024.102783",
+   "year": 2024,
+   "journal": "International Journal of Information Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/0022242921996646",
+   "year": 2021,
+   "journal": "Journal of Marketing",
+   "field": "management"
+  },
+  {
+   "doi": "10.1287/orsc.2021.1549",
+   "year": 2022,
+   "journal": "Organization Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1007/s11747-022-00845-y",
+   "year": 2022,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/00222429221102889",
+   "year": 2022,
+   "journal": "Journal of Marketing",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.ijinfomgt.2020.102180",
+   "year": 2020,
+   "journal": "International Journal of Information Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.5465/amr.2019.0178",
+   "year": 2020,
+   "journal": "Academy of Management Review",
+   "field": "management"
+  },
+  {
+   "doi": "10.1287/orsc.2020.1379",
+   "year": 2020,
+   "journal": "Organization Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.ijinfomgt.2023.102700",
+   "year": 2023,
+   "journal": "International Journal of Information Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.5465/amr.2019.0186",
+   "year": 2020,
+   "journal": "Academy of Management Review",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/0022242919899905",
+   "year": 2020,
+   "journal": "Journal of Marketing",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/0022242920937000",
+   "year": 2020,
+   "journal": "Journal of Marketing",
+   "field": "management"
+  },
+  {
+   "doi": "10.1007/s11747-022-00892-5",
+   "year": 2022,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/1094428120948600",
+   "year": 2020,
+   "journal": "Organizational Research Methods",
+   "field": "management"
+  },
+  {
+   "doi": "10.1007/s11747-022-00908-0",
+   "year": 2022,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.ijinfomgt.2022.102588",
+   "year": 2022,
+   "journal": "International Journal of Information Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.ijinfomgt.2024.102777",
+   "year": 2024,
+   "journal": "International Journal of Information Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/1094428120927466",
+   "year": 2020,
+   "journal": "Organizational Research Methods",
+   "field": "management"
+  },
+  {
+   "doi": "10.1007/s11747-024-01064-3",
+   "year": 2024,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/1094428120971683",
+   "year": 2020,
+   "journal": "Organizational Research Methods",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.ijinfomgt.2020.102186",
+   "year": 2020,
+   "journal": "International Journal of Information Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1287/orsc.2023.18430",
+   "year": 2024,
+   "journal": "Organization Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1287/orsc.2022.1651",
+   "year": 2023,
+   "journal": "Organization Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/00222437211002477",
+   "year": 2021,
+   "journal": "Journal of Marketing Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.5465/annals.2019.0051",
+   "year": 2020,
+   "journal": "Academy of Management Annals",
+   "field": "management"
+  },
+  {
+   "doi": "10.5465/annals.2018.0127",
+   "year": 2020,
+   "journal": "Academy of Management Annals",
+   "field": "management"
+  },
+  {
+   "doi": "10.1007/s11747-024-01052-7",
+   "year": 2024,
+   "journal": "Journal of the Academy of Marketing Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/2631787720902473",
+   "year": 2020,
+   "journal": "Organization Theory",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/0022242920952760",
+   "year": 2020,
+   "journal": "Journal of Marketing",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/1094670520902266",
+   "year": 2020,
+   "journal": "Journal of Service Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1287/mnsc.2020.3922",
+   "year": 2021,
+   "journal": "Management Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1057/s41267-020-00304-2",
+   "year": 2020,
+   "journal": "Journal of International Business Studies",
+   "field": "management"
+  },
+  {
+   "doi": "10.1287/mnsc.2023.4685",
+   "year": 2023,
+   "journal": "Management Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1111/jscm.12248",
+   "year": 2020,
+   "journal": "Journal of Supply Chain Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1287/mnsc.2019.3434",
+   "year": 2020,
+   "journal": "Management Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1111/joms.12684",
+   "year": 2021,
+   "journal": "Journal of Management Studies",
+   "field": "management"
+  },
+  {
+   "doi": "10.1287/mnsc.2019.3340",
+   "year": 2020,
+   "journal": "Management Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1080/00913367.2021.1880345",
+   "year": 2021,
+   "journal": "Journal of Advertising",
+   "field": "management"
+  },
+  {
+   "doi": "10.1080/00913367.2022.2149641",
+   "year": 2022,
+   "journal": "Journal of Advertising",
+   "field": "management"
+  },
+  {
+   "doi": "10.1080/00913367.2020.1810595",
+   "year": 2020,
+   "journal": "Journal of Advertising",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/1094670520928390",
+   "year": 2020,
+   "journal": "Journal of Service Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.5465/amp.2019.0103",
+   "year": 2020,
+   "journal": "Academy of Management Perspectives",
+   "field": "management"
+  },
+  {
+   "doi": "10.1287/mnsc.2023.4695",
+   "year": 2023,
+   "journal": "Management Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1111/joms.12581",
+   "year": 2020,
+   "journal": "Journal of Management Studies",
+   "field": "management"
+  },
+  {
+   "doi": "10.1287/mnsc.2022.4455",
+   "year": 2022,
+   "journal": "Management Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1017/s0020818320000636",
+   "year": 2021,
+   "journal": "International Organization",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/1094670520978798",
+   "year": 2020,
+   "journal": "Journal of Service Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1080/00913367.2020.1857888",
+   "year": 2021,
+   "journal": "Journal of Advertising",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/0170840620937900",
+   "year": 2020,
+   "journal": "Organization Studies",
+   "field": "management"
+  },
+  {
+   "doi": "10.1287/mnsc.2022.4394",
+   "year": 2022,
+   "journal": "Management Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1287/mnsc.2020.3812",
+   "year": 2021,
+   "journal": "Management Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1002/jcpy.1356",
+   "year": 2023,
+   "journal": "Journal of Consumer Psychology",
+   "field": "management"
+  },
+  {
+   "doi": "10.1287/mnsc.2020.3693",
+   "year": 2020,
+   "journal": "Management Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/0170840620970728",
+   "year": 2020,
+   "journal": "Organization Studies",
+   "field": "management"
+  },
+  {
+   "doi": "10.1080/00913367.2022.2154721",
+   "year": 2023,
+   "journal": "Journal of Advertising",
+   "field": "management"
+  },
+  {
+   "doi": "10.1287/msom.2021.1011",
+   "year": 2021,
+   "journal": "Manufacturing & Service Operations Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1017/s0020818320000570",
+   "year": 2021,
+   "journal": "International Organization",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jwb.2022.101326",
+   "year": 2022,
+   "journal": "Journal of World Business",
+   "field": "management"
+  },
+  {
+   "doi": "10.1002/joom.1161",
+   "year": 2021,
+   "journal": "Journal of Operations Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1080/00913367.2021.1909515",
+   "year": 2021,
+   "journal": "Journal of Advertising",
+   "field": "management"
+  },
+  {
+   "doi": "10.1017/s0020818320000296",
+   "year": 2020,
+   "journal": "International Organization",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/1094670520952537",
+   "year": 2020,
+   "journal": "Journal of Service Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1057/s41267-020-00318-w",
+   "year": 2020,
+   "journal": "Journal of International Business Studies",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/1094670520948134",
+   "year": 2020,
+   "journal": "Journal of Service Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1017/s0020818320000454",
+   "year": 2020,
+   "journal": "International Organization",
+   "field": "management"
+  },
+  {
+   "doi": "10.1002/jcpy.1161",
+   "year": 2020,
+   "journal": "Journal of Consumer Psychology",
+   "field": "management"
+  },
+  {
+   "doi": "10.1287/mnsc.2021.4294",
+   "year": 2022,
+   "journal": "Management Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1287/mnsc.2020.3682",
+   "year": 2020,
+   "journal": "Management Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1111/joms.12582",
+   "year": 2020,
+   "journal": "Journal of Management Studies",
+   "field": "management"
+  },
+  {
+   "doi": "10.1111/jscm.12255",
+   "year": 2020,
+   "journal": "Journal of Supply Chain Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1017/s0020818320000491",
+   "year": 2021,
+   "journal": "International Organization",
+   "field": "management"
+  },
+  {
+   "doi": "10.1287/mnsc.2021.4190",
+   "year": 2021,
+   "journal": "Management Science",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jwb.2022.101399",
+   "year": 2022,
+   "journal": "Journal of World Business",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/10946705221130467",
+   "year": 2022,
+   "journal": "Journal of Service Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/10946705211021915",
+   "year": 2021,
+   "journal": "Journal of Service Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1080/00913367.2021.1980470",
+   "year": 2021,
+   "journal": "Journal of Advertising",
+   "field": "management"
+  },
+  {
+   "doi": "10.1002/mar.21640",
+   "year": 2022,
+   "journal": "Psychology and Marketing",
+   "field": "management"
+  },
+  {
+   "doi": "10.1111/ijmr.12239",
+   "year": 2020,
+   "journal": "International Journal of Management Reviews",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2022.03.038",
+   "year": 2022,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.tourman.2023.104724",
+   "year": 2023,
+   "journal": "Tourism Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1002/job.2735",
+   "year": 2023,
+   "journal": "Journal of Organizational Behavior",
+   "field": "management"
+  },
+  {
+   "doi": "10.1002/mar.21767",
+   "year": 2022,
+   "journal": "Psychology and Marketing",
+   "field": "management"
+  },
+  {
+   "doi": "10.1111/jpim.12523",
+   "year": 2020,
+   "journal": "Journal of Product Innovation Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2020.10.030",
+   "year": 2020,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2020.07.044",
+   "year": 2020,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2020.07.045",
+   "year": 2020,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2021.03.067",
+   "year": 2021,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2023.114104",
+   "year": 2023,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1002/mar.21670",
+   "year": 2022,
+   "journal": "Psychology and Marketing",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2021.05.009",
+   "year": 2021,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2022.03.008",
+   "year": 2022,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1093/jopart/muac007",
+   "year": 2020,
+   "journal": "Journal of Public Administration Research and Theory",
+   "field": "management"
+  },
+  {
+   "doi": "10.1002/job.2485",
+   "year": 2020,
+   "journal": "Journal of Organizational Behavior",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2021.11.014",
+   "year": 2021,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2022.04.068",
+   "year": 2022,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2020.01.009",
+   "year": 2020,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.hrmr.2022.100925",
+   "year": 2022,
+   "journal": "Human Resource Management Review",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2020.05.015",
+   "year": 2020,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2021.04.028",
+   "year": 2021,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1111/jpim.12547",
+   "year": 2020,
+   "journal": "Journal of Product Innovation Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2024.114542",
+   "year": 2024,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1002/mar.21457",
+   "year": 2021,
+   "journal": "Psychology and Marketing",
+   "field": "management"
+  },
+  {
+   "doi": "10.1002/hrm.22153",
+   "year": 2022,
+   "journal": "Human Resource Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2021.11.006",
+   "year": 2021,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2024.114760",
+   "year": 2024,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1111/jpim.12656",
+   "year": 2023,
+   "journal": "Journal of Product Innovation Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/00187267211070769",
+   "year": 2022,
+   "journal": "Human Relations",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2022.04.013",
+   "year": 2022,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2021.01.016",
+   "year": 2021,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1111/jpim.12698",
+   "year": 2023,
+   "journal": "Journal of Product Innovation Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2019.11.058",
+   "year": 2020,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2022.113539",
+   "year": 2022,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2021.09.048",
+   "year": 2021,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.ijresmar.2022.05.005",
+   "year": 2022,
+   "journal": "International Journal of Research in Marketing",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2020.01.022",
+   "year": 2020,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1111/jpim.12545",
+   "year": 2020,
+   "journal": "Journal of Product Innovation Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.hrmr.2021.100876",
+   "year": 2021,
+   "journal": "Human Resource Management Review",
+   "field": "management"
+  },
+  {
+   "doi": "10.1002/mar.21532",
+   "year": 2021,
+   "journal": "Psychology and Marketing",
+   "field": "management"
+  },
+  {
+   "doi": "10.1002/mar.21665",
+   "year": 2022,
+   "journal": "Psychology and Marketing",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2023.113708",
+   "year": 2023,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2022.01.051",
+   "year": 2022,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1111/jpim.12560",
+   "year": 2020,
+   "journal": "Journal of Product Innovation Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1002/mar.21498",
+   "year": 2021,
+   "journal": "Psychology and Marketing",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jbusres.2023.113777",
+   "year": 2023,
+   "journal": "Journal of Business Research",
+   "field": "management"
+  },
+  {
+   "doi": "10.1002/hrm.22133",
+   "year": 2022,
+   "journal": "Human Resource Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1002/hrm.22021",
+   "year": 2020,
+   "journal": "Human Resource Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1108/ijchm-04-2022-0474",
+   "year": 2022,
+   "journal": "International Journal of Contemporary Hospitality Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.intmar.2020.04.001",
+   "year": 2020,
+   "journal": "Journal of Interactive Marketing",
+   "field": "management"
+  },
+  {
+   "doi": "10.1108/ijchm-04-2020-0259",
+   "year": 2020,
+   "journal": "International Journal of Contemporary Hospitality Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jretconser.2020.102224",
+   "year": 2020,
+   "journal": "Journal of Retailing and Consumer Services",
+   "field": "management"
+  },
+  {
+   "doi": "10.1108/ijchm-03-2020-0237",
+   "year": 2020,
+   "journal": "International Journal of Contemporary Hospitality Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.intmar.2020.05.001",
+   "year": 2020,
+   "journal": "Journal of Interactive Marketing",
+   "field": "management"
+  },
+  {
+   "doi": "10.1177/20413866221135022",
+   "year": 2022,
+   "journal": "Organizational Psychology Review",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jik.2022.100198",
+   "year": 2022,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "management"
+  },
+  {
+   "doi": "10.1111/poms.13622",
+   "year": 2021,
+   "journal": "Production and Operations Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.technovation.2021.102312",
+   "year": 2021,
+   "journal": "Technovation",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.technovation.2020.102121",
+   "year": 2020,
+   "journal": "Technovation",
+   "field": "management"
+  },
+  {
+   "doi": "10.1080/19368623.2022.2072504",
+   "year": 2022,
+   "journal": "Journal of Hospitality Marketing & Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1108/ijchm-05-2023-0686",
+   "year": 2023,
+   "journal": "International Journal of Contemporary Hospitality Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1108/ijchm-03-2020-0242",
+   "year": 2020,
+   "journal": "International Journal of Contemporary Hospitality Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.intmar.2020.04.007",
+   "year": 2020,
+   "journal": "Journal of Interactive Marketing",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jik.2020.08.001",
+   "year": 2020,
+   "journal": "Journal of Innovation & Knowledge",
+   "field": "management"
+  },
+  {
+   "doi": "10.1108/ijchm-05-2022-0631",
+   "year": 2022,
+   "journal": "International Journal of Contemporary Hospitality Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jretconser.2022.103149",
+   "year": 2022,
+   "journal": "Journal of Retailing and Consumer Services",
+   "field": "management"
+  },
+  {
+   "doi": "10.1108/josm-05-2020-0160",
+   "year": 2020,
+   "journal": "Journal of service management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1108/ijchm-04-2020-0314",
+   "year": 2020,
+   "journal": "International Journal of Contemporary Hospitality Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1108/ijchm-10-2020-1164",
+   "year": 2021,
+   "journal": "International Journal of Contemporary Hospitality Management",
+   "field": "management"
+  },
+  {
+   "doi": "10.1016/j.jretconser.2020.102059",
+   "year": 2020,
+   "journal": "Journal of Retailing and Consumer Services",
+   "field": "management"
+  }
+ ]
+}
