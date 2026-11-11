@@ -1,0 +1,22 @@
+name: Build Q1 style profile
+on:
+  workflow_dispatch:
+  push:
+    paths: ["scripts/build-style-brain.js", "core/stylemetrics.js"]
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: node scripts/build-style-brain.js --target 500
+      - name: Commit the profile
+        run: |
+          git config user.name "quartile-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/style-profile.json
+          git diff --cached --quiet || git commit -m "Update Q1 style profile (measurements only)"
+          git push
