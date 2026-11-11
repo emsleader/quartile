@@ -1,6 +1,7 @@
 <p align="center"><img src="assets/logo.svg" width="96" alt="Quartile logo"></p>
 
 <h1 align="center">Quartile</h1>
+<p align="center"><a href="https://doi.org/10.5281/zenodo.24143278"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.24143278.svg" alt="DOI 10.5281/zenodo.24143278"></a></p>
 <p align="center"><b>Write at Q1. Keep every number.</b><br>Meaning-preserving academic editing, journal-editor simulation and statistics checks for business, management, finance and economics research.</p>
 
 ---
@@ -84,7 +85,9 @@ Covers the p-value functions against known values, each statistics check, the gu
 The statistics recomputation follows the logic of statcheck (Nuijten et al., 2016, *Behavior Research Methods*; Epskamp & Nuijten, R package statcheck). The writing rules come from a profile of 80 Q1 abstracts in finance, small business, service and management research and from papers by faculty of 20 DBA-awarding schools.
 
 ## Citation
-See `CITATION.cff`. Each GitHub release is archived on Zenodo with a DOI.
+Alavi, S. M. (2026). *Quartile: a meaning-preserving Q1 academic writing engine with journal-editor simulation and statistics checks* (Version 0.8.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.24143278
+
+See also `CITATION.cff`. Each GitHub release is archived on Zenodo.
 
 ## Licence
 MIT © 2026 Seyed Mehdi Alavi, EMS International Kft.

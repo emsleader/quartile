@@ -4,6 +4,8 @@ title: "Quartile: a meaning-preserving Q1 academic writing engine with journal-e
 version: 0.8.0
 date-released: 2026-11-11
 license: MIT
+doi: 10.5281/zenodo.24143278
+repository-code: "https://github.com/emsleader/quartile"
 type: software
 authors:
   - family-names: Alavi
