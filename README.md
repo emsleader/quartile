@@ -37,7 +37,7 @@ node server.js            # stdio (Claude Desktop, Claude Code)
 node server.js --http     # Streamable HTTP on http://localhost:8787/mcp
 ```
 
-**Tools:** `q1_style_guide`, `analyze_manuscript`, `desk_screen`, `check_statistics`, `check_references`, `verify_rewrite`, `apply_replacements`, `journal_lookup`, `journal_suggest`. **Prompts:** `q1_edit`, `journal_editor`, `idea_to_paper`. All tools are read-only and stateless; nothing is stored.
+**Tools:** `q1_style_guide`, `compare_style`, `analyze_manuscript`, `desk_screen`, `check_statistics`, `check_references`, `verify_rewrite`, `apply_replacements`, `journal_lookup`, `journal_suggest`. **Prompts:** `q1_edit`, `journal_editor`, `idea_to_paper`. All tools are read-only and stateless; nothing is stored.
 
 **Claude Desktop** (`claude_desktop_config.json`):
 ```json
@@ -67,6 +67,9 @@ Q.verify(original, revised, ["financial flexibility"]);  // { pass, blocking, wa
 Q.Stats.checkAll(text);                                   // statistics report
 Q.analyze(text);                                          // full audit
 ```
+
+## Q1 style profile
+`data/style-profile.json` holds measurements of 501 abstracts from 76 Q1 journals (finance, small business and entrepreneurship, management; 2020 or later; the most-cited articles of each journal, at most 6-8 per journal), collected from OpenAlex by `scripts/build-style-brain.js` and the "Build Q1 style profile" GitHub Action. For each field and for 73 journals it stores the median and middle half of abstract length, sentence length and variety, active "we" voice, passive voice, hedges, causal verbs, stock words, numbers reported, how often the sample size is stated, and how often each rhetorical move (background, gap, aim, method, finding, implication) appears and opens or closes the abstract. No abstract text is stored, only these numbers and the DOIs of the measured papers. `compare_style` and the app's "Style compared with 500 Q1 papers" card compare a manuscript with this profile, and the AI edit, issue and idea prompts receive it as targets for the abstract.
 
 ## Journal bank
 SCImago data are not stored in this repository. In HTTP mode the server downloads the public journal list from [scimagojr.com](https://www.scimagojr.com) at start-up and keeps the Business, Economics and Decision Sciences journals in memory (`QUARTILE_BANK_AREAS` changes the areas, `QUARTILE_FETCH_BANK=0` turns this off). Data: SCImago, SJR — SCImago Journal & Country Rank, https://www.scimagojr.com. To use your own export instead, build a file and set `QUARTILE_BANK`:

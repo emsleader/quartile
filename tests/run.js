@@ -52,6 +52,12 @@ ok(L.Stats.checkAll("x 1.234 1.567 ".repeat(40)).lastDigits === null, "last-digi
 ok(L.Stats.shares("318 of 1,247 eligible cases (28.5%)")[0].ok === false && L.Stats.shares("318 of 1,247 eligible cases (25.5%)")[0].ok, "x of y (z%) check");
 ok(L.Stats.ciP("the difference was 11.14 pp [2.84, 19.44] (p = 0.009; Figure 2)")[0].ok, "CI and p agree");
 
+// style profile
+{ const P = L.loadProfile(); ok(P && P.n >= 450 && Object.keys(P.fields).length === 3, "style profile has about 500 abstracts in 3 fields");
+  ok(!JSON.stringify(P).includes("abstract_inverted_index") && P.sources.every(x => !("text" in x)), "profile stores measurements, not text");
+  const r = L.compareStyle("# Abstract\n\nWe find that small firms with audited accounts invest more. Using a panel of 9,037 firms, we show that the effect is larger where banks dominate. These results inform lenders and policymakers.\n", { field: "finance" });
+  ok(typeof r.distance === "number" && r.measured.dataClause === 1 && r.measured.moves.includes("finding"), "compare_style measures an abstract"); }
+
 // MCP over stdio
 (async () => {
   const { Client } = require("../mcp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/index.js");
@@ -59,7 +65,7 @@ ok(L.Stats.ciP("the difference was 11.14 pp [2.84, 19.44] (p = 0.009; Figure 2)"
   const c = new Client({ name: "test", version: "1" });
   await c.connect(new StdioClientTransport({ command: process.execPath, args: [path.join(__dirname, "..", "mcp", "server.js")] }));
   const tools = (await c.listTools()).tools.map(t => t.name);
-  ok(tools.length === 9 && tools.includes("verify_rewrite"), "9 tools");
+  ok(tools.length === 10 && tools.includes("compare_style"), "10 tools");
   const r = await c.callTool({ name: "verify_rewrite", arguments: { original: "Sales rose 5%.", revised: "Sales rose 7%." } });
   ok(r.structuredContent.pass === false, "tool call over stdio");
   const pr = (await c.listPrompts()).prompts.map(p => p.name); ok(pr.length === 3, "3 prompts");

@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "quartile",
   "display_name": "Quartile",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "Write at Q1. Keep every number. Manuscript checks for business and economics research: hallucination guard, desk-rejection screen, statistics recomputation, references and journal bank.",
   "long_description": "Quartile checks academic manuscripts without changing their science. verify_rewrite blocks any revision that adds or changes numbers, citations, protected constructs, names or causal claims. check_statistics recomputes p-values from reported t, F, r, chi-square and z, and checks coefficient/SE against reported t, p and significance stars. analyze_manuscript and desk_screen run the five usual desk-rejection checks. Results appear as an interactive Quartile card. All checks run locally on your computer; nothing is sent anywhere.",
   "author": { "name": "Seyed Mehdi Alavi", "url": "https://github.com/emsleader" },

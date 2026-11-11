@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.2 (2026-11-11)
+- Q1 style profile: measurements of 501 abstracts from 76 Q1 journals in three fields (OpenAlex; no text stored), built by a GitHub Action.
+- New `compare_style` tool and app card: distance from the Q1 profile, the three largest gaps with fixes, and rhetorical-move notes; per field or per journal (73 journal profiles).
+- The AI prompts (edit, issues, idea to paper) receive the measured profile as abstract targets.
+
 ## 0.8.1 (2026-11-11)
 Accuracy release from a hand-checked test on the author's manuscripts (ORBIT, JEMF; roadmap section 2).
 - Design detection: declared conceptual papers and systematic reviews are recognised; secondary data (Enterprise Surveys, Orbis, Compustat, census) never gets questionnaire checks; conceptual papers skip empirical checks.

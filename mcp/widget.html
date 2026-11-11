@@ -53,6 +53,13 @@ function render(d) {
     const issues = [...(d.q1RuleFlags || []).map(f => ({ s: f.sev, t: "Q1 rule " + f.rule + ": " + f.detail })), ...(d.businessResearchIssues || []).map(x => ({ s: x.severity, t: x.problem })), ...(d.consistency || []).map(x => ({ s: x.severity, t: x.problem })), ...(d.citationStyle || []).map(x => ({ s: x.severity, t: x.problem }))];
     if (issues.length) h += `<h3>Issues (${issues.length})</h3><ul>${issues.slice(0, 40).map(x => `<li><span class="pill ${sev(x.s)}">${E(x.s || "")}</span>${E(x.t)}</li>`).join("")}</ul>`;
     const r = d.references; if (r.missingFromList.length) h += `<h3>Cited but not in the list</h3><p>${r.missingFromList.map(c => `<span class="pill high">${E(c)}</span>`).join("")}</p>`;
+  } else if (d.kind === "style") {
+    k.textContent = "Q1 style profile";
+    if (d.error) { o.innerHTML = `<p class="empty">${E(d.error)}</p>`; return; }
+    h += `<div class="stats">${tile(d.distance + "%", "outside the Q1 middle range")}${tile(d.withinProfile + "/" + d.metricsChecked, "measures within range")}${tile(d.profile.n, "Q1 abstracts (" + d.profile.name + ")")}</div>`;
+    if (d.largestGaps.length) h += `<h3>Largest gaps</h3><ul>${d.largestGaps.map(g => `<li><b>${E(g.label)}</b>: ${E(g.value)} <span class="q">(Q1 median ${E(g.median)}, middle half ${E(g.p25)}–${E(g.p75)})</span><div class="q">${E(g.fix)}</div></li>`).join("")}</ul>`;
+    if (d.moveNotes.length) h += `<h3>Structure</h3><ul>${d.moveNotes.map(x => `<li>${E(x)}</li>`).join("")}</ul>`;
+    h += `<p class="q">${E(d.note)}</p>`;
   } else if (d.kind === "references") {
     k.textContent = "References";
     h += `<div class="stats">${tile(d.references.length, "references")}${tile(d.missingFromList.length, "cited, not listed")}${tile(d.neverCited.length, "listed, never cited")}${tile(d.last5Years, "from the last 5 years")}</div>`;

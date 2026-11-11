@@ -107,9 +107,30 @@ function journalSuggest({ keywords = [], quartile, maxDifficulty = 100, limit = 
     .sort((a, b) => b.x - a.x).slice(0, limit).map(j => ({ title: j.t, quartile: j.q, sjr: j.s, difficulty: j.x, level: diffLevel(j.x), mainCategory: j.m }));
 }
 
+// ---- Q1 style profile (measurements from about 500 Q1 abstracts; data/style-profile.json) ----
+let PROFILE = null;
+function loadProfile() { if (PROFILE) return PROFILE; try { PROFILE = JSON.parse(require("fs").readFileSync(process.env.QUARTILE_PROFILE || require("path").join(__dirname, "..", "data", "style-profile.json"), "utf8")); } catch (e) { PROFILE = null; } return PROFILE; }
+const SM = require("./stylemetrics.js");
+function pickProfile(field, journal) {
+  const P = loadProfile(); if (!P) return null;
+  if (journal) { const k = Object.keys(P.journals).find(x => x.toLowerCase() === String(journal).toLowerCase()); if (k) return { name: k, scope: "journal", ...P.journals[k] }; }
+  if (field && P.fields[field]) return { name: field, scope: "field", ...P.fields[field] };
+  return { name: "all fields", scope: "overall", ...P.overall };
+}
+function abstractOf(text) { const d = parse(text); const a = d.sections.find(x => x.role === "abstract") || d.sections.find(x => x.role === "opening"); const t = a ? a.paras.map(id => d.byId(id).text).filter(x => !/^(keywords?|jel)\b/i.test(x)).join(" ") : String(text).split(/\s+/).slice(0, 250).join(" "); return t; }
+function compareStyle(text, { field, journal, isAbstract } = {}) {
+  const prof = pickProfile(field, journal); if (!prof) return { error: "No style profile loaded (data/style-profile.json)." };
+  const abs = isAbstract ? text : abstractOf(text);
+  const r = SM.compare(abs, prof);
+  return { profile: { name: prof.name, scope: prof.scope, n: prof.n, built: loadProfile().built }, ...r };
+}
+function profileSummary(field) {
+  const p = pickProfile(field); if (!p) return null; const m = p.metrics, r = x => `${m[x].median} (middle half ${m[x].p25}-${m[x].p75})`;
+  return `Measured Q1 profile (${p.n} abstracts, ${p.name}): length ${r("words")} words; mean sentence ${r("meanSentence")} words; 'we' sentences ${Math.round(m.weShare.median * 100)}%; passive sentences ${Math.round(m.passiveShare.median * 100)}%; numbers reported ${r("numbers")}; sample size stated in ${Math.round(p.dataClauseShare * 100)}%; a finding is stated in ${Math.round(p.movePresence.finding * 100)}%, the method or data in ${Math.round(p.movePresence.method * 100)}%, an implication in ${Math.round(p.movePresence.implication * 100)}%.`;
+}
 function styleGuide(tier = "Q1", type = "A", role) {
-  return { tier, tierStandard: Style.TIERS[tier] || Style.TIERS.Q1, rigorRule: Style.TIER_RIGOR, writingType: Style.WTYPES[type] || Style.WTYPES.A, sectionRules: role ? Style.ROLE_RULES[role] : Style.ROLE_RULES, q1Rules: Style.BASE_RULES, editLevels: Style.LEVELS,
+  return { tier, measuredProfile: profileSummary({ A: "finance", B: "finance", C: "small_business", D: "management" }[type]), tierStandard: Style.TIERS[tier] || Style.TIERS.Q1, rigorRule: Style.TIER_RIGOR, writingType: Style.WTYPES[type] || Style.WTYPES.A, sectionRules: role ? Style.ROLE_RULES[role] : Style.ROLE_RULES, q1Rules: Style.BASE_RULES, editLevels: Style.LEVELS,
     nonNegotiable: ["Keep every number, statistic, unit, sample size and p-value exactly.", "Keep every citation attached to the same claim.", "Keep protected constructs verbatim and distinct.", "Never strengthen a hedge or turn association into causation.", "Never add claims, findings, names, references or numbers; every revised sentence must come from an original sentence.", "Run verify_rewrite on every revised paragraph and keep the original if pass is false."] };
 }
 
-module.exports = { Core, Stats, Style, parse, analyze, references, desk, verify, applyReplacements, loadBank, setBank, fetchBank, journalLookup, journalSuggest, styleGuide, diffLevel };
+module.exports = { compareStyle, profileSummary, loadProfile, Core, Stats, Style, parse, analyze, references, desk, verify, applyReplacements, loadBank, setBank, fetchBank, journalLookup, journalSuggest, styleGuide, diffLevel };

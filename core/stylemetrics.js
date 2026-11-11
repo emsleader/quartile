@@ -38,10 +38,10 @@ const LABEL = { words: "Abstract length (words)", sentences: "Sentences", meanSe
 const FIX = {
   words: ["Shorten the abstract to the profile range; cut background sentences first.", "Add the missing elements (data, main number, implication) rather than padding."],
   meanSentence: ["Split long sentences; Q1 abstracts average shorter sentences.", "Combine very short sentences that repeat one idea."],
-  longSentenceShare: ["Split sentences over 35 words.", ""], weShare: ["State what you did and found in active voice ('We find...').", "Vary the subject; not every sentence needs 'we'."],
+  longSentenceShare: ["Split sentences over 35 words.", ""], weShare: ["Vary the subject; not every sentence needs 'we'.", "State what you did and found in active voice ('We find...')."],
   passiveShare: ["Replace passive constructions with active ones where the actor matters.", ""], hedgesPer100: ["Remove hedges the design does not require.", "Hedge claims the design cannot support."],
   causalPer100: ["Check causal verbs: use 'is associated with' unless the design identifies causation.", ""], stockPer1k: ["Remove stock words (crucial, notably, moreover...).", ""],
-  numbers: ["Report one or two key numbers from the results.", "Keep only the one or two numbers that carry the finding."], sentences: ["Reduce the number of sentences.", "Develop the abstract to the usual structure."], sdSentence: ["", "Vary sentence length a little more."]
+  numbers: ["Keep only the one or two numbers that carry the finding.", "Report one or two key numbers from the results."], sentences: ["Reduce the number of sentences.", "Develop the abstract to the usual structure."], sdSentence: ["", "Vary sentence length a little more."]
 };
 function quantile(a, q) { const s = a.slice().sort((x, y) => x - y); if (!s.length) return null; const i = (s.length - 1) * q, lo = Math.floor(i), hi = Math.ceil(i); return +(s[lo] + (s[hi] - s[lo]) * (i - lo)).toFixed(3); }
 function summarise(rows) {
