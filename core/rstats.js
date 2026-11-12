@@ -22,6 +22,8 @@ const PROCS = {
   efa: { need: ["variables"], call: a => `q_efa(d, ${rv(a.variables)}, ${Math.max(1, parseInt(a.factors) || 1)}, ${rs(["varimax", "promax", "none"].includes(a.rotation) ? a.rotation : "varimax")})` },
   normality: { need: ["variables"], call: a => `q_normality(d, ${rv(a.variables)})` },
 };
+// an analysis as an R list literal, for the figure code
+function rList(a) { const parts = []; for (const [k, v] of Object.entries(a)) { if (v == null || k === "procedure") continue; if (Array.isArray(v)) parts.push(`${k} = ${rv(v)}`); else if (typeof v === "boolean") parts.push(`${k} = ${v ? "TRUE" : "FALSE"}`); else if (typeof v === "number") parts.push(`${k} = ${v}`); else parts.push(`${k} = ${rs(v)}`); } return "list(" + parts.join(", ") + ")"; }
 const varsOf = a => [a.variable, a.group, a.paired_with, a.row, a.column, a.dependent, ...(a.variables || []), ...(a.independents || [])].filter(Boolean);
 
 function rscript() { return process.env.QUARTILE_RSCRIPT || "Rscript"; }
@@ -31,13 +33,14 @@ function exec(file, cwd) { return new Promise(res => execFile(rscript(), ["--van
 // header of a CSV, to validate variable names before R runs
 function csvHeader(text) { const line = String(text).replace(/^﻿/, "").split(/\r?\n/)[0] || ""; const sep = (line.match(/;/g) || []).length > (line.match(/,/g) || []).length ? ";" : ","; return { sep, cols: line.split(sep).map(c => c.trim().replace(/^"|"$/g, "")) }; }
 
-async function run({ data, format = "csv", analyses = [], r_code = null }) {
+async function run({ data, format = "csv", analyses = [], r_code = null, charts = true, sheet = null, excel = false }) {
   if (!(await available())) return { kind: "rstats", error: "R is not installed where Quartile runs. Install R (r-project.org) or set QUARTILE_RSCRIPT to Rscript's path." };
   if (r_code && process.env.QUARTILE_ALLOW_R_CODE !== "1") return { kind: "rstats", error: "Custom R code runs only in a local install with QUARTILE_ALLOW_R_CODE=1. Use the built-in procedures." };
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "quartile-r-"));
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "quartile-r-")); let xinfo = null;
   try {
-    const isSav = format === "sav", bytes = isSav ? Buffer.from(String(data), "base64") : Buffer.from(String(data), "utf8");
-    const dataFile = path.join(dir, isSav ? "data.sav" : "data.csv"); fs.writeFileSync(dataFile, bytes);
+    const isSav = format === "sav", isX = format === "xlsx", bytes = isSav || isX ? Buffer.from(String(data), "base64") : Buffer.from(String(data), "utf8");
+    if (isX) { const X = await require("./excel.js").xlsxToCsv(bytes, sheet); data = X.csv; xinfo = { sheet: X.sheet, sheets: X.sheets }; }
+    const dataFile = path.join(dir, isSav ? "data.sav" : "data.csv"); fs.writeFileSync(dataFile, isX ? Buffer.from(data, "utf8") : bytes);
     let cols = null, sep = ",";
     if (!isSav) { const h = csvHeader(data); cols = h.cols; sep = h.sep; }
     const problems = [];
@@ -53,8 +56,9 @@ async function run({ data, format = "csv", analyses = [], r_code = null }) {
       `source(${rs(LIB)})`, "options(warn = 1)", `d <- ${read}`,
       ...(r_code ? ["# custom code (local install)", String(r_code)] : []),
       "results <- list(", calls.join(",\n") || "  none = NULL", ")",
+      ...(charts ? ["figures <- list(", analyses.map((a, i) => `  a${i + 1} = tryCatch(q_plots(${rs(a.procedure)}, d, ${rList(a)}), error = function(e) list())`).join(",\n"), ")"] : ["figures <- list()"]),
       'meta <- list(r_version = R.version.string, foreign_version = as.character(packageVersion("foreign")), platform = R.version$platform, rows = nrow(d), columns = ncol(d))',
-      'cat("<<<QUARTILE_JSON>>>", qj(list(meta = meta, results = results)), "<<<END>>>", sep = "")',
+      'cat("<<<QUARTILE_JSON>>>", qj(list(meta = meta, results = results, figures = figures)), "<<<END>>>", sep = "")',
     ].join("\n");
     const sf = path.join(dir, "analysis.R"); fs.writeFileSync(sf, script);
     const { e, out, err } = await exec(sf, dir);
@@ -62,12 +66,15 @@ async function run({ data, format = "csv", analyses = [], r_code = null }) {
     if (!m) return { kind: "rstats", error: "R did not finish: " + String(err || (e && e.message) || "no output").slice(-800) };
     const parsed = JSON.parse(m[1]);
     const results = analyses.map((a, i) => ({ ...a, result: parsed.results["a" + (i + 1)] }));
+    const figures = []; analyses.forEach((a, i) => { const fs_ = (parsed.figures || {})["a" + (i + 1)] || []; (Array.isArray(fs_) ? fs_ : [fs_]).forEach(f => { try { const b = fs.readFileSync(path.join(dir, f.file)); figures.push({ analysis: i + 1, procedure: a.procedure, title: f.title, file: f.file, png_base64: b.toString("base64"), sha256: sha(b) }); } catch (e) {} }); });
     const libText = fs.readFileSync(LIB, "utf8");
-    const record = { created: new Date().toISOString(), data_sha256: sha(bytes), data_bytes: bytes.length, script_sha256: sha(script), procedures_sha256: sha(libText), ...parsed.meta,
+    const record = { created: new Date().toISOString(), data_format: format, ...(xinfo ? { excel_sheet: xinfo.sheet } : {}), data_sha256: sha(bytes), data_bytes: bytes.length, script_sha256: sha(script), procedures_sha256: sha(libText), ...parsed.meta,
       note: "Anyone with the same data file and this script gets the same numbers: check the data hash first, then run Rscript --vanilla analysis.R." };
     const warnings = String(err || "").split("\n").filter(l => /^Warning/.test(l)).slice(0, 20);
-    return { kind: "rstats", results, apa: results.map(apa).flat().filter(Boolean), record, script: script.replace(rs(LIB), '"rstats.R"'), warnings, output_text: flatten(results),
-      note: "Computed in R with fixed, open procedures (core/rstats.R). Pass output_text to number_registry as an output to trace every reported number to this run." };
+    const res = { kind: "rstats", figures, results, apa: results.map(apa).flat().filter(Boolean), record, script: script.replace(rs(LIB), '"rstats.R"'), warnings, output_text: flatten(results),
+      note: "Computed in R with fixed, open procedures (core/rstats.R); figures drawn by R. Pass output_text to number_registry as an output to trace every reported number to this run." };
+    if (excel) res.xlsx_base64 = (await require("./excel.js").workbook(res)).toString("base64");
+    return res;
   } finally { try { fs.rmSync(dir, { recursive: true, force: true }); } catch (e) {} }
 }
 

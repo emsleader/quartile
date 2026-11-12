@@ -20,8 +20,9 @@
   "dependencies": {
     "@modelcontextprotocol/ext-apps": "2.0.4",
     "@modelcontextprotocol/sdk": "1.32.2",
+    "exceljs": "4.4.0",
     "express": "5.3.0",
-    "mammoth": "1.8.0",
+    "mammoth": "1.13.0",
     "pdfjs-dist": "3.11.174",
     "zod": "4.6.7"
   }

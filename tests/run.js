@@ -122,6 +122,11 @@ const rDone = (async () => {
   ok(Math.abs(b.b - 0.7044025) < 1e-6 && Math.abs(r.results[2].result.pairs[0].r - 0.9691250) < 1e-6, "R regression and correlation match known values");
   ok(/^[0-9a-f]{64}$/.test(r.record.data_sha256) && /R version/.test(r.record.r_version) && /q_regression/.test(r.script), "reproducibility record and script");
   ok(L.Stats && require("../core/registry.js").registry("# Results\n\nThe slope is 0.70 (r = .97).", [{ name: "R", text: r.output_text }]).matched === 2, "R output feeds the number registry");
+  ok(r.figures.length >= 3 && r.figures.every(f => /^iVBOR/.test(f.png_base64) && /^[0-9a-f]{64}$/.test(f.sha256)), "R draws the figures (PNG, hashed)");
+  const X = require("../core/excel.js"), xb = await X.workbook(r), E = require("../mcp/node_modules/exceljs"), wb = new E.Workbook(); await wb.xlsx.load(xb);
+  ok(["Summary", "Figures", "Reproducibility"].every(n => wb.getWorksheet(n)) && wb.getWorksheet("Figures").getImages().length === r.figures.length, "results workbook with tables, figures and record");
+  const xin = await RS.run({ data: xb.toString("base64"), format: "xlsx", sheet: "Summary", analyses: [{ procedure: "frequencies", variable: "Quartile statistics" }], charts: false });
+  ok(!xin.error && xin.record.data_format === "xlsx" && xin.record.excel_sheet === "Summary", "Excel input read by sheet");
   const bad = await RS.run({ data: csv, analyses: [{ procedure: "anova", variable: "zz", group: "g" }] }); ok(bad.error && /no column 'zz'/.test(bad.problems[0]), "unknown columns rejected before R runs");
 })();
 

@@ -112,3 +112,50 @@ q_efa <- function(d, vars, factors = 1, rotation = "varimax") {
 q_normality <- function(d, vars) lapply(setNames(vars, vars), function(v) { x <- num(d, v); x <- x[!is.na(x)]; if (length(x) < 3 || length(x) > 5000) return(list(n = length(x), note = "Shapiro-Wilk needs 3 to 5000 values")); s <- shapiro.test(x); list(n = length(x), W = unname(s$statistic), p = s$p.value) })
 
 q_run <- function(name, expr) { r <- tryCatch(expr, error = function(e) list(error = conditionMessage(e))); r$procedure <- name; r }
+
+# ---- figures: drawn by R (grDevices, cairo PNG), neutral academic style, one file per figure ----
+q_fig_n <- 0
+q_fig <- function(title, draw, w = 1600, h = 1100) {
+  q_fig_n <<- q_fig_n + 1; f <- sprintf("fig_%02d.png", q_fig_n)
+  png(f, width = w, height = h, res = 200, type = "cairo", family = "sans")
+  op <- par(mar = c(4.2, 4.4, 2.6, 1.2), cex.main = 1, font.main = 1, las = 1, bty = "l", col.axis = "grey25", fg = "grey35")
+  ok <- tryCatch({ draw(); TRUE }, error = function(e) { plot.new(); text(.5, .5, conditionMessage(e)); FALSE })
+  par(op); dev.off(); list(file = f, title = title)
+}
+INK <- "grey20"; FILL <- "grey80"; ACC <- "#2b5c8a"
+q_plots <- function(proc, d, a) {
+  out <- list(); add <- function(x) out[[length(out) + 1]] <<- x
+  qq1 <- function(x, lab) add(q_fig(paste0("Normal Q-Q plot: ", lab), function() { qqnorm(x, main = paste0("Normal Q-Q plot: ", lab), pch = 16, col = adjustcolor(INK, .6), xlab = "Theoretical quantiles", ylab = "Sample quantiles"); qqline(x, col = ACC, lwd = 2) }))
+  switch(proc,
+    descriptives = for (v in a$variables) { xx <- num(d, v); xx <- xx[!is.na(xx)]
+      add(q_fig(paste0("Distribution of ", v), function() { h <- hist(xx, breaks = "FD", plot = FALSE); hist(xx, breaks = h$breaks, freq = FALSE, col = FILL, border = "white", main = paste0("Distribution of ", v, " (n = ", length(xx), ")"), xlab = v, ylab = "Density", ylim = c(0, max(h$density) * 1.15)); curve(dnorm(x, mean(xx), sd(xx)), add = TRUE, col = ACC, lwd = 2) }))
+      add(q_fig(paste0("Box plot of ", v), function() boxplot(xx, horizontal = TRUE, col = FILL, border = INK, main = paste0("Box plot of ", v), xlab = v), h = 700)) },
+    normality = for (v in a$variables) { x <- num(d, v); qq1(x[!is.na(x)], v) },
+    frequencies = { t <- table(d[[a$variable]]); add(q_fig(paste0("Frequencies of ", a$variable), function() { b <- barplot(t, col = FILL, border = NA, main = paste0("Frequencies of ", a$variable, " (N = ", sum(t), ")"), ylab = "Count", ylim = c(0, max(t) * 1.15)); text(b, t, labels = t, pos = 3, cex = .8, col = INK) })) },
+    crosstab = { t <- table(d[[a$row]], d[[a$column]]); add(q_fig(paste0(a$row, " by ", a$column), function() { barplot(t, beside = TRUE, col = grey.colors(nrow(t), .35, .85), border = NA, main = paste0(a$row, " by ", a$column), xlab = a$column, ylab = "Count", ylim = c(0, max(t) * 1.3), legend.text = rownames(t), args.legend = list(x = "top", horiz = TRUE, bty = "n", title = a$row, inset = c(0, -0.02))) })) },
+    ttest = { if (!is.null(a$paired_with)) { x <- num(d, a$variable); y <- num(d, a$paired_with); ok <- !is.na(x) & !is.na(y)
+        add(q_fig(paste0(a$variable, " and ", a$paired_with, " (paired)"), function() { matplot(rbind(1, 2), rbind(x[ok], y[ok]), type = "l", lty = 1, col = adjustcolor(INK, .35), xaxt = "n", xlim = c(.8, 2.2), main = paste0(a$variable, " vs ", a$paired_with, " (n = ", sum(ok), ")"), ylab = "Value", xlab = ""); axis(1, 1:2, c(a$variable, a$paired_with)); points(1:2, c(mean(x[ok]), mean(y[ok])), pch = 19, cex = 1.6, col = ACC) }))
+      } else if (!is.null(a$group)) { x <- num(d, a$variable); g <- factor(d[[a$group]])
+        add(q_fig(paste0(a$variable, " by ", a$group), function() { boxplot(x ~ g, col = FILL, border = INK, main = paste0(a$variable, " by ", a$group), xlab = a$group, ylab = a$variable, outline = TRUE); stripchart(x ~ g, vertical = TRUE, method = "jitter", add = TRUE, pch = 16, col = adjustcolor(INK, .35)); points(seq_len(nlevels(g)), tapply(x, g, mean, na.rm = TRUE), pch = 18, cex = 1.8, col = ACC) }))
+      } else { x <- num(d, a$variable); qq1(x[!is.na(x)], a$variable) } },
+    anova = { y <- num(d, a$variable); g <- factor(d[[a$group]]); ok <- !is.na(y) & !is.na(g); y <- y[ok]; g <- droplevels(g[ok])
+      m <- tapply(y, g, mean); se <- tapply(y, g, function(v) sd(v) / sqrt(length(v))); n <- tapply(y, g, length); lo <- m - qt(.975, n - 1) * se; hi <- m + qt(.975, n - 1) * se
+      add(q_fig(paste0("Mean ", a$variable, " by ", a$group, " with 95% CI"), function() { plot(seq_along(m), m, ylim = range(lo, hi), xlim = c(.5, length(m) + .5), pch = 19, col = ACC, cex = 1.4, xaxt = "n", xlab = a$group, ylab = paste0("Mean ", a$variable), main = paste0("Mean ", a$variable, " by ", a$group, " (95% CI)")); axis(1, seq_along(m), names(m)); arrows(seq_along(m), lo, seq_along(m), hi, angle = 90, code = 3, length = .06, col = INK) }))
+      add(q_fig(paste0(a$variable, " by ", a$group), function() boxplot(y ~ g, col = FILL, border = INK, main = paste0(a$variable, " by ", a$group), xlab = a$group, ylab = a$variable))) },
+    correlation = { m <- sapply(a$variables, function(v) num(d, v))
+      if (ncol(m) == 2) { ok <- complete.cases(m); add(q_fig(paste0(colnames(m)[2], " against ", colnames(m)[1]), function() { plot(m[ok, 1], m[ok, 2], pch = 16, col = adjustcolor(INK, .55), xlab = colnames(m)[1], ylab = colnames(m)[2], main = sprintf("%s and %s (r = %.2f)", colnames(m)[1], colnames(m)[2], cor(m[ok, 1], m[ok, 2], method = a$method %||% "pearson"))); abline(lm(m[ok, 2] ~ m[ok, 1]), col = ACC, lwd = 2) })) }
+      else { r <- cor(m, use = "pairwise.complete.obs", method = a$method %||% "pearson"); k <- ncol(r)
+        add(q_fig("Correlation matrix", function() { par(mar = c(7, 7, 2.6, 1)); pal <- colorRampPalette(c("#8a2b2b", "white", ACC))(101); image(1:k, 1:k, t(r[k:1, ]), zlim = c(-1, 1), col = pal, axes = FALSE, xlab = "", ylab = "", main = "Correlation matrix"); axis(1, 1:k, colnames(r), las = 2, tick = FALSE); axis(2, 1:k, rev(colnames(r)), las = 1, tick = FALSE); for (i in 1:k) for (j in 1:k) text(i, k - j + 1, sprintf("%.2f", r[j, i]), cex = .8, col = if (abs(r[j, i]) > .55) "white" else INK) }, w = 1400, h = 1300)) } },
+    regression = { ivs <- a$independents; dd <- d[, c(a$dependent, ivs)]; dd <- dd[complete.cases(dd), , drop = FALSE]; fit <- lm(as.formula(paste0("`", a$dependent, "` ~ ", paste0("`", ivs, "`", collapse = " + "))), data = dd)
+      if (length(ivs) == 1) add(q_fig(paste0(a$dependent, " against ", ivs), function() { plot(dd[[ivs]], dd[[a$dependent]], pch = 16, col = adjustcolor(INK, .55), xlab = ivs, ylab = a$dependent, main = paste0(a$dependent, " against ", ivs, " with OLS fit")); abline(fit, col = ACC, lwd = 2) }))
+      add(q_fig("Residuals against fitted values", function() { plot(fitted(fit), residuals(fit), pch = 16, col = adjustcolor(INK, .55), xlab = "Fitted values", ylab = "Residuals", main = "Residuals against fitted values"); abline(h = 0, col = "grey55", lty = 2); lines(lowess(fitted(fit), residuals(fit)), col = ACC, lwd = 2) }))
+      qq1(residuals(fit), "regression residuals") },
+    logistic = { ivs <- a$independents; dd <- d[, c(a$dependent, ivs)]; dd <- dd[complete.cases(dd), , drop = FALSE]; y <- dd[[a$dependent]]; if (!all(y %in% c(0, 1))) { y <- factor(y); dd[[a$dependent]] <- as.numeric(y == levels(y)[2]) }
+      fit <- glm(as.formula(paste0("`", a$dependent, "` ~ ", paste0("`", ivs, "`", collapse = " + "))), data = dd, family = binomial()); v <- ivs[1]
+      add(q_fig(paste0("Predicted probability of ", a$dependent, " by ", v), function() { o <- order(dd[[v]]); plot(dd[[v]], jitter(dd[[a$dependent]], .08), pch = 16, col = adjustcolor(INK, .4), xlab = v, ylab = paste0("P(", a$dependent, " = 1)"), main = paste0("Predicted probability of ", a$dependent, if (length(ivs) > 1) " (other predictors at observed values)" else "")); lines(dd[[v]][o], fitted(fit)[o], col = ACC, lwd = 2) })) },
+    reliability = { r <- q_reliability(d, a$variables); add(q_fig("Corrected item-total correlations", function() { v <- sapply(r$item_stats, function(s) s$corrected_item_total_r); par(mar = c(4.2, 9, 2.6, 1)); barplot(rev(v), names.arg = rev(a$variables), horiz = TRUE, col = FILL, border = NA, xlim = c(min(0, v), 1), main = sprintf("Corrected item-total correlations (alpha = %.2f)", r$cronbach_alpha), xlab = "r"); abline(v = .3, lty = 2, col = "grey50") })) },
+    efa = { m <- sapply(a$variables, function(v) num(d, v)); m <- m[complete.cases(m), , drop = FALSE]; e <- eigen(cor(m))$values
+      add(q_fig("Scree plot", function() { plot(seq_along(e), e, type = "b", pch = 19, col = ACC, xlab = "Component", ylab = "Eigenvalue", main = "Scree plot"); abline(h = 1, lty = 2, col = "grey50") })) },
+    NULL)
+  out
+}

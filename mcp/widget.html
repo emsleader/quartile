@@ -126,6 +126,9 @@ function render(d) {
     const rc = d.record || {};
     h += `<div class="stats">${tile(d.results.length, "procedures")}${tile(rc.rows, "rows")}${tile((rc.r_version || "").replace("R version ", "R "), "software")}</div>`;
     h += `<h3>Results</h3><ul>${d.apa.map(x => `<li>${E(x)}</li>`).join("")}</ul>`;
+    const figs = (window.__qMeta && window.__qMeta["quartile/figures"]) || [];
+    if (figs.length) h += `<h3>Figures</h3>${figs.map(f => `<figure style="margin:8px 0"><img alt="${E(f.title)}" style="max-width:100%;border:1px solid var(--line,#ddd);border-radius:8px" src="data:image/png;base64,${f.png_base64}"><figcaption class="q">${E(f.title)}</figcaption></figure>`).join("")}`;
+    else if (d.figures && d.figures.length) h += `<p class="q">${d.figures.length} figures drawn in R (shown with the result).</p>`;
     if (d.warnings && d.warnings.length) h += `<h3>R warnings</h3><ul>${d.warnings.map(x => `<li class="q">${E(x)}</li>`).join("")}</ul>`;
     h += `<h3>Reproducibility record</h3><p class="q">data SHA-256 ${E(rc.data_sha256)}<br>script SHA-256 ${E(rc.script_sha256)}<br>${E(rc.r_version)} · foreign ${E(rc.foreign_version)} · ${E(rc.created)}</p>`;
     h += `<details><summary>R script</summary><pre style="white-space:pre-wrap;font-size:11px">${E(d.script)}</pre></details><p class="q">${E(d.note)}</p>`;
@@ -145,15 +148,16 @@ function deskHtml(r) {
   return `<h3>Desk-rejection risk</h3><p><span class="pill ${sev(r.risk)}">${E(r.risk)}</span></p><ul>${(r.criteria || []).map(c => `<li><span class="pill ${sev(c.status)}">${E(c.status)}</span><b>${E(c.criterion)}</b>${c.checks.filter(x => x.s !== "ok").map(x => `<div class="q">• ${E(x.t)}${x.fix ? " → " + E(x.fix) : ""}</div>`).join("")}</li>`).join("")}</ul>`;
 }
 // ChatGPT exposes the result on window.openai; MCP Apps hosts (Claude, ChatGPT) send it over the ui/* bridge.
-if (window.openai && window.openai.toolOutput) render(window.openai.toolOutput);
-window.addEventListener("openai:set_globals", () => window.openai && render(window.openai.toolOutput));
+const oa = () => { window.__qMeta = window.openai.toolResponseMetadata || null; render(window.openai.toolOutput); };
+if (window.openai && window.openai.toolOutput) oa();
+window.addEventListener("openai:set_globals", () => window.openai && oa());
 if (matchMedia("(prefers-color-scheme: dark)").matches) document.documentElement.classList.add("dark");
 </script>
 <script type="module">
 /*__EXT_APPS__*/
 try {
   const app = new window.__MCPApps.App({ name: "quartile-widget", version: "0.8.0" });
-  app.ontoolresult = r => render(r && r.structuredContent);
+  app.ontoolresult = r => { window.__qMeta = (r && r._meta) || null; render(r && r.structuredContent); };
   app.onhostcontextchanged = c => { if (c && c.theme) document.documentElement.classList.toggle("dark", c.theme === "dark"); };
   await app.connect();
   const c = app.getHostContext && app.getHostContext(); if (c && c.theme) document.documentElement.classList.toggle("dark", c.theme === "dark");
