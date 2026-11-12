@@ -11,7 +11,8 @@ const safe = s => String(s).replace(/^https?:\/\/doi\.org\//, "").replace(/[^A-Z
 const job = { running: false, phase: "idle", done: 0, total: 0, log: [], startedAt: null, error: null };
 const say = m => { job.log.push(new Date().toISOString().slice(11, 19) + " " + m); if (job.log.length > 60) job.log.shift(); };
 
-function folder() { const f = process.env.QUARTILE_CORPUS; if (!f || f.startsWith("${")) return null; fs.mkdirSync(f, { recursive: true }); return f; }
+// Corpus folder: QUARTILE_CORPUS, or on a hosted server (Render) a temporary folder whose texts are never served.
+function folder() { let f = process.env.QUARTILE_CORPUS; if (!f || f.startsWith("${")) f = process.env.RENDER ? "/tmp/quartile-corpus" : null; if (!f) return null; fs.mkdirSync(f, { recursive: true }); return f; }
 const indexPath = f => path.join(f, "corpus-index.json");
 function readIndex(f) { try { return JSON.parse(fs.readFileSync(indexPath(f), "utf8")); } catch (e) { return { papers: [] }; } }
 function writeIndex(f, idx) { fs.writeFileSync(indexPath(f), JSON.stringify(idx, null, 1)); }
@@ -112,6 +113,8 @@ async function build({ target = 500, fields = Object.keys(FIELDS), perJournal = 
   const f = folder(); if (!f) throw new Error("No corpus folder is set (QUARTILE_CORPUS).");
   if (job.running) return status();
   Object.assign(job, { running: true, phase: "downloading", done: 0, total: target, log: [], startedAt: new Date().toISOString(), error: null });
+  // a free hosted instance sleeps after 15 idle minutes; ping our own public URL while the job runs
+  const keep = process.env.RENDER_EXTERNAL_URL ? setInterval(() => { if (!job.running) return clearInterval(keep); fetch(process.env.RENDER_EXTERNAL_URL + "/").catch(() => {}); }, 4 * 60 * 1000) : null;
   (async () => {
     try {
       L.loadBank(); const bank = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "bank.json"), "utf8"));
@@ -168,12 +171,20 @@ async function analyse() {
   return profile;
 }
 function status() {
-  const f = folder(); if (!f) return { available: false, note: "The corpus works only in a local install (Claude Desktop extension or a local server) with a corpus folder set. Hosted connections cannot read your computer." };
+  const f = folder(); if (!f) return { available: false, note: "No corpus folder is set. Set QUARTILE_CORPUS (local install) or run on a hosted server.", published: !!loadCorpusProfile() };
   const idx = readIndex(f), byField = {}; idx.papers.forEach(p => byField[p.field] = (byField[p.field] || 0) + 1);
   let prof = null; try { prof = JSON.parse(fs.readFileSync(path.join(f, "corpus-profile.json"), "utf8")); } catch (e) {}
   return { available: true, folder: f, papers: idx.papers.length, byField, measured: prof ? prof.n : 0, profileBuilt: prof ? prof.built : null, job: { running: job.running, phase: job.phase, done: job.done, total: job.total, startedAt: job.startedAt, error: job.error, recent: job.log.slice(-12) } };
 }
-function loadCorpusProfile() { const f = folder(); if (!f) return null; try { return JSON.parse(fs.readFileSync(path.join(f, "corpus-profile.json"), "utf8")); } catch (e) { return null; } }
+// The folder's profile if it exists, otherwise the published profile in data/ (measurements only, no text).
+function loadCorpusProfile() { const f = folder(); for (const p of [f && path.join(f, "corpus-profile.json"), path.join(__dirname, "..", "data", "corpus-profile.json")]) { if (!p) continue; try { return JSON.parse(fs.readFileSync(p, "utf8")); } catch (e) {} } return null; }
+// Measurements and bibliographic metadata only: safe to publish. Never includes text.
+function exportProfile() {
+  const f = folder(), prof = loadCorpusProfile(); if (!prof) return { error: "No corpus profile yet. Run corpus_build or corpus_analyse first." };
+  const idx = f ? readIndex(f) : { papers: [] };
+  const sources = idx.papers.filter(p => p.doi).map(p => ({ doi: p.doi, title: p.title, journal: p.journal, year: p.year, field: p.field, license: p.license, words: p.words, measured: !p.note }));
+  return { profile: { ...prof, note: "Measurements of open-access, Creative-Commons-licensed Q1 articles, section by section. No text is stored; see corpus-sources.json for the papers." }, sources };
+}
 const LAB = { share: "share of the paper", paragraphWords: "words per paragraph", citationsPer1k: "citations per 1,000 words", meanSentence: "mean sentence length", weShare: "'we' sentences", passiveShare: "passive sentences", hedgesPer100: "hedges per 100 words", causalPer100: "causal verbs per 100 words", stockPer1k: "stock words per 1,000", longSentenceShare: "sentences over 35 words", words: "words", paragraphs: "paragraphs" };
 function compare(text, field) {
   const P = loadCorpusProfile(); if (!P) return { error: status().available ? "No corpus profile yet. Run corpus_build or corpus_analyse first." : status().note };
@@ -228,4 +239,4 @@ async function originality(text) {
   return { kind: "originality", pass: hits.length === 0, sentencesChecked: sents.length, overlapping: hits, rule: "Rewrite any flagged sentence in your own words. Quartile uses the corpus for patterns (structure, length, moves, voice), never for wording." };
 }
 async function sentenceLookup() { if (!folder()) return null; if (!GRAMS) await buildGrams(); return s => { const w = normW(s); let run = 0, max = 0, at = -1; for (let k = 0; k + NG <= w.length; k++) { const i = GRAMS.get(w.slice(k, k + NG).join(" ")); if (i !== undefined) { run++; if (run > max) { max = run; at = i; } } else run = 0; } if (!max) return null; const d = INDEX.docs[at]; return { id: d.p.doi || d.p.file, title: (d.p.title || "corpus paper") + (d.p.doi ? " (doi:" + d.p.doi + ")" : ""), covered: Math.min(1, (max + NG - 1) / w.length) }; }; }
-module.exports = { sentenceLookup, build, analyse, status, compare, search, originality, measurePaper, fileText, pdfToText, summarise };
+module.exports = { exportProfile, loadCorpusProfile, sentenceLookup, build, analyse, status, compare, search, originality, measurePaper, fileText, pdfToText, summarise };

@@ -93,6 +93,37 @@ function render(d) {
   } else if (d.kind === "journals") {
     k.textContent = "Journal bank";
     h += d.results.length ? `<ul>${d.results.map(j => `<li><b>${E(j.title)}</b> <span class="pill">${E(j.quartile)}</span><span class="pill ${j.difficulty >= 80 ? "high" : j.difficulty >= 60 ? "med" : "ok"}">${E(j.level)} (${E(j.difficulty)})</span><div class="q">SJR ${E(j.sjr)} · ${E(j.mainCategory)}</div></li>`).join("")}</ul>` : `<p class="empty">${E(d.note || "No journals matched.")}</p>`;
+  } else if (d.kind === "ai_style") {
+    k.textContent = "AI-style signal";
+    h += `<div class="stats">${tile(d.score, "score (0-100)")}${tile(d.band, "band")}${tile(d.scoreAfterFixes, "after the safe fixes")}${tile(d.replacements.length, "fixes ready")}</div>`;
+    h += `<h3>Features</h3><ul>${Object.values(d.features).map(f => `<li><span class="pill ${f.contribution > 0.5 ? "high" : f.contribution > 0 ? "med" : "ok"}">${E(f.value)}</span>${E(f.label)} <span class="q">(typical ${E(f.typical)})</span></li>`).join("")}</ul>`;
+    if (d.hotspots && d.hotspots.length) h += `<h3>Paragraphs that read as generic</h3><ul>${d.hotspots.map(x => `<li><span class="pill high">${E(x.score)}</span><span class="q">${E(x.start)}…</span></li>`).join("")}</ul>`;
+    if (d.replacements.length) h += `<h3>Suggested fixes</h3><ul>${d.replacements.slice(0, 12).map(r => `<li class="q">${E(r.quote)}<div>${E(r.replacement)}</div></li>`).join("")}</ul>`;
+    h += `<p class="q">${E(d.formula)}</p><p class="q">${E(d.note)}</p>`;
+  } else if (d.kind === "number_registry") {
+    k.textContent = "Number registry";
+    h += `<div class="stats">${tile(d.numbers, "numbers traced")}${tile(d.matched, "matched to output")}${tile(d.check, "check")}${tile(d.notFound, "not in output")}</div>`;
+    const bad = d.rows.filter(r => r.status !== "matched" && r.status !== "no output supplied");
+    if (bad.length) h += `<h3>To trace or correct</h3><ul>${bad.slice(0, 30).map(r => `<li><span class="pill ${r.status === "check" ? "med" : "high"}">${E(r.text)}</span>${E(r.status)}${r.how ? " · " + E(r.how) + " (" + E(r.sourceValue) + ")" : ""}<div class="q">${E(r.context)}</div></li>`).join("")}</ul>`;
+    if (d.summaryNotInResults.length) h += `<h3>In the abstract or conclusion but not in the results</h3><ul>${d.summaryNotInResults.map(r => `<li><span class="pill med">${E(r.text)}</span><span class="q">${E(r.context)}</span></li>`).join("")}</ul>`;
+    h += `<p class="q">${E(d.note)}</p>`;
+  } else if (d.kind === "readiness") {
+    k.textContent = "Submission readiness";
+    h += `<div class="stats">${tile(d.score, "readiness (0-100)")}${tile(d.deskRisk, "desk risk")}${tile(d.aiStyle.score, "AI-style")}</div><p><span class="pill ${d.score >= 80 ? "ok" : d.score >= 60 ? "med" : "high"}">${E(d.band)}</span></p>`;
+    h += `<ul>${d.penalties.map(p => `<li><b>−${E(p.penalty)}</b> ${E(p.area)}<div class="q">${E(p.why)}</div></li>`).join("")}</ul><p class="q">${E(d.formula)}</p><p class="q">${E(d.note)}</p>`;
+  } else if (d.kind === "references_live") {
+    k.textContent = "References verified with Crossref";
+    h += `<div class="stats">${tile(d.checked, "checked")}${tile(d.verified, "verified")}${tile(d.problems, "to fix")}</div>`;
+    h += `<ul>${d.results.filter(r => r.status !== "verified").map(r => `<li><span class="pill ${sev(r.severity)}">${E(r.status)}</span>${E(r.reference)}${(r.issues || []).map(i => `<div class="q">${E(i)}</div>`).join("")}${r.fix ? `<div class="q">${E(r.fix)}</div>` : ""}</li>`).join("")}</ul><p class="q">${E(d.source)}</p>`;
+  } else if (d.kind === "literature_overlap") {
+    k.textContent = "Overlap with published literature";
+    h += `<div class="stats">${tile(d.sentencesQueried, "sentences searched")}${tile(d.sentencesWithMatches, "with a match")}</div>`;
+    h += d.hits.length ? `<ul>${d.hits.map(x => `<li>${E(x.sentence)}<div class="q">"${E(x.phrase)}" also in: ${x.matches.map(m => E(m.title) + (m.doi ? " (doi:" + E(m.doi) + ")" : "")).join("; ")}</div></li>`).join("")}</ul>` : `<p><span class="pill ok">no exact matches</span></p>`;
+    h += `<p class="q">${E(d.note)}</p>`;
+  } else if (d.kind === "grammar") {
+    k.textContent = "Grammar";
+    h += `<div class="stats">${tile(d.count, "issues")}${tile(d.replacements.length, "safe edits")}${tile(d.chunksChecked, "parts checked")}</div>`;
+    h += `<ul>${d.issues.slice(0, 40).map(i => `<li><span class="pill med">${E(i.quote)}</span>${E(i.message)}${i.replacement ? " → <b>" + E(i.replacement) + "</b>" : ""}<div class="q">${E(i.context)}</div></li>`).join("")}</ul><p class="q">${E(d.note)}</p>`;
   } else { k.textContent = "Result"; h = `<pre style="white-space:pre-wrap;font-size:12px">${E(JSON.stringify(d, null, 2).slice(0, 4000))}</pre>`; }
   o.innerHTML = h;
 }

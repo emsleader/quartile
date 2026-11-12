@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.10.0 (2026-11-12)
+- `verify_references_live`: Crossref check of every reference (DOI resolves; title, year and first author match; retraction, withdrawal and correction notices; DOI suggestions).
+- `number_registry`: traces each reported number to the supplied R/Stata/SPSS/Python/EViews output, allowing for rounding, dropped leading zeros, percentages of proportions and sign; flags untraced numbers, truncation, sign differences and abstract or conclusion numbers missing from the results.
+- `ai_style_check`: documented 0-100 AI-style signal (seven features, z-scores against typical journal prose), paragraph hotspots and sentence-level fixes that pass the guard. A style signal, not an authorship test.
+- `grammar_check` (LanguageTool) with whole-phrase, guard-checked edits; `literature_overlap` (OpenAlex full-text index).
+- `submission_readiness`: transparent penalty-based score; explicitly not an acceptance prediction.
+- `scripts/benchmark.js`: error-injection benchmark (recall and false-alarm rate per module) for 30-50 of the author's own papers.
+- Hosted corpus: the server builds a temporary corpus, keeps itself awake while the job runs, and `corpus_profile_export` returns measurements and source metadata only; the published profile in `data/` is used when no folder is set.
+
 ## 0.9.1 (2026-11-11)
 - Integrity screen aligned with the COPE flowchart "Plagiarism in a submitted manuscript" (doi:10.24318/cope.2019.2.1) and its redundancy companion: 8-word overlap per sentence against your earlier papers, your sources and (locally) the corpus; grades none / minor / substantial; separates redundancy with own work; flags uncited, unquoted and number reuse; states what an editor following COPE would do and what to fix; drafts a cover-letter disclosure. MCP tool `integrity_screen` and an app card. Workflow wording is Quartile's own (the COPE flowcharts are CC BY-NC-ND).
 

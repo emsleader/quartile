@@ -17,13 +17,22 @@ Most AI editors make a manuscript sound fluent, and some of them quietly change 
 | Statistics check | statcheck-style recomputation of p from t, F, r, χ² and z; coefficient ÷ SE vs reported t, p and stars; impossible R², adjusted R², alpha, AVE, r and p; p-values clustered below .05; last-digit test; output fingerprints of Stata, R, SPSS, EViews, statsmodels, SmartPLS, AMOS/Mplus | No |
 | Integrity screen (COPE-aligned) | Overlap with your earlier papers, sources and the local corpus, graded none / minor / substantial following the logic of the COPE flowchart on plagiarism in a submitted manuscript (doi:10.24318/cope.2019.2.1), with fixes and a cover-letter disclosure | No |
 | References | Cited-but-missing, listed-but-uncited, recency, APA 7 style | No |
+| Live reference check | Every DOI checked against Crossref: it resolves, title, year and first author match, no retraction, withdrawal or correction notice; DOIs suggested for references without one | No (internet) |
+| Number registry | Every reported estimate, statistic and percentage matched to the R, Stata, SPSS, Python or EViews output you supply (rounding, dropped leading zeros, percentages, sign); untraced numbers, truncation and abstract numbers missing from the results are flagged | No |
+| AI-style signal | A 0-100 score of surface patterns common in unedited AI prose, with the formula, each feature's share, paragraph hotspots and safe sentence-level fixes (see [docs/AI-STYLE.md](docs/AI-STYLE.md)) | No |
+| Grammar | Open-source LanguageTool rules; each fix is a whole-phrase edit that passes the guard | No (internet) |
+| Literature overlap | Exact 10-word phrases from your most distinctive sentences searched in the OpenAlex full-text index of published works | No (internet) |
+| Submission readiness | A 0-100 score with every penalty and the formula listed; counts fixable problems, does not predict acceptance | No |
 | Journal bank | Quartile, SJR, H-index and a 0-100 difficulty score within the subject category, from your own SCImago export | No |
 | Issues list | Every problem listed first, each with a ready replacement; apply, ignore or comment per item | For language issues |
 | Q1-Q4 style tiers | Argument, framing and rigor moves of papers at each tier, applied to edits without inventing content | Yes |
 | Journal editor | Desk decision plus three reviewer reports (theory, methods, field) for a named journal; or a desk screen by the editor of each suggested journal | Yes |
 | Idea → paper | Puzzle, claim, theory lens, hypotheses, identification, rival explanations, contribution and an introduction skeleton, citing only retrieved papers | Yes |
 
-**What it cannot do.** It does not predict editorial decisions. No test can prove that a number came from R, Stata, a person or an AI: the statistics check shows whether numbers fit together and look like genuine software output. To prove origin, share your script and log file. There is no plagiarism database.
+**What it cannot do.** It does not predict editorial decisions; the readiness score counts avoidable problems only. It cannot tell whether a person or an AI wrote a text: the AI-style signal measures patterns, and people trigger it too. A number's origin is shown only by matching it to the output you supply (number registry); without your log, the statistics check can only show whether numbers fit together. The overlap check covers the OpenAlex full-text index of scholarly works, not the whole web; journals run Crossref Similarity Check (iThenticate), which Quartile does not replace.
+
+## Benchmark
+`node scripts/benchmark.js <folder>` runs on your own 30-50 papers (Markdown, text, PDF or Word). It injects a known error into each paper (a decision error in a test, a citation missing from the reference list, an abstract number with no source in the results, a generic AI-style paragraph), then reports for each module the share of injected errors found (recall) and the share of clean papers where the same alarm fires. The papers stay in the folder; only counts are written. It also reports the AI-style score distribution on your clean papers, for recalibrating the reference values.
 
 ## Three ways to use it
 
@@ -78,7 +87,7 @@ With the Claude Desktop extension (or a local server), choose a **corpus folder*
 - It extracts every section and writes `corpus-profile.json`: section shares, words per paragraph, citations per 1,000 words, sentence length, voice, hedging, causal verbs and how introductions open, by field.
 - `corpus_compare` compares a manuscript with it section by section; `corpus_search` finds the closest papers and passages (40-word snippets with DOIs); `corpus_originality` flags any sentence that repeats 8 or more consecutive words from a corpus paper.
 
-The corpus is for **patterns only** (structure, proportions, moves, voice), never for wording. Full texts stay in your folder and are never uploaded; hosted connections (Render, ChatGPT) cannot read it. Text and data mining of lawfully accessible works for research is permitted in the EU (Directive 2019/790, Articles 3 and 4); respect each paper's licence for anything beyond private analysis.
+The corpus is for **patterns only** (structure, proportions, moves, voice), never for wording. Full texts stay in your folder and are never uploaded; hosted connections cannot read your folder. The hosted server keeps its own temporary corpus, used only to publish the measured profile (`data/corpus-profile.json`) and the list of source papers (`data/corpus-sources.json`); `corpus_compare` uses that published profile everywhere. Text and data mining of lawfully accessible works for research is permitted in the EU (Directive 2019/790, Articles 3 and 4); respect each paper's licence for anything beyond private analysis.
 
 ## Journal bank
 SCImago data are not stored in this repository. In HTTP mode the server downloads the public journal list from [scimagojr.com](https://www.scimagojr.com) at start-up and keeps the Business, Economics and Decision Sciences journals in memory (`QUARTILE_BANK_AREAS` changes the areas, `QUARTILE_FETCH_BANK=0` turns this off). Data: SCImago, SJR — SCImago Journal & Country Rank, https://www.scimagojr.com. To use your own export instead, build a file and set `QUARTILE_BANK`:
@@ -91,7 +100,7 @@ Difficulty = 0.45 × SJR percentile + 0.20 × H-index percentile + 0.20 × citat
 ```bash
 cd mcp && npm install && cd .. && node tests/run.js
 ```
-Covers the p-value functions against known values, each statistics check, the guard, safe replacement, document parsing and an MCP round trip over stdio.
+Covers the p-value functions against known values, each statistics check, the guard, safe replacement, document parsing, the AI-style score and fixes, the number registry, the readiness score and an MCP round trip over stdio (24 tools). The live checks (Crossref, OpenAlex, LanguageTool) need internet and are not part of the offline tests.
 
 ## Method sources
 The statistics recomputation follows the logic of statcheck (Nuijten et al., 2016, *Behavior Research Methods*; Epskamp & Nuijten, R package statcheck). The writing rules come from a profile of 80 Q1 abstracts in finance, small business, service and management research and from papers by faculty of 20 DBA-awarding schools.

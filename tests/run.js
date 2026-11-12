@@ -76,6 +76,27 @@ let corpusDone = Promise.resolve();
     const sr = await CP.search("audit and investment", 3); ok(sr.results.length && sr.results.every(r => r.snippet.split(" ").length <= 41), "corpus_search short snippets");
     const o = await CP.originality("However, little is known about how audit shapes service firms over time. This sentence is entirely my own writing here."); ok(!o.pass && o.overlapping.length === 1, "originality flags copied wording"); })(); }
 
+// AI-style signal, number registry, readiness (offline)
+{
+  const AI = require("../core/aistyle.js"), REG = require("../core/registry.js"), RD = require("../core/readiness.js");
+  const gen = "# Introduction\n\nMoreover, this study delves into the multifaceted landscape of finance — a crucial realm. It is not merely a study, but a testament. Furthermore, we leverage robust data, rich models, and deep insights. This highlights the importance of cash. Notably, firms navigate risk.";
+  const hum = "# Introduction\n\nSmall firms hold more cash when banks lend less. We test this with 1,250 Hungarian firms observed from 2012 to 2020, using the 2015 lending shock. Cash rises by about a third of a standard deviation, and the effect is larger where firms have few tangible assets to pledge.";
+  const g = AI.check(gen), h2 = AI.check(hum);
+  ok(g.score > 45 && g.band === "high" && h2.score < 20, "AI-style score separates stock prose");
+  ok(g.replacements.length >= 2 && g.scoreAfterFixes < g.score && g.replacements.every(r => L.verify(r.quote, r.replacement).pass), "AI-style fixes are safe and lower the score");
+  ok(/an important realm/.test(g.replacements[0].replacement), "article agreement in fixes");
+  ok(AI.fixSentence("These were reconciled against the .dta files (q = .16).") === null, "fixes leave numbers and file names alone");
+  const ms = "# Abstract\n\nCash raises survival by 0.034 (p = .002), and 12.5% of firms exit; the effect is 0.051.\n\n# Results\n\nThe coefficient is 0.034 (SE = 0.011, t = 3.09). Leverage is 0.21. The sample has 1,250 firms. Age is 0.077. Size is 0.442.";
+  const out = "cash .0341872 .0110543 3.09 0.002\nlev -.2093\nobs 1,250\nexit 0.1251 age 0.0779";
+  const r = REG.registry(ms, [{ name: "stata.log", text: out }]), st = t => r.rows.find(x => x.text === t).status;
+  ok(st("0.034") === "matched" && st("12.5%") === "matched" && st("1,250") === "matched", "registry matches rounding, percentages, thousands");
+  ok(st("0.21") === "check" && st("0.077") === "check" && st("0.442") === "not found in output", "registry flags sign, truncation and untraced numbers");
+  ok(r.summaryNotInResults.some(x => x.text === "0.051"), "abstract number missing from results");
+  const rd = RD.readiness(ms, { outputs: [{ name: "stata.log", text: out }] });
+  ok(rd.score >= 0 && rd.score <= 100 && rd.penalties.length && /does not predict acceptance/.test(rd.note), "readiness score with penalties");
+  const N = require("../core/net.js"); ok(["verifyReferences", "literatureOverlap", "grammar"].every(f => typeof N[f] === "function"), "network checks load");
+}
+
 // MCP over stdio
 (async () => {
   await corpusDone;
@@ -84,7 +105,7 @@ let corpusDone = Promise.resolve();
   const c = new Client({ name: "test", version: "1" });
   await c.connect(new StdioClientTransport({ command: process.execPath, args: [path.join(__dirname, "..", "mcp", "server.js")] }));
   const tools = (await c.listTools()).tools.map(t => t.name);
-  ok(tools.length === 17 && tools.includes("integrity_screen"), "17 tools");
+  ok(tools.length === 24 && ["integrity_screen", "ai_style_check", "number_registry", "submission_readiness", "verify_references_live", "literature_overlap", "grammar_check", "corpus_profile_export"].every(t => tools.includes(t)), "24 tools");
   const r = await c.callTool({ name: "verify_rewrite", arguments: { original: "Sales rose 5%.", revised: "Sales rose 7%." } });
   ok(r.structuredContent.pass === false, "tool call over stdio");
   const pr = (await c.listPrompts()).prompts.map(p => p.name); ok(pr.length === 3, "3 prompts");
