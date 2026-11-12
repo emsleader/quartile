@@ -1,5 +1,5 @@
 {
- "built": "2026-11-11",
+ "built": "2026-11-12",
  "source": "OpenAlex (CC0 metadata); abstracts of Q1 journal articles published 2020 or later, the most-cited articles of each journal, at most 6-8 per journal. Only measurements are stored.",
  "target": 500,
  "n": 501,
