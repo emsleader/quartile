@@ -22,13 +22,14 @@ let pdfjs = null;
 async function pdfToText(file) {
   if (!pdfjs) { const warn = console.warn, log = console.log; console.warn = () => {}; console.log = () => {}; pdfjs = require("pdfjs-dist/legacy/build/pdf.js"); console.warn = warn; console.log = log; }
   const data = new Uint8Array(fs.readFileSync(file));
-  const pdf = await pdfjs.getDocument({ data, disableFontFace: true, isEvalSupported: false, verbosity: 0 }).promise, lines = [];
+  const pdf = await pdfjs.getDocument({ data, disableFontFace: true, isEvalSupported: false, useSystemFonts: false, stopAtErrors: false, maxImageSize: 1, verbosity: 0 }).promise, lines = [];
   for (let n = 1; n <= pdf.numPages; n++) {
     const page = await pdf.getPage(n), tc = await page.getTextContent(), rows = new Map();
     tc.items.forEach(it => { if (!it.str || !it.str.trim()) return; const y = Math.round(it.transform[5]), h = Math.abs(it.transform[3]) || it.height; const k = [...rows.keys()].find(z => Math.abs(z - y) <= 2) ?? y; const r = rows.get(k) || { y: k, h: 0, parts: [] }; r.parts.push({ x: it.transform[4], s: it.str }); r.h = Math.max(r.h, h); rows.set(k, r); });
-    const vh = (page.view && page.view[3]) || 842;
+    const vh = (page.view && page.view[3]) || 842; page.cleanup();
     [...rows.values()].sort((a, b) => b.y - a.y).forEach(r => lines.push({ page: n, x: Math.min(...r.parts.map(p => p.x)), y: r.y, edge: r.y > vh * 0.92 || r.y < vh * 0.08, h: r.h, t: r.parts.sort((a, b) => a.x - b.x).map(p => p.s).join(" ").replace(/\s+/g, " ").trim() }));
   }
+  await pdf.destroy();
   const hs = lines.map(l => l.h).sort((a, b) => a - b), body = hs[Math.floor(hs.length / 2)] || 10, freq = new Map();
   const xs = new Map(); lines.forEach(l => { const k = Math.round(l.x); xs.set(k, (xs.get(k) || 0) + 1); }); const left = +([...xs.entries()].sort((a, b) => b[1] - a[1])[0] || [0])[0];
   lines.forEach(l => { const k = l.t.replace(/\d+/g, "#"); freq.set(k, (freq.get(k) || 0) + 1); });

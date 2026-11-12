@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.3 (2026-11-12)
+- First benchmark on 10 open-access finance papers published in 2026 (9 usable): statistics 7/7 injected errors found, 0 false alarms; missing reference 3/4, 0 false alarms; abstract number 6/6, 2 of 9 clean papers flagged; AI-style 6/6, 3 of 9 clean papers flagged with the old cut-offs. AI-style cut-offs raised (moderate from 25, hotspots above 60); see docs/AI-STYLE.md.
+- Lower memory use when reading PDFs on the free hosted plan (pages released after reading, smaller heap).
+
 ## 0.10.2 (2026-11-12)
 - Live tests on a real manuscript: reference years now accept the print, online and issue dates in Crossref (online-first papers no longer flagged); grammar edits inside one sentence are combined into one sentence edit; literature overlap also searches titles and abstracts and reports failed queries.
 - Benchmark: robust to papers whose sections cannot be parsed; `benchmark_corpus` tool and `corpus_build` options `from_year` and `newest`.

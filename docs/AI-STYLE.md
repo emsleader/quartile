@@ -25,14 +25,16 @@ For each feature *f* with observed value *x*:
 
 score = 100 × Σ w·s ÷ Σ w
 
-Bands: below 20 low, 20 to 45 moderate, above 45 high.
+Bands: below 25 low, 25 to 45 moderate, above 45 high.
 
-Long papers dilute a generic passage, so every paragraph of 60 or more words is also scored on its own; paragraphs above 45 are listed as hotspots.
+Long papers dilute a generic passage, so every paragraph of 60 or more words is also scored on its own; paragraphs above 60 are listed as hotspots.
 
 ## Fixes
 
 The tool suggests sentence-level replacements from a fixed list (delve into → examine, crucial → important, leverage → use, Moreover/Furthermore → Also, em dash → comma, and so on). Each replacement has already passed `verify_rewrite`, so it changes no number, citation, protected term or causal claim. Apply the ones you accept with `apply_replacements`. The tool also reports the score the text would have after all fixes.
 
 ## Calibration
+
+Version 1.1 (12 November 2026). On 9 open-access finance papers published in 2026 (benchmark_corpus), clean papers scored median 3 and at most 23, while the injected generic paragraph scored 89. With the first cut-offs (moderate from 20, hotspots above 45), 3 of 9 clean papers raised the alarm; the cut-offs were raised to 25 and 60. Nine papers in one field are too few to fix the values: rerun the benchmark on more papers and fields.
 
 The reference values (μ, σ) are version 1, set by hand from Quartile's measured Q1 abstracts and the full-text corpus. `scripts/benchmark.js` reports the score distribution on your own clean papers; if your field's prose sits higher, raise μ for the features that drive it.

@@ -6,7 +6,7 @@
 //     z_f = (x_f - mu_f) / sd_f            (for CV: z = (mu - x) / sd, because uniform sentence length is the signal)
 //     s_f = min(max(z_f, 0), 3) / 3        (0 = at or below the typical published rate, 1 = three SDs above)
 //   score = 100 * sum(w_f * s_f) / sum(w_f)
-//   bands: < 20 low, 20-45 moderate, > 45 high
+//   bands: < 25 low, 25-45 moderate, > 45 high; paragraph hotspots > 60 (v1.1, from the 2026 benchmark)
 // mu and sd are reference values for edited business and economics journal prose (v1, set by hand from the
 // measured Q1 abstracts and the corpus; recalibrated by scripts/benchmark.js on labelled samples).
 const L = require("./lib.js");
@@ -64,7 +64,7 @@ function measure(text) {
 function score(rates) {
   let num = 0, den = 0; const parts = {};
   for (const [f, p] of Object.entries(FEATURES)) { const x = rates[f], z = p.reverse ? (p.mu - x) / p.sd : (x - p.mu) / p.sd, s = Math.min(Math.max(z, 0), 3) / 3; parts[f] = { value: x, typical: p.mu, z: +z.toFixed(2), contribution: +s.toFixed(3), weight: p.w, label: p.label }; num += p.w * s; den += p.w; }
-  const sc = Math.round(100 * num / den); return { score: sc, band: sc < 20 ? "low" : sc <= 45 ? "moderate" : "high", parts };
+  const sc = Math.round(100 * num / den); return { score: sc, band: sc < 25 ? "low" : sc <= 45 ? "moderate" : "high", parts };
 }
 function fixSentence(s) { let out = s; for (const [re, rep] of FIX) out = out.replace(re, rep); out = out.replace(/\s{2,}/g, " ").replace(/\s+([,;:])/g, "$1").replace(/\s+\.(?=\s|$)/g, ".").replace(/,\s*,/g, ","); return out !== s ? cap(out.trim()) : null; }
 function check(text, { maxFixes = 200 } = {}) {
@@ -72,9 +72,9 @@ function check(text, { maxFixes = 200 } = {}) {
   for (const para of t.split(/\n\n/)) for (const s of sentences(para)) { if (edits.length >= maxFixes) break; const f = fixSentence(s); if (!f) continue; const v = L.verify(s, f); if (v.pass) edits.push({ quote: s, replacement: f }); }
   const after = score(measure(L.applyReplacements(text, edits).text).rates);
   // paragraph hotspots: a generic passage is diluted in a long paper, so score paragraphs of 60+ words separately
-  const hotspots = t.split(/\n\n/).filter(p => p.split(/\s+/).length >= 60).map(p => ({ score: score(measure(p).rates).score, start: p.slice(0, 160) })).filter(h => h.score > 45).sort((a, b) => b.score - a.score).slice(0, 10);
+  const hotspots = t.split(/\n\n/).filter(p => p.split(/\s+/).length >= 60).map(p => ({ score: score(measure(p).rates).score, start: p.slice(0, 160) })).filter(h => h.score > 60).sort((a, b) => b.score - a.score).slice(0, 10);
   return { kind: "ai_style", score: sc.score, band: sc.band, scoreAfterFixes: after.score, hotspots, features: sc.parts, stockWords: m.stockHits, words: m.words, sentences: m.sentences, meanSentenceLength: m.meanSentence,
-    replacements: edits, formula: "score = 100 × Σ w·min(max(z,0),3)/3 ÷ Σ w, with z = (rate − typical) / sd per feature (sentence-length CV reversed). Bands: <20 low, 20–45 moderate, >45 high.",
+    replacements: edits, formula: "score = 100 × Σ w·min(max(z,0),3)/3 ÷ Σ w, with z = (rate − typical) / sd per feature (sentence-length CV reversed). Bands: <25 low, 25–45 moderate, >45 high; paragraphs above 60 are hotspots.",
     note: "A style signal, not proof of authorship. No tool can tell reliably whether a person or an AI wrote a text; human prose can score high and edited AI prose low. Use the score to find passages that read as generic, then fix them. Pass the replacements you accept to apply_replacements: each already passed verify_rewrite." };
 }
 module.exports = { check, measure, score, FEATURES, fixSentence };
