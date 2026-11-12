@@ -16,19 +16,22 @@ const PROCS = {
   ttest: { need: ["variable"], call: a => `q_ttest(d, ${rs(a.variable)}, ${a.group ? rs(a.group) : "NULL"}, ${a.paired_with ? rs(a.paired_with) : "NULL"}, ${Number(a.mu) || 0})` },
   anova: { need: ["variable", "group"], call: a => `q_anova(d, ${rs(a.variable)}, ${rs(a.group)})` },
   correlation: { need: ["variables"], call: a => `q_correlation(d, ${rv(a.variables)}, ${rs(a.method === "spearman" ? "spearman" : a.method === "kendall" ? "kendall" : "pearson")})` },
-  regression: { need: ["dependent", "independents"], call: a => `q_regression(d, ${rs(a.dependent)}, ${rv(a.independents)}, ${a.robust ? "TRUE" : "FALSE"})` },
+  regression: { need: ["dependent", "independents"], call: a => `q_regression(d, ${rs(a.dependent)}, ${rv(a.independents)}, ${a.robust ? "TRUE" : "FALSE"}, ${a.cluster ? rs(a.cluster) : "NULL"}, ${a.fixed_effects && a.fixed_effects.length ? rv(a.fixed_effects) : "NULL"}, ${a.weights ? rs(a.weights) : "NULL"}, ${a.factors && a.factors.length ? rv(a.factors) : "NULL"})` },
   logistic: { need: ["dependent", "independents"], call: a => `q_logistic(d, ${rs(a.dependent)}, ${rv(a.independents)})` },
   reliability: { need: ["variables"], call: a => `q_reliability(d, ${rv(a.variables)})` },
   efa: { need: ["variables"], call: a => `q_efa(d, ${rv(a.variables)}, ${Math.max(1, parseInt(a.factors) || 1)}, ${rs(["varimax", "promax", "none"].includes(a.rotation) ? a.rotation : "varimax")})` },
   normality: { need: ["variables"], call: a => `q_normality(d, ${rv(a.variables)})` },
+  survival: { need: ["time", "event"], call: a => `q_survival(d, ${rs(a.time)}, ${rs(a.event)}, ${a.group ? rs(a.group) : "NULL"}, ${a.covariates && a.covariates.length ? rv(a.covariates) : "NULL"})` },
+  chart: { need: ["type"], call: a => `list(type = ${rs(a.type)})` },
 };
 // an analysis as an R list literal, for the figure code
 function rList(a) { const parts = []; for (const [k, v] of Object.entries(a)) { if (v == null || k === "procedure") continue; if (Array.isArray(v)) parts.push(`${k} = ${rv(v)}`); else if (typeof v === "boolean") parts.push(`${k} = ${v ? "TRUE" : "FALSE"}`); else if (typeof v === "number") parts.push(`${k} = ${v}`); else parts.push(`${k} = ${rs(v)}`); } return "list(" + parts.join(", ") + ")"; }
-const varsOf = a => [a.variable, a.group, a.paired_with, a.row, a.column, a.dependent, ...(a.variables || []), ...(a.independents || [])].filter(Boolean);
+const varsOf = a => [a.variable, a.group, a.paired_with, a.row, a.column, a.dependent, a.x, a.y, a.size, a.moderator, a.time, a.event, a.cluster, a.weights, ...(a.fixed_effects || []), ...(a.factors || []), ...(a.variables || []), ...(a.independents || []), ...(a.covariates || [])].filter(Boolean);
+const CHART_NEEDS = { bar: ["x"], stacked100: ["x", "group"], line: ["x", "y"], scatter: ["x", "y"], violin: ["y"], density: ["y"], coefficient: ["y", "independents"], interaction: ["x", "y", "moderator"], km: ["time", "event"], waterfall: ["x", "y"] };
 
 function rscript() { return process.env.QUARTILE_RSCRIPT || "Rscript"; }
 function available() { return new Promise(res => execFile(rscript(), ["--version"], { timeout: 10000 }, e => res(!e))); }
-function exec(file, cwd) { return new Promise(res => execFile(rscript(), ["--vanilla", file], { cwd, timeout: +process.env.QUARTILE_R_TIMEOUT || 120000, maxBuffer: 64 << 20 }, (e, out, err) => res({ e, out, err }))); }
+function exec(file, cwd) { return new Promise(res => execFile(rscript(), ["--vanilla", file], { cwd, env: { ...process.env, LANG: "C.UTF-8", LC_ALL: "C.UTF-8" }, timeout: +process.env.QUARTILE_R_TIMEOUT || 120000, maxBuffer: 64 << 20 }, (e, out, err) => res({ e, out, err }))); }
 
 // header of a CSV, to validate variable names before R runs
 function csvHeader(text) { const line = String(text).replace(/^﻿/, "").split(/\r?\n/)[0] || ""; const sep = (line.match(/;/g) || []).length > (line.match(/,/g) || []).length ? ";" : ","; return { sep, cols: line.split(sep).map(c => c.trim().replace(/^"|"$/g, "")) }; }
@@ -45,6 +48,7 @@ async function run({ data, format = "csv", analyses = [], r_code = null, charts 
     if (!isSav) { const h = csvHeader(data); cols = h.cols; sep = h.sep; }
     const problems = [];
     analyses.forEach((a, i) => { const p = PROCS[a.procedure]; if (!p) return problems.push(`analysis ${i + 1}: unknown procedure '${a.procedure}'`);
+      if (a.procedure === "chart") { if (!CHART_NEEDS[a.type]) problems.push(`analysis ${i + 1}: chart type must be one of ${Object.keys(CHART_NEEDS).join(", ")}`); else CHART_NEEDS[a.type].forEach(k => { if (a[k] == null || (Array.isArray(a[k]) && !a[k].length)) problems.push(`analysis ${i + 1} (chart ${a.type}): '${k}' is required`); }); }
       p.need.forEach(k => { if (a[k] == null || (Array.isArray(a[k]) && !a[k].length)) problems.push(`analysis ${i + 1} (${a.procedure}): '${k}' is required`); });
       if (cols) varsOf(a).forEach(v => { if (!cols.includes(v)) problems.push(`analysis ${i + 1} (${a.procedure}): no column '${v}' (columns: ${cols.slice(0, 30).join(", ")})`); }); });
     if (problems.length) return { kind: "rstats", error: "Check the request.", problems };
@@ -53,7 +57,7 @@ async function run({ data, format = "csv", analyses = [], r_code = null, charts 
     const script = [
       "# Quartile analysis script. Re-run with: Rscript --vanilla analysis.R (data file in the same folder)",
       "# Procedures: core/rstats.R in https://github.com/emsleader/quartile",
-      `source(${rs(LIB)})`, "options(warn = 1)", `d <- ${read}`,
+      `source(${rs(LIB)})`, "options(warn = 1)", 'invisible(Sys.setlocale("LC_CTYPE", "C.UTF-8"))', `d <- ${read}`,
       ...(r_code ? ["# custom code (local install)", String(r_code)] : []),
       "results <- list(", calls.join(",\n") || "  none = NULL", ")",
       ...(charts ? ["figures <- list(", analyses.map((a, i) => `  a${i + 1} = tryCatch(q_plots(${rs(a.procedure)}, d, ${rList(a)}), error = function(e) list())`).join(",\n"), ")"] : ["figures <- list()"]),
@@ -92,10 +96,12 @@ function apa(x) {
     case "anova": return [`${x.variable} by ${x.group}: F(${r.df1}, ${r.df2}) = ${f2(r.F)}, ${fp(r.p)}, η² = ${fr(r.eta_squared)}; Welch F(${f2(r.welch.df1)}, ${f2(r.welch.df2)}) = ${f2(r.welch.F)}, ${fp(r.welch.p)}.`];
     case "crosstab": return [`${x.row} × ${x.column}: χ²(${r.df}, N = ${r.n}) = ${f2(r.chisq)}, ${fp(r.p)}, Cramér's V = ${fr(r.cramers_v)}${r.cells_expected_below_5 > 20 ? ` (${f2(r.cells_expected_below_5)}% of cells expected < 5${r.fisher_p != null ? `; Fisher's exact ${fp(r.fisher_p)}` : ""})` : ""}.`];
     case "correlation": return (r.pairs || []).map(q => `${q.x} and ${q.y}: ${r.method === "pearson" ? "r" : r.method === "spearman" ? "rs" : "τ"}(${q.n - 2}) = ${fr(q.r)}, ${fp(q.p)}${q.ci_low != null ? `, 95% CI [${fr(q.ci_low)}, ${fr(q.ci_high)}]` : ""}.`);
-    case "regression": return [`${r.dv} (n = ${r.n}, ${r.se_type}): R² = ${fr(r.r_squared)}, adjusted R² = ${fr(r.adj_r_squared)}, F(${r.df1}, ${r.df2}) = ${f2(r.F)}, ${fp(r.p)}.`, ...(r.coefficients || []).filter(c => c.term !== "(Intercept)").map(c => `  ${c.term}: b = ${f2(c.b)}, SE = ${f2(c.se)}, t = ${f2(c.t)}, ${fp(c.p)}, 95% CI [${f2(c.ci_low)}, ${f2(c.ci_high)}], β = ${f2(c.beta)}, VIF = ${f2(c.vif)}.`)];
+    case "regression": return [`${r.dv} (n = ${r.n}, ${r.se_type}${r.weighted ? ", weighted" : ""}${r.fixed_effects ? ", fixed effects: " + r.fixed_effects.map(f => `${f.variable} (${f.levels})`).join(", ") : ""}): R² = ${fr(r.r_squared)}, adjusted R² = ${fr(r.adj_r_squared)}, F(${r.df1}, ${r.df2}) = ${f2(r.F)}, ${fp(r.p)}.`, ...(r.coefficients || []).filter(c => c.term !== "(Intercept)").map(c => `  ${c.term}: b = ${f2(c.b)}, SE = ${f2(c.se)}, t = ${f2(c.t)}, ${fp(c.p)}, 95% CI [${f2(c.ci_low)}, ${f2(c.ci_high)}], β = ${f2(c.beta)}, VIF = ${f2(c.vif)}.`)];
     case "logistic": return [`${r.dv} (n = ${r.n}, ${r.events} events): χ²(${r.df}) = ${f2(r.lr_chisq)}, ${fp(r.p)}, Nagelkerke R² = ${fr(r.nagelkerke_r2)}, ${f2(r.classification_correct)}% correctly classified.`, ...(r.coefficients || []).filter(c => c.term !== "(Intercept)").map(c => `  ${c.term}: OR = ${f2(c.odds_ratio)}, 95% CI [${f2(c.or_ci_low)}, ${f2(c.or_ci_high)}], ${fp(c.p)}.`)];
     case "reliability": return [`${r.items} items (n = ${r.n}): Cronbach's α = ${fr(r.cronbach_alpha)}.`];
     case "efa": return [`EFA, ${r.factors} factor(s), ${r.rotation} (n = ${r.n}): KMO = ${fr(r.kmo)}, Bartlett χ²(${r.bartlett.df}) = ${f2(r.bartlett.chisq)}, ${fp(r.bartlett.p)}.`];
+    case "survival": return [`Survival of ${x.time} (event ${x.event}; n = ${r.n}, ${r.events} events)${r.log_rank ? `: log-rank χ²(${r.log_rank.df}) = ${f2(r.log_rank.chisq)}, ${fp(r.log_rank.p)}` : ""}.`, ...(r.groups || []).map(g => `  ${g.group}: n = ${g.n}, events = ${g.events}, median = ${g.median_time == null ? "not reached" : f2(g.median_time)}.`), ...((r.cox && r.cox.coefficients) || []).map(c => `  Cox ${c.term}: HR = ${f2(c.hazard_ratio)}, 95% CI [${f2(c.hr_ci_low)}, ${f2(c.hr_ci_high)}], ${fp(c.p)}.`), ...(r.cox ? [`  Cox model: concordance = ${fr(r.cox.concordance)}, proportional-hazards test ${r.cox.ph_test_global_p == null ? "–" : fp(r.cox.ph_test_global_p)}.`] : [])];
+    case "chart": return [];
     case "descriptives": return Object.entries(r).filter(([k]) => k !== "procedure").map(([v, s]) => `${v}: M = ${f2(s.mean)}, SD = ${f2(s.sd)}, Mdn = ${f2(s.median)}, n = ${s.n}.`);
     case "normality": return Object.entries(r).filter(([k]) => k !== "procedure").map(([v, s]) => s.W != null ? `${v}: Shapiro-Wilk W = ${nz((+s.W).toFixed(3))}, ${fp(s.p)}.` : `${v}: ${s.note}`);
     default: return [];

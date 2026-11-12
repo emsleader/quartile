@@ -127,6 +127,11 @@ const rDone = (async () => {
   ok(["Summary", "Figures", "Reproducibility"].every(n => wb.getWorksheet(n)) && wb.getWorksheet("Figures").getImages().length === r.figures.length, "results workbook with tables, figures and record");
   const xin = await RS.run({ data: xb.toString("base64"), format: "xlsx", sheet: "Summary", analyses: [{ procedure: "frequencies", variable: "Quartile statistics" }], charts: false });
   ok(!xin.error && xin.record.data_format === "xlsx" && xin.record.excel_sheet === "Summary", "Excel input read by sheet");
+  const panel = "id,t,y,x\n" + [[1,1,2,1],[1,2,3,2],[1,3,5,3],[2,1,1,1],[2,2,4,3],[2,3,4,4],[3,1,6,2],[3,2,7,3],[3,3,9,5],[4,1,3,1],[4,2,3,1],[4,3,6,4]].map(r => r.join(",")).join("\n");
+  const fe = await RS.run({ data: panel, charts: false, analyses: [{ procedure: "regression", dependent: "y", independents: ["x"], fixed_effects: ["id"], cluster: "id" }, { procedure: "survival", time: "y", event: "t", group: "id" }, { procedure: "chart", type: "coefficient", y: "y", independents: ["x", "t"] }] });
+  const fx = fe.results[0].result.coefficients.find(c => c.term === "x");
+  ok(fe.results[0].result.coefficients.length === 2 && Math.abs(fx.b - 1.0769231) < 1e-6 && /4 clusters/.test(fe.results[0].result.se_type), "panel regression: fixed effects absorbed, clustered SEs");
+  ok(fe.results[1].result.groups.length === 4 && fe.results[1].result.cox, "survival: Kaplan-Meier by group and Cox model");
   const bad = await RS.run({ data: csv, analyses: [{ procedure: "anova", variable: "zz", group: "g" }] }); ok(bad.error && /no column 'zz'/.test(bad.problems[0]), "unknown columns rejected before R runs");
 })();
 

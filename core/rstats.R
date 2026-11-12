@@ -70,18 +70,29 @@ q_correlation <- function(d, vars, method = "pearson") {
   list(method = method, pairs = out)
 }
 q_vif <- function(X) { if (ncol(X) < 2) return(setNames(rep(1, ncol(X)), colnames(X))); sapply(seq_len(ncol(X)), function(j) 1 / (1 - summary(lm(X[, j] ~ X[, -j]))$r.squared)) }
-q_regression <- function(d, dv, ivs, robust = FALSE) {
-  f <- as.formula(paste0("`", dv, "` ~ ", paste0("`", ivs, "`", collapse = " + "))); dd <- d[, c(dv, ivs)]; dd <- dd[complete.cases(dd), , drop = FALSE]
-  fit <- lm(f, data = dd); s <- summary(fit); cf <- s$coefficients; ci <- confint(fit); X <- model.matrix(fit)[, -1, drop = FALSE]
-  se <- cf[, 2]
-  if (robust) { e <- residuals(fit); Xf <- model.matrix(fit); n <- nrow(Xf); k <- ncol(Xf); B <- solve(crossprod(Xf)); V <- B %*% crossprod(Xf * e) %*% B * n / (n - k); se <- sqrt(diag(V)) }
-  tval <- cf[, 1] / se; pval <- 2 * pt(-abs(tval), fit$df.residual)
-  vif <- q_vif(X); names(vif) <- colnames(X)
-  list(dv = dv, n = nrow(dd), se_type = if (robust) "HC1 (heteroskedasticity-robust)" else "OLS",
-       coefficients = lapply(rownames(cf), function(r) list(term = r, b = cf[r, 1], se = unname(se[r]), t = unname(tval[r]), p = unname(pval[r]), ci_low = unname(if (robust) cf[r, 1] - qt(.975, fit$df.residual) * se[r] else ci[r, 1]), ci_high = unname(if (robust) cf[r, 1] + qt(.975, fit$df.residual) * se[r] else ci[r, 2]), vif = if (r %in% names(vif)) unname(vif[r]) else NA,
-         beta = if (r == "(Intercept)") NA else cf[r, 1] * sd(X[, r]) / sd(dd[[dv]]))),
+q_regression <- function(d, dv, ivs, robust = FALSE, cluster = NULL, fe = NULL, weights = NULL, factors = NULL) {
+  keep <- unique(c(dv, ivs, cluster, fe, weights)); dd <- d[, keep, drop = FALSE]; dd <- dd[complete.cases(dd), , drop = FALSE]
+  for (v in factors) dd[[v]] <- factor(dd[[v]]); for (v in fe) dd[[v]] <- factor(dd[[v]])
+  term <- function(v) paste0("`", v, "`")
+  rhs <- c(vapply(ivs, term, ""), if (length(fe)) vapply(fe, term, ""))
+  f <- as.formula(paste0(term(dv), " ~ ", paste(rhs, collapse = " + ")))
+  w <- if (!is.null(weights)) num(dd, weights) else NULL
+  fit <- if (is.null(w)) lm(f, data = dd) else lm(f, data = dd, weights = w)
+  s <- summary(fit); cf <- coef(summary(fit)); Xf <- model.matrix(fit); n <- nrow(Xf); k <- ncol(Xf); e <- residuals(fit); ww <- if (is.null(w)) rep(1, n) else w
+  B <- solve(crossprod(Xf * sqrt(ww)))
+  se_type <- if (!is.null(cluster)) "cluster-robust (CR1) by " else if (robust || !is.null(weights)) "HC1 (heteroskedasticity-robust)" else "OLS"
+  if (!is.null(cluster)) { cl <- factor(dd[[cluster]]); G <- nlevels(cl); U <- rowsum(Xf * (e * ww), cl); V <- B %*% crossprod(U) %*% B * (G / (G - 1)) * ((n - 1) / (n - k)); se <- sqrt(diag(V)); dfr <- G - 1; se_type <- paste0(se_type, cluster, " (", G, " clusters)") }
+  else if (robust || !is.null(weights)) { V <- B %*% crossprod(Xf * (e * ww)) %*% B * n / (n - k); se <- sqrt(diag(V)); dfr <- fit$df.residual }
+  else { se <- cf[, 2]; dfr <- fit$df.residual }
+  est <- cf[, 1]; tval <- est / se; pval <- 2 * pt(-abs(tval), dfr); crit <- qt(.975, dfr)
+  shown <- rownames(cf)[!grepl(paste0("^(", paste(c("ZZZ", vapply(fe, function(v) paste0("`?", gsub("([.()])", "\\\\\\1", v), "`?"), "")), collapse = "|"), ")"), rownames(cf))]
+  X <- model.matrix(fit)[, setdiff(shown, "(Intercept)"), drop = FALSE]; vif <- if (ncol(X)) q_vif(X) else numeric(0); names(vif) <- colnames(X)
+  sdy <- sd(dd[[dv]])
+  list(dv = dv, n = n, se_type = se_type, fixed_effects = if (length(fe)) lapply(fe, function(v) list(variable = v, levels = nlevels(dd[[v]]))) else NULL, weighted = !is.null(weights),
+       coefficients = lapply(shown, function(r) list(term = { t0 <- gsub("`", "", r); for (v in factors) if (startsWith(t0, v) && nchar(t0) > nchar(v)) t0 <- paste0(v, ": ", substring(t0, nchar(v) + 1)); t0 }, b = unname(est[r]), se = unname(se[r]), t = unname(tval[r]), p = unname(pval[r]), ci_low = unname(est[r] - crit * se[r]), ci_high = unname(est[r] + crit * se[r]),
+         vif = if (r %in% names(vif)) unname(vif[r]) else NA, beta = if (r == "(Intercept)" || !(r %in% colnames(X))) NA else unname(est[r] * sd(X[, r]) / sdy))),
        r_squared = s$r.squared, adj_r_squared = s$adj.r.squared, F = unname(s$fstatistic[1]), df1 = unname(s$fstatistic[2]), df2 = unname(s$fstatistic[3]), p = unname(pf(s$fstatistic[1], s$fstatistic[2], s$fstatistic[3], lower.tail = FALSE)),
-       residual_se = s$sigma, shapiro_residuals_p = if (nrow(dd) >= 3 && nrow(dd) <= 5000) shapiro.test(residuals(fit))$p.value else NA)
+       residual_se = s$sigma, shapiro_residuals_p = if (n >= 3 && n <= 5000) shapiro.test(residuals(fit))$p.value else NA)
 }
 q_logistic <- function(d, dv, ivs) {
   f <- as.formula(paste0("`", dv, "` ~ ", paste0("`", ivs, "`", collapse = " + "))); dd <- d[, c(dv, ivs)]; dd <- dd[complete.cases(dd), , drop = FALSE]
@@ -149,13 +160,93 @@ q_plots <- function(proc, d, a) {
     regression = { ivs <- a$independents; dd <- d[, c(a$dependent, ivs)]; dd <- dd[complete.cases(dd), , drop = FALSE]; fit <- lm(as.formula(paste0("`", a$dependent, "` ~ ", paste0("`", ivs, "`", collapse = " + "))), data = dd)
       if (length(ivs) == 1) add(q_fig(paste0(a$dependent, " against ", ivs), function() { plot(dd[[ivs]], dd[[a$dependent]], pch = 16, col = adjustcolor(INK, .55), xlab = ivs, ylab = a$dependent, main = paste0(a$dependent, " against ", ivs, " with OLS fit")); abline(fit, col = ACC, lwd = 2) }))
       add(q_fig("Residuals against fitted values", function() { plot(fitted(fit), residuals(fit), pch = 16, col = adjustcolor(INK, .55), xlab = "Fitted values", ylab = "Residuals", main = "Residuals against fitted values"); abline(h = 0, col = "grey55", lty = 2); lines(lowess(fitted(fit), residuals(fit)), col = ACC, lwd = 2) }))
-      qq1(residuals(fit), "regression residuals") },
+      qq1(residuals(fit), "regression residuals")
+      if (length(ivs) >= 2) out <- c(out, q_chart(d, list(type = "coefficient", y = a$dependent, independents = ivs))) },
     logistic = { ivs <- a$independents; dd <- d[, c(a$dependent, ivs)]; dd <- dd[complete.cases(dd), , drop = FALSE]; y <- dd[[a$dependent]]; if (!all(y %in% c(0, 1))) { y <- factor(y); dd[[a$dependent]] <- as.numeric(y == levels(y)[2]) }
       fit <- glm(as.formula(paste0("`", a$dependent, "` ~ ", paste0("`", ivs, "`", collapse = " + "))), data = dd, family = binomial()); v <- ivs[1]
       add(q_fig(paste0("Predicted probability of ", a$dependent, " by ", v), function() { o <- order(dd[[v]]); plot(dd[[v]], jitter(dd[[a$dependent]], .08), pch = 16, col = adjustcolor(INK, .4), xlab = v, ylab = paste0("P(", a$dependent, " = 1)"), main = paste0("Predicted probability of ", a$dependent, if (length(ivs) > 1) " (other predictors at observed values)" else "")); lines(dd[[v]][o], fitted(fit)[o], col = ACC, lwd = 2) })) },
     reliability = { r <- q_reliability(d, a$variables); add(q_fig("Corrected item-total correlations", function() { v <- sapply(r$item_stats, function(s) s$corrected_item_total_r); par(mar = c(4.2, 9, 2.6, 1)); barplot(rev(v), names.arg = rev(a$variables), horiz = TRUE, col = FILL, border = NA, xlim = c(min(0, v), 1), main = sprintf("Corrected item-total correlations (alpha = %.2f)", r$cronbach_alpha), xlab = "r"); abline(v = .3, lty = 2, col = "grey50") })) },
+    chart = { out <- q_chart(d, a) },
+    survival = { out <- q_chart(d, c(a, list(type = "km"))) },
     efa = { m <- sapply(a$variables, function(v) num(d, v)); m <- m[complete.cases(m), , drop = FALSE]; e <- eigen(cor(m))$values
       add(q_fig("Scree plot", function() { plot(seq_along(e), e, type = "b", pch = 19, col = ACC, xlab = "Component", ylab = "Eigenvalue", main = "Scree plot"); abline(h = 1, lty = 2, col = "grey50") })) },
     NULL)
+  out
+}
+
+# ---- survival analysis (package 'survival', a recommended R package) ----
+q_survival <- function(d, time, event, group = NULL, covariates = NULL) {
+  if (!requireNamespace("survival", quietly = TRUE)) stop("The R package 'survival' is not installed.")
+  vars <- c(time, event, group, covariates); dd <- d[, vars, drop = FALSE]; dd <- dd[complete.cases(dd), , drop = FALSE]
+  dd[[time]] <- num(dd, time); ev <- dd[[event]]; if (!all(ev %in% c(0, 1))) { ev <- factor(ev); dd[[event]] <- as.numeric(ev == levels(ev)[2]) }
+  S <- survival::Surv(dd[[time]], dd[[event]])
+  km <- if (is.null(group)) survival::survfit(S ~ 1) else survival::survfit(S ~ factor(dd[[group]]))
+  sm <- summary(km); tb <- summary(km)$table; if (is.null(dim(tb))) tb <- t(as.matrix(tb))
+  out <- list(n = nrow(dd), events = sum(dd[[event]]), groups = lapply(seq_len(nrow(tb)), function(i) list(group = sub("^.*=", "", rownames(tb)[i] %||% "all"), n = unname(tb[i, "records"]), events = unname(tb[i, "events"]), median_time = unname(tb[i, "median"]), median_ci_low = unname(tb[i, "0.95LCL"]), median_ci_high = unname(tb[i, "0.95UCL"]))))
+  if (!is.null(group)) { lr <- survival::survdiff(S ~ factor(dd[[group]])); out$log_rank <- list(chisq = lr$chisq, df = length(lr$n) - 1, p = pchisq(lr$chisq, length(lr$n) - 1, lower.tail = FALSE)) }
+  rhs <- c(if (!is.null(group)) paste0("factor(`", group, "`)"), if (length(covariates)) paste0("`", covariates, "`"))
+  if (length(rhs)) { cx <- survival::coxph(as.formula(paste0("survival::Surv(`", time, "`, `", event, "`) ~ ", paste(rhs, collapse = " + "))), data = dd); s <- summary(cx); cf <- s$coefficients; ci <- s$conf.int
+    out$cox <- list(coefficients = lapply(rownames(cf), function(r) list(term = sub("^factor\\(`?([^`)]*)`?\\)(.*)$", "\\1: \\2", r), b = cf[r, "coef"], hazard_ratio = cf[r, "exp(coef)"], se = cf[r, "se(coef)"], z = cf[r, "z"], p = cf[r, "Pr(>|z|)"], hr_ci_low = ci[r, "lower .95"], hr_ci_high = ci[r, "upper .95"])),
+      concordance = unname(s$concordance[1]), lr_test = unname(s$logtest["test"]), lr_df = unname(s$logtest["df"]), lr_p = unname(s$logtest["pvalue"]),
+      ph_test_global_p = tryCatch({ z <- survival::cox.zph(cx); unname(z$table["GLOBAL", "p"]) }, error = function(e) NA)) }
+  out
+}
+
+# ---- chart builder: the chart types used in business and economics journals ----
+PAL <- c("#2b5c8a", "#b5651d", "#4d7c3f", "#7a3b69", "#5f6b73", "#a58b2a")
+q_chart <- function(d, a) {
+  type <- a$type; ttl <- a$title %||% ""; err <- a$error %||% "ci"; out <- list(); add <- function(x) out[[length(out) + 1]] <<- x
+  mci <- function(y) { y <- y[!is.na(y)]; n <- length(y); m <- mean(y); se <- sd(y) / sqrt(n); w <- if (err == "se") se else if (err == "sd") sd(y) else if (err == "none") 0 else qt(.975, max(n - 1, 1)) * se; c(m = m, lo = m - w, hi = m + w, n = n) }
+  elab <- c(ci = "95% CI", se = "±1 SE", sd = "±1 SD", none = "")[[err]]
+  g <- if (!is.null(a$group)) factor(d[[a$group]]) else NULL
+  switch(type,
+    bar = {  # mean of y by x (optionally by group), with error bars; or counts of x when y is missing
+      x <- factor(d[[a$x]])
+      if (is.null(a$y)) { t <- if (is.null(g)) table(x) else table(g, x); add(q_fig(if (nzchar(ttl)) ttl else paste0("Count by ", a$x), function() { b <- barplot(t, beside = !is.null(g), col = if (is.null(g)) FILL else PAL[seq_len(nrow(t))], border = NA, ylim = c(0, max(t) * 1.25), xlab = a$x, ylab = "Count", main = if (nzchar(ttl)) ttl else paste0("Count by ", a$x), legend.text = if (!is.null(g)) rownames(t), args.legend = list(x = "top", horiz = TRUE, bty = "n", title = a$group)) })) }
+      else { y <- num(d, a$y)
+        if (is.null(g)) { s <- sapply(levels(x), function(l) mci(y[x == l])); add(q_fig(if (nzchar(ttl)) ttl else paste0("Mean ", a$y, " by ", a$x), function() { b <- barplot(s["m", ], col = FILL, border = NA, ylim = range(0, s["lo", ], s["hi", ]) * c(1, 1.15), xlab = a$x, ylab = paste0("Mean ", a$y, if (nzchar(elab)) paste0(" (", elab, ")")), main = if (nzchar(ttl)) ttl else paste0("Mean ", a$y, " by ", a$x)); if (err != "none") arrows(b, s["lo", ], b, s["hi", ], angle = 90, code = 3, length = .05, col = INK) })) }
+        else { M <- sapply(levels(x), function(l) sapply(levels(g), function(k) mci(y[x == l & g == k])["m"])); L <- sapply(levels(x), function(l) sapply(levels(g), function(k) mci(y[x == l & g == k])["lo"])); H <- sapply(levels(x), function(l) sapply(levels(g), function(k) mci(y[x == l & g == k])["hi"])); M <- matrix(M, nlevels(g)); L <- matrix(L, nlevels(g)); H <- matrix(H, nlevels(g)); dimnames(M) <- list(levels(g), levels(x))
+          add(q_fig(if (nzchar(ttl)) ttl else paste0("Mean ", a$y, " by ", a$x, " and ", a$group), function() { b <- barplot(M, beside = TRUE, col = PAL[seq_len(nrow(M))], border = NA, ylim = range(0, L, H, na.rm = TRUE) * c(1, 1.25), xlab = a$x, ylab = paste0("Mean ", a$y, if (nzchar(elab)) paste0(" (", elab, ")")), main = if (nzchar(ttl)) ttl else paste0("Mean ", a$y, " by ", a$x, " and ", a$group), legend.text = rownames(M), args.legend = list(x = "top", horiz = TRUE, bty = "n", title = a$group)); if (err != "none") arrows(b, L, b, H, angle = 90, code = 3, length = .04, col = INK) })) } } },
+    stacked100 = { x <- factor(d[[a$x]]); t <- prop.table(table(g, x), 2) * 100
+      add(q_fig(if (nzchar(ttl)) ttl else paste0(a$group, " shares by ", a$x), function() { par(mar = c(4.2, 4.4, 4.6, 1)); b <- barplot(t, col = PAL[seq_len(nrow(t))], border = "white", ylab = "Percent", xlab = a$x, ylim = c(0, 100)); title(if (nzchar(ttl)) ttl else paste0(a$group, " shares by ", a$x), line = 3); legend("top", inset = c(0, -0.1), horiz = TRUE, xpd = TRUE, bty = "n", fill = PAL[seq_len(nrow(t))], border = NA, legend = rownames(t), cex = .85)
+        cy <- apply(t, 2, function(v) cumsum(v) - v / 2); for (j in seq_len(ncol(t))) for (i in seq_len(nrow(t))) if (t[i, j] >= 6) text(b[j], cy[i, j], sprintf("%.0f%%", t[i, j]), col = "white", cex = .75) })) },
+    line = { x <- d[[a$x]]; xn <- suppressWarnings(as.numeric(x)); xs <- if (all(!is.na(xn[!is.na(x)]))) sort(unique(xn)) else sort(unique(x)); y <- num(d, a$y); xv <- if (is.numeric(xs)) xn else x
+      gl <- if (is.null(g)) "all" else levels(g)
+      add(q_fig(if (nzchar(ttl)) ttl else paste0("Mean ", a$y, " over ", a$x), function() { S <- lapply(gl, function(k) { sel <- if (is.null(g)) rep(TRUE, length(y)) else g == k; t(sapply(xs, function(v) mci(y[sel & xv == v]))) }); rng <- range(unlist(lapply(S, function(s) s[, c("lo", "hi")])), na.rm = TRUE)
+        plot(seq_along(xs), S[[1]][, "m"], type = "n", ylim = rng, xaxt = "n", xlab = a$x, ylab = paste0("Mean ", a$y, if (nzchar(elab)) paste0(" (", elab, " band)")), main = if (nzchar(ttl)) ttl else paste0("Mean ", a$y, " over ", a$x)); axis(1, seq_along(xs), xs)
+        for (i in seq_along(S)) { s <- S[[i]]; ok <- !is.na(s[, "lo"]); if (err != "none") polygon(c(seq_along(xs)[ok], rev(seq_along(xs)[ok])), c(s[ok, "lo"], rev(s[ok, "hi"])), col = adjustcolor(PAL[i], .15), border = NA); lines(seq_along(xs), s[, "m"], col = PAL[i], lwd = 2); points(seq_along(xs), s[, "m"], pch = 19, col = PAL[i]) }
+        if (!is.null(g)) legend("topleft", bty = "n", lwd = 2, col = PAL[seq_along(gl)], legend = gl, title = a$group) })) },
+    scatter = { x <- num(d, a$x); y <- num(d, a$y); sz <- if (!is.null(a$size)) num(d, a$size) else NULL; ok <- !is.na(x) & !is.na(y)
+      add(q_fig(if (nzchar(ttl)) ttl else paste0(a$y, " against ", a$x), function() { col <- if (is.null(g)) adjustcolor(INK, .55) else adjustcolor(PAL[as.integer(g)], .7); cx <- if (is.null(sz)) 1 else 0.6 + 2.4 * (sz - min(sz, na.rm = TRUE)) / diff(range(sz, na.rm = TRUE))
+        plot(x[ok], y[ok], pch = 16, col = col[ok], cex = if (length(cx) > 1) cx[ok] else cx, xlab = a$x, ylab = a$y, main = if (nzchar(ttl)) ttl else paste0(a$y, " against ", a$x))
+        if (is.null(g)) abline(lm(y[ok] ~ x[ok]), col = ACC, lwd = 2) else { for (i in seq_len(nlevels(g))) { s <- ok & g == levels(g)[i]; if (sum(s) > 2) abline(lm(y[s] ~ x[s]), col = PAL[i], lwd = 2) }; legend("topleft", bty = "n", pch = 16, col = PAL[seq_len(nlevels(g))], legend = levels(g), title = a$group) }
+        if (!is.null(sz)) mtext(paste0("Point size: ", a$size), side = 3, line = .2, cex = .75, col = "grey40") })) },
+    violin = { y <- num(d, a$y); gg <- if (is.null(g)) factor(rep("all", length(y))) else g
+      add(q_fig(if (nzchar(ttl)) ttl else paste0("Distribution of ", a$y, if (!is.null(g)) paste0(" by ", a$group)), function() { lv <- levels(gg); plot(NA, xlim = c(.5, length(lv) + .5), ylim = range(y, na.rm = TRUE), xaxt = "n", xlab = a$group %||% "", ylab = a$y, main = if (nzchar(ttl)) ttl else paste0("Distribution of ", a$y, if (!is.null(g)) paste0(" by ", a$group))); axis(1, seq_along(lv), lv)
+        for (i in seq_along(lv)) { v <- y[gg == lv[i] & !is.na(y)]; if (length(v) < 3) next; dn <- density(v); w <- .4 * dn$y / max(dn$y); polygon(c(i - w, rev(i + w)), c(dn$x, rev(dn$x)), col = adjustcolor(PAL[i], .25), border = PAL[i]); q <- quantile(v, c(.25, .5, .75)); segments(i, q[1], i, q[3], lwd = 5, col = INK); points(i, q[2], pch = 21, bg = "white", cex = 1.2) } })) },
+    density = { y <- num(d, a$y); gg <- if (is.null(g)) factor(rep("all", length(y))) else g; D <- lapply(levels(gg), function(l) { v <- y[gg == l & !is.na(y)]; if (length(v) > 2) density(v) })
+      add(q_fig(if (nzchar(ttl)) ttl else paste0("Density of ", a$y), function() { plot(NA, xlim = range(unlist(lapply(D, function(z) z$x))), ylim = c(0, max(unlist(lapply(D, function(z) z$y))) * 1.1), xlab = a$y, ylab = "Density", main = if (nzchar(ttl)) ttl else paste0("Density of ", a$y)); for (i in seq_along(D)) if (!is.null(D[[i]])) { polygon(D[[i]], col = adjustcolor(PAL[i], .15), border = NA); lines(D[[i]], col = PAL[i], lwd = 2) }; if (!is.null(g)) legend("topright", bty = "n", lwd = 2, col = PAL[seq_along(D)], legend = levels(gg), title = a$group) })) },
+    coefficient = { ivs <- a$independents; dd <- d[, c(a$y, ivs)]; dd <- dd[complete.cases(dd), , drop = FALSE]; fit <- lm(as.formula(paste0("`", a$y, "` ~ ", paste0("`", ivs, "`", collapse = " + "))), data = dd)
+      if (isTRUE(a$standardize)) { for (v in c(a$y, ivs)) dd[[v]] <- as.numeric(scale(dd[[v]])); fit <- lm(as.formula(paste0("`", a$y, "` ~ ", paste0("`", ivs, "`", collapse = " + "))), data = dd) }
+      cf <- coef(summary(fit))[-1, , drop = FALSE]; ci <- confint(fit)[-1, , drop = FALSE]; k <- nrow(cf)
+      add(q_fig(if (nzchar(ttl)) ttl else paste0("Coefficients for ", a$y, " (95% CI)"), function() { par(mar = c(4.2, 10, 2.6, 1.2)); o <- order(cf[, 1]); plot(cf[o, 1], seq_len(k), xlim = range(ci, 0), pch = 19, col = ACC, yaxt = "n", ylab = "", xlab = if (isTRUE(a$standardize)) "Standardised coefficient" else "Coefficient", main = if (nzchar(ttl)) ttl else paste0("Coefficients for ", a$y, " (95% CI, n = ", nrow(dd), ")")); axis(2, seq_len(k), rownames(cf)[o], las = 1, tick = FALSE); segments(ci[o, 1], seq_len(k), ci[o, 2], seq_len(k), col = INK, lwd = 2); abline(v = 0, lty = 2, col = "grey50") }, h = 300 + 110 * k)) },
+    interaction = { y <- num(d, a$y); x <- num(d, a$x); m <- d[[a$moderator]]; mn <- suppressWarnings(as.numeric(m)); dd <- data.frame(y = y, x = x, m = if (all(!is.na(mn[!is.na(m)])) && length(unique(mn)) > 5) mn else factor(m)); dd <- dd[complete.cases(dd), ]
+      fit <- lm(y ~ x * m, data = dd); xs <- seq(min(dd$x), max(dd$x), length.out = 50)
+      lv <- if (is.factor(dd$m)) levels(dd$m) else { mu <- mean(dd$m); s <- sd(dd$m); c(mu - s, mu, mu + s) }; lab <- if (is.factor(dd$m)) lv else c("−1 SD", "mean", "+1 SD")
+      add(q_fig(if (nzchar(ttl)) ttl else paste0("Effect of ", a$x, " on ", a$y, " by ", a$moderator), function() { plot(NA, xlim = range(xs), ylim = range(dd$y), xlab = a$x, ylab = a$y, main = if (nzchar(ttl)) ttl else paste0(a$x, " × ", a$moderator, " on ", a$y)); points(dd$x, dd$y, pch = 16, col = adjustcolor("grey50", .3))
+        for (i in seq_along(lv)) { nd <- data.frame(x = xs, m = if (is.factor(dd$m)) factor(lv[i], levels = lv) else lv[i]); p <- predict(fit, nd, interval = "confidence"); polygon(c(xs, rev(xs)), c(p[, 2], rev(p[, 3])), col = adjustcolor(PAL[i], .15), border = NA); lines(xs, p[, 1], col = PAL[i], lwd = 2) }
+        legend("topleft", bty = "n", lwd = 2, col = PAL[seq_along(lv)], legend = lab, title = a$moderator)
+        pi <- coef(summary(fit)); r <- grep(":", rownames(pi)); pv <- pi[r[1], 4]; mtext(sprintf("interaction b = %.3f, %s", pi[r[1], 1], if (pv < .001) "p < .001" else sub("0\\.", ".", sprintf("p = %.3f", pv))), side = 3, line = .2, cex = .75, col = "grey35") })) },
+    km = { tm <- num(d, a$time); ev <- d[[a$event]]; if (!all(ev %in% c(0, 1, NA))) { ev <- factor(ev); ev <- as.numeric(ev == levels(ev)[2]) }; gg <- if (is.null(g)) factor(rep("all", length(tm))) else g; ok <- !is.na(tm) & !is.na(ev) & !is.na(gg)
+      km <- survival::survfit(survival::Surv(tm[ok], ev[ok]) ~ gg[ok])
+      ng <- nlevels(droplevels(gg[ok])); add(q_fig(if (nzchar(ttl)) ttl else "Kaplan–Meier survival", function() { par(mar = c(5.8 + 1 * ng, 4.4, 2.6, 1.2)); plot(km, col = PAL[seq_len(nlevels(droplevels(gg[ok])))], lwd = 2, conf.int = nlevels(droplevels(gg[ok])) == 1, mark.time = TRUE, xlab = a$time, ylab = "Survival probability", main = if (nzchar(ttl)) ttl else "Kaplan–Meier survival", bty = "l")
+        lv <- levels(droplevels(gg[ok])); if (length(lv) > 1) { lr <- survival::survdiff(survival::Surv(tm[ok], ev[ok]) ~ gg[ok]); legend("bottomleft", bty = "n", lwd = 2, col = PAL[seq_along(lv)], legend = lv, title = sprintf("%s (log-rank p = %.3f)", a$group, pchisq(lr$chisq, length(lv) - 1, lower.tail = FALSE))) }
+        at <- pretty(c(0, max(tm[ok]))); at <- at[at <= max(tm[ok])]; s <- summary(km, times = at, extend = TRUE); mtext("Number at risk", side = 1, line = 4, adj = 0, cex = .75, font = 2)
+        for (i in seq_along(lv)) { sel <- if (length(lv) > 1) s$strata == levels(s$strata)[i] else rep(TRUE, length(s$time)); mtext(s$n.risk[sel], side = 1, line = 4.6 + .9 * i, at = s$time[sel], cex = .7, col = PAL[i]) } }, h = 1150 + 70 * ng)) },
+    waterfall = { lab <- as.character(d[[a$x]]); v <- num(d, a$y); ok <- !is.na(v) & !is.na(lab); lab <- lab[ok]; v <- v[ok]; if (anyDuplicated(lab)) { u <- unique(lab); v <- as.numeric(tapply(v, factor(lab, levels = u), sum)); lab <- u }; cum <- cumsum(v); start <- c(0, head(cum, -1))
+      add(q_fig(if (nzchar(ttl)) ttl else paste0("Bridge of ", a$y), function() { par(mar = c(7, 4.4, 2.6, 1)); n <- length(v); plot(NA, xlim = c(.5, n + 1.5), ylim = range(0, start, cum) * 1.1, xaxt = "n", xlab = "", ylab = a$y, main = if (nzchar(ttl)) ttl else paste0("Bridge of ", a$y))
+        rect(seq_len(n) - .35, start, seq_len(n) + .35, cum, col = ifelse(v >= 0, PAL[1], PAL[2]), border = NA); rect(n + 1 - .35, 0, n + 1 + .35, tail(cum, 1), col = "grey45", border = NA); segments(seq_len(n) + .35, cum, seq_len(n) + .65, cum, col = "grey60", lty = 3)
+        axis(1, seq_len(n + 1), c(lab, "Total"), las = 2, tick = FALSE); text(seq_len(n), pmax(start, cum), formatC(v, format = "fg", digits = 3, big.mark = ","), pos = 3, cex = .7) })) },
+    stop(paste0("Unknown chart type '", type, "'")))
   out
 }

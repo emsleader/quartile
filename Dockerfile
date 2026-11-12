@@ -1,6 +1,6 @@
 FROM node:22-bookworm-slim
 # R for run_statistics (base R + the recommended package 'foreign' for SPSS .sav files)
-RUN apt-get update && apt-get install -y --no-install-recommends r-base-core r-cran-foreign && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends r-base-core r-cran-foreign r-cran-survival && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY core ./core
 COPY mcp/package.json mcp/package-lock.json ./mcp/
