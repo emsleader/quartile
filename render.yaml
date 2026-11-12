@@ -8,3 +8,5 @@ services:
     envVars:
       - key: QUARTILE_SECRET
         generateValue: true
+      - key: OPENALEX_API_KEY   # free key from openalex.org/settings/api (required by OpenAlex since February 2026)
+        sync: false

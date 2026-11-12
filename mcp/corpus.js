@@ -2,6 +2,7 @@
 // user's own computer. Quartile downloads open-access articles into it, extracts and measures every section, and
 // compares manuscripts with the result. Full texts never leave the folder; only measurements are written to
 // corpus-profile.json inside it.
+const OA_KEY = () => process.env.OPENALEX_API_KEY ? "api_key=" + encodeURIComponent(process.env.OPENALEX_API_KEY) + "&" : ""; // required by OpenAlex since 13 Feb 2026 (free key)
 const fs = require("fs"), path = require("path");
 const L = require("../core/lib.js");
 const SM = require("../core/stylemetrics.js");
@@ -100,7 +101,9 @@ const FIELDS = {
   management: j => (j.c || []).some(c => ["Strategy and Management", "Organizational Behavior and Human Resource Management", "Management of Technology and Innovation"].includes(c[0]) && c[1] === "1") && !/small business|entrepreneur|ventur|family business/i.test(j.t) && !(j.c || []).some(c => c[0] === "Finance")
 };
 const LICENSES = ["cc-by", "cc-by-sa", "cc0", "public-domain", "cc-by-nc", "cc-by-nd", "cc-by-nc-sa", "cc-by-nc-nd"];
-async function getJSON(url) { for (let i = 0; i < 4; i++) { try { const r = await fetch(url, { headers: { "User-Agent": "Quartile corpus builder (https://github.com/emsleader/quartile)" } }); if (r.ok) return r.json(); } catch (e) {} await sleep(1500 * (i + 1)); } return null; }
+let OA_FAIL = 0;
+async function getJSON(url) { for (let i = 0; i < 4; i++) { try { const r = await fetch(url, { headers: { "User-Agent": "Quartile corpus builder (https://github.com/emsleader/quartile)" } }); if (r.ok) { OA_FAIL = 0; return r.json(); }
+  if ([401, 403, 409, 429].includes(r.status)) { OA_FAIL++; say(`OpenAlex refused the request (HTTP ${r.status})` + (process.env.OPENALEX_API_KEY ? ": daily budget used up or key invalid" : ": set a free OPENALEX_API_KEY (required since February 2026)")); if (OA_FAIL >= 3) throw new Error("OpenAlex is refusing requests" + (process.env.OPENALEX_API_KEY ? " (daily budget used up?)" : "; set OPENALEX_API_KEY, a free key from openalex.org/settings/api")); return null; } } catch (e) { if (/OpenAlex is refusing/.test(e.message)) throw e; } await sleep(1500 * (i + 1)); } return null; }
 async function download(url, file) {
   try {
     const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 60000);
@@ -128,7 +131,7 @@ async function build({ target = 500, fields = Object.keys(FIELDS), perJournal = 
         for (const j of journals) {
           if (got >= per) break; let took = 0;
           const issns = (j.i || []).map(x => x.slice(0, 4) + "-" + x.slice(4)).join("|");
-          const url = `https://api.openalex.org/works?filter=primary_location.source.issn:${issns},from_publication_date:${fromYear}-01-01,type:article,is_oa:true&sort=${newest ? "publication_date:desc" : "cited_by_count:desc"}&per_page=25&select=doi,title,publication_year,best_oa_location,open_access`;
+          const url = `https://api.openalex.org/works?${OA_KEY()}filter=primary_location.source.issn:${issns},from_publication_date:${fromYear}-01-01,type:article,is_oa:true&sort=${newest ? "publication_date:desc" : "cited_by_count:desc"}&per_page=25&select=doi,title,publication_year,best_oa_location,open_access`;
           const res = await getJSON(url); if (!res) continue;
           for (const w of res.results || []) {
             if (got >= per || took >= perJournal) break;

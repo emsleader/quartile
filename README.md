@@ -32,6 +32,9 @@ Most AI editors make a manuscript sound fluent, and some of them quietly change 
 
 **What it cannot do.** It does not predict editorial decisions; the readiness score counts avoidable problems only. It cannot tell whether a person or an AI wrote a text: the AI-style signal measures patterns, and people trigger it too. A number's origin is shown only by matching it to the output you supply (number registry); without your log, the statistics check can only show whether numbers fit together. The overlap check covers the OpenAlex full-text index of scholarly works, not the whole web; journals run Crossref Similarity Check (iThenticate), which Quartile does not replace.
 
+## OpenAlex key
+Since 13 February 2026 OpenAlex requires a free API key; without one only a few requests a day are answered. Create an account at openalex.org, copy the key from openalex.org/settings/api and set it as `OPENALEX_API_KEY` (Render: Environment; local: an environment variable). The corpus build, the literature-overlap check and the style-profile script use it. Crossref (reference checks) needs no key.
+
 ## Benchmark
 `node scripts/benchmark.js <folder>` runs on your own 30-50 papers (Markdown, text, PDF or Word). It injects a known error into each paper (a decision error in a test, a citation missing from the reference list, an abstract number with no source in the results, a generic AI-style paragraph), then reports for each module the share of injected errors found (recall) and the share of clean papers where the same alarm fires. The papers stay in the folder; only counts are written. It also reports the AI-style score distribution on your clean papers, for recalibrating the reference values.
 

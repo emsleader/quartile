@@ -117,8 +117,8 @@ function render(d) {
     h += `<ul>${d.results.filter(r => r.status !== "verified").map(r => `<li><span class="pill ${sev(r.severity)}">${E(r.status)}</span>${E(r.reference)}${(r.issues || []).map(i => `<div class="q">${E(i)}</div>`).join("")}${r.fix ? `<div class="q">${E(r.fix)}</div>` : ""}</li>`).join("")}</ul><p class="q">${E(d.source)}</p>`;
   } else if (d.kind === "literature_overlap") {
     k.textContent = "Overlap with published literature";
-    h += `<div class="stats">${tile(d.sentencesQueried, "sentences searched")}${tile(d.sentencesWithMatches, "with a match")}</div>`;
-    h += d.hits.length ? `<ul>${d.hits.map(x => `<li>${E(x.sentence)}<div class="q">"${E(x.phrase)}" also in: ${x.matches.map(m => E(m.title) + (m.doi ? " (doi:" + E(m.doi) + ")" : "")).join("; ")}</div></li>`).join("")}</ul>` : `<p><span class="pill ok">no exact matches</span></p>`;
+    h += `<div class="stats">${tile(d.sentencesQueried, "sentences searched")}${tile(d.sentencesWithMatches, "with a match")}</div>` + (d.warning ? `<p><span class="pill high">not checked</span>${E(d.warning)}</p>` : "");
+    h += d.hits.length ? `<ul>${d.hits.map(x => `<li>${E(x.sentence)}<div class="q">"${E(x.phrase)}" also in: ${x.matches.map(m => E(m.title) + (m.doi ? " (doi:" + E(m.doi) + ")" : "")).join("; ")}</div></li>`).join("")}</ul>` : d.warning ? "" : `<p><span class="pill ok">no exact matches</span></p>`;
     h += `<p class="q">${E(d.note)}</p>`;
   } else if (d.kind === "prose") {
     k.textContent = "Prose and readability"; const rd = d.readability || {};

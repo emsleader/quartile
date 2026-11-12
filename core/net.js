@@ -1,13 +1,14 @@
 // Network checks (run where the server has internet: Render, Claude Desktop, a local server).
 // Crossref for DOI verification and corrections/retractions, OpenAlex full-text search for overlap with published
 // literature, LanguageTool for grammar. Each function degrades gracefully when a service is unreachable.
+const OA_KEY = () => process.env.OPENALEX_API_KEY ? "api_key=" + encodeURIComponent(process.env.OPENALEX_API_KEY) + "&" : ""; // required by OpenAlex since 13 Feb 2026 (free key)
 const L = require("./lib.js");
 const UA = { "User-Agent": "Quartile (https://github.com/emsleader/quartile)" };
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function getJSON(url, opts = {}, tries = 3) {
   for (let i = 0; i < tries; i++) {
     try { const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), opts.timeout || 20000); const r = await fetch(url, { ...opts, headers: { ...UA, ...(opts.headers || {}) }, signal: ctl.signal }); clearTimeout(t);
-      if (r.ok) return await r.json(); if (r.status === 404) return { __notFound: true }; if (r.status === 429) await sleep(3000 * (i + 1)); }
+      if (r.ok) return await r.json(); if (r.status === 404) return { __notFound: true }; if ([401, 403, 409].includes(r.status)) return { __error: "refused", __status: r.status }; if (r.status === 429) { if (i === tries - 1) return { __error: "rate limited", __status: 429 }; await sleep(3000 * (i + 1)); } }
     catch (e) { if (i === tries - 1) return { __error: e.name || "network error" }; }
     await sleep(800 * (i + 1));
   }
@@ -64,18 +65,19 @@ async function literatureOverlap(text, { maxQueries = 25, ownDois = [] } = {}) {
   // most distinctive sentences first: longer words, fewer digits
   const pick = S.map(s => ({ s, score: s.split(" ").filter(w => w.length > 7).length - (s.match(/\d/g) || []).length })).sort((a, b) => b.score - a.score).slice(0, maxQueries);
   const own = new Set(ownDois.map(d => norm(d)));
-  const hits = []; let errors = 0;
+  const hits = []; let errors = 0, lastStatus = null;
   await pool(pick, 3, async ({ s }) => {
     const w = s.replace(/[“”"]/g, "").split(/\s+/), mid = Math.max(0, Math.floor(w.length / 2) - 5), phrase = w.slice(mid, mid + 10).join(" ").replace(/[^\p{L}\p{N}\s'-]/gu, "");
     const q = encodeURIComponent('"' + phrase + '"'), seen = new Set(), res = [];
     for (const [where, f] of [["full text", "fulltext.search"], ["title or abstract", "title_and_abstract.search"]]) {
-      const j = await getJSON(`https://api.openalex.org/works?per_page=3&select=doi,title,publication_year,primary_location&filter=${f}:${q}`);
-      if (j.__error || j.__notFound || !j.results) { errors++; continue; }
+      const j = await getJSON(`https://api.openalex.org/works?${OA_KEY()}per_page=3&select=doi,title,publication_year,primary_location&filter=${f}:${q}`);
+      if (j.__error || j.__notFound || !j.results) { errors++; if (j.__status) lastStatus = j.__status; continue; }
       j.results.forEach(x => { const d = norm((x.doi || "").replace("https://doi.org/", "")); if (own.has(d) || seen.has(x.id || x.title)) return; seen.add(x.id || x.title); res.push({ title: x.title, doi: (x.doi || "").replace("https://doi.org/", ""), year: x.publication_year, journal: ((x.primary_location || {}).source || {}).display_name, matchedIn: where }); });
     }
     if (res.length) hits.push({ sentence: s, phrase, matches: res });
   });
-  return { kind: "literature_overlap", sentencesQueried: pick.length, sentencesWithMatches: hits.length, queryErrors: errors, hits,
+  const warning = errors >= pick.length ? "OpenAlex did not answer" + (lastStatus ? ` (HTTP ${lastStatus})` : "") + (process.env.OPENALEX_API_KEY ? ": the daily budget may be used up." : ": the server needs a free OPENALEX_API_KEY (required since February 2026).") + " No overlap was checked; this is not a clean result." : null;
+  return { kind: "literature_overlap", sentencesQueried: pick.length, sentencesWithMatches: hits.length, queryErrors: errors, warning, hits,
     note: "Exact 10-word phrases from your most distinctive sentences were searched in the OpenAlex full-text index and in titles and abstracts (published, mostly open-access literature). A match means the phrase appears in another work: check it, quote and cite, or rewrite. This covers indexed scholarly full texts, not the whole web, and short common phrases can match by chance." };
 }
 

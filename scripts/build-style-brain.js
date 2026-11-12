@@ -2,6 +2,7 @@
 // Build Quartile's Q1 style profile from about 500 recent Q1 articles, using the OpenAlex API (CC0 metadata).
 // Only measurements are stored (sentence length, voice, hedging, rhetorical moves...), never abstract text.
 // Usage: node scripts/build-style-brain.js [--target 500] [--out data/style-profile.json]
+const OA_KEY = () => process.env.OPENALEX_API_KEY ? "api_key=" + encodeURIComponent(process.env.OPENALEX_API_KEY) + "&" : ""; // required by OpenAlex since 13 Feb 2026 (free key)
 const fs = require("fs"), path = require("path");
 const { measure, summarise } = require("../core/stylemetrics.js");
 const args = process.argv.slice(2), opt = (k, d) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : d; };
@@ -31,7 +32,7 @@ const abstractOf = inv => { if (!inv) return ""; const pos = []; for (const [w, 
     const rows = []; const seen = new Set();
     for (const j of journals) {
       if (rows.length >= per) break;
-      const url = `https://api.openalex.org/works?filter=primary_location.source.issn:${(j.i || []).map(issn).join("|")},from_publication_date:2020-01-01,type:article,has_abstract:true&sort=cited_by_count:desc&per_page=15&select=doi,publication_year,abstract_inverted_index,primary_location`;
+      const url = `https://api.openalex.org/works?${OA_KEY()}filter=primary_location.source.issn:${(j.i || []).map(issn).join("|")},from_publication_date:2020-01-01,type:article,has_abstract:true&sort=cited_by_count:desc&per_page=15&select=doi,publication_year,abstract_inverted_index,primary_location`;
       let res; try { res = await get(url); } catch (e) { continue; }
       let took = 0;
       for (const w of res.results || []) {
