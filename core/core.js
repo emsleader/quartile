@@ -51,7 +51,7 @@ const Core = (() => {
 
   function numbers(text) {
     // Statistics and numeric values, normalized. Years inside citations are also captured; they are compared as numbers too.
-    const clean = text.replace(/\[(\d+(?:\s*[–,-]\s*\d+)*)\]/g, " ").replace(/\b10\.\d{4,9}\/[^\s,;)]+/g, " ");
+    const clean = text.replace(/\[(\d+(?:\s*[–,-]\s*\d+)*)\]/g, " ").replace(/\b10\.\d{4,9}\/(?:[^\s,;)]|;(?=\d))+/g, " ");
     const re = /(?:\b[pPtFrRzβbBnNdM]\s*(?:\([^)]{0,12}\))?\s*)?[<>=≤≥]?\s*[-−–]?(?:\d+(?:[.,]\d+)*|[.,]\d+)\s*%?/g;
     return (clean.match(re) || []).map(s => s.replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/,(?=\d{3}\b)/g, "")).filter(s => /\d/.test(s) && !/^(?:19|20)\d{2}$/.test(s));
   }
@@ -66,7 +66,7 @@ const Core = (() => {
     while ((m = nar.exec(text))) keys.push(stripP(m[1]) + " " + m[3]);
     const br = /\[(\d+(?:\s*[–,-]\s*\d+)*)\]/g;
     while ((m = br.exec(text))) keys.push("[" + m[1].replace(/\s+/g, "") + "]");
-    const doi = /\b10\.\d{4,9}\/[^\s,;)]+/g;
+    const doi = /\b10\.\d{4,9}\/(?:[^\s,;)]|;(?=\d))+/g;
     while ((m = doi.exec(text))) keys.push(m[0]);
     return keys;
   }
@@ -94,7 +94,7 @@ const Core = (() => {
     const sents = sentences(text), lens = sents.map(s => words(s).length);
     const mean = lens.reduce((a, b) => a + b, 0) / Math.max(lens.length, 1);
     const sd = Math.sqrt(lens.reduce((a, b) => a + (b - mean) ** 2, 0) / Math.max(lens.length, 1));
-    const aiW = countList(text, AI_WORDS), aiP = countList(text, AI_PHRASES);
+    const aiW = countList(untech(text), AI_WORDS), aiP = countList(text, AI_PHRASES);
     const dashes = (text.match(/—|\s–\s|\s--\s/g) || []).length;
     const passive = (text.match(/\b(?:is|are|was|were|been|being|be)\s+(?:\w+ly\s+)?\w+(?:ed|en)\b/gi) || []).length;
     const notBut = (text.match(/\bnot\s+(?:only|just|merely|simply)\b[^.]{0,120}\bbut\b|\bnot\s+\w+(?:\s+\w+){0,6},?\s+but\s+(?:rather\s+)?/gi) || []).length;
@@ -255,7 +255,7 @@ const Core = (() => {
     return out;
   }
   function parseRef(t) {
-    const doi = (t.match(/\b10\.\d{4,9}\/[^\s,;]+[^\s,;.)]/) || [""])[0];
+    const doi = (t.match(/\b10\.\d{4,9}\/(?:[^\s,;]|;(?=\d))+[^\s,;.)]/) || [""])[0];
     const yearM = t.match(/\((\d{4}[a-z]?|n\.d\.(?:-[a-z])?)\)/) || t.match(/\b((?:19|20)\d{2}[a-z]?)\b/);
     const year = yearM ? yearM[1] : "";
     const num = (t.match(/^\[(\d+)\]|^(\d+)\.\s/) || []).slice(1).find(Boolean) || "";
@@ -271,7 +271,10 @@ const Core = (() => {
   function citeKey(s, y) { return (s || "").toLowerCase() + " " + (y || ""); }
   const AI_TELLS = ["delve","crucial","pivotal","landscape","underscore","underscores","showcase","tapestry","testament","multifaceted","notably","furthermore","moreover","additionally","comprehensive","leverage","foster","navigate","realm","holistic","seamless","meticulous","vibrant","interplay","nuanced","paramount","it is important to note","it is worth noting","plays a crucial role","plays a key role","plays a pivotal role","in today's","in the realm of","shed light on","sheds light on","a growing body of","paves the way","serves as a","stands as a","not only","in conclusion","overall,"];
   function prose(text) { return String(text).replace(/\([^()]*(?:19|20)\d{2}[a-z]?[^()]*\)/g, " ").replace(/([^.!?\s]\s+)[A-Z][\p{L}'’-]+/gu, "$1"); }
-  function aiTells(text) { const t = prose(text); const c = countList(t, AI_TELLS).total + (t.match(/—|\s–\s|\s--\s/g) || []).length; const w = Math.max(words(text).length, 1); return { count: c, per1k: +(c * 1000 / w).toFixed(1) }; }
+  // technical collocations of "robust" (robust standard errors, robust optimisation ...) are methods, not style
+  const TECH_ROBUST = /\brobust(ly)?\s+(?=(optimi[sz]\w*|standard errors?|SEs?\b|regressions?|estimat\w*|inference|covariance|statistics|methods?|control|test\w*|checks?|to\b|against|portfolio\w*|counterpart|version|solutions?|design|programming|formulation|BSDEs?|(?:[A-Z][a-z]+ )?(?:Huber|White))\b)/g;
+  const untech = t => String(t).replace(TECH_ROBUST, "").replace(/\brobustness\b/gi, "");
+  function aiTells(text) { const t = prose(untech(text)); const c = countList(t, AI_TELLS).total + (t.match(/—|\s–\s|\s--\s/g) || []).length; const w = Math.max(words(text).length, 1); return { count: c, per1k: +(c * 1000 / w).toFixed(1) }; }
   function similar(a, b) { const t = x => new Set((x || "").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, " ").split(/\s+/).filter(w => w.length > 2)); const A = t(a), B = t(b); if (!A.size || !B.size) return 0; let n = 0; A.forEach(w => { if (B.has(w)) n++; }); return n / Math.max(A.size, B.size); }
   function deskScreen(o) {
     // o: {sections:[{title,role,paras}], text(id), refs:[{year,...}], verified:{}, guidelines, journal, year}
@@ -280,7 +283,8 @@ const Core = (() => {
     const W = words(body).length, has = r => o.sections.some(s => s.role === r);
     const abs = o.sections.find(s => s.role === "abstract") || o.sections[0];
     const absW = abs ? words(abs.paras.map(o.text).join(" ")).length : 0;
-    const contrib = (body.match(/\b(we|this (paper|study|article)|the paper|the study|I)\s+(contribute|show|find|demonstrate|document|propose|develop|offer|extend|identify|provide)s?\b|\bcontributions?\b/gi) || []).length;
+    const CONTRIB = /\b(we|I|this (paper|study|article|research|work|analysis)|the (paper|study|article|present study)|our (paper|study|article|analysis|framework|model|approach))\s+(also\s+|further\s+|thereby\s+)?(contribute|show|find|demonstrate|document|propose|develop|offer|extend|identify|provide|advance|add|introduce|theori[sz]e|integrate|reconcile|clarify|explain|bridge|fill|address|make|build|establish|reframe|conceptuali[sz]e|unpack|link)(s|d|ed)?\b|\bcontributions?\b|\bcontributes? to\b|\badds? to (the|this|prior|existing)\b|\b(first|second|third|novel|new) (insight|theoretical|empirical|conceptual)\b/i;
+    const contrib = body.split(/(?<=[.!?])\s+/).filter(x => CONTRIB.test(x)).length;
     const empirical = (body.match(/\b(data ?set|dataset|sample|regression|estimat\w+|survey|panel|observations|respondents|interviews?|coefficients?|significant at)\b/gi) || []).length;
     const conceptual = !has("methods") && !has("results") && /\b(conceptual|propositions?|theoretical framework)\b/i.test(body);
     const cites = citations(body).filter(c => !c.startsWith("10.")).length, perK = +(cites * 1000 / Math.max(W, 1)).toFixed(1);
@@ -445,7 +449,7 @@ const Core = (() => {
     if (method === "conceptual") {
       need(has(/\bproposition\s*\d|\bp\d\b/), "med", "Propositions are not numbered or stated formally.", "State each proposition formally and number it (P1, P2...).");
       need(has(/\b(boundar(y|ies)|scope conditions?)\b/), "med", "Boundary conditions are not stated.", "Say where the framework should not apply.");
-      need(has(/\b(testable|test(ed|ing)? empirically|empirical test|operationali[sz])\w*/), "low", "It is not explained how the framework could be tested.", "Describe the data and design that would test each proposition.");
+      need(has(/\b(testable|testability|test(ed|ing)? empirically|empirical(ly)? (test|testing|tests|tested|strategy|agenda|implications?|validation|examination)|operationali[sz]\w*|(testing|test) (the|these|each|our) (framework|propositions?|model|hypothes[ie]s|predictions?|claims?)|research (agenda|design) for|how (the|these|each) (framework|propositions?|predictions?) (can|could|might) be (tested|examined|assessed|evaluated)|measurement (strategy|approach|of the constructs)|falsifi\w*|(data|designs?) (that|which) (would|could) (test|examine|identify))\b/i), "low", "It is not explained how the framework could be tested.", "Describe the data and design that would test each proposition.");
     }
     if (has(/\b(finance|financial|cash|leverage|investment|banking|stock|capital structure|liquidity)\b/) && !/\bJEL\b/.test(paras.map(p => p.text).join(" "))) out.push({ scope: "doc", category: "business research", severity: "low", problem: "No JEL codes. Finance and economics journals usually require them.", suggestion: "Add two to four JEL codes under the keywords (for example G32, G31, M41).", author: true });
     // construct naming consistency

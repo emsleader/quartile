@@ -1,10 +1,10 @@
 cff-version: 1.2.0
 message: "If you use Quartile, please cite it as below."
 title: "Quartile: a meaning-preserving Q1 academic writing engine with journal-editor simulation and statistics checks"
-version: 0.10.3
+version: 0.10.4
 date-released: 2026-11-12
 license: MIT
-doi: 10.5281/zenodo.24143278
+doi: 10.5281/zenodo.24153739
 repository-code: "https://github.com/emsleader/quartile"
 type: software
 authors:

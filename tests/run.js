@@ -103,6 +103,16 @@ let corpusDone = Promise.resolve();
   const N = require("../core/net.js"); ok(["verifyReferences", "literatureOverlap", "grammar"].every(f => typeof N[f] === "function"), "network checks load");
 }
 
+// regressions reported on ORBIT (12 Nov 2026)
+{
+  ok(L.Core.parseRef("Ocasio, W. (1997). Towards an attention-based view of the firm. Strategic Management Journal, 18(S1), 187–206. https://doi.org/10.1002/(SICI)1097-0266(199707)18:1+<187::AID-SMJ936>3.0.CO;2-K").doi.endsWith("CO;2-K"), "DOI with a semicolon is read whole");
+  ok(L.Core.aiTells("We use robust standard errors and robust optimisation, and the results are robust to alternative samples.").count === 0, "technical 'robust' is not an AI tell");
+  const orb = "# Abstract\n\nThis paper develops a framework of strategic flexibility.\n\n# Introduction\n\nOur framework integrates real options and attention. We also clarify when flexibility pays.\n\n# 7. Testing the framework\n\nEach proposition can be tested with panel data; we describe the measurement strategy.\n\n# Conclusion\n\nWe extend the attention-based view.";
+  const oa = L.analyze(orb);
+  ok(/Contribution statements: [3-9]/.test(oa.deskScreen.criteria[0].checks[0].t), "contribution claims counted by sentence and verb");
+  ok(!oa.businessResearchIssues.some(x => /could be tested/.test(x.problem)), "a testing section satisfies the testability check");
+}
+
 // MCP over stdio
 (async () => {
   await corpusDone;

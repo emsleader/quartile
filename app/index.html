@@ -401,7 +401,7 @@ const Core = (() => {
 
   function numbers(text) {
     // Statistics and numeric values, normalized. Years inside citations are also captured; they are compared as numbers too.
-    const clean = text.replace(/\[(\d+(?:\s*[–,-]\s*\d+)*)\]/g, " ").replace(/\b10\.\d{4,9}\/[^\s,;)]+/g, " ");
+    const clean = text.replace(/\[(\d+(?:\s*[–,-]\s*\d+)*)\]/g, " ").replace(/\b10\.\d{4,9}\/(?:[^\s,;)]|;(?=\d))+/g, " ");
     const re = /(?:\b[pPtFrRzβbBnNdM]\s*(?:\([^)]{0,12}\))?\s*)?[<>=≤≥]?\s*[-−–]?(?:\d+(?:[.,]\d+)*|[.,]\d+)\s*%?/g;
     return (clean.match(re) || []).map(s => s.replace(/\s+/g, "").replace(/[−–]/g, "-").replace(/,(?=\d{3}\b)/g, "")).filter(s => /\d/.test(s) && !/^(?:19|20)\d{2}$/.test(s));
   }
@@ -416,7 +416,7 @@ const Core = (() => {
     while ((m = nar.exec(text))) keys.push(stripP(m[1]) + " " + m[3]);
     const br = /\[(\d+(?:\s*[–,-]\s*\d+)*)\]/g;
     while ((m = br.exec(text))) keys.push("[" + m[1].replace(/\s+/g, "") + "]");
-    const doi = /\b10\.\d{4,9}\/[^\s,;)]+/g;
+    const doi = /\b10\.\d{4,9}\/(?:[^\s,;)]|;(?=\d))+/g;
     while ((m = doi.exec(text))) keys.push(m[0]);
     return keys;
   }
@@ -444,7 +444,7 @@ const Core = (() => {
     const sents = sentences(text), lens = sents.map(s => words(s).length);
     const mean = lens.reduce((a, b) => a + b, 0) / Math.max(lens.length, 1);
     const sd = Math.sqrt(lens.reduce((a, b) => a + (b - mean) ** 2, 0) / Math.max(lens.length, 1));
-    const aiW = countList(text, AI_WORDS), aiP = countList(text, AI_PHRASES);
+    const aiW = countList(untech(text), AI_WORDS), aiP = countList(text, AI_PHRASES);
     const dashes = (text.match(/—|\s–\s|\s--\s/g) || []).length;
     const passive = (text.match(/\b(?:is|are|was|were|been|being|be)\s+(?:\w+ly\s+)?\w+(?:ed|en)\b/gi) || []).length;
     const notBut = (text.match(/\bnot\s+(?:only|just|merely|simply)\b[^.]{0,120}\bbut\b|\bnot\s+\w+(?:\s+\w+){0,6},?\s+but\s+(?:rather\s+)?/gi) || []).length;
@@ -605,7 +605,7 @@ const Core = (() => {
     return out;
   }
   function parseRef(t) {
-    const doi = (t.match(/\b10\.\d{4,9}\/[^\s,;]+[^\s,;.)]/) || [""])[0];
+    const doi = (t.match(/\b10\.\d{4,9}\/(?:[^\s,;]|;(?=\d))+[^\s,;.)]/) || [""])[0];
     const yearM = t.match(/\((\d{4}[a-z]?|n\.d\.(?:-[a-z])?)\)/) || t.match(/\b((?:19|20)\d{2}[a-z]?)\b/);
     const year = yearM ? yearM[1] : "";
     const num = (t.match(/^\[(\d+)\]|^(\d+)\.\s/) || []).slice(1).find(Boolean) || "";
@@ -621,7 +621,10 @@ const Core = (() => {
   function citeKey(s, y) { return (s || "").toLowerCase() + " " + (y || ""); }
   const AI_TELLS = ["delve","crucial","pivotal","landscape","underscore","underscores","showcase","tapestry","testament","multifaceted","notably","furthermore","moreover","additionally","comprehensive","leverage","foster","navigate","realm","holistic","seamless","meticulous","vibrant","interplay","nuanced","paramount","it is important to note","it is worth noting","plays a crucial role","plays a key role","plays a pivotal role","in today's","in the realm of","shed light on","sheds light on","a growing body of","paves the way","serves as a","stands as a","not only","in conclusion","overall,"];
   function prose(text) { return String(text).replace(/\([^()]*(?:19|20)\d{2}[a-z]?[^()]*\)/g, " ").replace(/([^.!?\s]\s+)[A-Z][\p{L}'’-]+/gu, "$1"); }
-  function aiTells(text) { const t = prose(text); const c = countList(t, AI_TELLS).total + (t.match(/—|\s–\s|\s--\s/g) || []).length; const w = Math.max(words(text).length, 1); return { count: c, per1k: +(c * 1000 / w).toFixed(1) }; }
+  // technical collocations of "robust" (robust standard errors, robust optimisation ...) are methods, not style
+  const TECH_ROBUST = /\brobust(ly)?\s+(?=(optimi[sz]\w*|standard errors?|SEs?\b|regressions?|estimat\w*|inference|covariance|statistics|methods?|control|test\w*|checks?|to\b|against|portfolio\w*|counterpart|version|solutions?|design|programming|formulation|BSDEs?|(?:[A-Z][a-z]+ )?(?:Huber|White))\b)/g;
+  const untech = t => String(t).replace(TECH_ROBUST, "").replace(/\brobustness\b/gi, "");
+  function aiTells(text) { const t = prose(untech(text)); const c = countList(t, AI_TELLS).total + (t.match(/—|\s–\s|\s--\s/g) || []).length; const w = Math.max(words(text).length, 1); return { count: c, per1k: +(c * 1000 / w).toFixed(1) }; }
   function similar(a, b) { const t = x => new Set((x || "").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, " ").split(/\s+/).filter(w => w.length > 2)); const A = t(a), B = t(b); if (!A.size || !B.size) return 0; let n = 0; A.forEach(w => { if (B.has(w)) n++; }); return n / Math.max(A.size, B.size); }
   function deskScreen(o) {
     // o: {sections:[{title,role,paras}], text(id), refs:[{year,...}], verified:{}, guidelines, journal, year}
@@ -630,7 +633,8 @@ const Core = (() => {
     const W = words(body).length, has = r => o.sections.some(s => s.role === r);
     const abs = o.sections.find(s => s.role === "abstract") || o.sections[0];
     const absW = abs ? words(abs.paras.map(o.text).join(" ")).length : 0;
-    const contrib = (body.match(/\b(we|this (paper|study|article)|the paper|the study|I)\s+(contribute|show|find|demonstrate|document|propose|develop|offer|extend|identify|provide)s?\b|\bcontributions?\b/gi) || []).length;
+    const CONTRIB = /\b(we|I|this (paper|study|article|research|work|analysis)|the (paper|study|article|present study)|our (paper|study|article|analysis|framework|model|approach))\s+(also\s+|further\s+|thereby\s+)?(contribute|show|find|demonstrate|document|propose|develop|offer|extend|identify|provide|advance|add|introduce|theori[sz]e|integrate|reconcile|clarify|explain|bridge|fill|address|make|build|establish|reframe|conceptuali[sz]e|unpack|link)(s|d|ed)?\b|\bcontributions?\b|\bcontributes? to\b|\badds? to (the|this|prior|existing)\b|\b(first|second|third|novel|new) (insight|theoretical|empirical|conceptual)\b/i;
+    const contrib = body.split(/(?<=[.!?])\s+/).filter(x => CONTRIB.test(x)).length;
     const empirical = (body.match(/\b(data ?set|dataset|sample|regression|estimat\w+|survey|panel|observations|respondents|interviews?|coefficients?|significant at)\b/gi) || []).length;
     const conceptual = !has("methods") && !has("results") && /\b(conceptual|propositions?|theoretical framework)\b/i.test(body);
     const cites = citations(body).filter(c => !c.startsWith("10.")).length, perK = +(cites * 1000 / Math.max(W, 1)).toFixed(1);
@@ -795,7 +799,7 @@ const Core = (() => {
     if (method === "conceptual") {
       need(has(/\bproposition\s*\d|\bp\d\b/), "med", "Propositions are not numbered or stated formally.", "State each proposition formally and number it (P1, P2...).");
       need(has(/\b(boundar(y|ies)|scope conditions?)\b/), "med", "Boundary conditions are not stated.", "Say where the framework should not apply.");
-      need(has(/\b(testable|test(ed|ing)? empirically|empirical test|operationali[sz])\w*/), "low", "It is not explained how the framework could be tested.", "Describe the data and design that would test each proposition.");
+      need(has(/\b(testable|testability|test(ed|ing)? empirically|empirical(ly)? (test|testing|tests|tested|strategy|agenda|implications?|validation|examination)|operationali[sz]\w*|(testing|test) (the|these|each|our) (framework|propositions?|model|hypothes[ie]s|predictions?|claims?)|research (agenda|design) for|how (the|these|each) (framework|propositions?|predictions?) (can|could|might) be (tested|examined|assessed|evaluated)|measurement (strategy|approach|of the constructs)|falsifi\w*|(data|designs?) (that|which) (would|could) (test|examine|identify))\b/i), "low", "It is not explained how the framework could be tested.", "Describe the data and design that would test each proposition.");
     }
     if (has(/\b(finance|financial|cash|leverage|investment|banking|stock|capital structure|liquidity)\b/) && !/\bJEL\b/.test(paras.map(p => p.text).join(" "))) out.push({ scope: "doc", category: "business research", severity: "low", problem: "No JEL codes. Finance and economics journals usually require them.", suggestion: "Add two to four JEL codes under the keywords (for example G32, G31, M41).", author: true });
     // construct naming consistency
@@ -809,6 +813,10 @@ if (typeof module !== "undefined") module.exports = Core;
 
 </script>
 <script>
+// Statistical reporting checks for the Q1 engine.
+// statcheck-style recomputation of p-values (t, F, r, chi-square, z), regression-table consistency
+// (coefficient / SE / t / p / stars), impossible values, and software-output fingerprints.
+// These are consistency and plausibility checks. They cannot prove who or what produced a number.
 // Statistical reporting checks for the Q1 engine.
 // statcheck-style recomputation of p-values (t, F, r, chi-square, z), regression-table consistency
 // (coefficient / SE / t / p / stars), impossible values, and software-output fingerprints.
@@ -1011,17 +1019,30 @@ const Stats = (() => {
     }
     return out;
   }
+  // GRIM test (Brown & Heathers, 2017): a mean of integer responses from N people must equal k/N for some integer k.
+  // Applies to single-item integer measures (Likert items, counts) when N is smaller than 10^decimals. Composite
+  // scales of m items have granularity 1/(N*m), so a failure is reported as a check, not a finding.
+  function grim(text) {
+    const out = [], re = /\b(?:M|mean|Mean|average)\s*(?:=|of|was|is)?\s*(\d+\.\d{1,3})\b[^.;]{0,60}?\b(?:N|n)\s*=\s*(\d{1,4})\b|\b(?:N|n)\s*=\s*(\d{1,4})\b[^.;]{0,60}?\b(?:M|mean)\s*=\s*(\d+\.\d{1,3})\b/g; let m;
+    while ((m = re.exec(text))) {
+      const mean = m[1] || m[4], N = +(m[2] || m[3]), dec = mean.split(".")[1].length, v = +mean;
+      if (N < 2 || N >= Math.pow(10, dec) || v > 1000) continue;
+      const k = Math.round(v * N), okv = [k - 1, k, k + 1].some(j => (Math.round(j / N * Math.pow(10, dec)) / Math.pow(10, dec)).toFixed(dec) === v.toFixed(dec));
+      out.push({ text: m[0].trim(), ok: okv, severity: okv ? "ok" : "med", problem: okv ? "GRIM consistent" : `GRIM: a mean of ${mean} is impossible for N = ${N} if the measure is a single integer item (possible means are multiples of 1/${N}). Check N, the mean, or say that it is a multi-item scale.` });
+    }
+    return out;
+  }
   function checkAll(text, opts = {}) {
     const sh = shares(text), cip = ciP(text), apa = apaResults(text), coef = coefChecks(text), cells = tableCells(text), imp = impossible(text), ps = pSignals(text), ld = opts.rawData ? lastDigits(text) : null, sw = software(text);
-    const info = imp.filter(x => x.info); const problems = [...apa, ...coef, ...cells, ...imp.filter(x => !x.info), ...sh, ...cip, ...ps.out].filter(x => !x.ok);
+    const gr = grim(text), info = imp.filter(x => x.info); const problems = [...gr, ...apa, ...coef, ...cells, ...imp.filter(x => !x.info), ...sh, ...cip, ...ps.out].filter(x => !x.ok);
     if (ld && !ld.ok) problems.push({ text: "last-digit test", ok: false, severity: "low", problem: ld.problem + " This is a screening signal only: rounding conventions and derived numbers (CIs, shares) can also break uniformity." });
     return {
-      summary: { shares: sh.length, ciPairs: cip.length, apaResults: apa.length, coefficientStatements: coef.length, tableCells: cells.length, pValues: ps.n, problems: problems.length, software: sw },
-      apa, coef, cells, shares: sh, ciP: cip, impossible: imp.filter(x => !x.info), info, lastDigitsNote: opts.rawData ? undefined : "Last-digit test not applied: it is meaningful only for raw data or long output columns, not for rounded reported results.", lastDigits: ld, problems,
+      summary: { grimChecks: gr.length, shares: sh.length, ciPairs: cip.length, apaResults: apa.length, coefficientStatements: coef.length, tableCells: cells.length, pValues: ps.n, problems: problems.length, software: sw },
+      grim: gr, apa, coef, cells, shares: sh, ciP: cip, impossible: imp.filter(x => !x.info), info, lastDigitsNote: opts.rawData ? undefined : "Last-digit test not applied: it is meaningful only for raw data or long output columns, not for rounded reported results.", lastDigits: ld, problems,
       note: "These checks test internal consistency and plausibility. They can show that numbers do not fit together or look atypical for software output; they cannot prove whether a number came from R, Stata, a person or an AI. Recomputed p-values assume two-sided tests and, for coefficient/SE, a large-sample normal approximation."
     };
   }
-  return { checkAll, shares, ciP, apaResults, coefChecks, tableCells, impossible, software, lastDigits, pT, pF, pChi, pZ, pR };
+  return { checkAll, grim, shares, ciP, apaResults, coefChecks, tableCells, impossible, software, lastDigits, pT, pF, pChi, pZ, pR };
 })();
 
 
