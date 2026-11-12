@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.11.0 (2026-11-12)
+- `run_statistics`: SPSS-style procedures run in R (`core/rstats.R`, base R + foreign): descriptives, frequencies, crosstab, t-tests, one-way ANOVA, correlations, OLS (HC1 option), logistic regression, Cronbach's alpha, EFA, Shapiro-Wilk. CSV or SPSS .sav input. Returns APA-style sentences, the exact R script, a reproducibility record (data and script SHA-256, R and package versions, time) and `output_text` for the number registry, so every reported number can be traced to this run. Checked against known results on R's mtcars data. Only fixed procedures run on the hosted server; custom R code needs a local install with `QUARTILE_ALLOW_R_CODE=1`.
+- The server image now includes R.
+
 ## 0.10.4 (2026-11-12)
 Fixes from the author's test on ORBIT:
 - DOIs containing a semicolon (SICI DOIs such as 10.1002/(SICI)...3.0.CO;2-K) are read whole, so the reference is found.

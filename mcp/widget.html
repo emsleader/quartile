@@ -120,6 +120,15 @@ function render(d) {
     h += `<div class="stats">${tile(d.sentencesQueried, "sentences searched")}${tile(d.sentencesWithMatches, "with a match")}</div>` + (d.warning ? `<p><span class="pill high">not checked</span>${E(d.warning)}</p>` : "");
     h += d.hits.length ? `<ul>${d.hits.map(x => `<li>${E(x.sentence)}<div class="q">"${E(x.phrase)}" also in: ${x.matches.map(m => E(m.title) + (m.doi ? " (doi:" + E(m.doi) + ")" : "")).join("; ")}</div></li>`).join("")}</ul>` : d.warning ? "" : `<p><span class="pill ok">no exact matches</span></p>`;
     h += `<p class="q">${E(d.note)}</p>`;
+  } else if (d.kind === "rstats") {
+    k.textContent = "Statistics (R)";
+    if (d.error) { o.innerHTML = `<p class="empty">${E(d.error)}</p>` + (d.problems ? `<ul>${d.problems.map(x => `<li class="q">${E(x)}</li>`).join("")}</ul>` : ""); return; }
+    const rc = d.record || {};
+    h += `<div class="stats">${tile(d.results.length, "procedures")}${tile(rc.rows, "rows")}${tile((rc.r_version || "").replace("R version ", "R "), "software")}</div>`;
+    h += `<h3>Results</h3><ul>${d.apa.map(x => `<li>${E(x)}</li>`).join("")}</ul>`;
+    if (d.warnings && d.warnings.length) h += `<h3>R warnings</h3><ul>${d.warnings.map(x => `<li class="q">${E(x)}</li>`).join("")}</ul>`;
+    h += `<h3>Reproducibility record</h3><p class="q">data SHA-256 ${E(rc.data_sha256)}<br>script SHA-256 ${E(rc.script_sha256)}<br>${E(rc.r_version)} · foreign ${E(rc.foreign_version)} · ${E(rc.created)}</p>`;
+    h += `<details><summary>R script</summary><pre style="white-space:pre-wrap;font-size:11px">${E(d.script)}</pre></details><p class="q">${E(d.note)}</p>`;
   } else if (d.kind === "prose") {
     k.textContent = "Prose and readability"; const rd = d.readability || {};
     h += `<div class="stats">${tile(d.count, "issues")}${tile(d.replacements.length, "safe edits")}${tile(rd.fleschReadingEase ?? "–", "Flesch reading ease")}${tile(rd.fleschKincaidGrade ?? "–", "grade level")}</div>`;

@@ -113,15 +113,27 @@ let corpusDone = Promise.resolve();
   ok(!oa.businessResearchIssues.some(x => /could be tested/.test(x.problem)), "a testing section satisfies the testability check");
 }
 
+// statistics in R (skipped when R is not installed)
+const rDone = (async () => {
+  const RS = require("../core/rstats.js"); if (!(await RS.available())) { console.log("R not installed: statistics tests skipped"); return; }
+  const csv = "y,x,g\n" + [[1, 2, "a"], [2, 3, "a"], [3, 5, "a"], [4, 4, "b"], [5, 7, "b"], [6, 8, "b"], [7, 9, "b"], [8, 12, "a"]].map(r => r.join(",")).join("\n");
+  const r = await RS.run({ data: csv, analyses: [{ procedure: "regression", dependent: "y", independents: ["x"] }, { procedure: "ttest", variable: "y", group: "g" }, { procedure: "correlation", variables: ["x", "y"] }] });
+  const b = r.results[0].result.coefficients[1];
+  ok(Math.abs(b.b - 0.7044025) < 1e-6 && Math.abs(r.results[2].result.pairs[0].r - 0.9691250) < 1e-6, "R regression and correlation match known values");
+  ok(/^[0-9a-f]{64}$/.test(r.record.data_sha256) && /R version/.test(r.record.r_version) && /q_regression/.test(r.script), "reproducibility record and script");
+  ok(L.Stats && require("../core/registry.js").registry("# Results\n\nThe slope is 0.70 (r = .97).", [{ name: "R", text: r.output_text }]).matched === 2, "R output feeds the number registry");
+  const bad = await RS.run({ data: csv, analyses: [{ procedure: "anova", variable: "zz", group: "g" }] }); ok(bad.error && /no column 'zz'/.test(bad.problems[0]), "unknown columns rejected before R runs");
+})();
+
 // MCP over stdio
 (async () => {
-  await corpusDone;
+  await corpusDone; await rDone;
   const { Client } = require("../mcp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/index.js");
   const { StdioClientTransport } = require("../mcp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/stdio.js");
   const c = new Client({ name: "test", version: "1" });
   await c.connect(new StdioClientTransport({ command: process.execPath, args: [path.join(__dirname, "..", "mcp", "server.js")] }));
   const tools = (await c.listTools()).tools.map(t => t.name);
-  ok(tools.length === 26 && ["integrity_screen", "ai_style_check", "number_registry", "submission_readiness", "verify_references_live", "literature_overlap", "grammar_check", "corpus_profile_export", "prose_check", "benchmark_corpus"].every(t => tools.includes(t)), "26 tools");
+  ok(tools.length === 27 && ["integrity_screen", "ai_style_check", "number_registry", "submission_readiness", "verify_references_live", "literature_overlap", "grammar_check", "corpus_profile_export", "prose_check", "benchmark_corpus", "run_statistics"].every(t => tools.includes(t)), "27 tools");
   const r = await c.callTool({ name: "verify_rewrite", arguments: { original: "Sales rose 5%.", revised: "Sales rose 7%." } });
   ok(r.structuredContent.pass === false, "tool call over stdio");
   const pr = (await c.listPrompts()).prompts.map(p => p.name); ok(pr.length === 3, "3 prompts");
