@@ -120,6 +120,10 @@ function render(d) {
     h += `<div class="stats">${tile(d.sentencesQueried, "sentences searched")}${tile(d.sentencesWithMatches, "with a match")}</div>`;
     h += d.hits.length ? `<ul>${d.hits.map(x => `<li>${E(x.sentence)}<div class="q">"${E(x.phrase)}" also in: ${x.matches.map(m => E(m.title) + (m.doi ? " (doi:" + E(m.doi) + ")" : "")).join("; ")}</div></li>`).join("")}</ul>` : `<p><span class="pill ok">no exact matches</span></p>`;
     h += `<p class="q">${E(d.note)}</p>`;
+  } else if (d.kind === "prose") {
+    k.textContent = "Prose and readability"; const rd = d.readability || {};
+    h += `<div class="stats">${tile(d.count, "issues")}${tile(d.replacements.length, "safe edits")}${tile(rd.fleschReadingEase ?? "–", "Flesch reading ease")}${tile(rd.fleschKincaidGrade ?? "–", "grade level")}</div>`;
+    h += `<p>${Object.entries(d.byType).map(([t, n]) => `<span class="pill">${E(t)}: ${n}</span>`).join("")}</p><ul>${d.issues.slice(0, 40).map(i => `<li><span class="pill med">${E(i.quote)}</span>${E(i.message)}<div class="q">${E(i.sentence.slice(0, 200))}</div></li>`).join("")}</ul><p class="q">${E(d.note)}</p>`;
   } else if (d.kind === "grammar") {
     k.textContent = "Grammar";
     h += `<div class="stats">${tile(d.count, "issues")}${tile(d.replacements.length, "safe edits")}${tile(d.chunksChecked, "parts checked")}</div>`;

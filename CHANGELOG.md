@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.1 (2026-11-12)
+- `prose_check`: redundancy, wordy phrases, needless variants, clichés, intensifiers and repeated words, with guard-checked sentence fixes, plus Flesch, Flesch-Kincaid and Gunning fog. Word lists from reviewed, pinned open-source projects (proselint BSD-3-Clause; too-wordy, no-cliches, weasel-words MIT); credits and licences in `data/THIRD-PARTY.md`.
+- Statistics: GRIM test of reported means against N for single-item integer measures.
+
 ## 0.10.0 (2026-11-12)
 - `verify_references_live`: Crossref check of every reference (DOI resolves; title, year and first author match; retraction, withdrawal and correction notices; DOI suggestions).
 - `number_registry`: traces each reported number to the supplied R/Stata/SPSS/Python/EViews output, allowing for rounding, dropped leading zeros, percentages of proportions and sign; flags untraced numbers, truncation, sign differences and abstract or conclusion numbers missing from the results.

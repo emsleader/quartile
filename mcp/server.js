@@ -29,7 +29,7 @@ const ui = (invoking, invoked) => ({ ui: { resourceUri: WIDGET_URI }, "ui/resour
 const RO = { readOnlyHint: true, openWorldHint: false, destructiveHint: false };
 
 const CP = require("./corpus.js");
-const AI = require("../core/aistyle.js"), REG = require("../core/registry.js"), RD = require("../core/readiness.js"), NET = require("../core/net.js");
+const AI = require("../core/aistyle.js"), REG = require("../core/registry.js"), RD = require("../core/readiness.js"), NET = require("../core/net.js"), PR = require("../core/prose.js");
 function build() {
   const s = new McpServer({ name: "quartile", version: VERSION }, { instructions: "Quartile checks academic business and economics manuscripts without changing their science. Call q1_style_guide before rewriting. After rewriting any paragraph, call verify_rewrite with the original and the revision and keep the original whenever pass is false. Never present simulated reviewer output as a real journal decision. Statistics checks show consistency, not who produced a number. The full-text corpus is for patterns only (structure, section lengths, moves, voice): never copy wording from it, and run corpus_originality on any text written with its help." });
 
@@ -81,6 +81,9 @@ function build() {
     async ({ text, outputs }) => json(REG.registry(text, outputs)));
   s.registerTool("submission_readiness", { title: "Submission readiness score", description: "A 0-100 pre-submission score built from the desk screen, statistics, references, business-research design, Q1 rules, AI-style signal and (if outputs are given) the number registry, with every penalty listed and the formula. It counts fixable problems; it does not predict acceptance.", inputSchema: { text: txt, journal: z.string().optional(), guidelines: z.string().max(20000).optional(), outputs: z.array(z.object({ name: z.string(), text: z.string().min(1).max(2000000) })).max(30).default([]) }, annotations: RO, _meta: ui("Scoring readiness", "Readiness ready") },
     async ({ text, journal, guidelines, outputs }) => json(RD.readiness(text, { journal, guidelines, outputs })));
+
+  s.registerTool("prose_check", { title: "Prose lint and readability", description: "Offline check of redundancy (Garner), wordy phrases, needless word variants, clichés, intensifiers and repeated words, with Flesch, Flesch-Kincaid and Gunning fog readability. Word lists from proselint (BSD-3-Clause) and too-wordy, no-cliches and weasel-words (MIT), filtered for business research. Returns sentence edits that already passed verify_rewrite.", inputSchema: { text: txt }, annotations: RO, _meta: ui("Checking the prose", "Prose checked") },
+    async ({ text }) => json(PR.lint(text)));
 
   // ---- live checks (need internet on the server) ----
   const OPEN = { readOnlyHint: true, openWorldHint: true, destructiveHint: false };

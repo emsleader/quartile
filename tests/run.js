@@ -94,6 +94,12 @@ let corpusDone = Promise.resolve();
   ok(r.summaryNotInResults.some(x => x.text === "0.051"), "abstract number missing from results");
   const rd = RD.readiness(ms, { outputs: [{ name: "stata.log", text: out }] });
   ok(rd.score >= 0 && rd.score <= 100 && rd.penalties.length && /does not predict acceptance/.test(rd.note), "readiness score with penalties");
+  const PR = require("../core/prose.js"), pl = PR.lint("# Intro\n\nIn order to study the the cash, we use firms due to the fact that data are adequate enough. It is important to note that we test this. Firms are very large.");
+  ok(pl.byType.redundancy === 1 && pl.byType["repeated word"] === 1 && pl.byType.intensifier === 1, "prose lint finds redundancy, repeated word, intensifier");
+  ok(pl.replacements.some(e => /^To study .* because data are adequate\.$/.test(e.replacement)) && pl.replacements.every(e => L.verify(e.quote, e.replacement).pass), "prose fixes compose and pass the guard");
+  ok(PR.readability("The firm holds cash. ".repeat(30)).fleschReadingEase > 60, "readability");
+  const gr = L.Stats.grim("Satisfaction (M = 3.47, N = 25) and loyalty (M = 3.48, n = 25).");
+  ok(gr.length === 2 && !gr[0].ok && gr[1].ok, "GRIM test");
   const N = require("../core/net.js"); ok(["verifyReferences", "literatureOverlap", "grammar"].every(f => typeof N[f] === "function"), "network checks load");
 }
 
@@ -105,7 +111,7 @@ let corpusDone = Promise.resolve();
   const c = new Client({ name: "test", version: "1" });
   await c.connect(new StdioClientTransport({ command: process.execPath, args: [path.join(__dirname, "..", "mcp", "server.js")] }));
   const tools = (await c.listTools()).tools.map(t => t.name);
-  ok(tools.length === 24 && ["integrity_screen", "ai_style_check", "number_registry", "submission_readiness", "verify_references_live", "literature_overlap", "grammar_check", "corpus_profile_export"].every(t => tools.includes(t)), "24 tools");
+  ok(tools.length === 25 && ["integrity_screen", "ai_style_check", "number_registry", "submission_readiness", "verify_references_live", "literature_overlap", "grammar_check", "corpus_profile_export", "prose_check"].every(t => tools.includes(t)), "25 tools");
   const r = await c.callTool({ name: "verify_rewrite", arguments: { original: "Sales rose 5%.", revised: "Sales rose 7%." } });
   ok(r.structuredContent.pass === false, "tool call over stdio");
   const pr = (await c.listPrompts()).prompts.map(p => p.name); ok(pr.length === 3, "3 prompts");

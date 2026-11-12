@@ -14,12 +14,13 @@ Most AI editors make a manuscript sound fluent, and some of them quietly change 
 |---|---|---|
 | Hallucination guard | Blocks revisions that add or change numbers, citations, protected terms, new names or causal wording, or add sentences | No |
 | Desk-rejection screen | The five usual desk-rejection reasons (contribution, structure, writing, literature, fit), each with a fix | No |
-| Statistics check | statcheck-style recomputation of p from t, F, r, χ² and z; coefficient ÷ SE vs reported t, p and stars; impossible R², adjusted R², alpha, AVE, r and p; p-values clustered below .05; last-digit test; output fingerprints of Stata, R, SPSS, EViews, statsmodels, SmartPLS, AMOS/Mplus | No |
+| Statistics check | GRIM test of means against N (Brown & Heathers, 2017); statcheck-style recomputation of p from t, F, r, χ² and z; coefficient ÷ SE vs reported t, p and stars; impossible R², adjusted R², alpha, AVE, r and p; p-values clustered below .05; last-digit test; output fingerprints of Stata, R, SPSS, EViews, statsmodels, SmartPLS, AMOS/Mplus | No |
 | Integrity screen (COPE-aligned) | Overlap with your earlier papers, sources and the local corpus, graded none / minor / substantial following the logic of the COPE flowchart on plagiarism in a submitted manuscript (doi:10.24318/cope.2019.2.1), with fixes and a cover-letter disclosure | No |
 | References | Cited-but-missing, listed-but-uncited, recency, APA 7 style | No |
 | Live reference check | Every DOI checked against Crossref: it resolves, title, year and first author match, no retraction, withdrawal or correction notice; DOIs suggested for references without one | No (internet) |
 | Number registry | Every reported estimate, statistic and percentage matched to the R, Stata, SPSS, Python or EViews output you supply (rounding, dropped leading zeros, percentages, sign); untraced numbers, truncation and abstract numbers missing from the results are flagged | No |
 | AI-style signal | A 0-100 score of surface patterns common in unedited AI prose, with the formula, each feature's share, paragraph hotspots and safe sentence-level fixes (see [docs/AI-STYLE.md](docs/AI-STYLE.md)) | No |
+| Prose lint and readability | Redundancy, wordy phrases, needless variants, clichés, intensifiers, repeated words; Flesch, Flesch-Kincaid and Gunning fog. Word lists from proselint (BSD-3-Clause) and too-wordy, no-cliches, weasel-words (MIT), see [data/THIRD-PARTY.md](data/THIRD-PARTY.md) | No |
 | Grammar | Open-source LanguageTool rules; each fix is a whole-phrase edit that passes the guard | No (internet) |
 | Literature overlap | Exact 10-word phrases from your most distinctive sentences searched in the OpenAlex full-text index of published works | No (internet) |
 | Submission readiness | A 0-100 score with every penalty and the formula listed; counts fixable problems, does not predict acceptance | No |

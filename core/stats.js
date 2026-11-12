@@ -192,16 +192,29 @@ const Stats = (() => {
     }
     return out;
   }
+  // GRIM test (Brown & Heathers, 2017): a mean of integer responses from N people must equal k/N for some integer k.
+  // Applies to single-item integer measures (Likert items, counts) when N is smaller than 10^decimals. Composite
+  // scales of m items have granularity 1/(N*m), so a failure is reported as a check, not a finding.
+  function grim(text) {
+    const out = [], re = /\b(?:M|mean|Mean|average)\s*(?:=|of|was|is)?\s*(\d+\.\d{1,3})\b[^.;]{0,60}?\b(?:N|n)\s*=\s*(\d{1,4})\b|\b(?:N|n)\s*=\s*(\d{1,4})\b[^.;]{0,60}?\b(?:M|mean)\s*=\s*(\d+\.\d{1,3})\b/g; let m;
+    while ((m = re.exec(text))) {
+      const mean = m[1] || m[4], N = +(m[2] || m[3]), dec = mean.split(".")[1].length, v = +mean;
+      if (N < 2 || N >= Math.pow(10, dec) || v > 1000) continue;
+      const k = Math.round(v * N), okv = [k - 1, k, k + 1].some(j => (Math.round(j / N * Math.pow(10, dec)) / Math.pow(10, dec)).toFixed(dec) === v.toFixed(dec));
+      out.push({ text: m[0].trim(), ok: okv, severity: okv ? "ok" : "med", problem: okv ? "GRIM consistent" : `GRIM: a mean of ${mean} is impossible for N = ${N} if the measure is a single integer item (possible means are multiples of 1/${N}). Check N, the mean, or say that it is a multi-item scale.` });
+    }
+    return out;
+  }
   function checkAll(text, opts = {}) {
     const sh = shares(text), cip = ciP(text), apa = apaResults(text), coef = coefChecks(text), cells = tableCells(text), imp = impossible(text), ps = pSignals(text), ld = opts.rawData ? lastDigits(text) : null, sw = software(text);
-    const info = imp.filter(x => x.info); const problems = [...apa, ...coef, ...cells, ...imp.filter(x => !x.info), ...sh, ...cip, ...ps.out].filter(x => !x.ok);
+    const gr = grim(text), info = imp.filter(x => x.info); const problems = [...gr, ...apa, ...coef, ...cells, ...imp.filter(x => !x.info), ...sh, ...cip, ...ps.out].filter(x => !x.ok);
     if (ld && !ld.ok) problems.push({ text: "last-digit test", ok: false, severity: "low", problem: ld.problem + " This is a screening signal only: rounding conventions and derived numbers (CIs, shares) can also break uniformity." });
     return {
-      summary: { shares: sh.length, ciPairs: cip.length, apaResults: apa.length, coefficientStatements: coef.length, tableCells: cells.length, pValues: ps.n, problems: problems.length, software: sw },
-      apa, coef, cells, shares: sh, ciP: cip, impossible: imp.filter(x => !x.info), info, lastDigitsNote: opts.rawData ? undefined : "Last-digit test not applied: it is meaningful only for raw data or long output columns, not for rounded reported results.", lastDigits: ld, problems,
+      summary: { grimChecks: gr.length, shares: sh.length, ciPairs: cip.length, apaResults: apa.length, coefficientStatements: coef.length, tableCells: cells.length, pValues: ps.n, problems: problems.length, software: sw },
+      grim: gr, apa, coef, cells, shares: sh, ciP: cip, impossible: imp.filter(x => !x.info), info, lastDigitsNote: opts.rawData ? undefined : "Last-digit test not applied: it is meaningful only for raw data or long output columns, not for rounded reported results.", lastDigits: ld, problems,
       note: "These checks test internal consistency and plausibility. They can show that numbers do not fit together or look atypical for software output; they cannot prove whether a number came from R, Stata, a person or an AI. Recomputed p-values assume two-sided tests and, for coefficient/SE, a large-sample normal approximation."
     };
   }
-  return { checkAll, shares, ciP, apaResults, coefChecks, tableCells, impossible, software, lastDigits, pT, pF, pChi, pZ, pR };
+  return { checkAll, grim, shares, ciP, apaResults, coefChecks, tableCells, impossible, software, lastDigits, pT, pF, pChi, pZ, pR };
 })();
 if (typeof module !== "undefined") module.exports = Stats;
