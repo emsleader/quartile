@@ -109,7 +109,7 @@ async function download(url, file) {
     fs.writeFileSync(file, buf); return "ok";
   } catch (e) { return "error " + (e.name || ""); }
 }
-async function build({ target = 500, fields = Object.keys(FIELDS), perJournal = 6, fromYear = 2019, licenses = LICENSES } = {}) {
+async function build({ target = 500, fields = Object.keys(FIELDS), perJournal = 6, fromYear = 2019, newest = false, licenses = LICENSES } = {}) {
   const f = folder(); if (!f) throw new Error("No corpus folder is set (QUARTILE_CORPUS).");
   if (job.running) return status();
   Object.assign(job, { running: true, phase: "downloading", done: 0, total: target, log: [], startedAt: new Date().toISOString(), error: null });
@@ -127,7 +127,7 @@ async function build({ target = 500, fields = Object.keys(FIELDS), perJournal = 
         for (const j of journals) {
           if (got >= per) break; let took = 0;
           const issns = (j.i || []).map(x => x.slice(0, 4) + "-" + x.slice(4)).join("|");
-          const url = `https://api.openalex.org/works?filter=primary_location.source.issn:${issns},from_publication_date:${fromYear}-01-01,type:article,is_oa:true&sort=cited_by_count:desc&per_page=25&select=doi,title,publication_year,best_oa_location,open_access`;
+          const url = `https://api.openalex.org/works?filter=primary_location.source.issn:${issns},from_publication_date:${fromYear}-01-01,type:article,is_oa:true&sort=${newest ? "publication_date:desc" : "cited_by_count:desc"}&per_page=25&select=doi,title,publication_year,best_oa_location,open_access`;
           const res = await getJSON(url); if (!res) continue;
           for (const w of res.results || []) {
             if (got >= per || took >= perJournal) break;
@@ -178,6 +178,16 @@ function status() {
 }
 // The folder's profile if it exists, otherwise the published profile in data/ (measurements only, no text).
 function loadCorpusProfile() { const f = folder(); for (const p of [f && path.join(f, "corpus-profile.json"), path.join(__dirname, "..", "data", "corpus-profile.json")]) { if (!p) continue; try { return JSON.parse(fs.readFileSync(p, "utf8")); } catch (e) {} } return null; }
+// Error-injection benchmark on the newest corpus papers. Returns counts and bibliographic metadata, never text.
+async function benchmark({ n = 10, minYear = 2025 } = {}) {
+  const f = folder(); if (!f) return { error: status().note };
+  const idx = readIndex(f), pick = idx.papers.filter(p => p.file && (+p.year || 0) >= minYear).sort((a, b) => (+b.year || 0) - (+a.year || 0)).slice(0, n);
+  if (!pick.length) return { error: `No corpus papers from ${minYear} or later yet (${idx.papers.length} papers in the folder). Wait for corpus_build or lower min_year.` };
+  const texts = []; for (const p of pick) { try { texts.push({ id: p.doi, text: await fileText(path.join(f, p.file)) }); } catch (e) {} }
+  const res = require("../core/benchmark.js").run(texts), meta = new Map(pick.map(p => [p.doi, p]));
+  res.perPaper = res.perPaper.map(r => { const m = meta.get(r.id) || {}; return { doi: r.id, title: m.title, journal: m.journal, year: m.year, field: m.field, aiStyle: r.ai, alarmsOnClean: r.alarmsOnClean, missed: r.missed }; });
+  return { kind: "benchmark", ...res };
+}
 // Measurements and bibliographic metadata only: safe to publish. Never includes text.
 function exportProfile() {
   const f = folder(), prof = loadCorpusProfile(); if (!prof) return { error: "No corpus profile yet. Run corpus_build or corpus_analyse first." };
@@ -239,4 +249,4 @@ async function originality(text) {
   return { kind: "originality", pass: hits.length === 0, sentencesChecked: sents.length, overlapping: hits, rule: "Rewrite any flagged sentence in your own words. Quartile uses the corpus for patterns (structure, length, moves, voice), never for wording." };
 }
 async function sentenceLookup() { if (!folder()) return null; if (!GRAMS) await buildGrams(); return s => { const w = normW(s); let run = 0, max = 0, at = -1; for (let k = 0; k + NG <= w.length; k++) { const i = GRAMS.get(w.slice(k, k + NG).join(" ")); if (i !== undefined) { run++; if (run > max) { max = run; at = i; } } else run = 0; } if (!max) return null; const d = INDEX.docs[at]; return { id: d.p.doi || d.p.file, title: (d.p.title || "corpus paper") + (d.p.doi ? " (doi:" + d.p.doi + ")" : ""), covered: Math.min(1, (max + NG - 1) / w.length) }; }; }
-module.exports = { exportProfile, loadCorpusProfile, sentenceLookup, build, analyse, status, compare, search, originality, measurePaper, fileText, pdfToText, summarise };
+module.exports = { benchmark, exportProfile, loadCorpusProfile, sentenceLookup, build, analyse, status, compare, search, originality, measurePaper, fileText, pdfToText, summarise };
