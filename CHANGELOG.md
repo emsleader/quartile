@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.2 (2026-11-12)
+- Live tests on a real manuscript: reference years now accept the print, online and issue dates in Crossref (online-first papers no longer flagged); grammar edits inside one sentence are combined into one sentence edit; literature overlap also searches titles and abstracts and reports failed queries.
+- Benchmark: robust to papers whose sections cannot be parsed; `benchmark_corpus` tool and `corpus_build` options `from_year` and `newest`.
+
 ## 0.10.1 (2026-11-12)
 - `prose_check`: redundancy, wordy phrases, needless variants, clichés, intensifiers and repeated words, with guard-checked sentence fixes, plus Flesch, Flesch-Kincaid and Gunning fog. Word lists from reviewed, pinned open-source projects (proselint BSD-3-Clause; too-wordy, no-cliches, weasel-words MIT); credits and licences in `data/THIRD-PARTY.md`.
 - Statistics: GRIM test of reported means against N for single-item integer measures.

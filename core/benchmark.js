@@ -6,8 +6,8 @@ function addToRole(t, role, add) { const d = L.parse(t), s = d.sections.find(x =
 const INJ = {
   statistics: t => { const m = t.match(/\bt\s*\(\s*\d+\s*\)\s*=\s*(\d+\.\d+),\s*p\s*[=<]\s*\.?\d+/); if (m) return t.replace(m[0], m[0].replace(/p\s*[=<]\s*\.?\d+/, "p = .48")); return addToRole(t, "results", " The effect is significant, t(120) = 0.41, p = .003."); },
   missingReference: t => L.references(L.parse(t)).references.length ? addToRole(t, "introduction", " This extends earlier evidence (Qwertzuiop, 2021).") : null,
-  abstractNumber: t => { const d = L.parse(t), a = d.sections.find(s => s.role === "abstract"); if (!a) return null; const p = d.byId(a.paras[0]); if (!p) return null; return t.replace(p.text, p.text + " The average effect is 0.873."); },
-  aiStyle: t => { const d = L.parse(t), intro = d.sections.find(s => s.role === "introduction"); if (!intro) return null; const p = d.byId(intro.paras[0]); return t.replace(p.text, p.text + "\n\nMoreover, this study delves into the multifaceted landscape of firm finance — a crucial realm. It is not merely a study of cash, but a testament to resilience. Furthermore, we leverage robust data, rich models, and deep insights. This underscores the importance of liquidity. Notably, firms navigate a pivotal and ever-evolving landscape. Additionally, our findings shed light on this vital interplay."); },
+  abstractNumber: t => { const d = L.parse(t), a = d.sections.find(s => s.role === "abstract"); if (!a) return null; const p = a.paras.map(id => d.byId(id)).find(x => x && x.text && !x.isHeading); if (!p) return null; return t.replace(p.text, p.text + " The average effect is 0.873."); },
+  aiStyle: t => { const d = L.parse(t), intro = d.sections.find(s => s.role === "introduction"); if (!intro) return null; const p = intro.paras.map(id => d.byId(id)).find(x => x && x.text && !x.isHeading); if (!p) return null; return t.replace(p.text, p.text + "\n\nMoreover, this study delves into the multifaceted landscape of firm finance — a crucial realm. It is not merely a study of cash, but a testament to resilience. Furthermore, we leverage robust data, rich models, and deep insights. This underscores the importance of liquidity. Notably, firms navigate a pivotal and ever-evolving landscape. Additionally, our findings shed light on this vital interplay."); },
 };
 // ---- detectors: true if the module raises the alarm the injection should trigger ----
 const DET = {
@@ -20,9 +20,12 @@ const DET = {
 function run(texts) {
   const R = Object.fromEntries(Object.keys(INJ).map(k => [k, { tp: 0, fn: 0, fp: 0, tn: 0 }])), aiScores = [], perPaper = [];
   for (const { id, text: t } of texts) {
-    if (!t || t.length < 3000) continue; const row = { id, ai: AI.check(t, { maxFixes: 0 }).score, alarmsOnClean: [], missed: [] }; aiScores.push(row.ai);
+    if (!t || t.length < 3000) continue;
+    try {
+    const row = { id, ai: AI.check(t, { maxFixes: 0 }).score, alarmsOnClean: [], missed: [] }; aiScores.push(row.ai);
     for (const k of Object.keys(INJ)) { const clean = DET[k](t); clean ? (R[k].fp++, row.alarmsOnClean.push(k)) : R[k].tn++; const bad = INJ[k](t); if (!bad) continue; DET[k](bad) ? R[k].tp++ : (R[k].fn++, row.missed.push(k)); }
     perPaper.push(row);
+    } catch (e) { perPaper.push({ id, error: "skipped: " + String(e.message).slice(0, 80) }); }
   }
   const pct = (a, b) => b ? +(100 * a / b).toFixed(1) : null; aiScores.sort((a, b) => a - b);
   return { papers: aiScores.length, run: new Date().toISOString(), modules: Object.fromEntries(Object.entries(R).map(([k, r]) => [k, { recall: pct(r.tp, r.tp + r.fn), falseAlarmRate: pct(r.fp, r.fp + r.tn), ...r }])),
