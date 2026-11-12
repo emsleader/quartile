@@ -8,4 +8,4 @@ COPY data ./data
 ENV PORT=8787 NODE_ENV=production
 EXPOSE 8787
 USER node
-CMD ["node", "--max-old-space-size=384", "mcp/server.js", "--http"]
+CMD ["node", "--expose-gc", "--max-old-space-size=384", "mcp/server.js", "--http"]

@@ -6,6 +6,7 @@ Fixes from the author's test on ORBIT:
 - Contribution claims are counted per sentence with a wider set of verbs and subjects (develops, advances, integrates, clarifies, makes three contributions, our framework ...), not by keyword.
 - Technical uses of "robust" (robust standard errors, robust optimisation, robust to, robustness) no longer count as AI-style words.
 - A conceptual paper's testing section ("Testing the framework", measurement strategy, empirical implications, how each proposition could be tested) satisfies the testability check.
+- Corpus analysis runs in the background and resumes after a server restart: each paper's measurements are saved as soon as they exist, and a file that crashed the server is skipped next time.
 - `.zenodo.json` carries the release version; CITATION.cff points to the latest DOI. `scripts/sync-app.js` copies the core into the web app.
 
 ## 0.10.3 (2026-11-12)

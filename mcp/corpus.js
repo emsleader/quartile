@@ -151,6 +151,14 @@ async function build({ target = 500, fields = Object.keys(FIELDS), perJournal = 
   return status();
 }
 // Measure every paper in the folder (downloaded or added by the user) and write corpus-profile.json
+// Starts the analysis in the background and returns at once (hosted clients time out on long calls).
+function analyseInBackground() {
+  if (job.running) return status();
+  Object.assign(job, { running: true, phase: "analysing", done: 0, total: 0, startedAt: new Date().toISOString(), error: null });
+  const keep = process.env.RENDER_EXTERNAL_URL ? setInterval(() => { if (!job.running) return clearInterval(keep); fetch(process.env.RENDER_EXTERNAL_URL + "/").catch(() => {}); }, 4 * 60 * 1000) : null;
+  analyse().catch(e => { job.error = e.message; }).finally(() => { job.running = false; job.phase = job.error ? "failed" : "done"; });
+  return status();
+}
 async function analyse() {
   const f = folder(); if (!f) throw new Error("No corpus folder is set.");
   job.phase = "analysing"; const idx = readIndex(f);
@@ -159,10 +167,17 @@ async function analyse() {
   const known = new Set(idx.papers.map(p => p.file));
   walk(f).filter(x => /\.(pdf|docx|md|txt)$/i.test(x) && !/\.quartile\.txt$/.test(x) && !/corpus-(index|profile)\.json$/.test(x)).forEach(x => { const rel = path.relative(f, x); if (!known.has(rel)) idx.papers.push({ doi: null, title: path.basename(x), field: rel.split(path.sep).length > 1 && FIELDS[rel.split(path.sep)[0]] ? rel.split(path.sep)[0] : "user", license: "user file", file: rel }); });
   job.total = idx.papers.length; job.done = 0; const measured = [];
+  // resumable: each paper's measurements (numbers only) are saved in the index as soon as they exist, so a crash
+  // on a small server loses at most one paper; a paper that was being read when the server died is skipped next time
   for (const p of idx.papers) {
-    try { const t = await fileText(path.join(f, p.file)); const m = measurePaper(t); p.recognisedSections = m.recognised; p.words = m.totalWords; if (m.recognised >= 3 && m.totalWords >= 1500) measured.push({ ...p, m }); else p.note = "sections not recognised; excluded from the profile"; }
+    if (p.m) { if (p.m.recognised >= 3 && p.m.totalWords >= 1500) measured.push(p); job.done++; continue; }
+    if (p.note) { job.done++; continue; }
+    if (p.attempting) { delete p.attempting; p.note = "skipped: the server stopped while reading this file (too large for its memory)"; writeIndex(f, idx); job.done++; continue; }
+    p.attempting = true; writeIndex(f, idx);
+    try { const t = await fileText(path.join(f, p.file)); const m = measurePaper(t); p.recognisedSections = m.recognised; p.words = m.totalWords; p.m = m; if (m.recognised >= 3 && m.totalWords >= 1500) measured.push(p); else p.note = "sections not recognised; excluded from the profile"; }
     catch (e) { p.note = "could not read: " + e.message; }
-    job.done++;
+    delete p.attempting; writeIndex(f, idx); job.done++;
+    if (global.gc) global.gc(); await new Promise(r => setTimeout(r, 50));
   }
   writeIndex(f, idx);
   const profile = { built: new Date().toISOString().slice(0, 10), note: "Measurements of full-text papers in your private corpus folder. No text is stored here.", n: measured.length, overall: summarise(measured), fields: {} };
@@ -250,4 +265,4 @@ async function originality(text) {
   return { kind: "originality", pass: hits.length === 0, sentencesChecked: sents.length, overlapping: hits, rule: "Rewrite any flagged sentence in your own words. Quartile uses the corpus for patterns (structure, length, moves, voice), never for wording." };
 }
 async function sentenceLookup() { if (!folder()) return null; if (!GRAMS) await buildGrams(); return s => { const w = normW(s); let run = 0, max = 0, at = -1; for (let k = 0; k + NG <= w.length; k++) { const i = GRAMS.get(w.slice(k, k + NG).join(" ")); if (i !== undefined) { run++; if (run > max) { max = run; at = i; } } else run = 0; } if (!max) return null; const d = INDEX.docs[at]; return { id: d.p.doi || d.p.file, title: (d.p.title || "corpus paper") + (d.p.doi ? " (doi:" + d.p.doi + ")" : ""), covered: Math.min(1, (max + NG - 1) / w.length) }; }; }
-module.exports = { benchmark, exportProfile, loadCorpusProfile, sentenceLookup, build, analyse, status, compare, search, originality, measurePaper, fileText, pdfToText, summarise };
+module.exports = { analyseInBackground, benchmark, exportProfile, loadCorpusProfile, sentenceLookup, build, analyse, status, compare, search, originality, measurePaper, fileText, pdfToText, summarise };
