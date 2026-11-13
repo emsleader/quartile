@@ -35,8 +35,11 @@ function checkLedger(text) {
     const id = r.claim_id || `row ${i + 2}`; const g = (r.evidence_grade || "").toUpperCase(), st = (r.verification_status || "").toUpperCase().replace(/[\s/]+/g, "_").replace("UNOBSERVED_NOT_IDENTIFIED", "NOT_IDENTIFIED").replace("UNOBSERVED", "NOT_IDENTIFIED");
     const t = (r.source_type || "").toLowerCase(), unit = (r.observation_unit || "").toLowerCase(), claim = (r.claim || "") + " " + (r.reviewer_notes || "");
     if (ids.has(r.claim_id) && r.claim_id) add(id, "high", `Duplicate claim_id (also row ${ids.get(r.claim_id)})`, "Give every claim its own id."); else ids.set(r.claim_id, i + 2);
-    REQUIRED.forEach(c => { if (cols.includes(c) && !r[c]) add(id, "med", `Empty ${c}`, `Fill ${c}.`); });
-    if (g && !CLASSES[g]) add(id, "high", `Evidence grade '${r.evidence_grade}' is not A-E`, "Use A, B, C, D or E.");
+    REQUIRED.forEach(c => { if (cols.includes(c) && !r[c] && !(c === "evidence_grade") && !(st === "NOT_IDENTIFIED" && ["source_type"].includes(c))) add(id, "med", `Empty ${c}`, `Fill ${c}.`); });
+    const noGrade = !g || /^[—–\-]+$|^n\/?a$|^none$/i.test(g);
+    if (noGrade && st === "NOT_IDENTIFIED") { /* nothing was found, so there is no source to grade */ }
+    else if (noGrade && cols.includes("evidence_grade")) add(id, "med", "Empty evidence grade", "Grade the source A-E, or set the status to NOT_IDENTIFIED if no source exists.");
+    else if (g && !CLASSES[g]) add(id, "high", `Evidence grade '${r.evidence_grade}' is not A-E`, "Use A, B, C, D or E.");
     if (st && !STATUSES.includes(st)) add(id, "high", `Status '${r.verification_status}' is not one of ${STATUSES.join(", ")}`, "Use the status axis, separate from the grade.");
     if (g === "A" && /(advert|vendor|franchis|marketplace|web|site|directory|snapshot|listing|press|news|blog|wayback|secondary|summary|aggregator)/.test(t)) add(id, "high", `Grade A with source type '${r.source_type}'`, "Grade A needs the official filing or primary legal text itself; a website, vendor page or secondary summary is B-D.");
     if (g === "A" && !r.source_url && !r.extracted_quote_or_locator) add(id, "med", "Grade A without a source link or locator", "Add the filing link and the page or line.");
@@ -77,6 +80,10 @@ const RULES = [
   { id: "assumption-as-result", re: /\b(we find|results show|shows that|demonstrates?|proves?)\b/i, ctx: /\b(assum\w+|scenario|simulat\w+|projected|parameter range|calibrat\w+)\b/i,
     label: "Model result reported as a finding", fix: "Label it a CONDITIONAL MODEL RESULT and name the assumption or range it depends on." },
 ];
+// a denial ("never a preregistration", "is not read as", "rather than") within a few words before the trigger
+const NEG = "(?:not|never|no longer|no|nor|neither|rather than|instead of|cannot|can't|does not|do not|is not|was not|are not|were not|without)";
+function NEG_BEFORE(s, trig) { const m = s.match(trig); if (!m) return false; const before = s.slice(0, m.index).split(/\s+/).slice(-6).join(" "); return new RegExp("\\b" + NEG + "\\b", "i").test(before); }
+function NEG_NEAR(s) { return new RegExp("\\b" + NEG + "\\b(?:\\W+\\w+){0,6}?\\W+(?:read|used|infer\\w*|treated|taken|interpreted|claim\\w*|equat\\w*|reported|shown|identif\\w*|estimat\\w*|establish\\w*|imply|implies|mean|means|prove\\w*|count\\w*)\\b", "i").test(s); }
 function claimAudit(text) {
   const d = L.parse(text), out = [];
   const paras = d.paras.filter(p => !p.isHeading && !p.isRef && !p.isTable && !["references"].includes(d.roleOf(p.id)));
@@ -84,10 +91,11 @@ function claimAudit(text) {
     if (!r.re.test(s) || !r.ctx.test(s)) return;
     if (r.id === "asking-price" && r.soft.test(s) && /\basking\b/i.test(s)) return; // already labelled as asking
     if (r.id === "causal" && /\bnot (identify|establish|claim)|\bassociat\w+ (with|rather)/i.test(s)) return;
-    if (r.id === "prereg" && /\bnot (a )?(prospective )?pre-?regist/i.test(s)) return;
+    if (r.id === "prereg" && NEG_BEFORE(s, /pre-?regist|registered in advance|prospective(ly)? regist/i)) return;
+    if (["entity-profit", "snapshot", "survival", "legal-vs-service", "assumption-as-result"].includes(r.id) && NEG_NEAR(s)) return;
     out.push({ rule: r.id, label: r.label, sentence: s.trim(), section: d.roleOf(p.id), fix: r.fix });
   })));
-  const all = paras.map(p => p.text).join(" ");
+  const all = d.paras.filter(p => !p.isRef).map(p => p.text).join(" "); // headings included: "10. Conflict of interest" or "9. Limitations" are disclosures
   const checks = [
     { ok: /\b(conflicts? of interest|competing interests?|declaration of interest|disclos\w+)\b/i.test(all), t: "Conflict-of-interest disclosure present", fix: "Disclose commercial roles in the industry studied, and mark related-party sources." },
     { ok: /\b(OBSERVED|DERIVED|CONDITIONAL|NOT IDENTIFIED|not identified|conditional on|under the assumption)\b/.test(all), t: "Evidence status stated for results", fix: "Label results as observed, derived, conditional on assumptions, or not identified." },

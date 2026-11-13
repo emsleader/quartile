@@ -123,6 +123,13 @@ let corpusDone = Promise.resolve();
   ok(EV.checkLedger(EV.template()).high === 0, "template passes");
   const ca = EV.claimAudit("# Results\n\nBased on the November 2026 web snapshot, standalone studios hold a market share of 40%. The protocol was preregistered on Zenodo after an initial look at the data. Using annual accounts, integrated EMS services are more profitable. Survival is higher among studios still operating today. Integration causes higher margins in this cross-sectional survey.\n\n# Limitations\n\nWe disclose commercial roles (conflicts of interest).");
   ok(["snapshot", "prereg", "entity-profit", "survival", "causal"].every(r => ca.findings.some(f => f.rule === r)), "claim audit flags the five overclaims");
+  // regressions from the 13 Nov 2026 report
+  const neg = EV.claimAudit("# 3. Design\n\nThe data were explored first, so it was never a prospective preregistration; it is a time-stamped analysis protocol. The accounts of a diversified business are never read as if they showed the profit of its EMS corner.\n\n# 9. Limitations known in advance\n\nNone listed here.\n\n# 10. Conflict of interest, related parties and funding\n\nSee the register.");
+  ok(neg.findings.length === 0, "claim audit: 'never' and 'is never read as' are denials");
+  ok(neg.checks.find(c => /Conflict/.test(c.t)).ok && neg.checks.find(c => /Limitations/.test(c.t)).ok, "claim audit: headings count as disclosure and limitations");
+  const ni = EV.checkLedger(EV.template() + 'C009,"Service-level margin of integrated studios",,,,,,,RO,,,fitness,WB-EMS,integrated,service offering,2019-2025,,,,,—,NOT_IDENTIFIED,no service-level accounts exist,,,no,\n');
+  ok(!ni.issues.some(i => i.claim_id === "C009" && i.severity === "high"), "ledger: NOT_IDENTIFIED rows may have no grade");
+  ok(EV.claimAudit("# Results\n\nBased on the web snapshot, studios hold a market share of 40%.").findings.length === 1, "claim audit still flags an affirmative overclaim");
   ok(EV.claimAudit("# Results\n\nThis is a time-stamped protocol, not a prospective preregistration, published after data exploration. Prices are advertised asking prices.").findings.length === 0, "claim audit leaves correct wording alone");
 }
 
