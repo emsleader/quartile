@@ -167,6 +167,7 @@ q_plots <- function(proc, d, a) {
       add(q_fig(paste0("Predicted probability of ", a$dependent, " by ", v), function() { o <- order(dd[[v]]); plot(dd[[v]], jitter(dd[[a$dependent]], .08), pch = 16, col = adjustcolor(INK, .4), xlab = v, ylab = paste0("P(", a$dependent, " = 1)"), main = paste0("Predicted probability of ", a$dependent, if (length(ivs) > 1) " (other predictors at observed values)" else "")); lines(dd[[v]][o], fitted(fit)[o], col = ACC, lwd = 2) })) },
     reliability = { r <- q_reliability(d, a$variables); add(q_fig("Corrected item-total correlations", function() { v <- sapply(r$item_stats, function(s) s$corrected_item_total_r); par(mar = c(4.2, 9, 2.6, 1)); barplot(rev(v), names.arg = rev(a$variables), horiz = TRUE, col = FILL, border = NA, xlim = c(min(0, v), 1), main = sprintf("Corrected item-total correlations (alpha = %.2f)", r$cronbach_alpha), xlab = "r"); abline(v = .3, lty = 2, col = "grey50") })) },
     chart = { out <- q_chart(d, a) },
+    egba = { for (f in egba_plots(d, a)) add(f) },
     survival = { out <- q_chart(d, c(a, list(type = "km"))) },
     efa = { m <- sapply(a$variables, function(v) num(d, v)); m <- m[complete.cases(m), , drop = FALSE]; e <- eigen(cor(m))$values
       add(q_fig("Scree plot", function() { plot(seq_along(e), e, type = "b", pch = 19, col = ACC, xlab = "Component", ylab = "Eigenvalue", main = "Scree plot"); abline(h = 1, lty = 2, col = "grey50") })) },
@@ -282,4 +283,81 @@ q_power <- function(a) {
       list(effect = "hazard ratio", method = "Schoenfeld (1983) events formula", events_needed = ev, allocation = share, firms_needed = if (!is.null(er)) ceiling(ev / er) else NA, event_rate = er %||% NA, power = pw0) },
     stop("test must be ttest, paired, correlation, anova, regression, proportions or survival"))
   c(list(test = test, alpha = alpha, effect_size = es), r)
+}
+
+# ---- EGBA: evidence-graded bounds analysis (organisational-form cost comparison, paired evaluation) ----
+# Input data: one row per source observation with columns param, form, country, sector, low, high,
+# evidence_class (A-E), related_party (0/1), scenario (optional). A cell is "COUNTRY:SECTOR[:SCENARIO]".
+EGBA_RUNGS <- c("A", "AB", "ABC", "ABCD", "ABCDE")
+egba_rows <- function(d, cell, norp = FALSE) {
+  k <- strsplit(cell, ":", fixed = TRUE)[[1]]; ctry <- k[1]; sec <- if (length(k) > 1) k[2] else "all"; scen <- if (length(k) > 2) k[3] else ""
+  s <- if ("scenario" %in% names(d)) ifelse(is.na(d$scenario), "", as.character(d$scenario)) else rep("", nrow(d))
+  rp <- if ("related_party" %in% names(d)) suppressWarnings(as.numeric(d$related_party)) else rep(0, nrow(d))
+  keep <- d$country == ctry & (d$sector == sec | d$sector == "all" | sec == "all") & (s == "" | s == scen)
+  if (norp) keep <- keep & (is.na(rp) | rp != 1)
+  x <- d[keep, , drop = FALSE]; x$low <- as.numeric(x$low); x$high <- as.numeric(x$high); x
+}
+egba_env <- function(x, p, f, rung) {
+  cls <- strsplit(rung, "")[[1]]
+  r <- x[x$param == p & (x$form == f | x$form == "both") & toupper(x$evidence_class) %in% cls, , drop = FALSE]
+  if (!nrow(r)) return(NULL); c(min(r$low), max(r$high))
+}
+egba_label <- function(lo, hi) if (hi < 0) "integration favoured" else if (lo > 0) "specialist favoured" else "assumption-sensitive"
+egba_cell <- function(x, Q, rung = "ABCDE") {
+  need <- list(rho = c("rho", "S"), p_S = c("p", "S"), F_S = c("F", "S"), F_I = c("F", "I"), o_I = c("o", "I"))
+  b <- lapply(need, function(n) egba_env(x, n[1], n[2], rung)); miss <- names(b)[vapply(b, is.null, TRUE)]
+  fr <- if (any(c("rho", "p_S", "F_S", "F_I") %in% miss)) NULL else {
+    rp <- c(b$rho[1] * b$p_S[1], b$rho[2] * b$p_S[2])
+    data.frame(Q = Q, oI_star_IR = rp[1] + (b$F_S[1] - b$F_I[2]) / Q, oI_star_SR = rp[2] + (b$F_S[2] - b$F_I[1]) / Q) }
+  e1 <- if (length(miss)) NULL else {
+    rp <- c(b$rho[1] * b$p_S[1], b$rho[2] * b$p_S[2])
+    lo <- b$o_I[1] - rp[2] + (b$F_I[1] - b$F_S[2]) / Q; hi <- b$o_I[2] - rp[1] + (b$F_I[2] - b$F_S[1]) / Q
+    data.frame(Q = Q, E1_low = lo, E1_high = hi, label = mapply(egba_label, lo, hi)) }
+  list(missing = miss, frontier = fr, e1 = e1, M2_ceiling = if (is.null(b$o_I)) NA else b$o_I[2])
+}
+q_egba <- function(d, cells, Q = c(500, 1000, 2000, 4000, 6000, 8000, 10000), q_star = 500) {
+  for (v in c("param", "form", "country", "sector", "low", "high", "evidence_class")) if (!v %in% names(d)) stop(paste0("EGBA needs column '", v, "'"))
+  out <- lapply(setNames(cells, cells), function(cell) {
+    one <- function(norp) {
+      x <- egba_rows(d, cell, norp); if (!nrow(x)) stop(paste0("no rows for cell ", cell))
+      ladder <- lapply(EGBA_RUNGS, function(rg) { r <- egba_cell(x, q_star, rg)
+        list(rung = rg, identified = is.null(r$e1) == FALSE, missing = if (length(r$missing)) paste(r$missing, collapse = ", ") else "",
+             E1_low = if (is.null(r$e1)) NA else r$e1$E1_low, E1_high = if (is.null(r$e1)) NA else r$e1$E1_high, label = if (is.null(r$e1)) "NOT IDENTIFIED" else r$e1$label) })
+      main <- egba_cell(x, Q, "ABCDE")
+      grade <- { g <- NA; for (L in ladder) if (L$identified && L$label != "assumption-sensitive") { g <- substr(L$rung, nchar(L$rung), nchar(L$rung)); break }; g }
+      list(rows_used = nrow(x), missing = main$missing, M2_ceiling = main$M2_ceiling,
+           paired = if (is.null(main$e1)) paste0("NOT IDENTIFIED (missing ", paste(main$missing, collapse = ", "), ")") else main$e1,
+           frontier = if (is.null(main$frontier)) "NOT IDENTIFIED" else main$frontier,
+           ladder_at_q_star = ladder, evidence_grade_at_q_star = grade,
+           status = if (is.null(main$e1) && is.null(main$frontier)) "NOT IDENTIFIED" else "CONDITIONAL MODEL RESULT") }
+    m <- one(FALSE); n <- one(TRUE)
+    changed <- if (is.data.frame(m$paired) && is.data.frame(n$paired)) any(m$paired$label != n$paired$label) else NA
+    c(m, list(norp = n, label_changed_without_related_party = changed)) })
+  list(method = "Evidence-Graded Bounds Analysis (EGBA), paired evaluation", q_star = q_star, Q = Q, cells = out)
+}
+egba_plots <- function(d, a) {
+  r <- q_egba(d, a$cells, a$q_grid %||% c(500, 1000, 2000, 4000, 6000, 8000, 10000), a$q_star %||% 500); figs <- list()
+  add <- function(f) figs[[length(figs) + 1]] <<- f
+  shades <- c("grey10", "grey45", "grey70", "grey30"); ltys <- c(1, 2, 4, 5, 3)
+  pc <- Filter(function(c) is.data.frame(c$paired), r$cells)
+  if (length(pc)) add(q_fig("EGBA: paired cost difference per session", function() {
+    Qs <- r$Q; k <- length(pc); allv <- unlist(lapply(pc, function(c) c(c$paired$E1_low, c$paired$E1_high)))
+    plot(NA, xlim = c(.5, length(Qs) + .5), ylim = range(c(allv, 0)), xaxt = "n", xlab = "Sessions per year (Q)", ylab = "E1 = AC_I - AC_S (EUR per session)", main = "Paired cost difference per session")
+    axis(1, seq_along(Qs), format(Qs, big.mark = ",")); abline(h = 0, col = "black")
+    for (j in seq_len(k)) { p <- pc[[j]]$paired; xs <- seq_along(Qs) + (j - (k + 1) / 2) * .22; segments(xs, p$E1_low, xs, p$E1_high, lwd = 7, lend = 1, col = shades[j]) }
+    legend("bottomright", names(pc), lwd = 7, col = shades[seq_len(k)], bty = "n", cex = .8) }))
+  fc <- Filter(function(c) is.data.frame(c$frontier), r$cells)
+  if (length(fc)) add(q_fig("EGBA: breakdown frontier", function() {
+    ys <- unlist(lapply(fc, function(c) c$frontier$oI_star_IR)); ce <- unlist(lapply(fc, function(c) c$M2_ceiling)); ce <- ce[is.finite(ce)]
+    plot(NA, xlim = range(r$Q), ylim = c(0, max(c(ys, ce)) * 1.1), xlab = "Sessions per year (Q)", ylab = "Host opportunity cost o_I (EUR per session)", main = "Breakdown frontier: integration favoured below the line")
+    for (j in seq_along(fc)) { f <- fc[[j]]$frontier; lines(f$Q, f$oI_star_IR, lty = ltys[j], lwd = 2, col = shades[j]) }
+    for (j in seq_along(fc)) { cv <- fc[[j]]$M2_ceiling; if (is.finite(cv)) { abline(h = cv, lty = 3, col = "grey40"); text(min(r$Q), cv, paste0("M2 ceiling, ", names(fc)[j]), adj = c(0, -0.5), cex = .7, col = "grey30") } }
+    legend("topright", names(fc), lty = ltys[seq_along(fc)], lwd = 2, col = shades[seq_along(fc)], bty = "n", cex = .8) }))
+  for (nm in names(r$cells)) { L <- r$cells[[nm]]$ladder_at_q_star
+    add(q_fig(paste0("EGBA: evidence ladder, ", nm), function() {
+      v <- unlist(lapply(L, function(l) c(l$E1_low, l$E1_high))); v <- v[is.finite(v)]; yl <- if (length(v)) range(c(v, 0)) * 1.1 else c(-1, 1)
+      plot(NA, xlim = c(.5, 5.5), ylim = yl, xaxt = "n", xlab = "Evidence rung", ylab = "E1 (EUR per session)", main = paste0("Evidence ladder, ", nm, ", Q = ", format(r$q_star, big.mark = ",")))
+      axis(1, 1:5, c("A", "A-B", "A-C", "A-D", "A-E")); abline(h = 0)
+      for (i in 1:5) { l <- L[[i]]; if (l$identified) segments(i, l$E1_low, i, l$E1_high, lwd = 9, lend = 1, col = "grey20") else text(i, if (length(v)) mean(yl) else yl[1] + .7 * diff(yl), paste0("NOT\nIDENTIFIED\n(missing\n", gsub(", ", ",\n", l$missing), ")"), cex = .6, col = "grey30") } })) }
+  figs
 }

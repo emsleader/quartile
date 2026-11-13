@@ -549,13 +549,18 @@ const Core = (() => {
   function headingLevel(t) { const h = (t.match(/^(#+)\s/) || [])[1]; const num = (t.replace(/^#+\s*/, "").match(/^(\d+(?:\.\d+)*)[.\s]/) || [])[1]; const byNum = num ? num.split(".").filter(Boolean).length : 0; return Math.max(h ? h.length : 1, byNum || 1); }
   // Assign a role to each section. A sub-heading whose own words give no role takes the role of its nearest parent heading.
   function sectionRoles(secs) {
-    const stack = []; const out = [];
+    const stack = []; const out = []; let carry = null;
     for (const x of secs) {
       if (x.id === "_start") { if (x.paras.length) out.push({ ...x, role: "opening" }); continue; }
       const lvl = headingLevel(x.raw || x.title); let role = detectRole(x.title);
       while (stack.length && stack[stack.length - 1].lvl >= lvl) stack.pop();
       const parent = stack.length ? stack[stack.length - 1].role : null;
       if (parent && !["abstract", "opening", "declarations", "references"].includes(parent) && (role === "other" || (["methods", "results"].includes(parent) && ["methods", "results"].includes(role)))) role = parent;
+      // unnumbered documents: every heading looks like level 1, so a heading whose words give no role
+      // ("Design and Evidence" after "Data and Methods", "Gap" after "Literature Review") belongs to the
+      // last heading that named a section
+      else if (role === "other" && carry && !["abstract", "opening", "declarations", "references"].includes(carry)) role = carry;
+      if (role !== "other") carry = role;
       stack.push({ lvl, role });
       if (x.paras.length) out.push({ ...x, role });
     }
@@ -564,7 +569,7 @@ const Core = (() => {
   function detectRole(title) {
     const t = (title || "").replace(/[*_`]+/g, "").trim().toLowerCase();
     if (/^(#+\s*)?(\d+\.?\s*)?(references|reference list|bibliography|works cited|literature cited)/.test(t)) return "references";
-    if (/declaration|disclosure|funding|acknowledg|conflict of interest|competing interest|ai-assisted|use of ai|generative ai|data availability|ethic|author contribution/.test(t)) return "declarations";
+    if (/declaration|disclosure|funding|acknowledg|conflict of interest|competing interest|related part(y|ies)|ai-assisted|use of ai|generative ai|data availability|ethic|author contribution/.test(t)) return "declarations";
     if (/abstract|summary/.test(t)) return "abstract";
     if (/introduc/.test(t)) return "introduction";
     if (/literature|theor|background|hypothes|framework|prior|proposition/.test(t)) return "literature";
@@ -820,6 +825,10 @@ if (typeof module !== "undefined") module.exports = Core;
 
 </script>
 <script>
+// Statistical reporting checks for the Q1 engine.
+// statcheck-style recomputation of p-values (t, F, r, chi-square, z), regression-table consistency
+// (coefficient / SE / t / p / stars), impossible values, and software-output fingerprints.
+// These are consistency and plausibility checks. They cannot prove who or what produced a number.
 // Statistical reporting checks for the Q1 engine.
 // statcheck-style recomputation of p-values (t, F, r, chi-square, z), regression-table consistency
 // (coefficient / SE / t / p / stars), impossible values, and software-output fingerprints.

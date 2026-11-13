@@ -146,6 +146,11 @@ let corpusDone = Promise.resolve();
     const hv = h => L.parse("Abstract\nThis paper studies firms and their costs in a long sentence.\n" + h + "\nWe use filed accounts and advertised prices to build the bounds here.\nConclusion\nEnd of the paper here.").sections.map(x => x.role).join(",");
     ok(["Data and Methods:", "3. Data and methods.", "DATA AND METHODS:", "Section 3: Data and Methods"].every(h => hv(h) === "abstract,methods,conclusion") && hv("2. Literature review: economies of scope, redeployability and the conditional economics of integrating services") === "abstract,literature,conclusion", "headings with a colon, a period or many words");
     ok(L.parse("Introduction\nPrior work (Jones, 2020) shows X.\nData matter here.").paras.filter(p => p.isHeading).length === 1, "short sentences are not headings");
+    // unnumbered main headings followed directly by unnumbered sub-headings (author's export, 13 Nov 2026)
+    const H = ["Abstract", "Introduction", "Literature Review", "Diversification and New Services", "Gap", "Theory and Propositions", "Scope and Opportunity Cost", "Data and Methods", "Design and Evidence", "Related Parties", "Results", "Discussion", "What the Bounds Say", "Limitations", "Conclusion"], EMPTY = ["Literature Review", "Theory and Propositions", "Data and Methods", "Discussion"];
+    const ut = H.map(h => h + "  \n  \n" + (EMPTY.includes(h) ? "" : "Small firms add services to rooms they already have (Panzar & Willig, 1981). We contribute bounds.  \n  \n")).join("");
+    const ua = L.analyze(ut), roles = Object.fromEntries(ua.sections.map(s => [s.title.trim(), s.role])), dk = ua.deskScreen.criteria.flatMap(c => c.checks).map(c => c.s + ":" + c.t).join("|");
+    ok(roles["Design and Evidence"] === "methods" && roles["Gap"] === "literature" && roles["What the Bounds Say"] === "discussion" && roles["Related Parties"] === "declarations" && /ok:Methods present, results present/.test(dk) && /ok:Literature or theory section present/.test(dk), "unnumbered sub-headings take the role of the section above them");
     const sub = L.parse("Abstract\nWe study firms in this paper and more words here.\n2.1 Economies of scope\nSome body text that is a full sentence about the topic.");
     ok(sub.sections.find(s => /2\.1/.test(s.title)).role !== "abstract", "a numbered heading does not inherit the abstract's role");
   }
@@ -172,6 +177,14 @@ const rDone = (async () => {
   const pw = await RS.run({ data: csv, charts: false, analyses: [{ procedure: "power", test: "ttest", effect: 0.5, power: 0.8 }, { procedure: "power", test: "regression", effect: 0.02, predictors: 1, power: 0.8 }, { procedure: "power", test: "survival", effect: 0.6, power: 0.8 }, { procedure: "data_audit", id: "g" }] });
   ok(pw.results[0].result.n_per_group === 64 && pw.results[1].result.n === 395 && pw.results[2].result.events_needed === 121, "power matches G*Power and Schoenfeld values");
   ok(pw.results[3].result.rows === 8 && pw.results[3].result.duplicate_ids === 6, "data audit counts rows and duplicate ids");
+  // EGBA on synthetic parameters (hand-checked): rho*p_S in [4, 10], F_S in [20000, 40000], F_I in [5000, 10000], o_I in [2, 8]
+  const eg = "param,form,country,sector,low,high,evidence_class,related_party\nrho,S,XX,all,0.08,0.10,B,0\np,S,XX,all,50,100,D,0\nF,S,XX,all,20000,40000,C,0\nF,I,XX,all,5000,10000,C,1\no,I,XX,all,2,8,E,0\nrho,S,YY,all,0.08,0.10,B,0\n";
+  const er = await RS.run({ data: eg, analyses: [{ procedure: "egba", cells: ["XX:all", "YY:all"], q_grid: [1000, 10000], q_star: 1000 }] });
+  const ex = er.results[0].result.cells["XX:all"];
+  // Q = 1000: E1_low = 2 - 10 + (5000 - 40000)/1000 = -43; E1_high = 8 - 4 + (10000 - 20000)/1000 = -6
+  ok(Math.abs(ex.paired.E1_low[0] + 43) < 1e-9 && Math.abs(ex.paired.E1_high[0] + 6) < 1e-9 && ex.paired.label[0] === "integration favoured", "EGBA paired bounds match the hand calculation");
+  ok(Math.abs(ex.frontier.oI_star_IR[0] - 14) < 1e-9 && er.results[0].result.cells["YY:all"].status === "NOT IDENTIFIED" && ex.norp.paired === undefined || typeof ex.norp.paired === "string", "EGBA frontier, NOT IDENTIFIED cell, related-party rerun");
+  ok(er.figures.filter(f => /EGBA/.test(f.title)).length === 4 && er.apa.some(l => /E1 from -43.00 to -6.00/.test(l)), "EGBA figures and APA lines");
   const bad = await RS.run({ data: csv, analyses: [{ procedure: "anova", variable: "zz", group: "g" }] }); ok(bad.error && /no column 'zz'/.test(bad.problems[0]), "unknown columns rejected before R runs");
 })();
 
