@@ -143,6 +143,9 @@ let corpusDone = Promise.resolve();
     ok(!/Endogeneity/.test(probs) && !/Standard errors: clustering/.test(probs), "no regression checks on a bounds paper");
     const rd = RD.readiness(ms, { outputs: [{ name: "one table", text: "11.2 18.4" }] });
     ok(!rd.penalties.some(p => p.area === "Number registry") || rd.numberRegistry.note === null, "registry penalty only when the outputs cover the paper");
+    const hv = h => L.parse("Abstract\nThis paper studies firms and their costs in a long sentence.\n" + h + "\nWe use filed accounts and advertised prices to build the bounds here.\nConclusion\nEnd of the paper here.").sections.map(x => x.role).join(",");
+    ok(["Data and Methods:", "3. Data and methods.", "DATA AND METHODS:", "Section 3: Data and Methods"].every(h => hv(h) === "abstract,methods,conclusion") && hv("2. Literature review: economies of scope, redeployability and the conditional economics of integrating services") === "abstract,literature,conclusion", "headings with a colon, a period or many words");
+    ok(L.parse("Introduction\nPrior work (Jones, 2020) shows X.\nData matter here.").paras.filter(p => p.isHeading).length === 1, "short sentences are not headings");
     const sub = L.parse("Abstract\nWe study firms in this paper and more words here.\n2.1 Economies of scope\nSome body text that is a full sentence about the topic.");
     ok(sub.sections.find(s => /2\.1/.test(s.title)).role !== "abstract", "a numbered heading does not inherit the abstract's role");
   }

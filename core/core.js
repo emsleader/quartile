@@ -34,8 +34,14 @@ const Core = (() => {
   function isHeading(t) {
     if (/^#{1,6}\s/.test(t)) return true;
     if (/^[\s\-=|+_:]+$/.test(t) || /^⟦TABLE⟧/.test(t)) return false;
-    const words = t.split(/\s+/).length;
-    return words <= 12 && !/[.!?:;]$/.test(t) && !/\(\d{4}\)/.test(t);
+    const words = t.split(/\s+/).length, numbered = /^(\d+(\.\d+)*\.?|[IVX]+\.|section \d+[.:]?)\s+\S/i.test(t), core = t.replace(/^(\d+(\.\d+)*\.?|[IVX]+\.|section \d+[.:]?)\s+/i, ""), stripped = core.replace(/[\s:.]+$/, "");
+    if (/\(\d{4}\)/.test(t)) return false;
+    if (words <= 12 && !/[.!?:;]$/.test(t)) return true;
+    // "Data and Methods:" or "3. Data and methods." — a short line whose words name a section, with trailing punctuation from Word
+    if (words <= 8 && /[.:]$/.test(t) && !/[.!?]\s/.test(stripped) && !/[(),]/.test(stripped) && (numbered || (/^([A-Z][\p{L}'’-]*|and|or|of|the|for|in|on|to|a|an|&|\d+)(\s+([A-Z][\p{L}'’-]*|and|or|of|the|for|in|on|to|a|an|with|&))*$/u.test(stripped) || stripped === stripped.toUpperCase()) && /^(abstract|introduction|background|literature( review)?|related (literature|work)|theor(y|etical)|conceptual|hypothes|propositions?|data|methods?|methodology|research design|empirical|sample|model|results?|findings|analysis|discussion|implications?|limitations?|conclusions?|references|declarations?|appendix)\b/i.test(stripped))) return true;
+    // a long numbered heading ("2. Literature review: economies of scope, redeployability and ...")
+    if (numbered && words <= 22 && !/[.!?;]$/.test(t) && !/[.!?]\s+[A-Z]/.test(core)) return true;
+    return false;
   }
 
   function countPhrase(text, phrase) {
