@@ -133,6 +133,20 @@ let corpusDone = Promise.resolve();
   ok(EV.claimAudit("# Results\n\nThis is a time-stamped protocol, not a prospective preregistration, published after data exploration. Prices are advertised asking prices.").findings.length === 0, "claim audit leaves correct wording alone");
 }
 
+  // regressions from the 13 Nov 2026 report on a bounds-based manuscript (plain text from DOCX)
+  {
+    const RD = require("../core/readiness.js");
+    const ms = "Specialist or add-on: bounds on the cost of a new service\nAbstract\nThis paper develops bounds on the incremental cost of adding a service to a host business, using filings for 56 firms. It contributes partial-identification bounds instead of point estimates.\n1. Introduction\nSmall firms add services to use idle capacity. We contribute bounds that hold under weak assumptions, citing prior work (Panzar & Willig, 1981; Teece, 1980).\nLiterature Review\nEconomies of scope and opportunity cost explain when sharing resources lowers cost (Panzar & Willig, 1981). Real options describe the value of waiting (Dixit & Pindyck, 1994).\nTheory and Propositions\nP1: shared resources lower the incremental cost when they are idle.\nData and Methods\nWe use filed accounts and advertised prices and compute partial-identification bounds; no model is estimated.\nBounds Analysis\nThe bounds on cost per session are 11.2 to 18.4.\nImplications for Small-Business Owners\nOwners should measure idle capacity first.\nLimitations\nThe bounds are wide.\nConclusion\nWe contribute bounds on the incremental cost.\nReferences\nDixit, A. K., & Pindyck, R. S. (1994). Investment under uncertainty. Princeton University Press.\nPanzar, J. C., & Willig, R. D. (1981). Economies of scope. American Economic Review, 71(2), 268-272.\nTeece, D. J. (1980). Economies of scope and the scope of the enterprise. Journal of Economic Behavior & Organization, 1(3), 223-247.";
+    const a = L.analyze(ms), probs = a.businessResearchIssues.map(i => i.problem).join(" | "), desk = a.deskScreen.criteria.flatMap(c => c.checks).map(c => c.s + ":" + c.t).join(" | ");
+    ok(!/Methods missing/.test(desk) && /Literature or theory section present/.test(desk), "plain-text headings: methods and literature found");
+    ok(!/No named theory/.test(probs) && !/No managerial or practical implications/.test(probs), "economies of scope / opportunity cost are theories; 'Implications for small-business owners' counts");
+    ok(!/Endogeneity/.test(probs) && !/Standard errors: clustering/.test(probs), "no regression checks on a bounds paper");
+    const rd = RD.readiness(ms, { outputs: [{ name: "one table", text: "11.2 18.4" }] });
+    ok(!rd.penalties.some(p => p.area === "Number registry") || rd.numberRegistry.note === null, "registry penalty only when the outputs cover the paper");
+    const sub = L.parse("Abstract\nWe study firms in this paper and more words here.\n2.1 Economies of scope\nSome body text that is a full sentence about the topic.");
+    ok(sub.sections.find(s => /2\.1/.test(s.title)).role !== "abstract", "a numbered heading does not inherit the abstract's role");
+  }
+
 // statistics in R (skipped when R is not installed)
 const rDone = (async () => {
   const RS = require("../core/rstats.js"); if (!(await RS.available())) { console.log("R not installed: statistics tests skipped"); return; }

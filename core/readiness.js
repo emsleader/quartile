@@ -27,11 +27,14 @@ function readiness(text, { journal, guidelines, outputs = [] } = {}) {
   const bz = a.businessResearchIssues; add("Business-research design", bz.filter(b => b.severity === "high").length * PEN.bizHigh + bz.filter(b => b.severity === "med").length * PEN.bizMed, 15, bz.filter(b => b.severity !== "low").slice(0, 5).map(b => b.problem).join("; "));
   const rf = a.q1RuleFlags; add("Q1 writing rules", rf.filter(r => r.sev === "high").length * PEN.ruleHigh + rf.filter(r => r.sev === "med").length * PEN.ruleMed, 8, `${rf.length} rule flags`);
   const ai = AI.check(text, { maxFixes: 0 }); add("AI-style signal", ai.band === "high" ? PEN.aiHigh : ai.band === "moderate" ? PEN.aiModerate : 0, 10, `score ${ai.score} (${ai.band})`);
-  let reg = null; if (outputs.length) { reg = REG.registry(text, outputs); add("Number registry", reg.notFound * PEN.numNotFound, 15, `${reg.notFound} of ${reg.numbers} numbers not found in the supplied output`); }
+  let reg = null; if (outputs.length) { reg = REG.registry(text, outputs); const cov = reg.numbers ? reg.matched / reg.numbers : 1;
+    // when most numbers are untraced, the outputs supplied are probably incomplete: report it, do not penalise
+    if (cov >= 0.4) add("Number registry", reg.notFound * PEN.numNotFound, 10, `${reg.notFound} of ${reg.numbers} numbers not found in the supplied output`);
+    else reg.incomplete = `Only ${reg.matched} of ${reg.numbers} numbers matched: the outputs supplied probably do not cover all tables. Supply every output file to trace the rest; no penalty applied.`; }
   const total = items.reduce((s, i) => s + i.penalty, 0), score = Math.max(0, Math.round(100 - total));
   return { kind: "readiness", score, band: score >= 80 ? "ready to submit after a final read" : score >= 60 ? "revise before submitting" : "not ready: fix the listed problems first",
-    penalties: items.sort((x, y) => y.penalty - x.penalty), deskRisk: a.deskScreen.risk, aiStyle: { score: ai.score, band: ai.band }, numberRegistry: reg && { matched: reg.matched, notFound: reg.notFound, numbers: reg.numbers },
-    formula: "score = 100 − Σ penalties. Desk screen: 8 per failed check, 2 per warning (max 40). Statistics: 6 per high, 3 per other problem (max 25). References: 1 per citation missing from the list, 0.5 per unused entry (max 10). Business design: 3 per high, 1.5 per medium issue (max 15). Q1 rules: 1.5 per high, 0.5 per medium flag (max 8). AI-style: 4 moderate, 10 high. Number registry: 1 per untraced number (max 15).",
+    penalties: items.sort((x, y) => y.penalty - x.penalty), deskRisk: a.deskScreen.risk, aiStyle: { score: ai.score, band: ai.band }, numberRegistry: reg && { matched: reg.matched, notFound: reg.notFound, numbers: reg.numbers, note: reg.incomplete || null },
+    formula: "score = 100 − Σ penalties. Desk screen: 8 per failed check, 2 per warning (max 40). Statistics: 6 per high, 3 per other problem (max 25). References: 1 per citation missing from the list, 0.5 per unused entry (max 10). Business design: 3 per high, 1.5 per medium issue (max 15). Q1 rules: 1.5 per high, 0.5 per medium flag (max 8). AI-style: 4 moderate, 10 high. Number registry: 1 per untraced number (max 10), only when at least 40% of numbers are traced (fewer means the outputs are incomplete; no penalty).",
     note: "Readiness counts fixable problems; it does not predict acceptance. No tool can: decisions depend on contribution, fit, editor and reviewers. A high score means the paper is unlikely to be desk-rejected for avoidable reasons." };
 }
 module.exports = { readiness, PEN };

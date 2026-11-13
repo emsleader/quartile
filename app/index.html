@@ -549,7 +549,7 @@ const Core = (() => {
       const lvl = headingLevel(x.raw || x.title); let role = detectRole(x.title);
       while (stack.length && stack[stack.length - 1].lvl >= lvl) stack.pop();
       const parent = stack.length ? stack[stack.length - 1].role : null;
-      if (parent && (role === "other" || (["methods", "results"].includes(parent) && ["methods", "results"].includes(role)))) role = parent;
+      if (parent && !["abstract", "opening", "declarations", "references"].includes(parent) && (role === "other" || (["methods", "results"].includes(parent) && ["methods", "results"].includes(role)))) role = parent;
       stack.push({ lvl, role });
       if (x.paras.length) out.push({ ...x, role });
     }
@@ -564,8 +564,8 @@ const Core = (() => {
     if (/literature|theor|background|hypothes|framework|prior|proposition/.test(t)) return "literature";
     if (/boundar|rival|alternative explanation/.test(t)) return "discussion";
     const lead = t.replace(/^#+\s*/, "").replace(/^(\d+(\.\d+)*\.?|[ivx]+\.)\s*/, "");
-    if (/^(data|methods?|methodology|materials|sample|research (design|method)|empirical (strategy|design|setting)|measur|variables|study design|identification)\b/.test(lead) || /\b(data and (methods?|sample)|methodology|research design)\b/.test(t)) return "methods";
-    if (/^(results?|findings|empirical (results|analysis|evidence)|analysis|estimat|robustness)\b/.test(lead) || /\b(results|findings)\b/.test(t)) return "results";
+    if (/^(data|methods?|methodology|materials|sample|research (design|method)|empirical (strategy|design|setting)|measur|variables|study design|identification|model|calibration|parameters?|estimation (strategy|approach)|analytical (approach|framework)|approach|setting and data)\b/.test(lead) || /\b(data and (methods?|sample)|methodology|research design)\b/.test(t)) return "methods";
+    if (/^(results?|findings|empirical (results|analysis|evidence)|analysis|estimat|robustness|bounds|sensitivity|scenario)\b/.test(lead) || /\b(results|findings)\b/.test(t)) return "results";
     if (/discussion|implication/.test(t)) return "discussion";
     if (/conclu|limitation|future/.test(t)) return "conclusion";
     return "other";
@@ -752,7 +752,7 @@ const Core = (() => {
     return out;
   }
   // ---- business research checks (MBA / DBA / management and finance) ----
-  const THEORIES = ["financing hierarchy","pecking-order","credit rationing","asymmetric information","information asymmetry","relationship lending","resource-based view","resource based view","agency theory","transaction cost","institutional theory","dynamic capabilities","stakeholder theory","real options","pecking order","trade-off theory","signalling theory","signaling theory","upper echelons","contingency theory","technology acceptance","utaut","diffusion of innovation","social exchange","stewardship theory","legitimacy theory","prospect theory","behavioral theory of the firm","behavioural theory of the firm","knowledge-based view","financial constraints theory","life cycle theory","balanced scorecard","levers of control","cybernetic","goal-setting theory","expectancy theory","organizational learning","absorptive capacity","effectuation","bricolage"];
+  const THEORIES = ["financing hierarchy","pecking-order","credit rationing","asymmetric information","information asymmetry","relationship lending","resource-based view","resource based view","agency theory","transaction cost","institutional theory","dynamic capabilities","stakeholder theory","real options","pecking order","trade-off theory","signalling theory","signaling theory","upper echelons","contingency theory","technology acceptance","utaut","diffusion of innovation","social exchange","stewardship theory","legitimacy theory","prospect theory","behavioral theory of the firm","behavioural theory of the firm","knowledge-based view","financial constraints theory","life cycle theory","balanced scorecard","levers of control","cybernetic","goal-setting theory","expectancy theory","organizational learning","absorptive capacity","effectuation","bricolage","economies of scope","scope economies","economies of scale","opportunity cost","real option","sunk cost","investment irreversibility","irreversible investment","redeployab","switching cost","financial flexibility","bounded rationality","make-or-buy","theory of the firm","industrial organization","industrial organisation"];
   function bizChecks(paras, secs) {
     const out = [], body = paras.filter(p => !p.isRef && !p.isTable).map(p => p.text).join(" "), L = body.toLowerCase();
     const has = re => re.test(L), n = re => (L.match(re) || []).length;
@@ -769,7 +769,7 @@ const Core = (() => {
     const need = (cond, sev, problem, suggestion) => { if (!cond) out.push({ scope: "doc", category: "business research", severity: sev, problem, suggestion, author: true }); };
     const th = THEORIES.filter(t => L.includes(t));
     need(th.length > 0, "high", "No named theory. Business and management reviewers expect the argument to rest on an explicit theory (for example agency theory, resource-based view, real options).", "Name the theory in the introduction and use it to derive hypotheses or propositions.");
-    need(has(/\b(managerial|practical) (implications?|relevance|contributions?)|implications for (managers|practice|practitioners|policy|policymakers|regulators|the|ministries|banks|lenders)|policy (implications?|recommendations?|relevance)|for practitioners\b/), "med", "No managerial or practical implications.", "Add a short section on what managers or policymakers should do differently, grounded in the findings.");
+    need(has(/\b(managerial|practical) (implications?|relevance|contributions?)|implications for [a-z][\w-]*|policy (implications?|recommendations?|relevance)|for practitioners\b/), "med", "No managerial or practical implications.", "Add a short section on what managers or policymakers should do differently, grounded in the findings.");
     need(has(/\b(limitations?|caveats?|boundar(y|ies))\b/), "med", "Limitations are not discussed.", "Add a limitations paragraph stated as conditions on the findings.");
     need(has(/\b(future (research|studies|work|tests?)|further research|research agenda|programme for testing|program for testing)\b/), "low", "No direction for future research.", "Name one or two specific next studies.");
     if (method === "quantitative" || method === "survey") {
@@ -778,7 +778,8 @@ const Core = (() => {
       need(has(/\b(vif|variance inflation|multicollinearity|collinear\w*)\b/), "low", "Multicollinearity is not checked.", "Report VIF values.");
       need(has(/\b(robust\w*|sensitivity (analys[ie]s|specifications?|tests?|checks?)|alternative (measures?|specifications?|samples?|estimators?)|placebo)\b/), "med", "No robustness checks.", "Add alternative measures, samples or estimators.");
     }
-    if (method === "quantitative") {
+    const estimated = n(/\b(regressions?|regress\w*|coefficients?|ols|logit|probit|gmm|2sls|panel data|fixed effects?|estimated (model|equation|effect))\b/g) >= 2;
+    if (method === "quantitative" && estimated) {
       need(has(/\b(endogeneity|reverse causality|instrumental variables?|2sls|heckman|selection bias|omitted variables?|simultaneity|causal (effect|relation|explanation|interpretation)|not causal|does not identify|associational)\b/), "high", "Endogeneity is not addressed. This is one of the most common reasons business and finance reviewers reject empirical papers.", "Discuss reverse causality and omitted variables; use lags, fixed effects, instruments or a natural experiment where possible.");
       need(has(/\b(clustered|robust standard errors?|heteroskedasticity|heteroscedasticity|design-based|survey-design standard errors?|delta-method|bootstrap\w*|sampling design)\b/), "med", "Standard errors: clustering or heteroskedasticity-robust errors are not mentioned.", "State how standard errors are computed.");
       need(has(/\b(fixed effects?|industry dumm\w+|year dumm\w+|time dumm\w+|controls? for|controlling for|adjusting for|sector controls?|industry controls?)\b/), "low", "No fixed effects or industry/year controls mentioned.", "Control for industry and year, or explain why not.");
@@ -813,6 +814,10 @@ if (typeof module !== "undefined") module.exports = Core;
 
 </script>
 <script>
+// Statistical reporting checks for the Q1 engine.
+// statcheck-style recomputation of p-values (t, F, r, chi-square, z), regression-table consistency
+// (coefficient / SE / t / p / stars), impossible values, and software-output fingerprints.
+// These are consistency and plausibility checks. They cannot prove who or what produced a number.
 // Statistical reporting checks for the Q1 engine.
 // statcheck-style recomputation of p-values (t, F, r, chi-square, z), regression-table consistency
 // (coefficient / SE / t / p / stars), impossible values, and software-output fingerprints.

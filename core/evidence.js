@@ -97,7 +97,7 @@ function claimAudit(text) {
   })));
   const all = d.paras.filter(p => !p.isRef).map(p => p.text).join(" "); // headings included: "10. Conflict of interest" or "9. Limitations" are disclosures
   const checks = [
-    { ok: /\b(conflicts? of interest|competing interests?|declaration of interest|disclos\w+)\b/i.test(all), t: "Conflict-of-interest disclosure present", fix: "Disclose commercial roles in the industry studied, and mark related-party sources." },
+    { ok: /\b(conflicts? of interest|competing interests?|declarations? of interests?|disclos\w+|related[- ]part(y|ies))\b/i.test(all), t: "Conflict-of-interest disclosure present", fix: "Disclose commercial roles in the industry studied, and mark related-party sources." },
     { ok: /\b(OBSERVED|DERIVED|CONDITIONAL|NOT IDENTIFIED|not identified|conditional on|under the assumption)\b/.test(all), t: "Evidence status stated for results", fix: "Label results as observed, derived, conditional on assumptions, or not identified." },
     { ok: !/\b(market share|growth rate)\b/i.test(all) || /\b(not identified|cannot (be )?(estimat|identif))/i.test(all), t: "Share or growth either identified or explicitly not identified", fix: "If the data are a snapshot, say that share and growth are not identified." },
     { ok: /\b(limitations?|threats to validity)\b/i.test(all), t: "Limitations section or paragraph", fix: "State what the evidence cannot show." },
