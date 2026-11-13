@@ -250,3 +250,36 @@ q_chart <- function(d, a) {
     stop(paste0("Unknown chart type '", type, "'")))
   out
 }
+
+# ---- data audit: what the file actually holds, before any analysis ----
+q_data_audit <- function(d, id = NULL) {
+  cols <- lapply(names(d), function(v) { x <- d[[v]]; xn <- suppressWarnings(as.numeric(as.character(x))); nn <- sum(!is.na(x) & !(as.character(x) %in% c("", "NA")))
+    numeric_share <- if (nn) sum(!is.na(xn)) / nn else 0; type <- if (numeric_share > .95) "numeric" else if (numeric_share > .5) "mixed (mostly numeric)" else "text/category"
+    o <- list(variable = v, type = type, n_nonmissing = nn, missing = nrow(d) - nn, missing_pct = 100 * (nrow(d) - nn) / max(nrow(d), 1), distinct = length(unique(x[!is.na(x)])))
+    if (type != "text/category") { z <- xn[!is.na(xn)]; q <- quantile(z, c(.25, .75)); iqr <- q[2] - q[1]
+      o <- c(o, list(min = min(z), median = median(z), max = max(z), mean = mean(z), sd = sd(z), outliers_iqr = sum(z < q[1] - 3 * iqr | z > q[2] + 3 * iqr), zeros = sum(z == 0), negatives = sum(z < 0),
+        non_numeric_values = if (numeric_share < 1) paste(head(unique(as.character(x[is.na(xn) & !is.na(x) & as.character(x) != ""])), 5), collapse = "; ") else "")) }
+    else o$top_values <- paste(head(names(sort(table(x), decreasing = TRUE)), 5), collapse = "; ")
+    o })
+  dup_rows <- sum(duplicated(d))
+  dup_ids <- if (!is.null(id) && id %in% names(d)) sum(duplicated(d[[id]])) else NA
+  list(rows = nrow(d), columns = ncol(d), duplicate_rows = dup_rows, duplicate_ids = dup_ids, id = id %||% NA, complete_rows = sum(complete.cases(d)), variables = cols)
+}
+
+# ---- statistical power and sample size (closed-form or noncentral distributions; base R) ----
+q_power <- function(a) {
+  test <- a$test; alpha <- a$alpha %||% .05; pw <- a$power; n <- a$n; es <- a$effect
+  if (is.null(es) && test != "proportions") stop("Give the expected effect size ('effect').")
+  solve_n <- function(fun, lo = 2, hi = 1e6) { if (fun(hi) < pw) return(NA); while (hi - lo > 1) { m <- floor((lo + hi) / 2); if (fun(m) >= pw) hi <- m else lo <- m }; hi }
+  r <- switch(test,
+    ttest = { f <- function(nn) power.t.test(n = nn, delta = es, sd = 1, sig.level = alpha)$power; list(effect = "Cohen's d", per_group = !is.null(pw) && is.null(n), n_per_group = if (is.null(n)) solve_n(f) else n, power = if (is.null(n)) pw else f(n)) },
+    paired = { f <- function(nn) power.t.test(n = nn, delta = es, sd = 1, sig.level = alpha, type = "paired")$power; list(effect = "Cohen's dz", n_pairs = if (is.null(n)) solve_n(f) else n, power = if (is.null(n)) pw else f(n)) },
+    correlation = { f <- function(nn) { z <- atanh(es) * sqrt(nn - 3); pnorm(z - qnorm(1 - alpha / 2)) + pnorm(-z - qnorm(1 - alpha / 2)) }; list(effect = "r", n = if (is.null(n)) solve_n(function(nn) f(max(nn, 4))) else n, power = if (is.null(n)) pw else f(n)) },
+    anova = { k <- a$groups %||% 3; f <- function(nn) { N <- nn * k; pf(qf(1 - alpha, k - 1, N - k), k - 1, N - k, ncp = es^2 * N, lower.tail = FALSE) }; list(effect = "Cohen's f", groups = k, n_per_group = if (is.null(n)) solve_n(f) else n, power = if (is.null(n)) pw else f(n)) },
+    regression = { u <- a$predictors %||% 1; f <- function(N) { v <- N - u - 1; if (v < 1) return(0); pf(qf(1 - alpha, u, v), u, v, ncp = es * N, lower.tail = FALSE) }; list(effect = "Cohen's f² for the tested predictors", predictors_tested = u, n = if (is.null(n)) solve_n(f, lo = u + 2) else n, power = if (is.null(n)) pw else f(n)) },
+    proportions = { p1 <- a$p1; p2 <- a$p2; if (is.null(p1) || is.null(p2)) stop("Give p1 and p2."); f <- function(nn) power.prop.test(n = nn, p1 = p1, p2 = p2, sig.level = alpha)$power; list(effect = "two proportions", p1 = p1, p2 = p2, n_per_group = if (is.null(n)) solve_n(f) else n, power = if (is.null(n)) pw else f(n)) },
+    survival = { hr <- es; share <- a$allocation %||% .5; pw0 <- pw %||% .8; ev <- ceiling((qnorm(1 - alpha / 2) + qnorm(pw0))^2 / (share * (1 - share) * log(hr)^2)); er <- a$event_rate
+      list(effect = "hazard ratio", method = "Schoenfeld (1983) events formula", events_needed = ev, allocation = share, firms_needed = if (!is.null(er)) ceiling(ev / er) else NA, event_rate = er %||% NA, power = pw0) },
+    stop("test must be ttest, paired, correlation, anova, regression, proportions or survival"))
+  c(list(test = test, alpha = alpha, effect_size = es), r)
+}

@@ -113,6 +113,19 @@ let corpusDone = Promise.resolve();
   ok(!oa.businessResearchIssues.some(x => /could be tested/.test(x.problem)), "a testing section satisfies the testability check");
 }
 
+// evidence ledger and claim audit
+{
+  const EV = require("../core/evidence.js");
+  const led = EV.template() + 'C002,"Market share of standalone studios is 40%",https://x.org,Directory,,2026-11-09,2026-11-09,web directory snapshot,DE,,,fitness,WB-EMS,standalone,web record,2026-11,40,,percent,,A,OBSERVED,,,,no,\nC003,"EMS service profit margin 18%",,Annual accounts,,,,official filing,RO,J40/1,,fitness,WB-EMS,integrated,legal entity,2024,18,,percent,p.4,A,DERIVED,,,,yes,\nC003,"Studio closed in 2023",,Wayback,,,,wayback snapshot,PL,,,,,standalone,site,2023,,,,,C,OBSERVED,,,,no,\n';
+  const lc = EV.checkLedger(led), probs = lc.issues.map(i => i.problem).join(" | ");
+  ok(lc.claims === 4 && /Grade A with source type/.test(probs) && /market share, growth or resilience/.test(probs), "ledger: grade A on a snapshot, snapshot used for share");
+  ok(/Service-level profit from legal-entity accounts/.test(probs) && /DERIVED without calculation_method/.test(probs) && /Duplicate claim_id/.test(probs) && /missing archive snapshots/.test(probs) && /Related-party/.test(probs), "ledger: entity profit, derivation, duplicates, Wayback, related party");
+  ok(EV.checkLedger(EV.template()).high === 0, "template passes");
+  const ca = EV.claimAudit("# Results\n\nBased on the November 2026 web snapshot, standalone studios hold a market share of 40%. The protocol was preregistered on Zenodo after an initial look at the data. Using annual accounts, integrated EMS services are more profitable. Survival is higher among studios still operating today. Integration causes higher margins in this cross-sectional survey.\n\n# Limitations\n\nWe disclose commercial roles (conflicts of interest).");
+  ok(["snapshot", "prereg", "entity-profit", "survival", "causal"].every(r => ca.findings.some(f => f.rule === r)), "claim audit flags the five overclaims");
+  ok(EV.claimAudit("# Results\n\nThis is a time-stamped protocol, not a prospective preregistration, published after data exploration. Prices are advertised asking prices.").findings.length === 0, "claim audit leaves correct wording alone");
+}
+
 // statistics in R (skipped when R is not installed)
 const rDone = (async () => {
   const RS = require("../core/rstats.js"); if (!(await RS.available())) { console.log("R not installed: statistics tests skipped"); return; }
@@ -132,6 +145,9 @@ const rDone = (async () => {
   const fx = fe.results[0].result.coefficients.find(c => c.term === "x");
   ok(fe.results[0].result.coefficients.length === 2 && Math.abs(fx.b - 1.0769231) < 1e-6 && /4 clusters/.test(fe.results[0].result.se_type), "panel regression: fixed effects absorbed, clustered SEs");
   ok(fe.results[1].result.groups.length === 4 && fe.results[1].result.cox, "survival: Kaplan-Meier by group and Cox model");
+  const pw = await RS.run({ data: csv, charts: false, analyses: [{ procedure: "power", test: "ttest", effect: 0.5, power: 0.8 }, { procedure: "power", test: "regression", effect: 0.02, predictors: 1, power: 0.8 }, { procedure: "power", test: "survival", effect: 0.6, power: 0.8 }, { procedure: "data_audit", id: "g" }] });
+  ok(pw.results[0].result.n_per_group === 64 && pw.results[1].result.n === 395 && pw.results[2].result.events_needed === 121, "power matches G*Power and Schoenfeld values");
+  ok(pw.results[3].result.rows === 8 && pw.results[3].result.duplicate_ids === 6, "data audit counts rows and duplicate ids");
   const bad = await RS.run({ data: csv, analyses: [{ procedure: "anova", variable: "zz", group: "g" }] }); ok(bad.error && /no column 'zz'/.test(bad.problems[0]), "unknown columns rejected before R runs");
 })();
 
@@ -143,7 +159,7 @@ const rDone = (async () => {
   const c = new Client({ name: "test", version: "1" });
   await c.connect(new StdioClientTransport({ command: process.execPath, args: [path.join(__dirname, "..", "mcp", "server.js")] }));
   const tools = (await c.listTools()).tools.map(t => t.name);
-  ok(tools.length === 27 && ["integrity_screen", "ai_style_check", "number_registry", "submission_readiness", "verify_references_live", "literature_overlap", "grammar_check", "corpus_profile_export", "prose_check", "benchmark_corpus", "run_statistics"].every(t => tools.includes(t)), "27 tools");
+  ok(tools.length === 29 && ["integrity_screen", "ai_style_check", "number_registry", "submission_readiness", "verify_references_live", "literature_overlap", "grammar_check", "corpus_profile_export", "prose_check", "benchmark_corpus", "run_statistics", "evidence_ledger", "claim_audit"].every(t => tools.includes(t)), "29 tools");
   const r = await c.callTool({ name: "verify_rewrite", arguments: { original: "Sales rose 5%.", revised: "Sales rose 7%." } });
   ok(r.structuredContent.pass === false, "tool call over stdio");
   const pr = (await c.listPrompts()).prompts.map(p => p.name); ok(pr.length === 3, "3 prompts");

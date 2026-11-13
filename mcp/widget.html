@@ -120,6 +120,17 @@ function render(d) {
     h += `<div class="stats">${tile(d.sentencesQueried, "sentences searched")}${tile(d.sentencesWithMatches, "with a match")}</div>` + (d.warning ? `<p><span class="pill high">not checked</span>${E(d.warning)}</p>` : "");
     h += d.hits.length ? `<ul>${d.hits.map(x => `<li>${E(x.sentence)}<div class="q">"${E(x.phrase)}" also in: ${x.matches.map(m => E(m.title) + (m.doi ? " (doi:" + E(m.doi) + ")" : "")).join("; ")}</div></li>`).join("")}</ul>` : d.warning ? "" : `<p><span class="pill ok">no exact matches</span></p>`;
     h += `<p class="q">${E(d.note)}</p>`;
+  } else if (d.kind === "ledger") {
+    k.textContent = "Evidence ledger";
+    if (d.error || d.template) { h += `<p>${E(d.error || d.note)}</p><pre style="white-space:pre-wrap;font-size:11px">${E(d.template || "")}</pre>`; }
+    else { h += `<div class="stats">${tile(d.claims, "claims")}${tile(d.high, "serious issues")}${tile(Object.entries(d.byGrade).map(([g, n]) => g + ":" + n).join(" "), "by grade")}${tile(Object.entries(d.byStatus).map(([g, n]) => g.slice(0, 4) + ":" + n).join(" "), "by status")}</div>`;
+      h += d.issues.length ? `<ul>${d.issues.slice(0, 60).map(i => `<li><span class="pill ${sev(i.severity)}">${E(i.claim_id)}</span>${E(i.problem)}<div class="q">${E(i.fix)}</div></li>`).join("")}</ul>` : `<p><span class="pill ok">no issues</span></p>`; h += `<p class="q">${E(d.note)}</p>`; }
+  } else if (d.kind === "claims") {
+    k.textContent = "Claim audit";
+    h += `<div class="stats">${tile(d.flagged, "sentences flagged")}${tile(d.checks.filter(c => c.ok).length + "/" + d.checks.length, "checks passed")}</div>`;
+    h += `<ul>${d.checks.map(c => `<li><span class="pill ${c.ok ? "ok" : "med"}">${c.ok ? "yes" : "no"}</span>${E(c.t)}${c.ok ? "" : `<div class="q">${E(c.fix)}</div>`}</li>`).join("")}</ul>`;
+    if (d.findings.length) h += `<h3>Flagged sentences</h3><ul>${d.findings.slice(0, 40).map(f => `<li><span class="pill high">${E(f.label)}</span>${E(f.sentence)}<div class="q">${E(f.fix)}</div></li>`).join("")}</ul>`;
+    h += `<p class="q">${E(d.note)}</p>`;
   } else if (d.kind === "rstats") {
     k.textContent = "Statistics (R)";
     if (d.error) { o.innerHTML = `<p class="empty">${E(d.error)}</p>` + (d.problems ? `<ul>${d.problems.map(x => `<li class="q">${E(x)}</li>`).join("")}</ul>` : ""); return; }
