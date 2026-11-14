@@ -1,4 +1,4 @@
-# Quartile EGBA-Time, base R. Same rules as ClockBind clockbind/stats/egba_time.py:
+# Quartile EGBA-Time, base R. Rules:
 # stage-sum bounds from evidence grades (intersection in ladder order), optional direct total interval,
 # censoring for pending routes (latency >= elapsed), interval answers with their own unit, classification against
 # the action window (surely on time / surely late / undetermined / not usable / not identified), temporal margin,

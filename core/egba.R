@@ -1,4 +1,4 @@
-# Quartile EGBA (Evidence-Graded Bounds Analysis), base R. Same rules as ClockBind clockbind/stats/egba.py.
+# Quartile EGBA (Evidence-Graded Bounds Analysis), base R.
 # Evidence grades are admitted in ladder order (default A-E documentary/public, S survey answers, I interviews).
 # A parameter's interval is the intersection of the intervals admitted so far; no interval yet = NOT IDENTIFIED;
 # a non-overlapping new interval is recorded as a conflict and the earlier interval is kept. Survey evidence may be
