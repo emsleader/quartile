@@ -8,3 +8,4 @@ data/*.csv
 !data/style-profile.json
 !data/corpus-profile.json
 !data/corpus-sources.json
+!data/prose-rules.json
