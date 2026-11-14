@@ -853,6 +853,10 @@ if (typeof module !== "undefined") module.exports = Core;
 // statcheck-style recomputation of p-values (t, F, r, chi-square, z), regression-table consistency
 // (coefficient / SE / t / p / stars), impossible values, and software-output fingerprints.
 // These are consistency and plausibility checks. They cannot prove who or what produced a number.
+// Statistical reporting checks for the Q1 engine.
+// statcheck-style recomputation of p-values (t, F, r, chi-square, z), regression-table consistency
+// (coefficient / SE / t / p / stars), impossible values, and software-output fingerprints.
+// These are consistency and plausibility checks. They cannot prove who or what produced a number.
 const Stats = (() => {
   // ---- special functions ----
   function lgamma(x) {

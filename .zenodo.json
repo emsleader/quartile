@@ -6,6 +6,6 @@
   "license": "MIT",
   "access_right": "open",
   "keywords": ["academic writing", "research integrity", "statcheck", "hallucination guard", "model context protocol", "journal selection", "business research"],
-  "version": "0.11.0",
+  "version": "0.16.0",
   "language": "eng"
 }

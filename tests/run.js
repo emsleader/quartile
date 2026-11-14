@@ -185,6 +185,17 @@ const rDone = (async () => {
   ok(Math.abs(ex.paired.E1_low[0] + 43) < 1e-9 && Math.abs(ex.paired.E1_high[0] + 6) < 1e-9 && ex.paired.label[0] === "integration favoured", "EGBA paired bounds match the hand calculation");
   ok(Math.abs(ex.frontier.oI_star_IR[0] - 14) < 1e-9 && er.results[0].result.cells["YY:all"].status === "NOT IDENTIFIED" && ex.norp.paired === undefined || typeof ex.norp.paired === "string", "EGBA frontier, NOT IDENTIFIED cell, related-party rerun");
   ok(er.figures.filter(f => /EGBA/.test(f.title)).length === 4 && er.apa.some(l => /E1 from -43.00 to -6.00/.test(l)), "EGBA figures and APA lines");
+  // egba_bounds, egba_time and survey_plan (hand-checked)
+  const SP = require("../core/surveyplan.js");
+  const gb = await SP.egba({ expression: "o_I - rho*p_S + (F_I - F_S)/Q", fixed: { Q: 1000 }, parameters: { o_I: { E: [2, 8] }, rho: { B: [0.08, 0.1] }, p_S: { D: [50, 100] }, F_I: { C: [5000, 10000], S: [6000, 9000] }, F_S: { C: [20000, 40000], I: [50000, 60000] } }, breakdown_parameter: "o_I", breakdown_side: "high" });
+  const rE = gb.rungs.find(r => r.rung === "E"), rS = gb.rungs.find(r => r.rung === "S");
+  ok(gb.rungs[0].status === "NOT IDENTIFIED" && rE.low === -43 && rE.high === -6 && rS.low === -42 && rS.high === -7 && gb.conflicts.length === 1 && gb.conflicts[0].rung === "I" && gb.breakdown.value === 15, "egba_bounds: ladder intersection, interview conflict kept out, breakdown value");
+  const gx = await SP.egba({ expression: "system('id') + a", parameters: { a: { A: [1, 2] } } });
+  ok(/not allowed/.test(gx.error || ""), "egba_bounds rejects functions outside the arithmetic whitelist");
+  const gt = await SP.egbaTime({ routes: [{ id: "bank", window: 60, stages: { approval: { A: [10, 20], S: [30, 40] }, disb: { S: { low: 1, high: 2, unit: "weeks" } } } }, { id: "lease", status: "pending", elapsed: 30, window: 45 }, { id: "x", status: "refused" }] });
+  ok(gt.routes[0].latency.join() === "17,34" && gt.routes[0].label === "surely on time" && gt.routes[1].label === "undetermined" && gt.routes[2].label === "not usable" && Math.abs(gt.share_usable_in_time.lower - 1 / 3) < 1e-9 && Math.abs(gt.share_usable_in_time.upper - 2 / 3) < 1e-9 && gt.conflicts.length === 1, "egba_time: stage sums, censoring, Manski share, conflict");
+  const sp = await SP.plan({ groups: [{ name: "DE", population: 2000, response_rate: 0.1 }, { name: "NL", population: 1500 }], papers: [{ name: "P2", components: [{ type: "cfa", items: 12, factors: 3, per_group: true }, { type: "two_group", d: 0.5 }] }] });
+  ok(sp.papers[0].components[1].n_per_arm === 64 && sp.groups[0].completes_needed === 191 && sp.groups[0].invitations_needed === 2248 && sp.groups[0].feasible_with_population === false, "survey_plan: t-test n, finite population correction, invitations");
   const bad = await RS.run({ data: csv, analyses: [{ procedure: "anova", variable: "zz", group: "g" }] }); ok(bad.error && /no column 'zz'/.test(bad.problems[0]), "unknown columns rejected before R runs");
 })();
 
@@ -196,7 +207,7 @@ const rDone = (async () => {
   const c = new Client({ name: "test", version: "1" });
   await c.connect(new StdioClientTransport({ command: process.execPath, args: [path.join(__dirname, "..", "mcp", "server.js")] }));
   const tools = (await c.listTools()).tools.map(t => t.name);
-  ok(tools.length === 29 && ["integrity_screen", "ai_style_check", "number_registry", "submission_readiness", "verify_references_live", "literature_overlap", "grammar_check", "corpus_profile_export", "prose_check", "benchmark_corpus", "run_statistics", "evidence_ledger", "claim_audit"].every(t => tools.includes(t)), "29 tools");
+  ok(tools.length === 32 && ["integrity_screen", "ai_style_check", "number_registry", "submission_readiness", "verify_references_live", "literature_overlap", "grammar_check", "corpus_profile_export", "prose_check", "benchmark_corpus", "run_statistics", "evidence_ledger", "claim_audit", "survey_plan", "egba_bounds", "egba_time"].every(t => tools.includes(t)), "32 tools");
   const r = await c.callTool({ name: "verify_rewrite", arguments: { original: "Sales rose 5%.", revised: "Sales rose 7%." } });
   ok(r.structuredContent.pass === false, "tool call over stdio");
   const pr = (await c.listPrompts()).prompts.map(p => p.name); ok(pr.length === 3, "3 prompts");

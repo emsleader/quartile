@@ -1,6 +1,6 @@
 {
   "name": "q1-engine-mcp",
-  "version": "0.11.0",
+  "version": "0.16.0",
   "description": "MCP server for the Q1 Engine: deterministic academic-manuscript checks (hallucination guard, desk-rejection screen, statistics recomputation, references, Q1 style rules, journal bank) for Claude, ChatGPT and any MCP client.",
   "type": "commonjs",
   "main": "server.js",

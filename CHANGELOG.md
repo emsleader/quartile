@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.16.0 (2026-11-14)
+- New tool `egba_bounds`: Evidence-Graded Bounds Analysis for any arithmetic target expression, with survey (S) and interview (I) evidence grades after the documentary grades A-E. Each rung intersects the admitted intervals; an interval that does not overlap is reported as a conflict and the earlier one is kept, so survey or interview evidence can narrow the bounds but never overrule documentary evidence. Survey answers may be raw values (95% CI of the mean or 10th-90th percentiles). Returns bounds and a label at every rung, conflicts and the breakdown value of a chosen parameter. Only arithmetic operators and min, max, abs, log, exp and sqrt are accepted in the expression.
+- New tool `egba_time` (EGBA-Time): bounds on the activation latency of each financing route from stage intervals (with their own units), censoring of pending routes, classification against the action window (surely on time, surely late, undetermined, not usable, not identified), and Manski worst-case bounds on the share of routes usable in time with 95% Wilson intervals. Unnamed stage lists are refused with a clear message.
+- New tool `survey_plan`: sample size per planned analysis in R (conjoint, Johnson-Orme; two-group t test; CFA RMSEA close-fit power per group, MacCallum, Browne & Sugawara 1996; incremental regression f2; logistic EPV and outcome-rate precision, Peduzzi et al. 1996 and Riley et al. 2020; correlation), completes per group, finite population correction, invitations by response rate, completion loss and eligibility, survey length, k-anonymity check and anonymity design rules.
+- All three return the R script and a reproducibility record (R version, script and procedure SHA-256). Base R only; no new packages.
+
+## 0.15.0 (2026-11-13)
+- `run_statistics` procedure `egba`: paired E1 bounds, breakdown frontier with the M2 ceiling, evidence ladder and related-party rerun, with figures. Unnumbered sub-headings take the role of the section above them.
+
+## 0.14.x (2026-11-13)
+- 0.14.0: `evidence_ledger`, `claim_audit`, data audit and power analysis procedures. 0.14.1-0.14.3: claim audit handles denials and headings; ledger accepts NOT_IDENTIFIED without a grade; heading detection for plain-text exports; more theories and implications; no regression checks on bounds papers; number-registry penalty only with sufficient coverage.
+
+## 0.13.0 (2026-11-12)
+- Panel regression (fixed effects, clustered SEs, weights, ANCOVA), survival analysis (Kaplan-Meier, log-rank, Cox), chart builder.
+
+## 0.12.0 (2026-11-12)
+- Excel in and out; figures drawn by R for every procedure.
+
 ## 0.11.0 (2026-11-12)
 - `run_statistics`: SPSS-style procedures run in R (`core/rstats.R`, base R + foreign): descriptives, frequencies, crosstab, t-tests, one-way ANOVA, correlations, OLS (HC1 option), logistic regression, Cronbach's alpha, EFA, Shapiro-Wilk. CSV or SPSS .sav input. Returns APA-style sentences, the exact R script, a reproducibility record (data and script SHA-256, R and package versions, time) and `output_text` for the number registry, so every reported number can be traced to this run. Checked against known results on R's mtcars data. Only fixed procedures run on the hosted server; custom R code needs a local install with `QUARTILE_ALLOW_R_CODE=1`.
 - The server image now includes R.
