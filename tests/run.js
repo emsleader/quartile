@@ -207,10 +207,14 @@ const rDone = (async () => {
   const c = new Client({ name: "test", version: "1" });
   await c.connect(new StdioClientTransport({ command: process.execPath, args: [path.join(__dirname, "..", "mcp", "server.js")] }));
   const tools = (await c.listTools()).tools.map(t => t.name);
-  ok(tools.length === 32 && ["integrity_screen", "ai_style_check", "number_registry", "submission_readiness", "verify_references_live", "literature_overlap", "grammar_check", "corpus_profile_export", "prose_check", "benchmark_corpus", "run_statistics", "evidence_ledger", "claim_audit", "survey_plan", "egba_bounds", "egba_time"].every(t => tools.includes(t)), "32 tools");
+  ok(tools.length === 34 && ["integrity_screen", "ai_style_check", "number_registry", "submission_readiness", "verify_references_live", "literature_overlap", "grammar_check", "corpus_profile_export", "prose_check", "benchmark_corpus", "run_statistics", "evidence_ledger", "claim_audit", "survey_plan", "egba_bounds", "egba_time", "paragraph_flow", "next_paragraph_brief"].every(t => tools.includes(t)), "34 tools");
   const r = await c.callTool({ name: "verify_rewrite", arguments: { original: "Sales rose 5%.", revised: "Sales rose 7%." } });
   ok(r.structuredContent.pass === false, "tool call over stdio");
-  const pr = (await c.listPrompts()).prompts.map(p => p.name); ok(pr.length === 3, "3 prompts");
+  const pf = await c.callTool({ name: "paragraph_flow", arguments: { section_text: "A sample was collected. The study uses those data.\\n\\nThe sample is then followed. Its new respondents differ.", section_role: "methods" } });
+  ok(pf.structuredContent.paragraphCount === 2, "paragraph_flow MCP call");
+  const np = await c.callTool({ name: "next_paragraph_brief", arguments: { locked_paragraphs: ["The firms were surveyed."], next_paragraph_purpose: "Define the denominator", verified_evidence: ["The source data include 656 firms in 2019"] } });
+  ok(np.structuredContent.stage === "ONE_PARAGRAPH_ONLY" && np.structuredContent.paragraphNumber === 2, "next_paragraph_brief MCP call");
+  const pr = (await c.listPrompts()).prompts.map(p => p.name); ok(pr.length === 4 && pr.includes("connected_paragraph_edit"), "4 prompts");
   await c.close();
   console.log(`All ${n} tests passed.`);
 })().catch(e => { console.error(e); process.exit(1); });
