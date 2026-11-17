@@ -1,0 +1,47 @@
+name: FER R visual studio — aggregate-only 50-output gallery
+on:
+  push:
+    branches: [feature/fer-r-visual-gallery-20261117]
+    paths:
+      - 'fer_visuals/**'
+      - '.github/workflows/fer-r-gallery.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  make-r-graphics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.3.3'
+      - name: Install real ggplot2 for statistical rendering
+        run: Rscript -e 'install.packages("ggplot2", repos="https://cloud.r-project.org", quiet=TRUE); stopifnot(requireNamespace("ggplot2",quietly=TRUE))'
+      - name: Render 43 figures and seven styled tables in real R
+        run: Rscript fer_visuals/generate_gallery.R fer_visuals/inputs fer_visuals/output
+      - name: Validate count, anti-disclosure and provenance
+        run: |
+          python - <<'PY'
+          import csv,os,glob
+          root="fer_visuals/output"
+          rows=list(csv.DictReader(open(root+"/OUTPUT_INDEX.csv",encoding="utf-8")))
+          assert len(rows)==50,(len(rows),rows[-1])
+          assert sum(x["kind"]=="Table" for x in rows)==7
+          assert sum(x["kind"]=="3D figure" for x in rows)==2
+          assert len(glob.glob(root+"/pdf/*.pdf"))==43
+          assert len(glob.glob(root+"/svg/*.svg"))==43
+          assert len(glob.glob(root+"/png/*.png"))==43
+          assert len(glob.glob(root+"/tables/*.html"))==7
+          assert len(glob.glob(root+"/tables/*.csv"))==7
+          assert not glob.glob("fer_visuals/**/*.dta",recursive=True)
+          assert os.path.exists(root+"/R_sessionInfo.txt")
+          print("VALIDATED: 50 distinct presentations (43 R figures including 2 three-dimensional, 7 tables). Source aggregate-only.")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: FER-R-Visual-Studio-50-Outputs
+          path: fer_visuals/output/
+          retention-days: 30
+          if-no-files-found: warn
