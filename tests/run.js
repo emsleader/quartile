@@ -210,7 +210,7 @@ const rDone = (async () => {
   ok(tools.length === 34 && ["integrity_screen", "ai_style_check", "number_registry", "submission_readiness", "verify_references_live", "literature_overlap", "grammar_check", "corpus_profile_export", "prose_check", "benchmark_corpus", "run_statistics", "evidence_ledger", "claim_audit", "survey_plan", "egba_bounds", "egba_time", "paragraph_flow", "next_paragraph_brief"].every(t => tools.includes(t)), "34 tools");
   const r = await c.callTool({ name: "verify_rewrite", arguments: { original: "Sales rose 5%.", revised: "Sales rose 7%." } });
   ok(r.structuredContent.pass === false, "tool call over stdio");
-  const pf = await c.callTool({ name: "paragraph_flow", arguments: { section_text: "A sample was collected. The study uses those data.\\n\\nThe sample is then followed. Its new respondents differ.", section_role: "methods" } });
+  const pf = await c.callTool({ name: "paragraph_flow", arguments: { section_text: ["A sample was collected. The study uses those data.", "The sample is then followed. Its new respondents differ."].join(String.fromCharCode(10,10)), section_role: "methods" } });
   ok(pf.structuredContent.paragraphCount === 2, "paragraph_flow MCP call");
   const np = await c.callTool({ name: "next_paragraph_brief", arguments: { locked_paragraphs: ["The firms were surveyed."], next_paragraph_purpose: "Define the denominator", verified_evidence: ["The source data include 656 firms in 2019"] } });
   ok(np.structuredContent.stage === "ONE_PARAGRAPH_ONLY" && np.structuredContent.paragraphNumber === 2, "next_paragraph_brief MCP call");
