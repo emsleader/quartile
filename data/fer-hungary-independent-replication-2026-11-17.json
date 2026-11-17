@@ -1,0 +1,134 @@
+{
+  "project": "FER Hungarian SME Investment",
+  "date": "2026-11-17",
+  "evidence_status": "Independent Python replication complete; original R scripts NOT executed",
+  "source_dataset": {
+    "description": "WBES Hungary four-wave 2009/2013/2019/2023 user-supplied panel",
+    "n_rows": 2237,
+    "n_variables": 811,
+    "sha256": "973e1fb3cbf09e78be671aef28be70f4bfe2815e7a74c57406bbcb450142ecdc",
+    "restricted_storage": "Google Drive / Hungary_WBES_Paper / FER_Submission / WBES_Hungary_Source_Archive_2026-11-17",
+    "raw_data_in_repo": false
+  },
+  "samples": {
+    "wave_2019": 805,
+    "wave_2023": 831,
+    "eligible_2019": 656,
+    "eligible_2023": 664,
+    "reinterviewed_2019_baseline": 244,
+    "continuers_own_wave": 240,
+    "entrants_wave_only_2023": 424,
+    "leavers_wave_only_2019": 416
+  },
+  "point_estimates": {
+    "weighted_2019_purchase_pct": 54.2730583,
+    "weighted_2023_purchase_pct": 63.6238314,
+    "cross_section_change_pp": 9.35077318,
+    "matched_change_pp": -6.14754098,
+    "gap_pp": 15.49831417,
+    "within_symmetric_pp": -3.41412218,
+    "continuing_weight_pp": -1.85767285,
+    "net_sample_turnover_pp": 14.62256821,
+    "adjusted_entrant_leaver_LPM_pp": 20.47510807,
+    "IPW_matched_change_pp": -0.772323,
+    "standardised_entrant_leaver_gap_pp": 19.76285883,
+    "mcnemar_exact_p": 0.17156469715
+  },
+  "regression_diagnostics": {
+    "logit_N": 656,
+    "reinterviewed": 244,
+    "logit_purchase_coefficient": 0.44384682,
+    "logit_purchase_model_SE": 0.17479648,
+    "logit_purchase_p": 0.01110998,
+    "logit_purchase_OR": 1.55869171,
+    "logit_purchase_OR_CI95": [
+      1.1065485,
+      2.1955837
+    ],
+    "propensity_min": 0.16680244,
+    "propensity_max": 0.58757216,
+    "IPW_effective_N": 227.941237,
+    "maximum_absolute_balance_SMD_after": 0.01911984,
+    "lpm_grp_HC1_SE_pp": 5.91954839,
+    "lpm_grp_HC1_p": 0.000569919,
+    "IPW_refit_failures_in_1000": 0,
+    "IPW_refit_failures_in_5000": 0
+  },
+  "independent_bootstrap_CI95": {
+    "B1000": {
+      "cross_section_pp": [
+        1.1011,
+        17.998
+      ],
+      "gap_pp": [
+        5.7973,
+        24.1173
+      ],
+      "IPW_change_pp": [
+        -7.9593,
+        7.1547
+      ],
+      "adjusted_LPM_pp": [
+        9.1159,
+        32.2136
+      ],
+      "turnover_pp": [
+        7.6706,
+        21.957
+      ],
+      "IPW_minus_unweighted_pp": [
+        0.1131,
+        11.5009
+      ]
+    },
+    "B5000": {
+      "cross_section_pp": [
+        0.5494,
+        17.9966
+      ],
+      "gap_pp": [
+        6.3539,
+        24.51
+      ],
+      "IPW_change_pp": [
+        -8.1376,
+        6.9122
+      ],
+      "adjusted_LPM_pp": [
+        8.9945,
+        32.0465
+      ],
+      "turnover_pp": [
+        7.3973,
+        21.6532
+      ],
+      "IPW_minus_unweighted_pp": [
+        -0.0883,
+        11.2261
+      ]
+    }
+  },
+  "quartile_QA": {
+    "archive_engine_version": "0.8.0 local user-provided",
+    "logit_numerical_consistency_checks": 13,
+    "logit_numeric_mismatches": 0,
+    "reference_heuristic_flags": 9,
+    "ran_render_production": false,
+    "version_context": "Only original user-uploaded 0.8.0 LOCAL check; current production is 0.16.0. The NEW FER model auditor targets 0.16.x."
+  },
+  "limitations": [
+    "Rscript unavailable: original six R sources and exact R seed CI have NOT been run",
+    "Bootstrap 1000 and 5000 use NumPy RNG; their CI differ from R values",
+    "IPW-minus-unweighted contrast not robustly significant across bootstrap size",
+    "Two survey waves cannot identify monetary policy causality",
+    "Survey sample entry/exit is not actual firm birth/closure",
+    "No private firm-level rows embedded or committed"
+  ],
+  "folder_to_reproducible_full_package": "https://drive.google.com/drive/folders/1ReUvtFfRAGXs66JEeE2v8_aeGUys6vO-",
+  "transition_counts": {
+    "both_1": 97,
+    "only_2019": 60,
+    "only_2023": 45,
+    "both_0": 42
+  }
+}
