@@ -7,6 +7,7 @@ const { McpServer } = require("@modelcontextprotocol/sdk/server/mcp.js");
 const { z } = require("zod");
 const L = require("../core/lib.js");
 const FM = require("../core/fermodels.js");
+const FREF = require("../core/ferreferences.js");
 const FER_AGGREGATES = require("../data/fer-hungary-independent-replication-2026-11-17.json");
 const VERSION = require("./package.json").version;
 
@@ -36,6 +37,9 @@ function build() {
   const s = new McpServer({ name: "quartile", version: VERSION }, { instructions: "Quartile checks academic business and economics manuscripts without changing their science. Call q1_style_guide before rewriting. After rewriting any paragraph, call verify_rewrite with the original and the revision and keep the original whenever pass is false. Never present simulated reviewer output as a real journal decision. Statistics checks show consistency, not who produced a number. The full-text corpus is for patterns only (structure, section lengths, moves, voice): never copy wording from it, and run corpus_originality on any text written with its help." });
 
   // FER case-specific, strictly read-only research-validation workflow (no microdata uploaded).
+  s.registerTool("fer_q1_reference_bank", { title: "FER 100-paper Q1 candidate reference bank", description: "Read-only, DOI-verified metadata index of 100 academic comparison candidates. Search by title, DOI, journal, credit, investment, survey attrition or sector. The 2025 journal Q1 rank and full-text analysis have NOT been independently established for all 100; one known journal Q2 exception is explicitly flagged. Research papers are NOT reproduced or uploaded to this application.", inputSchema: { query: z.string().max(250).optional(), group: z.string().max(120).optional(), limit: z.number().int().min(1).max(100).default(25) }, annotations: RO, _meta: ui("Searching FER academic references", "Reference metadata ready") },
+    async ({ query, group, limit }) => json(FREF.catalogue({ query, group, limit }), "fer_q1_reference_bank"));
+
   s.registerTool("fer_equation_catalog", { title: "FER econometric formula catalogue", description: "Twelve explicit econometric estimands and diagnostic equations used in the Hungarian WBES FER major revision, with their eligibility, identifying assumptions, tests and anti-causality caveats. These are method specifications, not evidence of an executed R run.", inputSchema: {}, annotations: RO, _meta: ui("Loading FER formulas", "FER formulas ready") },
     async () => json({ version: VERSION, formulae: FM.FORMULAE, evidenceStatus: "catalogue_only", note: "Formalization is not statistical replication; the six original R scripts still require independent execution." }, "fer_equations"));
 
