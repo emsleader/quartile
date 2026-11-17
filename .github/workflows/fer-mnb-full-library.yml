@@ -1,0 +1,67 @@
+name: FER MNB Full historical library 2011–2026
+on:
+  push:
+    branches: [research/fer-mnb-evidence-20261117]
+    paths: ['.github/workflows/fer-mnb-full-library.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  archive-all-official-mnb-reports:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install HTML and browser retrieval dependencies
+        run: |
+          python -m pip install --quiet requests beautifulsoup4 playwright
+          python -m playwright install chromium
+      - name: Enumerate dynamically paginated MNB official report catalogues
+        run: python -u research/fer_mnb_browser_scrape.py
+      - name: Download public PDF reports and original chart data; verify signatures and hashes
+        run: python -u research/fer_mnb_download_catalogue.py
+      - name: Upload full provenance and completeness report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MNB_2011_2026_Master_Register
+          path: |
+            mnb_discovery/*.json
+            mnb_discovery/*.csv
+            mnb_official_full/*.json
+            mnb_official_full/*.csv
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Upload all Financial Stability original PDFs and workbooks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MNB_Financial_Stability_2011_2026
+          path: |
+            mnb_official_full/Financial_Stability/**
+            mnb_official_full/Financial_Stability_Archive_2013/**
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Upload all Trends in Lending original PDFs and workbooks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MNB_Trends_in_Lending_2013_2026
+          path: mnb_official_full/Trends_in_Lending/**
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Upload all Inflation Reports original PDFs and workbooks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MNB_Inflation_Reports_2011_2026
+          path: mnb_official_full/Inflation_Report/**
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Upload all official Lending Surveys original PDFs and workbooks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MNB_Lending_Surveys_2011_2026
+          path: mnb_official_full/Lending_Survey/**
+          if-no-files-found: warn
+          retention-days: 30
