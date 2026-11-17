@@ -20,7 +20,7 @@ put<-function(p,stem,label,input,width=8.7,height=4.9){
   p<-p+ink()+labs(title=label,caption=paste('Source: WBES Hungary four-wave panel; aggregate reconstruction |',input,'| Descriptive unless otherwise noted'))
   for(ext in c('pdf','svg','png')){
     dest=file.path(O,ext,paste0(stem,'.',ext))
-    ggsave(filename=dest,plot=p,width=width,height=height,units='in',dpi=if(ext=='png') 400 else 120,limitsize=FALSE,bg='white')
+    ggsave(filename=dest,plot=p,device=if(ext=='svg') grDevices::svg else NULL,width=width,height=height,units='in',dpi=if(ext=='png') 400 else 120,limitsize=FALSE,bg='white')
   }
   registry[[length(registry)+1L]] <<- data.frame(number=sprintf('F%02d',nfig),kind='Figure',title=label,stem=stem,source_csv=input,method='R/ggplot2; aggregate evidence',stringsAsFactors=FALSE)
   cat(sprintf('FIGURE %02d: %s\n',nfig,label))
