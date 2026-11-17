@@ -1,0 +1,43 @@
+name: FER model formula audit
+on:
+  push:
+    branches: [main, feature/fer-formula-validation]
+    paths:
+      - core/fermodels.js
+      - mcp/server.js
+      - tests/fermodels.test.js
+      - tests/fixture-fer-aggregates.json
+      - tests/run.js
+      - data/fer-hungary-independent-replication-2026-11-17.json
+      - .github/workflows/fer-model-audit.yml
+  pull_request:
+    paths:
+      - core/fermodels.js
+      - mcp/server.js
+      - tests/fermodels.test.js
+      - tests/fixture-fer-aggregates.json
+      - tests/run.js
+      - data/fer-hungary-independent-replication-2026-11-17.json
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: FER formula and adversarial tests (no microdata)
+        run: node tests/fermodels.test.js
+      - name: Syntax-check MCP server and FER evaluator
+        run: |
+          node --check mcp/server.js
+          node --check core/fermodels.js
+          node --check tests/run.js
+      - name: Ensure no identifiable WBES raw files are present
+        run: |
+          if find . -type f \( -iname '*.dta' -o -iname '*.sav' \) | grep -q .; then
+            echo 'ERROR: raw microdata must never be committed to Quartile'
+            exit 1
+          fi
