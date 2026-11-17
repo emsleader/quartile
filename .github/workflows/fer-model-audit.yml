@@ -8,6 +8,7 @@ on:
       - tests/fermodels.test.js
       - tests/fixture-fer-aggregates.json
       - tests/run.js
+      - tests/fermodels.mcp-smoke.js
       - data/fer-hungary-independent-replication-2026-11-17.json
       - .github/workflows/fer-model-audit.yml
   pull_request:
@@ -35,6 +36,10 @@ jobs:
           node --check mcp/server.js
           node --check core/fermodels.js
           node --check tests/run.js
+      - name: Install Quartile MCP dependencies
+        run: cd mcp && npm ci --omit=dev
+      - name: Smoke-test FER tools using a real MCP client
+        run: node tests/fermodels.mcp-smoke.js
       - name: Ensure no identifiable WBES raw files are present
         run: |
           if find . -type f \( -iname '*.dta' -o -iname '*.sav' \) | grep -q .; then
