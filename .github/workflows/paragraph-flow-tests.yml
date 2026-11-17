@@ -25,9 +25,12 @@ jobs:
       - name: Validate syntax of paragraph flow and MCP entrypoint
         run: |
           node --check core/paragraphflow.js
+          node --check mcp/fercorpus.js
           node --check mcp/server.js
           node --check tests/paragraphflow.test.js
       - name: Run paragraph flow tests
         run: node tests/paragraphflow.test.js
+      - name: Test FER access license gates
+        run: node tests/fercorpus.test.js
       - name: Run existing Quartile tests
         run: node tests/run.js
