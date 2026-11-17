@@ -1,0 +1,16 @@
+"use strict";
+const assert=require("node:assert/strict");
+const L=require("../core/ferliterature.js");
+const papers=L.index.papers;
+assert.equal(papers.length,100);
+assert.equal(new Set(papers.map(x=>x.doi)).size,100);
+assert.equal(papers.filter(x=>x.scite_year_discrepancy).length,11);
+assert.equal(papers.filter(x=>x.relevance_tier==="priority_A_methods").length,19);
+assert.equal(papers.filter(x=>x.relevance_tier==="exclude_as_original_empirical").length,2);
+assert.equal(papers.filter(x=>x.full_text_reviewed).length,0);
+assert.equal(papers.filter(x=>x.q1_current_release!=="unverified_against_latest_SCImago_release").length,0);
+assert.equal(L.search({query:"10.1016/j.jedc.2020.103874"}).papers[0].source_type_note,"commentary_not_original_research");
+assert.equal(L.search({query:"10.5089/9781513518770.001"}).papers[0].source_type_note,"IMF_publication_not_journal_research");
+assert.equal(L.search({query:"10.1016/j.jmoneco.2023.10.017"}).papers[0].scite_year_discrepancy.scite_year,2024);
+assert.ok(L.search({query:"financial constraints",limit:100}).papers.length>0);
+console.log("FER 100 DOI register enriched: 11 year discrepancies, 19 high relevance, 2 source-type cautions, 100 unclaimed full texts");
