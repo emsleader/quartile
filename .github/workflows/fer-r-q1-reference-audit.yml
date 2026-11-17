@@ -19,7 +19,7 @@ jobs:
       - run: node --check mcp/server.js
       - name: No raw firm files in repository
         run: |
-          if find . -type f \\( -iname '*.dta' -o -iname '*.sav' \\) | grep -q .; then
+          if find . -type f \( -iname '*.dta' -o -iname '*.sav' \) | grep -q .; then
             echo "ERROR: private WBES microdata must not be committed"
             exit 1
           fi
