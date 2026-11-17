@@ -1,0 +1,5 @@
+series,year,point_pct,n,estimand
+wave_weighted,2019,54.2730583,656,weighted repeated cross-section
+wave_weighted,2023,63.6238314,664,weighted repeated cross-section
+matched_baseline,2019,64.3442623,244,unweighted baseline matched sample
+matched_baseline,2023,58.1967213,244,unweighted baseline matched sample
