@@ -26,3 +26,19 @@ FER asked for explicit formal econometric models, stronger policy relevance and 
 
 ## Publication integrity
 The manuscript and its published research data remain under author control. Source manuscripts are used only for stylistic analysis, with licensing and scholarly attribution. The generated work must be original and keep all numeric findings and citations traceable.
+
+## Implemented opt-in corpus acquisition
+
+The draft branch now includes `mcp/fercorpus.js`, `scripts/fer-corpus-ci.js` and two MCP tools: `fer_corpus_build` and `fer_corpus_status`. They are not automatically invoked. They require an OpenAlex API key and a private writable corpus directory. A legal OA location, matching DOI, article title and source type are checked before the PDF signature and SHA-256 are recorded. Only then can the full text contribute to section/paragraph statistics.
+
+Local command, after installing the existing MCP Node dependencies:
+
+```bash
+export OPENALEX_API_KEY="your-private-key"
+export QUARTILE_CORPUS="/private/path/to/quartile-fer-corpus"
+node scripts/fer-corpus-ci.js
+```
+
+Use your own private environment-variable store; never commit the API key. On Render, the current free instance uses ephemeral storage and should not be treated as a reliable permanent PDF corpus. A persistent private directory or appropriately secured CI artifact store is preferable. Neither the key nor the full-text corpus has been supplied or used in this task. No style statistics have yet been computed from these 100 candidate full texts.
+
+Run `node tests/fercorpus.test.js`, `node tests/paragraphflow.test.js` and `node tests/run.js` to validate the development changes. The GitHub Actions workflow `paragraph-flow-tests.yml` includes these tests.
