@@ -1,0 +1,40 @@
+name: FER Q1 evidence status and version gate
+on:
+  push:
+    branches: [feature/fer-q1-evidence-enrichment-v0163, main]
+    paths:
+      - data/fer-literature-100-candidates.json
+      - tests/fer-literature-evidence.test.js
+      - tests/run.js
+      - mcp/package.json
+      - mcp/package-lock.json
+      - .github/workflows/fer-q1-evidence-v0163.yml
+  pull_request:
+    paths:
+      - data/fer-literature-100-candidates.json
+      - tests/fer-literature-evidence.test.js
+      - tests/run.js
+      - mcp/package.json
+      - mcp/package-lock.json
+permissions: {contents: read}
+jobs:
+  references:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Verify 100-source integrity and evidence boundaries
+        run: node tests/fer-literature-evidence.test.js
+      - name: Minimum Quartile version v0.16.0
+        run: |
+          node - <<'NODE'
+          const v=require("./mcp/package.json").version.split(".").map(Number);
+          if(v[0]!==0 || v[1]<16) throw Error("Quartile below version 0.16.0");
+          console.log("Quartile",v.join("."),"meets minimum version gate");
+          NODE
+      - name: Test current Quartile MCP behavior
+        run: |
+          cd mcp
+          npm ci --omit=dev
+          npm test
