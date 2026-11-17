@@ -1,0 +1,56 @@
+name: MNB source PDF and chart-data evidence archive
+on:
+  push:
+    branches: [research/fer-mnb-evidence-20261117]
+    paths: ['.github/workflows/fer-mnb-evidence.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download original public MNB documents and manifest
+        shell: bash
+        run: |
+          mkdir -p mnb_official
+          python - <<'PY'
+          import concurrent.futures,urllib.request,time,os,hashlib,json,csv,datetime
+          sources=[["2013_05_Trends_in_Lending","https://www.mnb.hu/letoltes/hitelezesi-folyamatok-201305-en.pdf"],["2013_11_Trends_in_Lending","https://www.mnb.hu/letoltes/hitelezesi-folyamatok-2013-nov-eng-final.pdf"],["2019_03_Trends_in_Lending","https://www.mnb.hu/letoltes/hitelezesi-folyamatok-2019-marcius-en.pdf"],["2019_09_Trends_in_Lending","https://www.mnb.hu/letoltes/hitelezesi-folyamatok-2019-szeptember-en.pdf"],["2020_03_Trends_in_Lending","https://www.mnb.hu/letoltes/hitelezesi-folyamatok-2020-marcius-en.pdf"],["2021_03_Trends_in_Lending","https://www.mnb.hu/letoltes/hitelezesi-folyamatok-2021-marcius-en.pdf"],["2022_03_Trends_in_Lending","https://www.mnb.hu/letoltes/hitelezesi-folyamatok-2022-marcius-en.pdf"],["2022_09_Trends_in_Lending","https://www.mnb.hu/letoltes/hitelezesi-folyamatok-2022-szeptember-en.pdf"],["2023_03_Trends_in_Lending","https://www.mnb.hu/letoltes/hitelezesi-folyamatok-2023-marcius-en.pdf"],["2024_02_Trends_in_Lending_summary","https://www.mnb.hu/letoltes/trends-in-lending-flyer-2023q4-en.pdf"],["2022_11_Financial_Stability_Report","https://www.mnb.hu/letoltes/financial-stability-report-november-2022.pdf"],["2022_09_Base_Rate_Decision","https://www.mnb.hu/letoltes/kv-220927-en.pdf"],["2023_03_Trends_Lending_chart_data","https://www.mnb.hu/letoltes/abrakeszlet-charts-202303-2.xlsx"]]
+          def get(item):
+              name,url=item
+              ext='.xlsx' if url.lower().endswith('.xlsx') else '.pdf'
+              dest='mnb_official/'+name+ext
+              err=''
+              for attempt in range(3):
+                  try:
+                      req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 FER academic source archival research'})
+                      with urllib.request.urlopen(req,timeout=65) as resp:
+                          data=resp.read()
+                      expected=b'PK' if ext=='.xlsx' else b'%PDF-'
+                      if not data.startswith(expected) or len(data)<500:
+                          raise ValueError('Incorrect file signature or empty response')
+                      with open(dest,'wb') as f: f.write(data)
+                      return dict(name=name,url=url,status='VERIFIED_FILE',bytes=len(data),sha256=hashlib.sha256(data).hexdigest(),file=dest,error='')
+                  except Exception as e:
+                      err=str(e);time.sleep(attempt+1)
+              return dict(name=name,url=url,status='FAILED_NOT_DOWNLOADED',bytes=0,sha256='',file='',error=err)
+          with concurrent.futures.ThreadPoolExecutor(max_workers=5) as pool:
+              rows=list(pool.map(get,sources))
+          with open('mnb_official/DOWNLOAD_MANIFEST.csv','w',newline='') as f:
+              wr=csv.DictWriter(f,fieldnames=list(rows[0]));wr.writeheader();wr.writerows(rows)
+          with open('mnb_official/README.txt','w') as f:
+              f.write('Official MNB documents, retrieval '+datetime.datetime.now(datetime.timezone.utc).isoformat()+'\n')
+              f.write('Read DOWNLOAD_MANIFEST.csv; only VERIFIED_FILE are downloaded source bytes. Public source documents only.\n')
+              f.write('Original WBES microdata, FER manuscript, and original six R scripts NOT included.\n')
+              for r in rows:f.write(r['name']+' '+r['status']+' '+r['sha256']+'\n')
+          print(json.dumps({'verified':sum(x['status']=='VERIFIED_FILE' for x in rows),'attempted':len(rows),'rows':rows},indent=2))
+          assert sum(x['status']=='VERIFIED_FILE' for x in rows)>=7,'Less than seven MNB originals downloaded'
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: FER-MNB-Official-PDFs-and-chart-XLSX
+          path: mnb_official/
+          retention-days: 30
+          if-no-files-found: warn
