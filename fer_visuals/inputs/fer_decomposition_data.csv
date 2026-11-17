@@ -1,0 +1,9 @@
+frame,component,estimate_pp,lower95_pp,upper95_pp,B,software
+"Full frame","Cross-sectional change",9.35077318,0.38034419,17.70394754,2500,Python NumPy PCG64
+"Full frame","Within continuers",-3.41412218,-8.30301391,1.94420551,2500,Python NumPy PCG64
+"Full frame","Continuers’ weight share",-1.85767285,-4.90822915,0.88417894,2500,Python NumPy PCG64
+"Full frame","Net sample turnover",14.62256821,7.38891876,21.60654411,2500,Python NumPy PCG64
+"Without 2023 Section M","Cross-sectional change",7.70574487,-0.90650146,16.51209982,2500,Python NumPy PCG64
+"Without 2023 Section M","Within continuers",-3.82974334,-9.02577560,1.57550330,2500,Python NumPy PCG64
+"Without 2023 Section M","Continuers’ weight share",0.17582210,-2.72925134,2.95673456,2500,Python NumPy PCG64
+"Without 2023 Section M","Net sample turnover",11.35966611,3.98435881,18.88346155,2500,Python NumPy PCG64
