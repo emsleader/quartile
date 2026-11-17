@@ -1,0 +1,47 @@
+name: FER 100 DOI reference registry and R aggregate audit
+on:
+  push:
+    branches: [feature/fer-r-aggregate-q1-100-review, main]
+    paths:
+      - data/fer-100-reference-audit.json
+      - core/ferrefs.js
+      - tests/ferrefs.test.js
+      - tests/ferrefs.mcp-smoke.js
+      - mcp/server.js
+      - tests/run.js
+      - mcp/package.json
+      - mcp/package-lock.json
+      - .github/workflows/fer-q1-reference-audit.yml
+  pull_request:
+    paths:
+      - data/fer-100-reference-audit.json
+      - core/ferrefs.js
+      - tests/ferrefs.test.js
+      - tests/ferrefs.mcp-smoke.js
+      - mcp/server.js
+      - tests/run.js
+      - mcp/package.json
+      - mcp/package-lock.json
+permissions: {contents: read}
+jobs:
+  metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Validate 100-record catalogue and status semantics
+        run: node tests/ferrefs.test.js
+      - name: Verify JavaScript syntax
+        run: |
+          node --check mcp/server.js
+          node --check core/ferrefs.js
+          node --check tests/run.js
+      - name: Install Quartile MCP dependencies
+        run: cd mcp && npm ci --omit=dev
+      - name: Verify reference tools by real MCP calls
+        run: node tests/ferrefs.mcp-smoke.js
+      - name: No microdata in research repo
+        run: |
+          if find . -type f \( -iname '*.dta' -o -iname '*.sav' \) | grep -q .; then
+            echo "Private microdata may not be committed"; exit 1; fi
