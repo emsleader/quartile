@@ -1,0 +1,12 @@
+"use strict";
+const assert=require("node:assert/strict");const C=require("../core/ferreferences.js");
+const all=C.all();assert.equal(all.length,100);
+assert.equal(new Set(all.map(x=>x.doi)).size,100);
+assert.ok(all.every(x=>x.scite_doi_status==="verified_2026-11-17"));
+assert.ok(all.every(x=>x.journal_2025_quartile_status!=="Q1_confirmed_2025"));
+assert.equal(C.catalogue({query:"nonsense_placeholder_xyz"}).matched,0);
+assert.equal(C.catalogue({limit:2}).results.length,2);
+assert.ok(C.catalogue({query:"attrition"}).matched>0);
+assert.equal(all.find(x=>x.doi==="10.1007/s40888-018-0108-4").journal_2025_quartile_status,"Q2_identified_2025_SCImago");
+assert.ok(C.meta().q1Caveat.includes("Q2"));
+console.log("FER 100-DOI reference bank: all 100 unique, provenance and 2025 Q1 caveats preserved.");
