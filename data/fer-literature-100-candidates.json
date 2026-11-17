@@ -1,8 +1,8 @@
 {
-  "version": "1.0",
+  "version": "Quartile-FER100-0.16.3-evidence-audit",
   "verified_at": "2026-11-17",
   "source": "Quartile FER Q1 100-paper RESEARCH CANDIDATE list; DOIs independently checked with Scite in batches of 20",
-  "guardrail": "DOI verification does not establish 2025-Q1 status, source-claim support, or full-text reading. Do not assert the full-text-reviewed field true on this metadata-only index. Quartile 2024 screening is provisional.",
+  "guardrail": "100 DOI-verified research candidates, not 100 fully read Q1 papers. Current SCImago rankings and year discrepancies require independent checks. DOI metadata ≠ claim verification.",
   "count": 100,
   "papers": [
     {
@@ -15,7 +15,13 @@
       "publisher_fulltext_candidate_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4523378",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_A_methods",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-002",
@@ -27,7 +33,13 @@
       "publisher_fulltext_candidate_url": "https://lib.dr.iastate.edu/cgi/viewcontent.cgi?article=1117&context=stat_las_pubs",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_A_methods",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-003",
@@ -39,7 +51,13 @@
       "publisher_fulltext_candidate_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4332578",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_A_methods",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-004",
@@ -51,7 +69,13 @@
       "publisher_fulltext_candidate_url": "https://academic.oup.com/biomet/article-pdf/98/4/953/641648/asr058.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_A_methods",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-005",
@@ -63,7 +87,13 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_A_methods",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-006",
@@ -75,7 +105,13 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_A_methods",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-007",
@@ -87,7 +123,13 @@
       "publisher_fulltext_candidate_url": "https://link.springer.com/content/pdf/10.1007/s11187-023-00730-0.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_A_methods",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": true,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-008",
@@ -99,7 +141,13 @@
       "publisher_fulltext_candidate_url": "https://doi.org/10.1016/j.gfj.2022.100798",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-009",
@@ -111,7 +159,13 @@
       "publisher_fulltext_candidate_url": "http://manuscript.elsevier.com/S1057521922000758/pdf/S1057521922000758.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-010",
@@ -123,7 +177,13 @@
       "publisher_fulltext_candidate_url": "https://www.sciencedirect.com/science/article/pii/S0261560622000158/pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-011",
@@ -135,7 +195,13 @@
       "publisher_fulltext_candidate_url": "https://link.springer.com/content/pdf/10.1007/s11187-022-00673-y.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-012",
@@ -147,7 +213,13 @@
       "publisher_fulltext_candidate_url": "https://link.springer.com/content/pdf/10.1007/s11187-021-00545-x.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-013",
@@ -159,7 +231,17 @@
       "publisher_fulltext_candidate_url": "https://www.sciencedirect.com/science/article/pii/S0176268021000653/pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": {
+        "scite_year": 2022,
+        "catalogue_year": 2021,
+        "status": "verify_online_vs_issue_year_before_citation"
+      },
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-014",
@@ -171,7 +253,17 @@
       "publisher_fulltext_candidate_url": "https://hdl.handle.net/10550/100010",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": {
+        "scite_year": 2022,
+        "catalogue_year": 2021,
+        "status": "verify_online_vs_issue_year_before_citation"
+      },
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-015",
@@ -183,7 +275,13 @@
       "publisher_fulltext_candidate_url": "https://hdl.handle.net/10550/100011",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-016",
@@ -195,7 +293,13 @@
       "publisher_fulltext_candidate_url": "https://link.springer.com/content/pdf/10.1007/s11187-021-00488-3.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_A_methods",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": true,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-017",
@@ -207,7 +311,13 @@
       "publisher_fulltext_candidate_url": "https://www.emerald.com/insight/content/doi/10.1108/JSBED-09-2020-0326/full/pdf?title=capital-structure-determinants-of-small-and-medium-sized-enterprises-evidence-from-central-and-eastern-europe",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-018",
@@ -219,7 +329,13 @@
       "publisher_fulltext_candidate_url": "https://autopapers.ssrn.com/sol3/papers.cfm?abstract_id=3718151",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_A_methods",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-019",
@@ -231,7 +347,13 @@
       "publisher_fulltext_candidate_url": "https://innovation-entrepreneurship.springeropen.com/track/pdf/10.1186/s13731-021-00177-1",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-020",
@@ -243,7 +365,13 @@
       "publisher_fulltext_candidate_url": "http://repository.essex.ac.uk/28203/4/4_SBE_Manuscript%20R3.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-021",
@@ -255,7 +383,13 @@
       "publisher_fulltext_candidate_url": "https://boa.unimib.it/bitstream/10281/252828/4/BFRR_SBJ_3rdrevFinal_with_author_names.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-022",
@@ -267,7 +401,13 @@
       "publisher_fulltext_candidate_url": "https://www.tandfonline.com/doi/pdf/10.1080/00472778.2019.1668722?needAccess=true",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-023",
@@ -279,7 +419,13 @@
       "publisher_fulltext_candidate_url": "https://dipot.ulb.ac.be/dspace/bitstream/2013/284944/1/Elsevier_268571.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-024",
@@ -291,7 +437,13 @@
       "publisher_fulltext_candidate_url": "https://soas-repository.worktribe.com/preview/416892/Driver%20Financial%20Constraints%20on%20Investment.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-025",
@@ -303,7 +455,17 @@
       "publisher_fulltext_candidate_url": "http://rua.ua.es/dspace/bitstream/10045/137972/2/Mol-Gomez-Vazquez_etal_2019_SmallBusEcon_revised.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": {
+        "scite_year": 2018,
+        "catalogue_year": 2019,
+        "status": "verify_online_vs_issue_year_before_citation"
+      },
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-026",
@@ -315,7 +477,13 @@
       "publisher_fulltext_candidate_url": "https://www.econstor.eu/bitstream/10419/173509/1/1011420406.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "Q2_needs_final_crosscheck",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_A_methods",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-027",
@@ -327,7 +495,13 @@
       "publisher_fulltext_candidate_url": "https://scholarlypublications.universiteitleiden.nl/access/item%3A2903979/view",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-028",
@@ -339,7 +513,13 @@
       "publisher_fulltext_candidate_url": "http://eprints.uwe.ac.uk/30425/2/Spatial%20%20differentiation_submission_final%20revised_second%20revision.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-029",
@@ -351,7 +531,13 @@
       "publisher_fulltext_candidate_url": "https://digitalcollection.zhaw.ch/handle/11475/12877",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-030",
@@ -363,7 +549,13 @@
       "publisher_fulltext_candidate_url": "https://hdl.handle.net/11475/12841",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-031",
@@ -375,7 +567,13 @@
       "publisher_fulltext_candidate_url": "http://documents.worldbank.org/curated/en/2012/04/16239357/external-finance-firm-survival-aftermath-crisis-evidence-eastern-europe-central-asia",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-032",
@@ -387,7 +585,13 @@
       "publisher_fulltext_candidate_url": "http://researchdatabase.minneapolisfed.org/downloads/ks65hc33w",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-033",
@@ -399,7 +603,13 @@
       "publisher_fulltext_candidate_url": "http://nrs.harvard.edu/urn-3:HUL.InstRepos:12490636",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-034",
@@ -411,7 +621,13 @@
       "publisher_fulltext_candidate_url": "https://figshare.com/articles/journal_contribution/The_bank_lending_channel_and_monetary_transmission_in_Central_and_Eastern_European_countries/23388074",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-035",
@@ -423,7 +639,13 @@
       "publisher_fulltext_candidate_url": "http://ageconsearch.umn.edu/record/26306",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-036",
@@ -435,7 +657,13 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-037",
@@ -447,7 +675,13 @@
       "publisher_fulltext_candidate_url": "https://link.springer.com/content/pdf/10.1007/s11123-026-00798-2.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-038",
@@ -459,7 +693,13 @@
       "publisher_fulltext_candidate_url": "https://link.springer.com/content/pdf/10.1007/s11187-025-01099-y.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-039",
@@ -471,7 +711,13 @@
       "publisher_fulltext_candidate_url": "https://link.springer.com/content/pdf/10.1007/s11123-025-00778-y.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-040",
@@ -483,7 +729,13 @@
       "publisher_fulltext_candidate_url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/smj.3641",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-041",
@@ -495,7 +747,13 @@
       "publisher_fulltext_candidate_url": "https://www.bportugal.pt/sites/default/files/anexos/papers/wp201920_0.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-042",
@@ -507,7 +765,13 @@
       "publisher_fulltext_candidate_url": "https://www.sciencedirect.com/science/article/pii/S0954349X21001041/pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-043",
@@ -519,7 +783,17 @@
       "publisher_fulltext_candidate_url": "https://link.springer.com/content/pdf/10.1007/s11123-019-00548-7.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": {
+        "scite_year": 2019,
+        "catalogue_year": 2020,
+        "status": "verify_online_vs_issue_year_before_citation"
+      },
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-044",
@@ -531,7 +805,13 @@
       "publisher_fulltext_candidate_url": "https://iris.polito.it/bitstream/11583/2816940/4/Grinza%20%282020%29%20-%20preprint.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-045",
@@ -543,7 +823,13 @@
       "publisher_fulltext_candidate_url": "https://www.ifo.de/DocDL/cesifo1_wp4218.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_A_methods",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-046",
@@ -555,7 +841,13 @@
       "publisher_fulltext_candidate_url": "http://gala.gre.ac.uk/id/eprint/30335/1/30335%20UGUR_Intra-industry_Firm_Heterogeneity_%28AAM%29_2020.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-047",
@@ -567,7 +859,13 @@
       "publisher_fulltext_candidate_url": "https://repositori.upf.edu/bitstreams/e59eb384-5dcb-489f-8d37-59e5f75dc608/download",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "exclude_as_original_empirical",
+      "source_type_note": "commentary_not_original_research",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-048",
@@ -579,7 +877,13 @@
       "publisher_fulltext_candidate_url": "http://www.lem.sssup.it/WPLem/files/2017-24.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-049",
@@ -591,7 +895,13 @@
       "publisher_fulltext_candidate_url": "https://doi.org/10.1016/j.jedc.2018.09.002",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-050",
@@ -603,7 +913,13 @@
       "publisher_fulltext_candidate_url": "https://www.annualreviews.org/doi/pdf/10.1146/annurev-economics-082912-110223",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-051",
@@ -615,7 +931,13 @@
       "publisher_fulltext_candidate_url": "http://www.etsg.org/ETSG2008/Papers/Munch.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-052",
@@ -627,7 +949,13 @@
       "publisher_fulltext_candidate_url": "https://www.economics.utoronto.ca/public/workingPapers/tecipa-475.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-053",
@@ -639,7 +967,17 @@
       "publisher_fulltext_candidate_url": "https://repec.uc.pt/gmf/wpaper/wpgemf/gemf_2008-05.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": {
+        "scite_year": 2009,
+        "catalogue_year": 2011,
+        "status": "verify_online_vs_issue_year_before_citation"
+      },
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-054",
@@ -651,7 +989,13 @@
       "publisher_fulltext_candidate_url": "https://www.iris.sssup.it/bitstream/11382/328370/1/dosi_etal_2012_SBE.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-055",
@@ -663,7 +1007,13 @@
       "publisher_fulltext_candidate_url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/agr.20074",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-056",
@@ -675,7 +1025,13 @@
       "publisher_fulltext_candidate_url": "https://pure.au.dk/ws/files/32305334/0003194.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-057",
@@ -687,7 +1043,13 @@
       "publisher_fulltext_candidate_url": "https://link.springer.com/content/pdf/10.1007/s11187-024-00918-y.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-058",
@@ -699,7 +1061,17 @@
       "publisher_fulltext_candidate_url": "https://www.federalreserve.gov/econres/ifdp/files/ifdp1384.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": {
+        "scite_year": 2024,
+        "catalogue_year": 2023,
+        "status": "verify_online_vs_issue_year_before_citation"
+      },
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-059",
@@ -711,7 +1083,13 @@
       "publisher_fulltext_candidate_url": "http://manuscript.elsevier.com/S004873332200021X/pdf/S004873332200021X.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-060",
@@ -723,7 +1101,13 @@
       "publisher_fulltext_candidate_url": "https://www.sciencedirect.com/science/article/pii/S0264999321001486/pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-061",
@@ -735,7 +1119,13 @@
       "publisher_fulltext_candidate_url": "http://wps-feb.ugent.be/Papers/wp_19_990.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-062",
@@ -747,7 +1137,13 @@
       "publisher_fulltext_candidate_url": "http://www.dokumente.ios-regensburg.de/publikationen/wp/wp_390.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-063",
@@ -759,7 +1155,13 @@
       "publisher_fulltext_candidate_url": "https://www.bis.org/publ/work600.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-064",
@@ -771,7 +1173,13 @@
       "publisher_fulltext_candidate_url": "https://www.sciencedirect.com/science/article/am/pii/S0261560620300747?via%3Dihub",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-065",
@@ -783,7 +1191,17 @@
       "publisher_fulltext_candidate_url": "https://www.sciencedirect.com/science/article/pii/S0261560620302199/pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": {
+        "scite_year": 2022,
+        "catalogue_year": 2020,
+        "status": "verify_online_vs_issue_year_before_citation"
+      },
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-066",
@@ -795,7 +1213,13 @@
       "publisher_fulltext_candidate_url": "https://www.elibrary.imf.org/doc/IMF001/28440-9781513518770/28440-9781513518770/Other_formats/Source_PDF/28440-9781513519647.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "exclude_as_original_empirical",
+      "source_type_note": "IMF_publication_not_journal_research",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-067",
@@ -807,7 +1231,17 @@
       "publisher_fulltext_candidate_url": "https://red-files-public.s3.amazonaws.com/meetpapers/2018/paper_39.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": {
+        "scite_year": 2021,
+        "catalogue_year": 2019,
+        "status": "verify_online_vs_issue_year_before_citation"
+      },
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-068",
@@ -819,7 +1253,13 @@
       "publisher_fulltext_candidate_url": "http://www.nbp.pl/publikacje/materialy_i_studia/290_en.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-069",
@@ -831,7 +1271,13 @@
       "publisher_fulltext_candidate_url": "https://stars.library.ucf.edu/scopus2015/10684",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-070",
@@ -843,7 +1289,17 @@
       "publisher_fulltext_candidate_url": "https://autopapers.ssrn.com/sol3/papers.cfm?abstract_id=3553850",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": {
+        "scite_year": 2020,
+        "catalogue_year": 2018,
+        "status": "verify_online_vs_issue_year_before_citation"
+      },
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-071",
@@ -855,7 +1311,13 @@
       "publisher_fulltext_candidate_url": "https://publications.banque-france.fr/sites/default/files/medias/documents/wp689.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-072",
@@ -867,7 +1329,13 @@
       "publisher_fulltext_candidate_url": "https://link.springer.com/content/pdf/10.1007%2Fs11187-018-0017-5.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-073",
@@ -879,7 +1347,13 @@
       "publisher_fulltext_candidate_url": "http://research.economics.unsw.edu.au/RePEc/papers/2015-03.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-074",
@@ -891,7 +1365,13 @@
       "publisher_fulltext_candidate_url": "https://hull-repository.worktribe.com/file/453831/1/Article",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-075",
@@ -903,7 +1383,13 @@
       "publisher_fulltext_candidate_url": "https://halshs.archives-ouvertes.fr/halshs-00119489v2/file/JB19-2003-JEEA.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-076",
@@ -915,7 +1401,13 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_A_methods",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": true,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-077",
@@ -927,7 +1419,13 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-078",
@@ -939,7 +1437,13 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-079",
@@ -951,7 +1455,17 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": {
+        "scite_year": 2024,
+        "catalogue_year": 2023,
+        "status": "verify_online_vs_issue_year_before_citation"
+      },
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-080",
@@ -963,7 +1477,13 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-081",
@@ -975,7 +1495,13 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-082",
@@ -987,7 +1513,13 @@
       "publisher_fulltext_candidate_url": "https://ij-healthgeographics.biomedcentral.com/track/pdf/10.1186/s12942-019-0189-5",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-083",
@@ -999,7 +1531,13 @@
       "publisher_fulltext_candidate_url": "https://projecteuclid.org/journals/statistical-science/volume-32/issue-2/Introduction-to-the-Design-and-Analysis-of-Complex-Survey-Data/10.1214/17-STS614.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_A_methods",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-084",
@@ -1011,7 +1549,13 @@
       "publisher_fulltext_candidate_url": "https://projecteuclid.org/journals/statistics-surveys/volume-10/issue-none/A-survey-of-bootstrap-methods-in-finite-population-sampling/10.1214/16-SS113.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_A_methods",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-085",
@@ -1023,7 +1567,13 @@
       "publisher_fulltext_candidate_url": "https://academic.oup.com/biomet/article-pdf/100/2/385/523599/ass085.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_A_methods",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-086",
@@ -1035,7 +1585,13 @@
       "publisher_fulltext_candidate_url": "http://europepmc.org/articles/PMC4006991",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_A_methods",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-087",
@@ -1047,7 +1603,13 @@
       "publisher_fulltext_candidate_url": "https://projecteuclid.org/journals/statistics-surveys/volume-7/issue-none/The-implementation-of-cross-sectional-weights-in-household-panel-surveys/10.1214/13-SS104.pdf",
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_A_methods",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-088",
@@ -1059,7 +1621,17 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": {
+        "scite_year": 2022,
+        "catalogue_year": 2021,
+        "status": "verify_online_vs_issue_year_before_citation"
+      },
+      "relevance_tier": "priority_A_methods",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-089",
@@ -1071,7 +1643,13 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_A_methods",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-090",
@@ -1083,7 +1661,13 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-091",
@@ -1095,7 +1679,13 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-092",
@@ -1107,7 +1697,13 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-093",
@@ -1119,7 +1715,13 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-094",
@@ -1131,7 +1733,13 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-095",
@@ -1143,7 +1751,13 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-096",
@@ -1155,7 +1769,13 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-097",
@@ -1167,7 +1787,13 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-098",
@@ -1179,7 +1805,13 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-099",
@@ -1191,7 +1823,13 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     },
     {
       "id": "FERQ1-100",
@@ -1203,7 +1841,14 @@
       "publisher_fulltext_candidate_url": null,
       "doi_status": "verified_scite_2026_11_17",
       "journal_2025_quartile": "not_individually_verified",
-      "full_text_reviewed": false
+      "full_text_reviewed": false,
+      "scite_year_discrepancy": null,
+      "relevance_tier": "priority_B_context_or_adjacent",
+      "source_type_note": "type_requires_source_verification",
+      "separately_documented_fulltext_comparator": false,
+      "q1_current_release": "unverified_against_latest_SCImago_release",
+      "evidence_permission": "bibliographic_record_only; no claim-specific inference without reading source; do not copy full copyrighted text"
     }
-  ]
+  ],
+  "audit": "17 November 2026 Scite batch: 100/100 DOI records verified; 11 differences in catalogue vs Scite year; 2 not original empirical journal studies; full-text status is not asserted for 100 candidates."
 }
