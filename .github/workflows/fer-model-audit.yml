@@ -5,6 +5,8 @@ on:
     paths:
       - core/fermodels.js
       - mcp/server.js
+      - mcp/package.json
+      - mcp/package-lock.json
       - tests/fermodels.test.js
       - tests/fixture-fer-aggregates.json
       - tests/run.js
@@ -15,6 +17,8 @@ on:
     paths:
       - core/fermodels.js
       - mcp/server.js
+      - mcp/package.json
+      - mcp/package-lock.json
       - tests/fermodels.test.js
       - tests/fixture-fer-aggregates.json
       - tests/run.js
