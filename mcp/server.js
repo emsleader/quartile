@@ -8,6 +8,7 @@ const { z } = require("zod");
 const L = require("../core/lib.js");
 const FM = require("../core/fermodels.js");
 const FER_AGGREGATES = require("../data/fer-hungary-independent-replication-2026-11-17.json");
+const FERREFS = require("../core/ferrefs.js");
 const VERSION = require("./package.json").version;
 
 const MAX = 400000; // characters per manuscript
@@ -36,6 +37,13 @@ function build() {
   const s = new McpServer({ name: "quartile", version: VERSION }, { instructions: "Quartile checks academic business and economics manuscripts without changing their science. Call q1_style_guide before rewriting. After rewriting any paragraph, call verify_rewrite with the original and the revision and keep the original whenever pass is false. Never present simulated reviewer output as a real journal decision. Statistics checks show consistency, not who produced a number. The full-text corpus is for patterns only (structure, section lengths, moves, voice): never copy wording from it, and run corpus_originality on any text written with its help." });
 
   // FER case-specific, strictly read-only research-validation workflow (no microdata uploaded).
+  // FER reference metadata bank: 100 verified DOI records, no copyrighted full texts or false Q1 claims.
+  s.registerTool("fer_reference_catalog", { title: "FER 100-paper bibliographic verification status", description: "Return the counts, review tiers, year discrepancies, sources and limitations for the screened 100-paper FER Q1-candidate reference register. A verified DOI is not a full-text reading or proof of current SCImago Q1.", inputSchema: {}, annotations: RO },
+    async () => json(FERREFS.status(), "fer_reference_catalog"));
+
+  s.registerTool("fer_reference_search", { title: "Search FER research bibliography", description: "Search 100 DOI-verified bibliography candidates by title, journal, DOI, topic or source ID. Results carry explicit manuscript relevance, access, year and Q1 verification statuses; never invent scholarly claims from metadata.", inputSchema: { query: z.string().max(500).default(""), priority: z.enum(["A_method_direct","B_adjacent_method_or_economics","not_primary_empirical_comparator"]).optional(), limit: z.number().int().min(1).max(100).default(20) }, annotations: RO },
+    async ({ query, priority, limit }) => json(FERREFS.search({query,priority,limit}), "fer_reference_search"));
+
   s.registerTool("fer_equation_catalog", { title: "FER econometric formula catalogue", description: "Twelve explicit econometric estimands and diagnostic equations used in the Hungarian WBES FER major revision, with their eligibility, identifying assumptions, tests and anti-causality caveats. These are method specifications, not evidence of an executed R run.", inputSchema: {}, annotations: RO, _meta: ui("Loading FER formulas", "FER formulas ready") },
     async () => json({ version: VERSION, formulae: FM.FORMULAE, evidenceStatus: "catalogue_only", note: "Formalization is not statistical replication; the six original R scripts still require independent execution." }, "fer_equations"));
 
