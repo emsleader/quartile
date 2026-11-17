@@ -3,6 +3,7 @@ const assert = require("assert");
 const path = require("path");
 require("./fermodels.test.js");
 require("./ferliterature.test.js");
+require("./fer-literature-evidence.test.js");
 const L = require("../core/lib.js");
 let n = 0; const ok = (c, m) => { assert.ok(c, m); n++; };
 
