@@ -8,9 +8,13 @@ const { StdioClientTransport } = require("../mcp/node_modules/@modelcontextproto
   await client.connect(new StdioClientTransport({command:process.execPath,args:[path.join(__dirname,"..","mcp","server.js")]}));
   try {
     const names=(await client.listTools()).tools.map(x=>x.name);
-    assert.equal(names.length,34, "Quartile main 0.16.0 + FER tools = 34");
+    assert.equal(names.length,35, "Quartile main 0.16.0 + FER tools = 34");
     assert.ok(names.includes("fer_equation_catalog"));
     assert.ok(names.includes("fer_replication_audit"));
+    assert.ok(names.includes("fer_literature_index"));
+    const lit=(await client.callTool({name:"fer_literature_index",arguments:{query:"investment",limit:4}})).structuredContent;
+    assert.equal(lit.returned,4);
+    assert.ok(lit.warning.includes("does not establish"));
     const formulas=(await client.callTool({name:"fer_equation_catalog",arguments:{}})).structuredContent;
     assert.equal(formulas.formulae.length,12);
     assert.equal(formulas.evidenceStatus,"catalogue_only");
