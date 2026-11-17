@@ -1,0 +1,67 @@
+name: FER MNB curated full-text historical archive 2011–2026
+on:
+  push:
+    branches: [research/fer-mnb-evidence-20261117]
+    paths: ['.github/workflows/fer-mnb-curated.yml']
+  workflow_dispatch:
+permissions: {contents: read, actions: read}
+jobs:
+  retrieve-legacy-and-curate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download verified catalogue from previous source-discovery job
+        uses: actions/download-artifact@v4
+        with:
+          name: MNB_2011_2026_Master_Register
+          run-id: 44197692096
+          github-token: ${{ github.token }}
+          path: .
+      - name: Install safe HTML parsing dependencies
+        run: python -m pip install --quiet requests beautifulsoup4
+      - name: Verify legacy publications and download primary full PDFs and attached charts
+        run: python -u research/fer_mnb_curated.py
+      - name: Upload item-level manifest and missing-document list
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MNB_Curated_Master_Register_2011_2026
+          path: |
+            mnb_curated/*.csv
+            mnb_curated/*.json
+          retention-days: 30
+      - name: Upload original inflation reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MNB_Curated_Inflation_Reports_2011_2026
+          path: mnb_curated/Inflation_Report/**
+          retention-days: 30
+          if-no-files-found: warn
+      - name: Upload original Trends in Lending reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MNB_Curated_Trends_in_Lending_2013_2026
+          path: mnb_curated/Trends_in_Lending/**
+          retention-days: 30
+          if-no-files-found: warn
+      - name: Upload original Financial Stability reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MNB_Curated_Financial_Stability_2011_2026
+          path: |
+            mnb_curated/Financial_Stability/**
+            mnb_curated/Financial_Stability_Archive_2013/**
+          retention-days: 30
+          if-no-files-found: warn
+      - name: Upload original lending surveys
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MNB_Curated_Lending_Survey_2011_2026
+          path: mnb_curated/Lending_Survey/**
+          retention-days: 30
+          if-no-files-found: warn
