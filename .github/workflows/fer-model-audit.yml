@@ -4,6 +4,9 @@ on:
     branches: [main, feature/fer-formula-validation]
     paths:
       - core/fermodels.js
+      - core/ferliterature.js
+      - data/fer-literature-100-candidates.json
+      - tests/ferliterature.test.js
       - mcp/server.js
       - mcp/package.json
       - mcp/package-lock.json
@@ -16,6 +19,9 @@ on:
   pull_request:
     paths:
       - core/fermodels.js
+      - core/ferliterature.js
+      - data/fer-literature-100-candidates.json
+      - tests/ferliterature.test.js
       - mcp/server.js
       - mcp/package.json
       - mcp/package-lock.json
@@ -33,12 +39,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: FER formula and adversarial tests (no microdata)
-        run: node tests/fermodels.test.js
+      - name: FER formula, reference metadata and adversarial tests (no microdata)
+        run: |
+          node tests/fermodels.test.js
+          node tests/ferliterature.test.js
       - name: Syntax-check MCP server and FER evaluator
         run: |
           node --check mcp/server.js
           node --check core/fermodels.js
+          node --check core/ferliterature.js
           node --check tests/run.js
       - name: Install Quartile MCP dependencies
         run: cd mcp && npm ci --omit=dev

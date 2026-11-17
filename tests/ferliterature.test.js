@@ -1,0 +1,16 @@
+"use strict";
+const assert=require("node:assert/strict");
+const {search,index}=require("../core/ferliterature");
+assert.equal(index.count,100);
+assert.equal(index.papers.length,100);
+assert.equal(new Set(index.papers.map(p=>p.doi)).size,100);
+assert.ok(index.papers.every(p=>p.doi_status==="verified_scite_2026_11_17"));
+assert.ok(index.papers.every(p=>p.full_text_reviewed===false),"Do not imply all 100 full texts read");
+assert.ok(index.papers.every(p=>p.journal_2025_quartile!=="Q1"),"Do not imply blanket Q1 verification");
+assert.equal(search({limit:100}).papers.length,100);
+assert.ok(search({query:"attrition"}).matched>0);
+assert.ok(search({query:"10.1007/s11187-021-00488-3"}).matched===1);
+assert.ok(search({query:"nonsense-absent"}).matched===0);
+assert.ok(search({limit:999}).returned<=100);
+assert.ok(search({query:"investment",offset:2,limit:3}).returned<=3);
+console.log("FER 100-candidate metadata bank: 100 unique Scite-verified DOIs; Q1 and full-text unverified warnings active.");
