@@ -6,6 +6,8 @@
 const { McpServer } = require("@modelcontextprotocol/sdk/server/mcp.js");
 const { z } = require("zod");
 const L = require("../core/lib.js");
+const FM = require("../core/fermodels.js");
+const FER_AGGREGATES = require("../data/fer-hungary-independent-replication-2026-11-17.json");
 const VERSION = require("./package.json").version;
 
 const MAX = 400000; // characters per manuscript
@@ -32,6 +34,13 @@ const CP = require("./corpus.js");
 const AI = require("../core/aistyle.js"), REG = require("../core/registry.js"), RD = require("../core/readiness.js"), NET = require("../core/net.js"), PR = require("../core/prose.js"), RS = require("../core/rstats.js"), EV = require("../core/evidence.js");
 function build() {
   const s = new McpServer({ name: "quartile", version: VERSION }, { instructions: "Quartile checks academic business and economics manuscripts without changing their science. Call q1_style_guide before rewriting. After rewriting any paragraph, call verify_rewrite with the original and the revision and keep the original whenever pass is false. Never present simulated reviewer output as a real journal decision. Statistics checks show consistency, not who produced a number. The full-text corpus is for patterns only (structure, section lengths, moves, voice): never copy wording from it, and run corpus_originality on any text written with its help." });
+
+  // FER case-specific, strictly read-only research-validation workflow (no microdata uploaded).
+  s.registerTool("fer_equation_catalog", { title: "FER econometric formula catalogue", description: "Twelve explicit econometric estimands and diagnostic equations used in the Hungarian WBES FER major revision, with their eligibility, identifying assumptions, tests and anti-causality caveats. These are method specifications, not evidence of an executed R run.", inputSchema: {}, annotations: RO, _meta: ui("Loading FER formulas", "FER formulas ready") },
+    async () => json({ version: VERSION, formulae: FM.FORMULAE, evidenceStatus: "catalogue_only", note: "Formalization is not statistical replication; the six original R scripts still require independent execution." }, "fer_equations"));
+
+  s.registerTool("fer_replication_audit", { title: "FER aggregate model arithmetic audit", description: "Evaluate FER weighted shares, paired changes, exact McNemar, 3-term survey composition identity, Logit beta/OR/CI, HC1 LPM coherence, observed IPW ESS/balance and bootstrap CI formatting. Defaults to the saved 17 Nov 2026 independent Python aggregate snapshot. Optionally pass a NEW JSON string with the same documented schema. This cannot validate raw data provenance, R execution, selection ignorability or policy causality.", inputSchema: { report_json: z.string().max(200000).optional() }, annotations: RO, _meta: ui("Auditing FER model consistency", "FER audit ready") },
+    async ({ report_json }) => { try { const report = report_json ? JSON.parse(report_json) : FER_AGGREGATES; return json(FM.audit(report), "fer_replication_audit"); } catch(e) { return json({ error: e.message, pass: false, status: "invalid_report" }, "fer_replication_audit"); } });
 
   s.registerTool("q1_style_guide", { title: "Q1 style guide", description: "Writing, argument and framing standard for a target tier (Q1-Q4), writing type (A empirical finance, B theory model, C small business, D service and management theory) and section role. Use before rewriting or framing a paper.", inputSchema: { tier: z.enum(["Q1", "Q2", "Q3", "Q4"]).default("Q1"), writing_type: z.enum(["A", "B", "C", "D"]).default("A"), role: z.enum(L.Style.ROLES).optional() }, annotations: RO },
     async ({ tier, writing_type, role }) => json(L.styleGuide(tier, writing_type, role)));
