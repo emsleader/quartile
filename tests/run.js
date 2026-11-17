@@ -1,6 +1,7 @@
 // Run: node tests/run.js   (from the repo root, after npm install in mcp/)
 const assert = require("assert");
 const path = require("path");
+require("./fermodels.test.js");
 const L = require("../core/lib.js");
 let n = 0; const ok = (c, m) => { assert.ok(c, m); n++; };
 
@@ -207,7 +208,7 @@ const rDone = (async () => {
   const c = new Client({ name: "test", version: "1" });
   await c.connect(new StdioClientTransport({ command: process.execPath, args: [path.join(__dirname, "..", "mcp", "server.js")] }));
   const tools = (await c.listTools()).tools.map(t => t.name);
-  ok(tools.length === 32 && ["integrity_screen", "ai_style_check", "number_registry", "submission_readiness", "verify_references_live", "literature_overlap", "grammar_check", "corpus_profile_export", "prose_check", "benchmark_corpus", "run_statistics", "evidence_ledger", "claim_audit", "survey_plan", "egba_bounds", "egba_time"].every(t => tools.includes(t)), "32 tools");
+  ok(tools.length === 34 && ["integrity_screen", "ai_style_check", "number_registry", "submission_readiness", "verify_references_live", "literature_overlap", "grammar_check", "corpus_profile_export", "prose_check", "benchmark_corpus", "run_statistics", "evidence_ledger", "claim_audit", "survey_plan", "egba_bounds", "egba_time"].every(t => tools.includes(t)), "34 tools");
   const r = await c.callTool({ name: "verify_rewrite", arguments: { original: "Sales rose 5%.", revised: "Sales rose 7%." } });
   ok(r.structuredContent.pass === false, "tool call over stdio");
   const pr = (await c.listPrompts()).prompts.map(p => p.name); ok(pr.length === 3, "3 prompts");
