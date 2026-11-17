@@ -1,0 +1,74 @@
+{
+  "point_estimates": {
+    "weighted_2019_purchase_pct": 54.27305826309487,
+    "weighted_2023_purchase_pct": 63.6238314446319,
+    "cross_section_change_pp": 9.35077318153703,
+    "matched_change_pp": -6.147540983606557,
+    "gap_pp": 15.498314165143587,
+    "within_symmetric_pp": -3.41412218,
+    "continuing_weight_pp": -1.85767285,
+    "net_sample_turnover_pp": 14.62256821153703,
+    "adjusted_entrant_leaver_LPM_pp": 20.475108068422703,
+    "IPW_matched_change_pp": -0.7723230021684054,
+    "mcnemar_exact_p": 0.1715646971542424
+  },
+  "samples": {
+    "eligible_2019": 656,
+    "eligible_2023": 664,
+    "reinterviewed_2019_baseline": 244,
+    "continuers_own_wave": 240
+  },
+  "source_dataset": {
+    "n_rows": 2237,
+    "n_variables": 811,
+    "sha256": "973e1fb3cbf09e78be671aef28be70f4bfe2815e7a74c57406bbcb450142ecdc",
+    "restricted_storage": "private Google Drive"
+  },
+  "regression_diagnostics": {
+    "logit_purchase_coefficient": 0.44384682,
+    "logit_purchase_model_SE": 0.17479648,
+    "logit_purchase_p": 0.01110998,
+    "logit_purchase_OR": 1.55869171,
+    "logit_purchase_OR_CI95": [
+      1.1065485,
+      2.1955837
+    ],
+    "propensity_min": 0.16680244,
+    "propensity_max": 0.58757216,
+    "IPW_effective_N": 227.941237,
+    "maximum_absolute_balance_SMD_after": 0.01911984,
+    "lpm_grp_HC1_SE_pp": 5.91954839,
+    "lpm_grp_HC1_p": 0.000569919,
+    "IPW_refit_failures_in_1000": 0,
+    "IPW_refit_failures_in_5000": 0
+  },
+  "independent_bootstrap_CI95": {
+    "B1000": {
+      "gap_pp": [
+        5.7973,
+        24.1173
+      ],
+      "IPW_change_pp": [
+        -7.9593,
+        7.1547
+      ]
+    },
+    "B5000": {
+      "gap_pp": [
+        6.3539,
+        24.51
+      ],
+      "IPW_change_pp": [
+        -8.1376,
+        6.9122
+      ]
+    }
+  },
+  "transition_counts": {
+    "both_1": 97,
+    "only_2019": 60,
+    "only_2023": 45,
+    "both_0": 42
+  },
+  "evidence_status": "Independent Python reconstruction, R not executed"
+}
