@@ -1,0 +1,33 @@
+name: Paragraph-flow and Quartile regression tests
+on:
+  pull_request:
+    paths:
+      - "core/paragraphflow.js"
+      - "mcp/server.js"
+      - "tests/**"
+      - ".github/workflows/paragraph-flow-tests.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: "mcp/package-lock.json"
+      - name: Install required dependencies
+        run: npm ci --prefix mcp --omit=dev
+      - name: Validate syntax of paragraph flow and MCP entrypoint
+        run: |
+          node --check core/paragraphflow.js
+          node --check mcp/server.js
+          node --check tests/paragraphflow.test.js
+      - name: Run paragraph flow tests
+        run: node tests/paragraphflow.test.js
+      - name: Run existing Quartile tests
+        run: node tests/run.js
