@@ -1,0 +1,25 @@
+name: FER R aggregate checks (not raw microdata)
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/fer-r-aggregate-q1-100-review]
+    paths: ["tests/fer-r-aggregate-checks.R", ".github/workflows/fer-r-aggregate-checks.yml"]
+  pull_request:
+    paths: ["tests/fer-r-aggregate-checks.R", ".github/workflows/fer-r-aggregate-checks.yml"]
+permissions: {contents: read}
+jobs:
+  r-aggregate:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.3.3'
+          use-public-rspm: true
+      - name: Run actual R 4.3.3 aggregate checks
+        run: Rscript --vanilla tests/fer-r-aggregate-checks.R | tee R_aggregate_validation.txt
+      - name: Archive human-readable R proof
+        uses: actions/upload-artifact@v4
+        with:
+          name: R-aggregate-test-log
+          path: R_aggregate_validation.txt
