@@ -1,0 +1,144 @@
+# Style checks (specification Section 12 and Section 18): retext (retext-english with retext-passive,
+# retext-simplify, retext-readability), write-good, and the proselint / too-wordy / no-cliches / weasel-words word
+# lists already pinned in data/prose-rules.json (the lists core/prose.js uses; core/prose.js is not changed).
+#
+# Two kinds of STY rule:
+#  - rules:               YAML pattern rules, run by the rule engine and tested by tests/rules/run.js.
+#  - source.code_checks:  checks that need a package or a count, run by core/style/checks.js and tested by
+#                         tests/phases/phase6-style.test.js. They are documented here (and their titles,
+#                         severities, messages and limits are read from here by the code) but kept out of `rules:`,
+#                         because the engine cannot run them. See docs/reports/phase-6.md for a schema proposal.
+#
+# All STY findings: role writing, severity minor at most (passive and readability: note), confidence medium or low.
+# Thresholds come from data/style-profile.json where the profile measures the same thing; where it does not, the
+# number is a Quartile default and says so (listed as an open question for the owner).
+source:
+  id: STYLE
+  citation: "Quartile style checks built on retext 9.0.0, retext-english 5.0.0, retext-passive 5.0.0, retext-simplify 8.0.0, retext-readability 8.0.0 (all MIT, Titus Wormer), write-good 1.0.8 (MIT, Brian Ford), and the word lists in data/prose-rules.json (proselint BSD-3-Clause; too-wordy, no-cliches, weasel-words MIT)."
+  licence_note: "Packages used as libraries under their licences; word lists credited in data/THIRD-PARTY.md. Messages and fixes are Quartile's own words."
+  code_checks:
+    - id: STY-PASSIVE-01
+      title: "Section written mostly in the passive voice"
+      severity: note
+      confidence: low
+      where: [introduction, literature, discussion, conclusion]
+      source_ref: "retext-passive 5.0.0 (MIT) for irregular participles, plus the be-verb + participle test of core/stylemetrics.js that built data/style-profile.json"
+      thresholds:
+        min_sentences: 8
+        max_share: 0.625
+      threshold_source: "max_share = Tukey upper fence of data/style-profile.json overall.metrics.passiveShare (p75 0.25 + 1.5 x IQR 0.25), measured on abstracts and extrapolated to these sections; min_sentences 8 is a Quartile default (open question). Methods and results are skipped: the passive is normal there. The abstract is covered by Q1C-VOICE-01."
+      message: "{passive} of {total} sentences in this section are passive (share {share}; limit {limit})."
+      fix: "Where the actor matters, name it and use an active verb ('We estimate', 'Firms report'). Keep the passive where the actor does not matter."
+      tests: [tests/phases/phase6-style.test.js]
+    - id: STY-READ-01
+      title: "Sentences hard to read by most readability formulas"
+      severity: note
+      confidence: low
+      where: all
+      source_ref: "retext-readability 8.0.0 (MIT): Dale-Chall, Automated Readability, Coleman-Liau, Flesch, Gunning fog, SMOG, Spache"
+      thresholds:
+        age: 22
+        threshold: 0.714
+        min_words: 5
+      threshold_source: "No readability measure is in data/style-profile.json. age 22 (a reader with a first degree) and threshold 5 of 7 formulas are Quartile defaults (open question); min_words 5 is the package default."
+      message: "{count} sentence(s) in this section are hard to read by at least 5 of 7 readability formulas for a 22-year-old reader."
+      fix: "Split the sentence, put the subject and verb early, and move long noun phrases after the verb."
+      tests: [tests/phases/phase6-style.test.js]
+    - id: STY-SIMPLE-01
+      title: "Wordy phrase with a plain alternative"
+      severity: minor
+      confidence: medium
+      where: all
+      source_ref: "retext-simplify 8.0.0 (MIT), phrase list; Quartile keeps only the phrases in thresholds.allow"
+      thresholds:
+        allow: ["a number of", "aforementioned", "along the lines of", "already existing", "as of yet", "as yet", "at the present time", "at this time", "because of the fact that", "by means of", "by virtue of", "close proximity", "commence", "due to the fact that", "each and every", "endeavor", "first and foremost", "for a period of", "for the purpose of", "has a requirement for", "herein", "heretofore", "honest truth", "in a timely manner", "in all likelihood", "in an effort to", "in excess of", "in light of the fact that", "in order that", "in order to", "in order for", "in regard to", "in the amount of", "in the event of", "in the near future", "in the process of", "in view of the above", "inasmuch as", "is applicable to", "null and void", "owing to the fact that", "point in time", "refer back", "span across", "successfully complete", "take action to", "the month of", "therein", "thereof", "this day and age", "time period", "until such time as", "utilise", "utilisation", "utilization", "utilize", "various different", "whether or not", "with reference to", "with the exception of"]
+      threshold_source: "The full retext-simplify list (327 phrases) flags normal research words (effect, estimate, determine, however, parameters, methodology, multiple). The allow list keeps only phrases that are wordy in research prose too; chosen by Quartile (open question)."
+      message: "Wordy phrase: '{match}'."
+      fix: "Use the plain form ({expected}) if the meaning stays the same."
+      tests: [tests/phases/phase6-style.test.js]
+    - id: STY-WORDY-01
+      title: "Wordy or redundant phrase (proselint and too-wordy lists)"
+      severity: minor
+      confidence: medium
+      where: all
+      source_ref: "data/prose-rules.json lists 'wordy' (too-wordy 0.3.1, MIT) and 'redundancy' (proselint commit dbed789, BSD-3-Clause, after Garner)"
+      thresholds:
+        low_confidence_without_replacement: true
+      threshold_source: "Entries without a replacement in the list are reported as note with low confidence; 'it is', 'there is' and similar entries are skipped as core/prose.js does."
+      message: "Wordy or redundant phrase: '{match}'."
+      fix: "Use '{expected}' if the meaning stays the same, or delete the phrase."
+      tests: [tests/phases/phase6-style.test.js]
+    - id: STY-CLICHE-01
+      title: "Cliché"
+      severity: minor
+      confidence: medium
+      where: all
+      source_ref: "data/prose-rules.json list 'cliches' (no-cliches 0.3.0, MIT)"
+      message: "Cliché: '{match}'."
+      fix: "Say it plainly and precisely."
+      tests: [tests/phases/phase6-style.test.js]
+    - id: STY-WEASEL-01
+      title: "Intensifier or weasel word"
+      severity: note
+      confidence: low
+      where: all
+      source_ref: "data/prose-rules.json list 'weasel' (weasel-words 0.1.1, MIT, subset)"
+      threshold_source: "Skipped when a test statistic (p, t, F, r) is in the same sentence, as core/prose.js does."
+      message: "Intensifier: '{match}'."
+      fix: "Delete it, or give the evidence that makes it true."
+      tests: [tests/phases/phase6-style.test.js]
+    - id: STY-ILLUSION-01
+      title: "Repeated word"
+      severity: minor
+      confidence: medium
+      where: all
+      source_ref: "write-good 1.0.8 (MIT), check 'illusion' (lexical illusions)"
+      threshold_source: "'that that', 'had had', 'is is' and 'very very' are skipped, as core/prose.js does."
+      message: "Repeated word: '{match}'."
+      fix: "Delete the second word."
+      tests: [tests/phases/phase6-style.test.js]
+    - id: STY-SO-01
+      title: "Sentence starts with 'So'"
+      severity: note
+      confidence: low
+      where: all
+      source_ref: "write-good 1.0.8 (MIT), check 'so'"
+      threshold_source: "'So far', 'So that', 'So-called', 'So long', 'So much', 'So many', 'So too' and 'So as' are skipped (Quartile filter)."
+      message: "The sentence starts with 'So'."
+      fix: "Delete 'So' or use a linking word that says the relation ('Therefore', 'As a result')."
+      tests: [tests/phases/phase6-style.test.js]
+rules:
+  - id: STY-LONG-01
+    title: "Very long sentence"
+    role: writing
+    severity: note
+    confidence: low
+    designs: [all]
+    check: pattern
+    pattern: '^(?:\S+\s+){49,}\S+'
+    negation: none
+    where: all
+    source_ref: "Limit derived from data/style-profile.json overall.metrics: median meanSentence 24.6 + 3 x median sdSentence 8.3 = 49.5, rounded to 50 words"
+    message: "Sentence of 50 words or more."
+    fix: "Split it into two or three sentences, one idea each."
+    note: "Negation does not change length, so the second negative test is the same content split into shorter sentences."
+    tests:
+      positive: [tests/rules/STY-LONG-01/pos_1.txt]
+      negative: [tests/rules/STY-LONG-01/neg_1.txt, tests/rules/STY-LONG-01/neg_2.txt]
+  - id: STY-THEREIS-01
+    title: "'There is ... that' opening"
+    role: writing
+    severity: note
+    confidence: low
+    designs: [all]
+    check: pattern
+    pattern: '^There\s+(?:is|are|was|were)\s+(?!no\b|not\b|nothing\b|little\b|few\b|evidence\b|reason\b)(?:\S+\s+){0,8}?(?:that|who|which)\b'
+    negation: none
+    where: all
+    source_ref: "write-good 1.0.8 (MIT), check 'thereIs' (idea); pattern written by Quartile"
+    message: "The sentence opens with 'There is/are ... that', which delays the real subject."
+    fix: "Make the real subject the subject: 'There are many firms that export' becomes 'Many firms export'."
+    note: "Negated forms ('There is no ... that') and 'There is evidence/reason that' are standard research wording and are skipped."
+    tests:
+      positive: [tests/rules/STY-THEREIS-01/pos_1.txt]
+      negative: [tests/rules/STY-THEREIS-01/neg_1.txt, tests/rules/STY-THEREIS-01/neg_2.txt]

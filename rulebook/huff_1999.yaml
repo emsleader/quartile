@@ -1,0 +1,12 @@
+# Priority source HUFF1999 (specification Section 12). This file is documented and still empty on purpose.
+# No rule may be written here until a person has read the book (or essay) and paraphrases each rule in their
+# own words, with the chapter or page in source_ref. Never copy text from the source. See docs/CONTRIBUTING_RULES.md.
+source:
+  id: HUFF1999
+  citation: "Huff, Writing for Scholarly Publication, Sage"
+  licence_note: "Rules paraphrased; no text reproduced"
+  access: library
+  target_rules: 25
+  target_areas: "conversation with literature, management field"
+  extraction_status: "awaiting owner"
+rules: []

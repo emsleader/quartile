@@ -1,0 +1,12 @@
+# Priority source MCCLOSKEY2019 (specification Section 12). This file is documented and still empty on purpose.
+# No rule may be written here until a person has read the book (or essay) and paraphrases each rule in their
+# own words, with the chapter or page in source_ref. Never copy text from the source. See docs/CONTRIBUTING_RULES.md.
+source:
+  id: MCCLOSKEY2019
+  citation: "McCloskey, Economical Writing, 3rd ed., U. Chicago Press"
+  licence_note: "Rules paraphrased; no text reproduced"
+  access: library
+  target_rules: 20
+  target_areas: "economics prose"
+  extraction_status: "awaiting owner"
+rules: []

@@ -1,0 +1,98 @@
+# Note-level rules from the measured Q1 corpus profile (specification Section 12, source Q1CORPUS).
+# Only numbers are used: every limit below is computed at run time from data/style-profile.json by the
+# structural test profile_metric_at_most (core/rules/tests/phase6.js), with the same measurement code that built
+# the profile (core/stylemetrics.js). No text from any paper is in this file or in the profile.
+#
+# Profile used: data/style-profile.json, built 2026-11-12, n = 501 abstracts of Q1 journal articles (2020 or later)
+# in finance, small business and management; OpenAlex metadata (CC0). It measures ABSTRACTS only, so these rules
+# run on the abstract only.
+#
+# Limit = Tukey upper fence of the profile: p75 + 1.5 x (p75 - p25). With the profile of 2026-11-12:
+#   words              p25 130,  p75 204   -> limit 315 words
+#   meanSentence       p25 21.2, p75 28.6  -> limit 39.7 words per sentence
+#   longSentenceShare  p25 0,    p75 0.25  -> limit 0.625 (share of sentences over 35 words)
+#   passiveShare       p25 0,    p75 0.25  -> limit 0.625 (share of sentences with a be-verb + participle)
+# An abstract with fewer sentences than the profile's p25 of sentences (5) is not measured.
+# The fence was chosen (not p75) because a quarter of published Q1 abstracts lie above p75: a p75 limit would
+# flag normal published writing. Severity is note and confidence low: a distance from the profile is information,
+# not an error.
+source:
+  id: Q1CORPUS
+  citation: "Quartile measured style profile of 501 Q1 journal abstracts (data/style-profile.json, built 2026-11-12; OpenAlex metadata, CC0). Numbers only."
+  licence_note: "Measurements only; no text from any paper is stored or reproduced."
+  access: own
+  profile_file: data/style-profile.json
+  profile_n: 501
+  profile_built: "2026-11-12"
+rules:
+  - id: Q1C-LEN-01
+    title: "Abstract much longer than published Q1 abstracts"
+    role: writing
+    severity: note
+    confidence: low
+    designs: [all]
+    check: structural
+    where: abstract
+    test: "profile_metric_at_most(abstract, words, fence)"
+    source_ref: "data/style-profile.json overall.metrics.words (n = 501, built 2026-11-12); limit = Tukey upper fence p75 + 1.5 IQR = 315 words"
+    message: "The abstract is longer than almost all measured Q1 abstracts (above the upper fence of the profile)."
+    fix: "Check the target journal's word limit first. Then cut background sentences that do not lead to the question or the finding."
+    tests:
+      positive: [tests/rules/Q1C-LEN-01/pos_1.txt]
+      negative: [tests/rules/Q1C-LEN-01/neg_1.txt, tests/rules/Q1C-LEN-01/neg_2.txt]
+  - id: Q1C-SENT-01
+    title: "Abstract sentences much longer than in published Q1 abstracts"
+    role: writing
+    severity: note
+    confidence: low
+    designs: [all]
+    check: structural
+    where: abstract
+    test: "profile_metric_at_most(abstract, meanSentence, fence)"
+    source_ref: "data/style-profile.json overall.metrics.meanSentence (n = 501, built 2026-11-12); limit = Tukey upper fence p75 + 1.5 IQR = 39.7 words"
+    message: "The mean sentence length of the abstract is above the upper fence of the measured Q1 profile."
+    fix: "Split the longest sentences. One idea per sentence; keep the data clause and the main number in separate sentences."
+    tests:
+      positive: [tests/rules/Q1C-SENT-01/pos_1.txt]
+      negative: [tests/rules/Q1C-SENT-01/neg_1.txt, tests/rules/Q1C-SENT-01/neg_2.txt]
+  - id: Q1C-SENT-02
+    title: "Many very long sentences in the abstract"
+    role: writing
+    severity: note
+    confidence: low
+    designs: [all]
+    check: structural
+    where: abstract
+    test: "profile_metric_at_most(abstract, longSentenceShare, fence)"
+    source_ref: "data/style-profile.json overall.metrics.longSentenceShare (sentences over 35 words; n = 501, built 2026-11-12); limit = Tukey upper fence = 0.625"
+    message: "More of the abstract's sentences are over 35 words than in almost all measured Q1 abstracts."
+    fix: "Split sentences over 35 words, starting with those that join two findings."
+    tests:
+      positive: [tests/rules/Q1C-SENT-02/pos_1.txt]
+      negative: [tests/rules/Q1C-SENT-02/neg_1.txt, tests/rules/Q1C-SENT-02/neg_2.txt]
+  - id: Q1C-VOICE-01
+    title: "Abstract mostly in the passive voice"
+    role: writing
+    severity: note
+    confidence: low
+    designs: [all]
+    check: structural
+    where: abstract
+    test: "profile_metric_at_most(abstract, passiveShare, fence)"
+    source_ref: "data/style-profile.json overall.metrics.passiveShare (n = 501, built 2026-11-12); limit = Tukey upper fence = 0.625"
+    message: "The share of passive sentences in the abstract is above the upper fence of the measured Q1 profile."
+    fix: "Where the actor matters, use 'we' and an active verb ('We estimate ...'). Keep the passive where the actor does not matter."
+    tests:
+      positive: [tests/rules/Q1C-VOICE-01/pos_1.txt]
+      negative: [tests/rules/Q1C-VOICE-01/neg_1.txt, tests/rules/Q1C-VOICE-01/neg_2.txt]
+  - id: Q1C-MOVE-01
+    title: "Abstract moves: aim, method and finding are each stated"
+    role: writing
+    severity: note
+    designs: [all]
+    check: manual
+    where: abstract
+    source_ref: "data/style-profile.json overall.movePresence (n = 501): aim 0.645, method 0.531, finding 0.475, implication 0.541, gap 0.182"
+    message: "Check by hand that the abstract states the aim, the data or method, and the main finding."
+    fix: "Read the abstract and confirm that each move a reader needs is there, in plain words."
+    note: "Manual on purpose: apart from background (0.962), no move is present in nine of ten measured Q1 abstracts, so a missing move is not evidence of a problem and cannot be an automatic flag."
