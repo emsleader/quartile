@@ -468,7 +468,7 @@ const Core = (() => {
     [["firm performance", "company performance", "organizational performance", "organisational performance", "business performance"], ["SMEs", "small and medium-sized enterprises", "small firms", "small businesses"], ["financial flexibility", "financial slack"]].forEach(set => { const used = set.filter(t => L.includes(t.toLowerCase())); if (used.length > 1) out.push({ scope: "doc", category: "terminology", severity: "med", problem: `Several names for what may be one construct: ${used.map(u => '"' + u + '"').join(", ")}.`, suggestion: "If they mean the same construct, pick one term and use it throughout; if they differ, define each.", author: true }); });
     return { method, theories: th, issues: out };
   }
-  return { isCaption, headingLevel, sectionRoles, consistency, citeStyle, bizChecks, deskScreen, parseRef, citeKey, aiTells, similar, detectRole, ruleChecks, HEDGES, CAUSAL, DEFAULT_TERMS, esc, splitParagraphs, numbers, citations, termCounts, multisetDiff, diagnostics, knowledgeFacts, compare, wordDiff, parseJSON, normDoi, csv, countList, words };
+  return { isCaption, isHeading, headingLevel, sectionRoles, consistency, citeStyle, bizChecks, deskScreen, parseRef, citeKey, aiTells, similar, detectRole, ruleChecks, HEDGES, CAUSAL, DEFAULT_TERMS, esc, splitParagraphs, numbers, citations, termCounts, multisetDiff, diagnostics, knowledgeFacts, compare, wordDiff, parseJSON, normDoi, csv, countList, words };
 })();
 
 export default Core;

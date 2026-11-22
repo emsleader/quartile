@@ -6,3 +6,7 @@ for (const h of ["Data and Methods:", "3. Data and methods.", "DATA AND METHODS:
   assert.deepEqual(parseText(doc(h)).sections.map(s => s.key), ["abstract", "methods", "conclusion"], h);
 }
 assert.equal(L.parse("Introduction\nPrior work (Jones, 2020) shows X.\nData matter here.").paras.filter(p => p.isHeading).length, 1, "short sentences are not headings");
+// isHeadingLine (core/text/sections.js) uses the 0.14.3 rule and must not throw
+import { isHeadingLine } from "../../core/text/sections.js";
+assert.equal(isHeadingLine("Data and Methods:"), true);
+assert.equal(isHeadingLine("Prior work (Jones, 2020) shows X."), false);
