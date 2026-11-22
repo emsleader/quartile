@@ -2,9 +2,11 @@ name: Build full-text corpus profile (measurements only)
 on:
   workflow_dispatch:
   push:
+    branches: [main]
     paths: ["scripts/corpus-ci.js", ".github/workflows/corpus-build.yml"]
 permissions:
   contents: write
+  pull-requests: write
 concurrency: { group: corpus, cancel-in-progress: true }
 jobs:
   build:
@@ -14,12 +16,24 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
-      - run: npm ci --omit=dev
+      - run: npm ci
       - run: node scripts/corpus-ci.js 500 2>&1 | grep -v "polyfill\|Require stack\|node_modules/\|\[eval\]"
-      - name: Commit measurements only
+      - name: Run the test suite with the new measurements
+        id: tests
+        run: npm test 2>&1 | tail -20 | tee test-output.txt; exit ${PIPESTATUS[0]}
+        shell: bash
+        continue-on-error: true
+      - name: Open a pull request with the measurements (never commit to main directly)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OUTCOME: ${{ steps.tests.outcome }}
         run: |
+          git diff --quiet -- data/corpus-profile.json data/corpus-sources.json && exit 0
+          BR="bot/corpus-profile-$(date -u +%Y%m%d-%H%M)"
           git config user.name "quartile-bot"
           git config user.email "actions@users.noreply.github.com"
+          git checkout -b "$BR"
           git add -f data/corpus-profile.json data/corpus-sources.json
-          git diff --cached --quiet || git commit -m "Update full-text corpus profile (measurements and metadata only)"
-          git pull --rebase && git push
+          git commit -m "Update full-text corpus profile (measurements and metadata only)"
+          git push -u origin "$BR"
+          gh pr create --base main --head "$BR" --title "Update full-text corpus profile (measurements only)" --body "Rebuilt by the corpus workflow. Tests on the new measurements: $OUTCOME (pull requests opened by the workflow token do not start other workflows, so the tests ran in this job). Merge only when they passed."

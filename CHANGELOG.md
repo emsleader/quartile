@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.17.1 (2026-11-22)
+- Tests no longer hard-code the Q1 style-profile limits: `tests/phases/phase6-rulebook.test.js` reads them from `data/style-profile.json`, so a rebuild of the profile by the style-brain workflow cannot break CI again (0.17.0 failed after the rebuild of 22 November moved the abstract-length fence from 315 to 323.5 words). The positive example of `Q1C-LEN-01` is longer (about 450 words) so it stays well above the fence. `rulebook/q1corpus.yaml` documents the 2026-11-22 profile.
+- The style-brain workflow now opens a pull request with the rebuilt profile instead of committing to main, so the tests run before it is merged.
+- Citation metadata: ORCID 0009-0003-8430-211X; affiliation and copyright "Seyed Mehdi Alavi, EMS Leader"; CITATION.cff points to the 0.17.0 record (10.5281/zenodo.24443341); `.zenodo.json` describes the review committee, reference library and paper-history record.
+- No changes to any tool.
+
 ## 0.17.0 (2026-11-22) — simulated review committee
 
 Phases 0 to 9 of `docs/Quartile_Upgrade_Specification.md`. Phase reports are in `docs/reports/`.

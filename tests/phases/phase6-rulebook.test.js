@@ -48,15 +48,16 @@ for (const r of rules.filter(r => r.role === "writing" && r.check !== "manual"))
 const prof = JSON.parse(fs.readFileSync(path.join(ROOT, "data", "style-profile.json"), "utf8")).overall.metrics;
 const fence = m => +(prof[m].p75 + 1.5 * (prof[m].p75 - prof[m].p25)).toFixed(3);
 for (const m of ["words", "meanSentence", "longSentenceShare", "passiveShare"]) assert.equal(limitOf(m), fence(m));
-assert.equal(limitOf("words"), 315); assert.equal(limitOf("meanSentence"), 39.7); assert.equal(limitOf("passiveShare"), 0.625);
-assert.equal(limitOf("meanSentence", "p75"), 28.6);
+// the limits follow the profile, which the style-brain workflow rebuilds: never hard-code them here
+assert.ok(limitOf("words") > prof.words.p75 && limitOf("meanSentence") > prof.meanSentence.p75);
+assert.equal(limitOf("meanSentence", "p75"), prof.meanSentence.p75);
 assert.throws(() => limitOf("nonsense"));
 // structural test: not applicable without the section, or with too few sentences
 assert.equal(evaluate("profile_metric_at_most(abstract, words, fence)", parseText("# Introduction\n\nWe study firms.")).ok, true);
 { const r = evaluate("profile_metric_at_most(abstract, meanSentence, fence)", parseText("# Abstract\n\nWe study firms. They grow."));
   assert.equal(r.ok, true); assert.equal(r.detail.applicable, false); }
 { const r = evaluate("profile_metric_at_most(abstract, meanSentence, fence)", parseText(fs.readFileSync(path.join(ROOT, "tests/rules/Q1C-SENT-01/pos_1.txt"), "utf8")));
-  assert.equal(r.ok, false); assert.ok(r.detail.value > r.detail.limit); assert.equal(r.detail.profile_n, 501); assert.ok(r.anchor && r.anchor.section === "abstract"); }
+  assert.equal(r.ok, false); assert.ok(r.detail.value > r.detail.limit); assert.equal(r.detail.profile_n, JSON.parse(fs.readFileSync(path.join(ROOT, "data", "style-profile.json"), "utf8")).n); assert.ok(r.anchor && r.anchor.section === "abstract"); }
 
 // the contributing guide exists and its worked example uses a clearly fictional source
 const guide = fs.readFileSync(path.join(ROOT, "docs", "CONTRIBUTING_RULES.md"), "utf8");

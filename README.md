@@ -140,4 +140,4 @@ Alavi, S. M. (2026). *Quartile: a meaning-preserving Q1 academic writing engine 
 See also `CITATION.cff`. Each GitHub release is archived on Zenodo.
 
 ## Licence
-MIT © 2026 Seyed Mehdi Alavi, EMS International Kft.
+MIT © 2026 Seyed Mehdi Alavi, EMS Leader.

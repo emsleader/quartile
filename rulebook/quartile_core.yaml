@@ -2,7 +2,7 @@
 # (core/evidence.js) now reads its pattern rules from this file. Wording is Quartile's own.
 source:
   id: QUARTILE_CORE
-  citation: "Quartile core checks, versions 0.14.0 to 0.16.x (EMS International Kft, MIT licence)."
+  citation: "Quartile core checks, versions 0.14.0 to 0.16.x (Seyed Mehdi Alavi, EMS Leader; MIT licence)."
   licence_note: "Written by the Quartile authors; no third-party text."
 rules:
   - id: QC-CLAIM-SNAPSHOT
