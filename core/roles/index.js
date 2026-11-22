@@ -6,8 +6,10 @@ import business from "./business.js";
 import production from "./production.js";
 import ethics from "./ethics.js";
 import response from "./response.js";
+import writing from "../style/checks.js";
 
-export const ROLES = { eic, methods, finance, business, production, ethics, response };
+// writing (specification Section 12) runs the STY and style checks; it is an extra row in the committee report
+export const ROLES = { eic, methods, finance, business, production, ethics, response, writing };
 
 export async function runAll(doc, { only, ...opts } = {}) {
   const out = [];

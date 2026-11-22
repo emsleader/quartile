@@ -35,11 +35,13 @@ for (const c of cases) {
   assert.match(out.markdown, /## Roles/);
   const xml = zipText(Buffer.from(out.docx_base64, "base64"), "word/document.xml");
   for (const r of out.roles) assert.ok(xml.includes(r.name), `${c.id}: role row ${r.name}`);
-  if (c.id.startsWith("phase7-")) for (const e of c.expected) assert.ok(out.findings.some(f => f.rule === e.rule && f.span && f.span.start < e.end && e.start < f.span.end), `${c.id}: ${e.rule} found`);
+  if (c.id.startsWith("phase7-")) for (const e of c.expected) assert.ok(out.findings.some(f => (f.rule === e.rule || (e.rule === "QC-CLAIM-CAUSAL" && /^MTH-CAUSAL-/.test(f.rule))) && f.span && f.span.start < e.end && e.start < f.span.end), `${c.id}: ${e.rule} found`);
 }
 // detection when no design is declared; title in the header
 const reg = cases.find(c => c.id === "phase7-regression");
 const det = await cr.handler({ text: reg.text });
+// after the merge the methods role flags causal wording itself (MTH-CAUSAL-*), which supersedes QC-CLAIM-CAUSAL
+const CAUSAL_ID = det.findings.find(f => /CAUSAL/.test(f.rule)).rule;
 assert.equal(det.header.design_source, "detected"); assert.equal(det.header.design, "regression");
 assert.equal(det.header.title, "Cash holdings and growth in European service SMEs");
 assert.equal(det.docx_base64, undefined, "no DOCX unless asked");
@@ -54,26 +56,26 @@ assert.equal((await cr.handler({ path: path.join(tmp, "paper.txt") })).header.de
 const paras = reg.text.split(/\n+/).map(t => /^(\d\.\s|Abstract$|References$)/.test(t) ? new Paragraph({ text: t, heading: HeadingLevel.HEADING_1 }) : new Paragraph({ text: t }));
 fs.writeFileSync(path.join(tmp, "paper.docx"), await Packer.toBuffer(new Document({ sections: [{ children: paras }] })));
 const fromDocx = await cr.handler({ path: path.join(tmp, "paper.docx"), design: "regression" });
-assert.ok(fromDocx.findings.some(f => f.rule === "QC-CLAIM-CAUSAL"), "DOCX path works");
+assert.ok(fromDocx.findings.some(f => /CAUSAL/.test(f.rule)), "DOCX path works");
 await assert.rejects(cr.handler({}), /text.*path/);
 
 // rule_feedback -> downgrade in committee_review -> reset
 const fb = tool("rule_feedback");
-const causal = det.findings.find(f => f.rule === "QC-CLAIM-CAUSAL");
+const causal = det.findings.find(f => f.rule === CAUSAL_ID);
 let res;
-for (let i = 0; i < 4; i++) res = await fb.handler({ rule: "QC-CLAIM-CAUSAL", verdict: "false_positive", span: { ...causal.span, start: causal.span.start + i } });
+for (let i = 0; i < 4; i++) res = await fb.handler({ rule: CAUSAL_ID, verdict: "false_positive", span: { ...causal.span, start: causal.span.start + i } });
 assert.equal(res.rule.false_positives, 4); assert.ok(res.rule.downgraded); assert.ok(fs.existsSync(res.file));
 const down = await cr.handler({ text: reg.text });
-assert.equal(down.findings.find(f => f.rule === "QC-CLAIM-CAUSAL").severity, "note");
+assert.equal(down.findings.find(f => f.rule === CAUSAL_ID).severity, "note");
 // after the merge the methods role has its own findings, so only check that the downgraded rule no longer counts as major
-assert.ok(!down.findings.some(f => f.rule === "QC-CLAIM-CAUSAL" && f.severity !== "note"));
+assert.ok(!down.findings.some(f => f.rule === CAUSAL_ID && f.severity !== "note"));
 const rs = await tool("rulebook_status").handler({ run_tests: true });
 assert.ok(rs.rules >= 8 && rs.sources.some(s => s.source === "QUARTILE_CORE"));
 assert.equal(rs.coverage.share, 1); assert.deepEqual(rs.coverage.tests_fail, []);
-assert.deepEqual(rs.downgraded.map(d => d.rule), ["QC-CLAIM-CAUSAL"]);
-assert.equal(rs.feedback.precision.find(p => p.rule === "QC-CLAIM-CAUSAL").precision, 0);
-await fb.handler({ rule: "QC-CLAIM-CAUSAL", verdict: "reset", note: "owner reset" });
-assert.equal((await cr.handler({ text: reg.text })).findings.find(f => f.rule === "QC-CLAIM-CAUSAL").severity, "major");
+assert.deepEqual(rs.downgraded.map(d => d.rule), [CAUSAL_ID]);
+assert.equal(rs.feedback.precision.find(p => p.rule === CAUSAL_ID).precision, 0);
+await fb.handler({ rule: CAUSAL_ID, verdict: "reset", note: "owner reset" });
+assert.equal((await cr.handler({ text: reg.text })).findings.find(f => f.rule === CAUSAL_ID).severity, "major");
 assert.deepEqual((await tool("rulebook_status").handler({})).downgraded, []);
 
 // response_tracker: refuses export with open comments, exports when all are set

@@ -11,6 +11,8 @@ import { runRules } from "../../core/rules/engine.js";
 import { runAll } from "../../core/roles/index.js";
 
 const dir = path.dirname(fileURLToPath(import.meta.url));
+// never read the owner's real author profile during a gold run (synthetic EMS cases would get the dual-role flag)
+if (!process.env.QUARTILE_GOLD_USE_PROFILE) process.env.QUARTILE_AUTHOR_PROFILE = path.join(dir, "no-author-profile.yaml");
 const dirs = [path.join(dir, "cases"), process.env.QUARTILE_GOLD_PRIVATE].filter(d => d && fs.existsSync(d));
 const cases = dirs.flatMap(d => fs.readdirSync(d).filter(f => f.endsWith(".json")).map(f => ({ ...JSON.parse(fs.readFileSync(path.join(d, f), "utf8")), _dir: d, _file: f })));
 const rules = loadRules();

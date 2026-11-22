@@ -1,8 +1,0 @@
-### Phase 7 — Committee report, response tracker, feedback loop
-
-- New tool `committee_review`: runs the rulebook and the six role modules for the detected or declared design and returns the committee report (specification Section 13): one light per role with an icon and a word, blockers, majors, top 3 issues, readiness score, overall readiness state (ready to submit / revise first / not ready), human checklist and every finding with rule ID, span, source and fix. Returns Markdown, and DOCX (base64) with `docx: true`. Labelled "Simulated pre-submission review — not a journal decision".
-- New tool `response_tracker`: splits a reviewer letter into comments (Reviewer 1, R1.3, Comment 2:, numbered lists), finds changed paragraphs between the old and new manuscript with jsdiff, and builds the response table (comment, change old → new, location, status). Export to Markdown or DOCX is refused while any comment is open.
-- New tool `rule_feedback`: saves "this flag is wrong / right" verdicts locally in `$QUARTILE_HOME/feedback.jsonl`. A rule with more than 3 confirmed false positives is shown as a note in the committee report until the owner resets it.
-- New tool `rulebook_status`: rules per source, test coverage from `tests/rules`, precision per rule from local feedback, and downgraded rules.
-- New modules: `core/report/committee.js`, `core/report/render.js` (JSON, Markdown, HTML, DOCX; black headings; Okabe-Ito colour-blind-safe lights), `core/report/feedback.js`; `core/roles/response.js` filled in.
-- Tests: `tests/phases/phase7-*.test.js` and five synthetic papers in `tests/phases/fixtures/phase7/`.
