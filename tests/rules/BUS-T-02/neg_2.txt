@@ -1,0 +1,3 @@
+Results
+
+The coefficient on leverage is small, but we do not accept the null hypothesis for H2.
