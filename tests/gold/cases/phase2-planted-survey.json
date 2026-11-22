@@ -1,0 +1,40 @@
+{
+  "id": "phase2-planted-survey",
+  "licence": "synthetic",
+  "planted": true,
+  "text": "Credit Rejection and Owner Satisfaction in Hungarian Small Firms\n\nAbstract\n\nWe study credit rejection using a survey of 412 firms in Hungary.\n\n1. Introduction\n\nSmall firms depend on bank credit. We describe how often loan applications are rejected and how owners rate their banks.\n\n2. Data and Methods\n\nWe use the World Bank Enterprise Surveys for Hungary (2019). The final sample has 421 firms. Owners rated satisfaction with their main bank on a five-point Likert scale (single item).\n\nMean satisfaction on the five-point item was 3.47 (n = 25) among firms whose application was rejected. Mean satisfaction was 3.48 (n = 25) among firms whose application was approved.\n\nTable 1. Firms by sector\n\n| Sector | Firms | % |\n| Manufacturing | 200 | 48.5 |\n| Retail | 150 | 30.4 |\n| Services | 62 | 15.1 |\n| Total | 412 | 100.0 |\n\n3. Results\n\nRejected firms rated their bank lower, t(48) = 0.85, p < .05. Firms with a female owner applied as often as others, t(410) = 1.10, p = .27.\n\n4. Discussion\n\nRejection and low satisfaction go together in this survey, but the design does not show why.",
+  "expected": [
+    {
+      "rule": "STA-01",
+      "section": "methods",
+      "start": 488,
+      "end": 590,
+      "note": "planted"
+    },
+    {
+      "rule": "STA-05",
+      "section": "methods",
+      "start": 364,
+      "end": 395,
+      "note": "planted"
+    },
+    {
+      "rule": "STA-02",
+      "section": "results",
+      "start": 838,
+      "end": 899,
+      "note": "planted"
+    },
+    {
+      "rule": "STA-04",
+      "section": "methods",
+      "start": 698,
+      "end": 824,
+      "note": "planted: % column adds to 94.0"
+    },
+    {
+      "rule": "FIN-08",
+      "note": "planted: WBES used, no sampling weights"
+    }
+  ]
+}

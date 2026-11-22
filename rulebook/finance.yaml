@@ -1,0 +1,125 @@
+# Finance and statistics reviewer: text rules FIN-01 to FIN-08 (specification Section 7.1). Wording is Quartile's
+# own. The structural tests named in `test` are in core/rules/tests/phase2.js; the regular expressions are here.
+# Code checks STA-01 to STA-05 (GRIM, p recomputation, caliper, percentages, n consistency) are in
+# core/roles/finance.js. Design gates: FIN-01/02/03/07 regression only; FIN-04 regression (the classifier has no
+# separate panel design); FIN-05 regression and survey; FIN-06 quantitative designs; FIN-08 survey.
+source:
+  id: QUARTILE_FINANCE
+  citation: "Quartile upgrade specification, Section 7.1 (finance and statistics reviewer), with the method sources named in each rule."
+  licence_note: "Rules written in Quartile's own words; no third-party text."
+rules:
+  - id: FIN-01
+    title: "Endogeneity not addressed"
+    role: finance
+    severity: major
+    confidence: medium
+    designs: [regression]
+    check: structural
+    test: 'fin_evidence(all, \b(endogene\w+|reverse causa\w+|simultaneity|omitted[- ]variables?|selection bias|self-selection|instrument(al)? variables?|instruments?\b|2SLS|two-stage least squares|GMM|difference-in-differences|regression discontinuity|natural experiment|propensity score|Heckman|control function|lagged (independent|explanatory) variables?|no causal (claim|interpretation)s?|(do|does|did) not (claim|imply|interpret)\b[^.]{0,60}\bcaus\w+|(associations?|correlations?)[^.]{0,30}\bnot causal|not (be )?interpreted as causal|descriptive rather than causal)\b)'
+    source_ref: "Roberts, M. R., & Whited, T. M. (2013). Endogeneity in empirical corporate finance. Handbook of the Economics of Finance 2A, 493-572; specification 7.1"
+    message: "The regression paper does not discuss endogeneity (omitted variables, reverse causality or selection) and does not say that no causal claim is made."
+    fix: "Name the main threat to identification and the strategy used (instrument, panel fixed effects with lags, DiD, matching), or state plainly that the estimates are associations, not causal effects."
+    tests:
+      positive: [tests/rules/FIN-01/pos_1.txt]
+      negative: [tests/rules/FIN-01/neg_1.txt, tests/rules/FIN-01/neg_2.txt]
+  - id: FIN-02
+    title: "Standard errors not described"
+    role: finance
+    severity: major
+    confidence: medium
+    designs: [regression]
+    check: structural
+    test: 'fin_evidence(all, \b(cluster(ed|ing)?\b[^.]{0,60}\b(standard errors?|SEs?)\b|(standard errors?|SEs?)\b[^.]{0,60}\bcluster(ed|ing)?\b|robust (standard )?errors?|heteroske?dasticity[- ](robust|consistent)|Huber[- ]White|White(.s)? (standard errors|correction)|Newey[- ]West|Driscoll[- ]Kraay|bootstrap(ped)? standard errors|wild (cluster )?bootstrap|HC[0-3]\b))'
+    source_ref: "Petersen, M. A. (2009). Estimating standard errors in finance panel data sets. Review of Financial Studies 22(1), 435-480; Abadie, A., Athey, S., Imbens, G. W., & Wooldridge, J. M. (2023). When should you adjust standard errors for clustering? Quarterly Journal of Economics 138(1), 1-35"
+    message: "The paper does not say how standard errors are computed (robust, clustered, and at which level)."
+    fix: "State the standard errors used, for example 'standard errors clustered at the firm level', and say why that level fits the sampling or the treatment."
+    tests:
+      positive: [tests/rules/FIN-02/pos_1.txt]
+      negative: [tests/rules/FIN-02/neg_1.txt, tests/rules/FIN-02/neg_2.txt]
+  - id: FIN-03
+    title: "Economic significance not interpreted"
+    role: finance
+    severity: minor
+    confidence: medium
+    designs: [regression]
+    check: structural
+    test: 'fin_evidence(all, \b(one[- ](standard[- ]deviation|SD|unit|percentage[- ]point)[- ](increase|decrease|change|rise|higher|lower)|economic(ally)? (significan\w+|meaningful|important|magnitude|relevance|importance)|percentage points?|elasticit(y|ies)|semi-elasticit(y|ies)|marginal effects?|in (economic|monetary) terms|(increase|decrease|rise|fall|raise|reduce|lower)s?\b[^.]{0,50}\bby (about |roughly |approximately |around )?\d[\d.]*\s?(%|percent|per cent|basis points|bp)\b))'
+    source_ref: "McCloskey, D. N., & Ziliak, S. T. (1996). The standard error of regressions. Journal of Economic Literature 34(1), 97-114; specification 7.1"
+    message: "Key coefficients are read only by sign and p-value; their size is not put in economic units."
+    fix: "For each key coefficient, say what it means in units, e.g. 'a one-standard-deviation increase in leverage is associated with 2.1 percentage points lower sales growth'."
+    tests:
+      positive: [tests/rules/FIN-03/pos_1.txt]
+      negative: [tests/rules/FIN-03/neg_1.txt, tests/rules/FIN-03/neg_2.txt]
+  - id: FIN-04
+    title: "Sample of surviving firms only"
+    role: finance
+    severity: minor
+    confidence: low
+    designs: [regression]
+    check: pattern
+    pattern: '\b(only (surviving|active|listed|existing|operating) (firms|companies|businesses|SMEs|enterprises)|(surviving|active|currently (listed|operating)) (firms|companies|businesses|SMEs|enterprises) only|(firms|companies|businesses|SMEs) (that|which) (survived|were still (active|operating|listed|in business))|still (active|operating|listed|in business) (in|at|by) (\d{4}|the end))'
+    negatable: true
+    unless_nearby: '\b(survivorship|surviv\w+ bias|delist\w*|exit(ed|s|ing)?\b|dead firms|inactive firms|failed firms|attrition|look-ahead)'
+    where: [methods, results, opening, other]
+    source_ref: "Brown, S. J., Goetzmann, W., Ibbotson, R. G., & Ross, S. A. (1992). Survivorship bias in performance studies. Review of Financial Studies 5(4), 553-580; specification 7.1"
+    message: "The sample seems limited to firms that survived ('{match}'), and survivorship bias is not discussed nearby."
+    fix: "Say whether firms that exited are in the data. If not, discuss the direction of the survivorship bias or add exited firms."
+    tests:
+      positive: [tests/rules/FIN-04/pos_1.txt]
+      negative: [tests/rules/FIN-04/neg_1.txt, tests/rules/FIN-04/neg_2.txt]
+  - id: FIN-05
+    title: "Outlier treatment not stated"
+    role: finance
+    severity: minor
+    confidence: medium
+    designs: [regression, survey]
+    check: structural
+    test: 'fin_mention_if(all, \b(sales growth|sales|revenues?|turnover|total assets|leverage|ROA|ROE|return on (assets|equity)|profits?|cash flows?|Tobin.?s q|market value|labou?r productivity|employment growth) &&& \b(winsori[sz]\w*|trimm(ed|ing)|truncat\w+|outliers?|extreme values?|robust regression|median regression|quantile regression)\b)'
+    source_ref: "Adams, J., Hayunga, D., Mansi, S., Reeb, D., & Verardi, V. (2019). Identifying and treating outliers in finance. Financial Management 48(2), 345-384; specification 7.1"
+    message: "Financial variables are used, but the paper does not say how outliers were treated (winsorising or trimming level)."
+    fix: "State the treatment, e.g. 'continuous variables are winsorised at the 1st and 99th percentiles', or say that no treatment was applied and why."
+    tests:
+      positive: [tests/rules/FIN-05/pos_1.txt]
+      negative: [tests/rules/FIN-05/neg_1.txt, tests/rules/FIN-05/neg_2.txt]
+  - id: FIN-06
+    title: "Many tests without a multiple-testing correction"
+    role: finance
+    severity: note
+    confidence: low
+    designs: [regression, sem, experiment, survey]
+    check: structural
+    test: 'fin_tests_without(all, 10, \b(Bonferroni|Holm|Šidák|Sidak|Benjamini|Hochberg|false discovery rate|FDR|family-?wise|multiple (testing|comparisons?|hypothes[ie]s)\b[^.]{0,40}\b(correct\w*|adjust\w*|account\w*|control\w*)|(correct\w*|adjust\w*|account\w*|control\w*)\b[^.]{0,40}\bmultiple (testing|comparisons?|hypothes[ie]s)|adjusted p-values?|Romano[- ]Wolf|pre-?specified primary (outcome|hypothesis)|primary (outcome|hypothesis) (was|is) pre-?specified|pre-?registered primary))'
+    source_ref: "Harvey, C. R., Liu, Y., & Zhu, H. (2016). ... and the cross-section of expected returns. Review of Financial Studies 29(1), 5-68; specification 7.1"
+    message: "More than 10 p-values are reported in the text, with no correction for multiple testing and no pre-specified primary outcome."
+    fix: "Name the primary hypothesis, or adjust p-values (Holm, Benjamini-Hochberg, Romano-Wolf) and say so."
+    tests:
+      positive: [tests/rules/FIN-06/pos_1.txt]
+      negative: [tests/rules/FIN-06/neg_1.txt, tests/rules/FIN-06/neg_2.txt]
+  - id: FIN-07
+    title: "No robustness analysis"
+    role: finance
+    severity: minor
+    confidence: medium
+    designs: [regression]
+    check: structural
+    test: 'fin_evidence(all, \b(robustness( checks?| tests?| analys[ie]s)?|robust to|sensitivity (analys[ie]s|checks?|tests?)|alternative (measures?|specifications?|estimators?|proxies|definitions?|samples?)|sub-?samples?|placebo tests?|additional tests)\b)'
+    source_ref: "Specification 7.1 (robustness section: alternative measures, subsamples, estimators); Roberts & Whited (2013), Section 6"
+    message: "No robustness analysis was found (alternative measures, subsamples or estimators)."
+    fix: "Add a robustness section that re-estimates the main model with an alternative measure, a subsample and another estimator, and report whether the main result holds."
+    tests:
+      positive: [tests/rules/FIN-07/pos_1.txt]
+      negative: [tests/rules/FIN-07/neg_1.txt, tests/rules/FIN-07/neg_2.txt]
+  - id: FIN-08
+    title: "Enterprise Survey data without sampling weights"
+    role: finance
+    severity: major
+    confidence: medium
+    designs: [survey]
+    check: structural
+    test: 'fin_evidence_if(all, \b(World Bank Enterprise Surveys?|Enterprise Surveys?|WBES|BEEPS)\b &&& \b(sampling weights?|survey weights?|probability weights?|design weights?|pweights?|svyset|wstrict|wmedian|wweak|weighted (by|using|with) [^.]{0,40}weights?|(apply|applied|use|used|using|include|included)\b[^.]{0,30}\bweights?)\b)'
+    source_ref: "World Bank Enterprise Surveys, Sampling methodology and indicator notes (survey weights wstrict / wmedian / wweak make estimates representative of the non-agricultural private economy); specification 7.1"
+    message: "World Bank Enterprise Survey data are used, but the paper does not say that sampling weights were applied."
+    fix: "Use the survey's sampling weights (e.g. wstrict, with strata and PSU in svyset) for descriptive statistics and population estimates, or explain why unweighted estimates answer the question."
+    tests:
+      positive: [tests/rules/FIN-08/pos_1.txt, tests/rules/FIN-08/pos_2.txt]
+      negative: [tests/rules/FIN-08/neg_1.txt, tests/rules/FIN-08/neg_2.txt, tests/rules/FIN-08/neg_3.txt]
