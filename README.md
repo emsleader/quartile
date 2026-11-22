@@ -105,6 +105,18 @@ node scripts/build-bank.js scimagojr_2024.csv --areas "Business,Economics,Decisi
 ```
 Difficulty = 0.45 × SJR percentile + 0.20 × H-index percentile + 0.20 × citations-per-document percentile + 0.15 × (100 − output percentile), within the journal's main category (×0.6 for conference proceedings). Very hard ≥ 80, Hard ≥ 60, Moderate ≥ 40, otherwise Accessible.
 
+## Simulated review committee (0.17.0)
+
+`committee_review` reviews a manuscript the way an editorial committee would: editor-in-chief, methods, finance and statistics, business administration, production and ethics, plus writing style. Every finding has a rule ID, the exact text span, the rule's source, a severity, a confidence and a fix. The report is labelled "Simulated pre-submission review — not a journal decision" and is returned as JSON, Markdown and Word.
+
+| Area | Tools |
+|---|---|
+| Committee | `committee_review`, `contribution_test`, `reporting_checklist`, `grim_check`, `hypothesis_map`, `ethics_check`, `style_check`, `response_tracker`, `rulebook_status`, `rule_feedback` |
+| Quartile Library (local reference library) | `library_add`, `library_import`, `library_export`, `library_search`, `library_verify`, `library_match_manuscript`, `library_bibliography`, `library_dedupe`, `library_screening` |
+| Quartile Record (paper history and learning) | `record_paper`, `record_event`, `record_letter`, `record_requests`, `record_lessons`, `record_timeline`, `record_stats` |
+
+Rules live in `rulebook/*.yaml`; each has a source and positive and negative tests. Statistics functions are validated against R (`tests/validation/`). The Library and the Record are stored on your machine in `~/.quartile` (set `QUARTILE_HOME` to change it). The dual-role check reads your own `~/.quartile/author.yaml` (example: `tests/fixtures/author.example.yaml`). Phase reports with open questions: `docs/reports/`.
+
 ## Limits
 
 - Quartile checks consistency, reporting and wording. It cannot judge whether a theory is interesting or a contribution is important; it only shows the evidence for a person to judge.

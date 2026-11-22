@@ -11,6 +11,8 @@ import { runRules } from "../../core/rules/engine.js";
 import { runAll } from "../../core/roles/index.js";
 
 const dir = path.dirname(fileURLToPath(import.meta.url));
+// never read the owner's real author profile during a gold run (synthetic EMS cases would get the dual-role flag)
+if (!process.env.QUARTILE_GOLD_USE_PROFILE) process.env.QUARTILE_AUTHOR_PROFILE = path.join(dir, "no-author-profile.yaml");
 const dirs = [path.join(dir, "cases"), process.env.QUARTILE_GOLD_PRIVATE].filter(d => d && fs.existsSync(d));
 const cases = dirs.flatMap(d => fs.readdirSync(d).filter(f => f.endsWith(".json")).map(f => ({ ...JSON.parse(fs.readFileSync(path.join(d, f), "utf8")), _dir: d, _file: f })));
 const rules = loadRules();
@@ -20,7 +22,10 @@ const overlap = (f, e) => e.start == null || (f.span && f.span.start < e.end && 
 for (const c of cases) {
   const text = c.text ?? fs.readFileSync(path.join(c._dir, c.file), "utf8");
   const doc = parseText(text, { design: c.design || null });
-  const found = [...runRules(doc, rules), ...(await runAll(doc, { journal: c.journal }))].filter(f => f.severity !== "note" || f.rule);
+  // a case annotated for some roles only (annotated_roles) is scored for those roles only; findings of other roles
+  // are neither true nor false positives, because nobody annotated them
+  const scope = c.annotated_roles ? new Set(c.annotated_roles) : null;
+  const found = [...runRules(doc, rules), ...(await runAll(doc, { journal: c.journal }))].filter(f => (f.severity !== "note" || f.rule) && (!scope || scope.has(f.role)));
   const used = new Set();
   for (const e of c.expected || []) {
     const i = found.findIndex((f, k) => !used.has(k) && f.rule === e.rule && overlap(f, e));

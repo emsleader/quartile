@@ -1,0 +1,26 @@
+{
+  "id": "phase1-flow-planted-slr-prisma",
+  "licence": "synthetic",
+  "design": "slr",
+  "text": "A systematic literature review of financing in equipment-dependent service firms\n\nAbstract\n\nThis systematic literature review maps studies on how equipment-dependent service firms finance their assets.\n\n# 1. Introduction\n\nNo prior systematic review covers this group of firms. Our aim is to map the evidence.\n\n# 2. Methods\n\nRecords identified: 980; duplicates removed: 80; records screened: 910; records excluded: 700; studies included: 210.\n\nWe searched Scopus and Web of Science in March 2025 with a Boolean search string. Two reviewers screened titles and abstracts independently. Studies were included if they reported firm-level financing data.\n\n# 3. Results\n\nRecords identified from databases (n = 1,234); duplicates removed (n = 234); records screened (n = 1,000); records excluded (n = 800); reports assessed for eligibility (n = 210); reports excluded (n = 150); studies included (n = 60).\n\nMost included studies use survey data from Europe. Leasing is the most studied instrument.\n\n# 4. Discussion\n\nThe evidence is thin outside Europe.\n\n# 5. Limitations\n\nThe review covers only English-language, peer-reviewed sources, so grey literature is missing.\n\n# 6. Conclusion\n\nLeasing dominates the studied financing options.",
+  "expected": [
+    {
+      "rule": "MTH-03",
+      "section": "results",
+      "start": 665,
+      "end": 898,
+      "note": "1,000 - 800 = 200"
+    },
+    {
+      "rule": "MTH-03",
+      "section": "methods",
+      "start": 324,
+      "end": 441,
+      "note": "980 - 80 = 900"
+    }
+  ],
+  "planted": true,
+  "annotated_roles": [
+    "methods"
+  ]
+}

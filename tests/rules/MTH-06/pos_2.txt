@@ -1,0 +1,15 @@
+# Methods
+
+We use a regression of growth on leverage.
+
+# Results
+
+Growth falls with leverage.
+
+# Discussion
+
+Growth and leverage move together.
+
+# Conclusion
+
+Leverage matters for growth.

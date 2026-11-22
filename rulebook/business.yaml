@@ -1,0 +1,71 @@
+# Business-administration committee text rules (Phase 4). Wording is Quartile's own.
+source:
+  id: QUARTILE_BUSINESS
+  citation: "Quartile business-administration committee rules (Phase 4, specification Section 8). Popper (1959), The Logic of Scientific Discovery, Hutchinson; Wasserstein & Lazar (2016), The ASA statement on p-values, The American Statistician 70(2)."
+  licence_note: "Rules written by the Quartile authors; no third-party text reproduced."
+rules:
+  - id: BUS-T-01
+    title: "Hypothesis 'proved' by data"
+    role: business
+    severity: minor
+    confidence: medium
+    designs: [regression, survey, sem, experiment, bounds, qualitative]
+    check: pattern
+    pattern: '\b(prove[sd]?|proven|proof that)\b'
+    negatable: true
+    where: [abstract, results, discussion, conclusion]
+    source_ref: "Popper (1959), ch. 1 and 10: empirical tests corroborate or refute, they do not prove"
+    message: "Empirical results do not prove a hypothesis: '{match}'."
+    fix: "Write 'support', 'are consistent with' or 'corroborate' instead of 'prove'."
+    tests:
+      positive: [tests/rules/BUS-T-01/pos_1.txt]
+      negative: [tests/rules/BUS-T-01/neg_1.txt, tests/rules/BUS-T-01/neg_2.txt]
+  - id: BUS-T-02
+    title: "Null hypothesis 'accepted'"
+    role: business
+    severity: minor
+    confidence: high
+    designs: [regression, survey, sem, experiment]
+    check: pattern
+    pattern: '\baccept(?:ed|s|ing)?\s+(?:the\s+)?(?:null(?:\s+hypothes[ie]s)?|H0)\b'
+    negatable: true
+    where: [results, discussion, conclusion]
+    source_ref: "Wasserstein & Lazar (2016), principle 5 and context: a non-significant result does not show the null is true"
+    message: "A test that does not reject the null does not show that the null is true: '{match}'."
+    fix: "Write 'we do not reject the null hypothesis' or 'the estimate is not statistically distinguishable from zero', and report the confidence interval."
+    tests:
+      positive: [tests/rules/BUS-T-02/pos_1.txt]
+      negative: [tests/rules/BUS-T-02/neg_1.txt, tests/rules/BUS-T-02/neg_2.txt]
+  - id: BUS-T-03
+    title: "Prescriptive 'must' from observational evidence"
+    role: business
+    severity: note
+    confidence: low
+    designs: [regression, survey, sem, bounds, qualitative]
+    check: pattern
+    pattern: '\b(managers|owners|firms|companies|lenders|banks|policy ?makers|regulators|entrepreneurs)\s+(must|have to)\b'
+    negatable: true
+    where: [implications, discussion, conclusion]
+    source_ref: "Specification Section 8 (BUS-05): implications are actions the evidence supports; an observational design supports 'could' more often than 'must'"
+    message: "Strong prescription from observational evidence: '{match}'."
+    fix: "Tie the action to the finding and its conditions, for example 'owners who face X could consider Y'."
+    tests:
+      positive: [tests/rules/BUS-T-03/pos_1.txt]
+      negative: [tests/rules/BUS-T-03/neg_1.txt, tests/rules/BUS-T-03/neg_2.txt]
+  - id: BUS-T-04
+    title: "Empirical test claimed in a conceptual paper"
+    role: business
+    severity: minor
+    confidence: medium
+    designs: [conceptual]
+    check: pattern
+    pattern: '\bwe (test|tested|estimate|estimated|regress|regressed)\b|\b(our|the) (results|estimates|data) (show|indicate|confirm|reveal)\b'
+    negatable: true
+    except: '\b(future|could|would|might|can be|should be|later)\b'
+    where: all
+    source_ref: "Specification Section 8 (BUS-02, conceptual design): a conceptual paper derives propositions; it does not report tests"
+    message: "A conceptual paper reports an empirical test: '{match}'."
+    fix: "Either report the data and method in full, or describe the test as future work."
+    tests:
+      positive: [tests/rules/BUS-T-04/pos_1.txt]
+      negative: [tests/rules/BUS-T-04/neg_1.txt, tests/rules/BUS-T-04/neg_2.txt]

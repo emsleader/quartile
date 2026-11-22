@@ -1,0 +1,11 @@
+Referee report
+
+Major comments
+- The contribution is overstated; the novelty compared with earlier studies must be argued more carefully.
+- The model should be estimated with firm fixed effects as a robustness check.
+- The hypotheses are not derived from theory.
+
+Minor comments
+- The abstract exceeds the word limit.
+- Please add the data availability statement.
+• Check the reference list for missing DOIs.

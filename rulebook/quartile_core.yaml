@@ -100,14 +100,14 @@ rules:
     check: pattern
     pattern: '\b(prices?|valuations?|resale value|market value)\b'
     context: '\b(advert\w*|asking|listed|listing|marketplace|classified)\b'
-    except: '\basking\b'
+    except: '\basking\b|\badvertised (asking )?prices?\b'
     negation: none
     source_ref: "Owner's evidence rule: advertised prices are asking prices; claim audit 0.14.0"
     message: "Asking price treated as a transaction price: \u2018{match}\u2019."
     fix: "An advertised price is an asking price; say so, and do not treat it as a realised sale."
     tests:
       positive: [tests/rules/QC-CLAIM-ASKING-PRICE/pos_1.txt]
-      negative: [tests/rules/QC-CLAIM-ASKING-PRICE/neg_1.txt, tests/rules/QC-CLAIM-ASKING-PRICE/neg_2.txt]
+      negative: [tests/rules/QC-CLAIM-ASKING-PRICE/neg_1.txt, tests/rules/QC-CLAIM-ASKING-PRICE/neg_2.txt, tests/rules/QC-CLAIM-ASKING-PRICE/neg_3.txt]
   - id: QC-CLAIM-CAUSAL
     legacy_id: causal
     title: "Causal wording on descriptive or associational evidence"

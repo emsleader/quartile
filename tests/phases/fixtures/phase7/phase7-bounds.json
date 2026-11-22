@@ -1,0 +1,16 @@
+{
+ "id": "phase7-bounds",
+ "licence": "synthetic (written for Quartile tests, MIT)",
+ "design": "bounds",
+ "text": "When does integration pay? Partial identification of service add-on margins\n\nAbstract\nWe use partial identification to bound the margin of an added service line. The identified set is wide.\n\n1. Introduction\nParagraph 1 on add-on services describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 2 on add-on services describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 3 on add-on services describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\n2. Methods\nWe follow Manski and report bounds on the margin under stated assumptions. The bounds analysis uses evidence-graded inputs (EGBA). Paragraph 1 on assumptions describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 2 on assumptions describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\n3. Results\nThe identified set for the margin runs from -4% to 11%. Results show that integration pays off under the assumed parameter range.\n\n4. Discussion\nParagraph 1 on bounds describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 2 on bounds describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\n5. Conclusion\nThe sign of the margin is not identified without further assumptions.\n\nReferences\nManski, C. F. (2003). Partial Identification of Probability Distributions. Springer.",
+ "expected": [
+  {
+   "rule": "QC-CLAIM-ASSUMPTION",
+   "section": "results",
+   "start": 1632,
+   "end": 1705,
+   "note": "planted"
+  }
+ ],
+ "planted": true
+}

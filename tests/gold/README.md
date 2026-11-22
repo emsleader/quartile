@@ -18,9 +18,13 @@ role and per severity (targets in specification 14.2).
   "design": "regression",
   "text": "full text, or omit and give \"file\" with a path relative to the case file",
   "expected": [ { "rule": "MTH-03", "section": "methods", "start": 120, "end": 188, "note": "8,159 - 412 is not 7,700" } ],
-  "planted": true
+  "planted": true,
+  "annotated_roles": ["methods"]
 }
 ```
+
+`annotated_roles` (optional) says which roles were annotated. A case annotated for some roles only is scored for
+those roles only; leave it out for a fully annotated manuscript, where every finding of every role is scored.
 
 `start` and `end` are character offsets into the normalised text of `core/text/parse.js` (`doc.text`). A finding
 counts as a true positive when its rule matches and its span overlaps the annotated span (or the annotation has no

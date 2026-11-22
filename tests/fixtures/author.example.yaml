@@ -1,0 +1,14 @@
+# Fictional author profile for tests and as a template. Not a real person or company.
+# Copy it to $QUARTILE_HOME/author.yaml (default ~/.quartile/author.yaml) or point QUARTILE_AUTHOR_PROFILE at your
+# own copy. Never commit your real profile.
+name: "Dr. Alex Example"
+affiliations:
+  - organisation: "Example University, Faculty of Business"
+    role: "Doctoral candidate"
+    sectors: ["higher education"]
+  - organisation: "Kestrel Motion Systems Ltd"
+    role: "Managing Director"
+    sectors: ["EMS", "fitness studio"]
+business_interests:
+  - organisation: "Bluefin Wellness Studios Kft"
+    sectors: ["whole-body EMS"]

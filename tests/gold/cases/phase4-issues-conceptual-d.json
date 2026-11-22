@@ -1,0 +1,45 @@
+{
+  "id": "phase4-issues-conceptual-d",
+  "licence": "synthetic",
+  "design": "conceptual",
+  "text": "Integration of new services in small studios\n\nAbstract\n\nThis conceptual paper develops propositions on adding a new service to an existing studio.\n\n1. Introduction\n\nThis thesis asks when studios add a new service line. Economies of scope arise when two services share inputs (Teece, Pisano, & Shuen, 1997).\n\n2. Conceptual framework\n\nUnder economies of scope, shared staff and space lower the cost of a second service (Teece, Pisano, & Shuen, 1997).\n\nP1: Shared inputs increase the likelihood of adding a new service.\n\nWB-EMS studios face high equipment costs. Whole-body electromyostimulation (WB-EMS) needs trained staff.\n\nP2: Studios with trained staff are more likely to add WB-EMS.\n\n3. Discussion\n\nWe test the propositions with interview data from studio owners.\n\n4. Conclusion\n\nThe framework explains service integration.\n\nReferences\n\nTeece, D. J., Pisano, G., & Shuen, A. (1997). Dynamic capabilities and strategic management. Strategic Management Journal, 18(7), 509-533.",
+  "expected": [
+    {
+      "rule": "BUS-02",
+      "section": "literature",
+      "start": 624,
+      "end": 685,
+      "note": "P2: Studios"
+    },
+    {
+      "rule": "BUS-06",
+      "note": "document-level"
+    },
+    {
+      "rule": "BUS-T-04",
+      "section": "discussion",
+      "start": 702,
+      "end": 766,
+      "note": "We test the propositions"
+    },
+    {
+      "rule": "PRD-T-03",
+      "section": "introduction",
+      "start": 165,
+      "end": 218,
+      "note": "This thesis"
+    },
+    {
+      "rule": "PRD-03",
+      "section": "literature",
+      "start": 518,
+      "end": 559,
+      "note": "WB-EMS studios face"
+    }
+  ],
+  "planted": false,
+  "annotated_roles": [
+    "business",
+    "production"
+  ]
+}

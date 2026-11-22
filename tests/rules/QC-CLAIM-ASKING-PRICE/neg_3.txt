@@ -1,0 +1,3 @@
+# Methods
+
+We use filed accounts and advertised prices and compute partial-identification bounds.

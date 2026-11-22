@@ -1,0 +1,42 @@
+# COREQ (32 items, three domains). Official item numbers; item text paraphrased in Quartile's own words.
+checklist:
+  id: COREQ
+  name: "COREQ (interviews and focus groups)"
+  citation: "Tong, A., Sainsbury, P., & Craig, J. (2007). Consolidated criteria for reporting qualitative research (COREQ): a 32-item checklist for interviews and focus groups. International Journal for Quality in Health Care, 19(6), 349-357. https://doi.org/10.1093/intqhc/mzm042"
+  designs: [qualitative]
+  numbering: official
+  official_items: 32
+  licence_note: "Item numbers from the statement; item text paraphrased, not reproduced."
+items:
+  - { number: "1", topic: "Research team: personal characteristics", item: "The author(s) who ran the interviews or focus groups are named.", check: auto, where: [methods], detect: '\b(interviews? (were|was) (conducted|carried out|led) by|(first|second|lead) author (conducted|interviewed|moderated)|interviewer|moderator|facilitator)\b' }
+  - { number: "2", topic: "Research team: personal characteristics", item: "The interviewer's credentials (for example PhD, MBA) are given.", check: manual, where: [methods] }
+  - { number: "3", topic: "Research team: personal characteristics", item: "The interviewer's occupation at the time of the study is given.", check: manual, where: [methods] }
+  - { number: "4", topic: "Research team: personal characteristics", item: "The interviewer's gender is given.", check: manual, where: [methods] }
+  - { number: "5", topic: "Research team: personal characteristics", item: "The interviewer's experience and training are described.", check: manual, where: [methods], detect: '\b(experienced (in|with) (qualitative|interview\w*)|trained in|training in qualitative)\b' }
+  - { number: "6", topic: "Relationship with participants", item: "Whether a relationship existed before the study began is stated.", check: manual, where: [methods], detect: '\b(prior relationship|(no|a) (prior|previous|pre-existing) relationship|known to the (researcher|interviewer)|professional (network|contacts))\b' }
+  - { number: "7", topic: "Relationship with participants", item: "What participants knew about the interviewer (goals, reasons for the research) is described.", check: manual, where: [methods] }
+  - { number: "8", topic: "Relationship with participants", item: "Interviewer characteristics that may matter (bias, assumptions, interests) are reported; reflexivity is addressed.", check: auto, where: [methods, discussion, limitations], detect: '\b(reflexiv\w+|positionality|insider (position|status|role)|researcher bias)\b' }
+  - { number: "9", topic: "Theoretical framework", item: "The methodological orientation is stated (for example grounded theory, content analysis, phenomenology).", check: auto, where: [methods], detect: '\b(grounded theory|thematic analysis|content analysis|phenomenolog\w+|ethnograph\w+|discourse analysis|Gioia|template analysis|interpretive|framework analysis)\b' }
+  - { number: "10", topic: "Participant selection", item: "The sampling method is described (purposive, convenience, snowball, consecutive).", check: auto, where: [methods], detect: '\b(purposive|purposeful|theoretical sampling|convenience sampl\w+|snowball|maximum variation|criterion sampling)\b' }
+  - { number: "11", topic: "Participant selection", item: "How participants were approached is described (in person, telephone, mail, e-mail).", check: auto, where: [methods], detect: '\b(approached|contacted|invited|recruited)\b' }
+  - { number: "12", topic: "Participant selection", item: "The number of participants is given.", check: auto, where: [methods], detect: '\b\d+\s+(participants|interviewees|informants|managers|owners|founders|respondents|interviews)\b|\b(twelve|fifteen|twenty|thirty|ten|eight|nine|eleven)\s+(participants|interviewees|informants|interviews)\b' }
+  - { number: "13", topic: "Participant selection", item: "The number who refused or dropped out is given, with reasons.", check: manual, where: [methods], detect: '\b(declined|refused|dropped out|did not respond|withdrew)\b' }
+  - { number: "14", topic: "Setting", item: "The setting of data collection is described (home, workplace, online).", check: auto, where: [methods], detect: '\b(in person|face-to-face|on-?site|at (their|the) (workplace|premises|office)|via (Zoom|Teams|Skype|telephone|video)|online interviews?|by telephone)\b' }
+  - { number: "15", topic: "Setting", item: "Whether anyone other than participants and researchers was present is stated.", check: manual, where: [methods] }
+  - { number: "16", topic: "Setting", item: "Important characteristics of the sample are described (demographics, roles, firm data, dates).", check: auto, where: [methods, results], detect: '\b(Table \d+ (lists|summari[sz]es|describes|shows) (the )?(participants|interviewees|informants|cases)|participants? (profile|characteristics)|years of experience)\b' }
+  - { number: "17", topic: "Data collection", item: "The paper says whether an interview guide was provided and whether it was pilot tested.", check: auto, where: [methods], detect: '\b(interview (guide|protocol|schedule)|topic guide)\b' }
+  - { number: "18", topic: "Data collection", item: "Whether repeat interviews took place, and how many, is stated.", check: manual, where: [methods], detect: '\b(follow-?up interviews?|repeat interviews?|second (round|interview))\b' }
+  - { number: "19", topic: "Data collection", item: "The recording method is stated (audio or video).", check: auto, where: [methods], detect: '\b(audio-?recorded|video-?recorded|recorded (with|and)|recordings?)\b' }
+  - { number: "20", topic: "Data collection", item: "Whether field notes were made during or after the interviews is stated.", check: manual, where: [methods], detect: '\bfield ?notes\b' }
+  - { number: "21", topic: "Data collection", item: "The duration of interviews or focus groups is given.", check: auto, where: [methods], detect: '\b\d+\s*(to|-|–)?\s*\d*\s*(minutes|min\.?|hours?)\b|\blasted\b' }
+  - { number: "22", topic: "Data collection", item: "Data saturation is discussed.", check: auto, where: [methods, discussion, limitations], detect: '\bsaturation\b' }
+  - { number: "23", topic: "Data collection", item: "Whether transcripts were returned to participants for comment or correction is stated.", check: manual, where: [methods], detect: '\btranscripts? (were|was) (returned|sent back|shared)\b' }
+  - { number: "24", topic: "Data analysis", item: "The number of people who coded the data is given.", check: auto, where: [methods], detect: '\b(two|three|both|second|independent) (coders|authors coded|researchers coded)\b|\bcoded (independently|by (two|both|each))\b|\binter-?coder\b' }
+  - { number: "25", topic: "Data analysis", item: "The coding tree is described.", check: manual, where: [methods, results], detect: '\b(coding (tree|frame|scheme|structure)|codebook|data structure)\b' }
+  - { number: "26", topic: "Data analysis", item: "The paper says whether themes were set in advance or came from the data.", check: auto, where: [methods], detect: '\b(inductive\w*|deductive\w*|abductive\w*|a priori (codes|themes)|emerg\w+ from the data|data-driven)\b' }
+  - { number: "27", topic: "Data analysis", item: "Any software used to manage the data is named.", check: auto, where: [methods], detect: '\b(NVivo|ATLAS\.ti|MAXQDA|Dedoose|QDA Miner)\b' }
+  - { number: "28", topic: "Data analysis", item: "Whether participants gave feedback on the findings is stated.", check: manual, where: [methods], detect: '\b(member check\w*|respondent validation|participant (checking|validation|feedback))\b' }
+  - { number: "29", topic: "Reporting", item: "Participant quotations illustrate the themes, and each is identified (for example by participant number).", check: auto, where: [results], detect: '\((P|I|R|Participant|Interviewee|Informant)\s?-?\d+\b|“[^”]{20,}”|"[^"]{20,}"' }
+  - { number: "30", topic: "Reporting", item: "The data presented and the findings are consistent.", check: manual, where: [results] }
+  - { number: "31", topic: "Reporting", item: "The major themes are clearly presented.", check: manual, where: [results] }
+  - { number: "32", topic: "Reporting", item: "Diverse cases or minor themes are described.", check: manual, where: [results, discussion], detect: '\b(minor themes?|divergent|deviant cases?|negative cases?|disconfirming)\b' }

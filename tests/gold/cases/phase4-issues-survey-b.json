@@ -1,0 +1,73 @@
+{
+  "id": "phase4-issues-survey-b",
+  "licence": "synthetic",
+  "design": "survey",
+  "text": "Customer relationship tools and loyalty in small studios\n\nAbstract\n\nWe surveyed owners on CRM use and loyalty. Use is related to loyalty (β = 0.29).\n\n1. Introduction\n\nThe resource-based view (Barney, 1992) treats customer knowledge as a resource. Customer relationship management (CRM) tools store that knowledge.\n\n2. Theory and hypotheses\n\nUnder the resource-based view, knowledge that rivals cannot copy supports loyalty (Barney, 1992).\n\nH1: CRM use is positively associated with customer loyalty.\n\n3. Methods\n\nThe questionnaire was sent to 380 owners. Each construct had five items on a Likert scale. Cronbach's alpha for trust was 0.62, and composite reliability was above 0.80. Figure 2 shows the measurement model and Figure 1 the research model.\n\nFigure 2. Measurement model\n\nFigure 1. Research model\n\n4. Results\n\nThe final sample covers 412 firms. Table 1 reports the estimates. CRM use is related to loyalty (β = 0.29, p < 0.01), so H1 is supported.\n\nTable 1:\n\n| Path | Estimate |\n| CRM to loyalty | 0.29 |\n\n5. Discussion\n\nPractical implications are important for small studios. The results matter for anyone who runs a studio.\n\nThe findings are limited to studios in one country.\n\n6. Conclusion\n\nCRM use is related to loyalty (β = 0.29).\n\nReferences\n\nBarney, J. (1991). Firm resources and sustained competitive advantage. Journal of Management, 17(1), 99-120. https://doi.org/10.1177/014920639101700108",
+  "expected": [
+    {
+      "rule": "BUS-04",
+      "note": "document-level"
+    },
+    {
+      "rule": "BUS-04",
+      "section": "methods",
+      "start": 604,
+      "end": 682,
+      "note": "alpha for trust was 0.62"
+    },
+    {
+      "rule": "BUS-05",
+      "section": "discussion",
+      "start": 1035,
+      "end": 1090,
+      "note": "Practical implications"
+    },
+    {
+      "rule": "BUS-07",
+      "section": "results",
+      "start": 821,
+      "end": 855,
+      "note": "412 firms"
+    },
+    {
+      "rule": "PRD-02",
+      "section": "results",
+      "start": 960,
+      "end": 968,
+      "note": "Table 1:"
+    },
+    {
+      "rule": "PRD-02",
+      "section": "results",
+      "start": 960,
+      "end": 968,
+      "note": "Table 1:"
+    },
+    {
+      "rule": "PRD-02",
+      "section": "methods",
+      "start": 754,
+      "end": 781,
+      "note": "Figure 2. Measurement"
+    },
+    {
+      "rule": "PRD-03",
+      "section": "abstract",
+      "start": 68,
+      "end": 110,
+      "note": "We surveyed owners on CRM"
+    },
+    {
+      "rule": "PRD-04",
+      "section": "introduction",
+      "start": 167,
+      "end": 246,
+      "note": "(Barney, 1992)"
+    }
+  ],
+  "planted": false,
+  "annotated_roles": [
+    "business",
+    "production"
+  ]
+}

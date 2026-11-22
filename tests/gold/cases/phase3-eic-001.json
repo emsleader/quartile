@@ -1,0 +1,22 @@
+{
+  "id": "phase3-eic-001",
+  "licence": "synthetic",
+  "design": null,
+  "text": "How Cash Buffers, Bank Credit and Owner Equity Together Change the Delay Between Signing a Franchise Contract and Opening a New Service Site\n\nAbstract\n\nWe study the timing of site openings in 300 service firms observed over five years.\n\n1. Introduction\n\nSmall service firms often delay opening new sites because finance arrives late (Smith, 2019). About 40% of planned sites open more than a year late.\n\nJones (2020) and Lee et al. (2021) study credit access in manufacturing but do not examine service firms.\n\nCash buffers may matter for the delay between signing and opening.\n\n2. Data and methods\n\nWe use a panel of 300 firms observed over five years.\n\n3. Results\n\nCash buffers are associated with shorter delays.\n",
+  "expected": [
+    {
+      "rule": "EIC-05-LENGTH",
+      "role": "eic",
+      "note": "title has 23 words"
+    },
+    {
+      "rule": "EIC-06-AIM",
+      "role": "eic",
+      "note": "no aim sentence; the introduction ends with a hedge, not an aim"
+    }
+  ],
+  "planted": true,
+  "annotated_roles": [
+    "eic"
+  ]
+}
