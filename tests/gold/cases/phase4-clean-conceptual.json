@@ -1,8 +1,12 @@
 {
- "id": "phase4-clean-conceptual",
- "licence": "synthetic",
- "design": "conceptual",
- "text": "Strategic flexibility and investment timing: a conceptual framework\n\nAbstract\n\nThis conceptual paper develops propositions on how slack and asset redeployability shape the timing of equipment investment.\n\n1. Introduction\n\nInvestment in equipment is partly irreversible (Pindyck, 1991). Strategic flexibility lets firms switch resources between uses (Sanchez, 1995).\n\n2. Conceptual framework\n\nReal options theory holds that irreversibility raises the value of waiting (Pindyck, 1991). Firms with slack can wait without losing their position (Bourgeois, 1981).\n\nP1: Organizational slack delays irreversible equipment investment.\n\nRedeployable assets lower the cost of a wrong decision, because the asset can be moved to another use (Sanchez, 1995).\n\nP2: Asset redeployability weakens the delay predicted in P1.\n\n3. Discussion\n\nThe framework applies only to firms whose main assets are specific equipment, and it may not hold for asset-light firms.\n\n4. Conclusion\n\nThe propositions can be tested with panel data on equipment purchases.\n\nReferences\n\nBourgeois, L. J. (1981). On the measurement of organizational slack. Academy of Management Review, 6(1), 29-39.\n\nPindyck, R. S. (1991). Irreversibility, uncertainty, and investment. Journal of Economic Literature, 29(3), 1110-1148.\n\nSanchez, R. (1995). Strategic flexibility in product competition. Strategic Management Journal, 16(S1), 135-159.",
- "expected": [],
- "planted": false
+  "id": "phase4-clean-conceptual",
+  "licence": "synthetic",
+  "design": "conceptual",
+  "text": "Strategic flexibility and investment timing: a conceptual framework\n\nAbstract\n\nThis conceptual paper develops propositions on how slack and asset redeployability shape the timing of equipment investment.\n\n1. Introduction\n\nInvestment in equipment is partly irreversible (Pindyck, 1991). Strategic flexibility lets firms switch resources between uses (Sanchez, 1995).\n\n2. Conceptual framework\n\nReal options theory holds that irreversibility raises the value of waiting (Pindyck, 1991). Firms with slack can wait without losing their position (Bourgeois, 1981).\n\nP1: Organizational slack delays irreversible equipment investment.\n\nRedeployable assets lower the cost of a wrong decision, because the asset can be moved to another use (Sanchez, 1995).\n\nP2: Asset redeployability weakens the delay predicted in P1.\n\n3. Discussion\n\nThe framework applies only to firms whose main assets are specific equipment, and it may not hold for asset-light firms.\n\n4. Conclusion\n\nThe propositions can be tested with panel data on equipment purchases.\n\nReferences\n\nBourgeois, L. J. (1981). On the measurement of organizational slack. Academy of Management Review, 6(1), 29-39.\n\nPindyck, R. S. (1991). Irreversibility, uncertainty, and investment. Journal of Economic Literature, 29(3), 1110-1148.\n\nSanchez, R. (1995). Strategic flexibility in product competition. Strategic Management Journal, 16(S1), 135-159.",
+  "expected": [],
+  "planted": false,
+  "annotated_roles": [
+    "business",
+    "production"
+  ]
 }

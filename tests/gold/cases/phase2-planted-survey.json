@@ -36,5 +36,8 @@
       "rule": "FIN-08",
       "note": "planted: WBES used, no sampling weights"
     }
+  ],
+  "annotated_roles": [
+    "finance"
   ]
 }

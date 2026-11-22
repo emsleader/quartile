@@ -1,77 +1,81 @@
 {
- "id": "phase4-issues-regression-a",
- "licence": "synthetic",
- "design": "regression",
- "text": "Bank credit and growth in small firms\n\nAbstract\n\nUsing 380 firms, we find that bank credit is associated with 4.7% faster growth.\n\n1. Introduction\n\nSmall firms depend on bank credit (Beck & Demirguc-Kunt, 2006). Relationships with banks matter for small borrowers (Petersen & Rajan, 1996).\n\n2. Hypotheses\n\nFirms with a bank loan can fund new equipment earlier (Beck & Demirguc-Kunt, 2006).\n\nH1: Bank credit is positively associated with sales growth.\n\nOlder firms may have fewer growth options left.\n\nH2: Firm age is negatively associated with sales growth.\n\nH3: Owner education is positively associated with sales growth.\n\n3. Data and methods\n\nWe use a panel of 380 firms from 2016 to 2021 and fixed effects regressions. EBIT is used as a control. Earnings before interest and taxes (EBIT) are scaled by assets.\n\n4. Results\n\nTable 1 reports the main estimates. Bank credit raises growth by 3.9% (p < 0.05), so H1 is supported. Firm age has a negative coefficient, and H2 is supported. Older firms grew more slowly in the sample (Gordon, 2010).\n\nTable 1. Main estimates\n\n| Variable | Coefficient |\n| Credit | 0.039 |\n| Age | -0.012 |\n\nNote: n = 380 firms, 2016-2021. Source: national business register.\n\nTable 2. Robustness estimates\n\n| Variable | Coefficient |\n| Credit | 0.041 |\n\nNote: n = 380 firms. Source: national business register.\n\n5. Conclusion\n\nBank credit is associated with faster growth.\n\nReferences\n\nBeck, T., & Demirguc-Kunt, A. (2006). Small and medium-size enterprises: Access to finance as a growth constraint. Journal of Banking & Finance, 30(11), 2931-2943. https://doi.org/10.1016/j.jbankfin.2006.05.009\n\nPetersen, M. A., & Rajan, R. G. (1994). The benefits of lending relationships: Evidence from small business data. Journal of Finance, 49(1), 3-37.",
- "expected": [
-  {
-   "rule": "BUS-01",
-   "note": "document-level"
-  },
-  {
-   "rule": "BUS-02",
-   "section": "literature",
-   "start": 501,
-   "end": 557,
-   "note": "H2: Firm age"
-  },
-  {
-   "rule": "BUS-02",
-   "section": "literature",
-   "start": 559,
-   "end": 622,
-   "note": "H3: Owner education"
-  },
-  {
-   "rule": "BUS-03",
-   "section": "literature",
-   "start": 559,
-   "end": 622,
-   "note": "H3: Owner education"
-  },
-  {
-   "rule": "BUS-05",
-   "note": "document-level"
-  },
-  {
-   "rule": "BUS-06",
-   "note": "document-level"
-  },
-  {
-   "rule": "PRD-01",
-   "section": "abstract",
-   "start": 49,
-   "end": 129,
-   "note": "4.7% faster growth"
-  },
-  {
-   "rule": "PRD-02",
-   "section": "results",
-   "start": 1206,
-   "end": 1235,
-   "note": "Table 2. Robustness"
-  },
-  {
-   "rule": "PRD-03",
-   "section": "methods",
-   "start": 722,
-   "end": 748,
-   "note": "EBIT is used"
-  },
-  {
-   "rule": "PRD-04",
-   "section": "introduction",
-   "start": 212,
-   "end": 289,
-   "note": "(Petersen & Rajan, 1996)"
-  },
-  {
-   "rule": "PRD-04",
-   "section": "results",
-   "start": 986,
-   "end": 1044,
-   "note": "(Gordon, 2010)"
-  }
- ],
- "planted": false
+  "id": "phase4-issues-regression-a",
+  "licence": "synthetic",
+  "design": "regression",
+  "text": "Bank credit and growth in small firms\n\nAbstract\n\nUsing 380 firms, we find that bank credit is associated with 4.7% faster growth.\n\n1. Introduction\n\nSmall firms depend on bank credit (Beck & Demirguc-Kunt, 2006). Relationships with banks matter for small borrowers (Petersen & Rajan, 1996).\n\n2. Hypotheses\n\nFirms with a bank loan can fund new equipment earlier (Beck & Demirguc-Kunt, 2006).\n\nH1: Bank credit is positively associated with sales growth.\n\nOlder firms may have fewer growth options left.\n\nH2: Firm age is negatively associated with sales growth.\n\nH3: Owner education is positively associated with sales growth.\n\n3. Data and methods\n\nWe use a panel of 380 firms from 2016 to 2021 and fixed effects regressions. EBIT is used as a control. Earnings before interest and taxes (EBIT) are scaled by assets.\n\n4. Results\n\nTable 1 reports the main estimates. Bank credit raises growth by 3.9% (p < 0.05), so H1 is supported. Firm age has a negative coefficient, and H2 is supported. Older firms grew more slowly in the sample (Gordon, 2010).\n\nTable 1. Main estimates\n\n| Variable | Coefficient |\n| Credit | 0.039 |\n| Age | -0.012 |\n\nNote: n = 380 firms, 2016-2021. Source: national business register.\n\nTable 2. Robustness estimates\n\n| Variable | Coefficient |\n| Credit | 0.041 |\n\nNote: n = 380 firms. Source: national business register.\n\n5. Conclusion\n\nBank credit is associated with faster growth.\n\nReferences\n\nBeck, T., & Demirguc-Kunt, A. (2006). Small and medium-size enterprises: Access to finance as a growth constraint. Journal of Banking & Finance, 30(11), 2931-2943. https://doi.org/10.1016/j.jbankfin.2006.05.009\n\nPetersen, M. A., & Rajan, R. G. (1994). The benefits of lending relationships: Evidence from small business data. Journal of Finance, 49(1), 3-37.",
+  "expected": [
+    {
+      "rule": "BUS-01",
+      "note": "document-level"
+    },
+    {
+      "rule": "BUS-02",
+      "section": "literature",
+      "start": 501,
+      "end": 557,
+      "note": "H2: Firm age"
+    },
+    {
+      "rule": "BUS-02",
+      "section": "literature",
+      "start": 559,
+      "end": 622,
+      "note": "H3: Owner education"
+    },
+    {
+      "rule": "BUS-03",
+      "section": "literature",
+      "start": 559,
+      "end": 622,
+      "note": "H3: Owner education"
+    },
+    {
+      "rule": "BUS-05",
+      "note": "document-level"
+    },
+    {
+      "rule": "BUS-06",
+      "note": "document-level"
+    },
+    {
+      "rule": "PRD-01",
+      "section": "abstract",
+      "start": 49,
+      "end": 129,
+      "note": "4.7% faster growth"
+    },
+    {
+      "rule": "PRD-02",
+      "section": "results",
+      "start": 1206,
+      "end": 1235,
+      "note": "Table 2. Robustness"
+    },
+    {
+      "rule": "PRD-03",
+      "section": "methods",
+      "start": 722,
+      "end": 748,
+      "note": "EBIT is used"
+    },
+    {
+      "rule": "PRD-04",
+      "section": "introduction",
+      "start": 212,
+      "end": 289,
+      "note": "(Petersen & Rajan, 1996)"
+    },
+    {
+      "rule": "PRD-04",
+      "section": "results",
+      "start": 986,
+      "end": 1044,
+      "note": "(Gordon, 2010)"
+    }
+  ],
+  "planted": false,
+  "annotated_roles": [
+    "business",
+    "production"
+  ]
 }

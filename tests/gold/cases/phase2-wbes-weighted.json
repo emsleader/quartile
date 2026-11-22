@@ -2,5 +2,8 @@
   "id": "phase2-wbes-weighted",
   "licence": "synthetic",
   "text": "Credit Rejection and Owner Satisfaction in Hungarian Small Firms\n\nAbstract\n\nWe study credit rejection using a survey of 412 firms in Hungary.\n\n1. Introduction\n\nSmall firms depend on bank credit. We describe how often loan applications are rejected and how owners rate their banks.\n\n2. Data and Methods\n\nWe use the World Bank Enterprise Surveys for Hungary (2019). The final sample has 412 firms. All estimates use the sampling weights (wstrict). Owners rated satisfaction with their main bank on a five-point Likert scale (single item).\n\nMean satisfaction on the five-point item was 3.44 (n = 25) among firms whose application was rejected. Mean satisfaction was 3.48 (n = 25) among firms whose application was approved.\n\nTable 1. Firms by sector\n\n| Sector | Firms | % |\n| Manufacturing | 200 | 48.5 |\n| Retail | 150 | 36.4 |\n| Services | 62 | 15.1 |\n| Total | 412 | 100.0 |\n\n3. Results\n\nRejected firms rated their bank lower, t(48) = 2.85, p = .006. Firms with a female owner applied as often as others, t(410) = 1.10, p = .27.\n\n4. Discussion\n\nRejection and low satisfaction go together in this survey, but the design does not show why.",
-  "expected": []
+  "expected": [],
+  "annotated_roles": [
+    "finance"
+  ]
 }

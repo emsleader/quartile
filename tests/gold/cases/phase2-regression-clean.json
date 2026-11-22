@@ -2,5 +2,8 @@
   "id": "phase2-regression-clean",
   "licence": "synthetic",
   "text": "Leverage and Sales Growth in Small Firms\n\nAbstract\n\nWe study how leverage relates to sales growth in 1,240 Hungarian SMEs observed from 2015 to 2022.\n\n1. Introduction\n\nSmall firms borrow to grow. We estimate the association between debt and later growth.\n\n2. Data and Methods\n\nThe final sample comprises 1,240 firms. We estimate OLS regressions of sales growth on lagged leverage with firm and year fixed effects. Leverage may be endogenous because growth prospects affect borrowing; we therefore also instrument leverage with the industry median leverage (2SLS). Standard errors are clustered at the firm level because leverage varies mainly across firms. All continuous variables are winsorised at the 1st and 99th percentiles. Firms that exited the market stay in the panel until their last filing, so survivorship bias is limited.\n\n3. Results\n\nThe coefficient on lagged leverage is negative, t(1238) = -3.10, p = .002. A one-standard-deviation increase in leverage is associated with 2.1 percentage points lower sales growth.\n\n4. Robustness\n\nRobustness checks with an alternative measure of leverage and a subsample of manufacturing firms give the same sign.\n\n5. Conclusion\n\nHigher leverage goes with slower growth in this sample of 1,240 firms.",
-  "expected": []
+  "expected": [],
+  "annotated_roles": [
+    "finance"
+  ]
 }

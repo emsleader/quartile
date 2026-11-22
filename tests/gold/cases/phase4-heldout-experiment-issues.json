@@ -1,44 +1,48 @@
 {
- "id": "phase4-heldout-experiment-issues",
- "licence": "synthetic",
- "design": "experiment",
- "text": "Price framing and membership choice in fitness studios\n\nAbstract\n\nIn a randomised vignette experiment with 600 participants, a monthly price frame raised sign-up intentions to 48%.\n\n1. Introduction\n\nProspect theory predicts that losses weigh more than gains (Kahneman & Tversky, 1979). Mental accounting suggests that people treat small monthly sums differently (Thaler et al, 1985).\n\n2. Hypotheses\n\nMonthly frames make the price look smaller in each mental account (Thaler, 1985).\n\nH1: A monthly price frame increases sign-up intention.\n\nLoss framing raises the weight of what is given up (Kahneman & Tversky, 1979).\n\nH2: Showing the price as a loss reduces sign-up intention.\n\n3. Methods\n\nParticipants were randomised to a treatment group or a control group. The WTP was elicited with a slider. Willingness to pay (WTP) was measured in euros.\n\n4. Results\n\nSign-up intention was 44% under the monthly frame and 31% under the annual frame, so H1 is supported.\n\n5. Discussion\n\nStudio managers could show monthly prices on their price lists.\n\nThe results come from hypothetical choices and may not hold for real payments.\n\n6. Conclusion\n\nMonthly frames raise sign-up intentions.\n\nFigure 1. Experimental design\n\nReferences\n\nKahneman, D., & Tversky, A. (1979). Prospect theory: An analysis of decision under risk. Econometrica, 47(2), 263-291.\n\nThaler, R. (1985). Mental accounting and consumer choice. Marketing Science, 4(3), 199-214.",
- "expected": [
-  {
-   "rule": "BUS-03",
-   "section": "literature",
-   "start": 619,
-   "end": 677,
-   "note": "H2: Showing"
-  },
-  {
-   "rule": "PRD-02",
-   "section": "conclusion",
-   "start": 1178,
-   "end": 1207,
-   "note": "Figure 1. Experimental design"
-  },
-  {
-   "rule": "PRD-01",
-   "section": "abstract",
-   "start": 66,
-   "end": 180,
-   "note": "48%"
-  },
-  {
-   "rule": "PRD-03",
-   "section": "methods",
-   "start": 761,
-   "end": 796,
-   "note": "The WTP was elicited"
-  },
-  {
-   "rule": "PRD-T-05",
-   "section": "introduction",
-   "start": 286,
-   "end": 383,
-   "note": "Thaler et al"
-  }
- ],
- "planted": false
+  "id": "phase4-heldout-experiment-issues",
+  "licence": "synthetic",
+  "design": "experiment",
+  "text": "Price framing and membership choice in fitness studios\n\nAbstract\n\nIn a randomised vignette experiment with 600 participants, a monthly price frame raised sign-up intentions to 48%.\n\n1. Introduction\n\nProspect theory predicts that losses weigh more than gains (Kahneman & Tversky, 1979). Mental accounting suggests that people treat small monthly sums differently (Thaler et al, 1985).\n\n2. Hypotheses\n\nMonthly frames make the price look smaller in each mental account (Thaler, 1985).\n\nH1: A monthly price frame increases sign-up intention.\n\nLoss framing raises the weight of what is given up (Kahneman & Tversky, 1979).\n\nH2: Showing the price as a loss reduces sign-up intention.\n\n3. Methods\n\nParticipants were randomised to a treatment group or a control group. The WTP was elicited with a slider. Willingness to pay (WTP) was measured in euros.\n\n4. Results\n\nSign-up intention was 44% under the monthly frame and 31% under the annual frame, so H1 is supported.\n\n5. Discussion\n\nStudio managers could show monthly prices on their price lists.\n\nThe results come from hypothetical choices and may not hold for real payments.\n\n6. Conclusion\n\nMonthly frames raise sign-up intentions.\n\nFigure 1. Experimental design\n\nReferences\n\nKahneman, D., & Tversky, A. (1979). Prospect theory: An analysis of decision under risk. Econometrica, 47(2), 263-291.\n\nThaler, R. (1985). Mental accounting and consumer choice. Marketing Science, 4(3), 199-214.",
+  "expected": [
+    {
+      "rule": "BUS-03",
+      "section": "literature",
+      "start": 619,
+      "end": 677,
+      "note": "H2: Showing"
+    },
+    {
+      "rule": "PRD-02",
+      "section": "conclusion",
+      "start": 1178,
+      "end": 1207,
+      "note": "Figure 1. Experimental design"
+    },
+    {
+      "rule": "PRD-01",
+      "section": "abstract",
+      "start": 66,
+      "end": 180,
+      "note": "48%"
+    },
+    {
+      "rule": "PRD-03",
+      "section": "methods",
+      "start": 761,
+      "end": 796,
+      "note": "The WTP was elicited"
+    },
+    {
+      "rule": "PRD-T-05",
+      "section": "introduction",
+      "start": 286,
+      "end": 383,
+      "note": "Thaler et al"
+    }
+  ],
+  "planted": false,
+  "annotated_roles": [
+    "business",
+    "production"
+  ]
 }

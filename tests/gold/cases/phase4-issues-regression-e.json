@@ -1,51 +1,55 @@
 {
- "id": "phase4-issues-regression-e",
- "licence": "synthetic",
- "design": "regression",
- "text": "Cash buffers and investment in service firms\n\nAbstract\n\nUsing 418 firms, we find that cash buffers are associated with more investment.\n\n1. Introduction\n\nPecking order theory predicts that firms use internal funds first (Myers & Majluf, 1984). Conference work reports a similar pattern (Smith, 2019).\n\n2. Hypotheses\n\nInternal funds avoid the costs of outside finance (Myers & Majluf, 1984).\n\nH1: Cash buffers are positively associated with investment.\n\nDebt may crowd out investment when lenders demand collateral (Kraus & Litzenberger, 1973).\n\nH2: Leverage is negatively associated with investment.\n\n3. Data and methods\n\nWe use 412 firms from 2017 to 2022 and fixed effects regressions [TODO].\n\n4. Results\n\nAs shown in table 1, cash buffers have a positive coefficient, and H1 is supported. For leverage we accept the null hypothesis, so H2 is not supported.\n\nTable 1. Investment estimates\n\n| Variable | Coefficient |\n| Cash | 0.18 |\n\nNote: n = 412 firms, 2017-2022. Source: Orbis.\n\n5. Discussion\n\nManagerial implications are clear: owners must keep a cash buffer before they invest. Lenders could also review collateral rules.\n\nThe results may not generalise beyond service firms in Central Europe.\n\n6. Conclusion\n\nCash buffers are associated with more investment.\n\nReferences\n\nKraus, A., & Litzenberger, R. H. (1973). A state-preference model of optimal financial leverage. Journal of Finance, 28(4), 911-922. https://doi.org/10.1111/j.1540-6261.1973.tb01415.x\n\nMyers, S. C., & Majluf, N. S. (1984). Corporate financing and investment decisions when firms have information that investors do not have. Journal of Financial Economics, 13(2), 187-221. https://doi.org/10.1016/0304-405X(84)90023-0\n\nSmith, J. (2019). Cash and growth in service firms. Proceedings of the Annual Conference of the European Academy of Management, Lisbon.",
- "expected": [
-  {
-   "rule": "PRD-01",
-   "section": "abstract",
-   "start": 56,
-   "end": 135,
-   "note": "418 firms"
-  },
-  {
-   "rule": "BUS-T-02",
-   "section": "results",
-   "start": 792,
-   "end": 859,
-   "note": "accept the null"
-  },
-  {
-   "rule": "PRD-T-02",
-   "section": "methods",
-   "start": 622,
-   "end": 694,
-   "note": "[TODO]"
-  },
-  {
-   "rule": "PRD-T-04",
-   "section": "results",
-   "start": 708,
-   "end": 791,
-   "note": "table 1"
-  },
-  {
-   "rule": "PRD-05",
-   "section": "references",
-   "start": 1701,
-   "end": 1836,
-   "note": "Smith, J. (2019)"
-  },
-  {
-   "rule": "BUS-T-03",
-   "section": "discussion",
-   "start": 1002,
-   "end": 1087,
-   "note": "owners must"
-  }
- ],
- "planted": false
+  "id": "phase4-issues-regression-e",
+  "licence": "synthetic",
+  "design": "regression",
+  "text": "Cash buffers and investment in service firms\n\nAbstract\n\nUsing 418 firms, we find that cash buffers are associated with more investment.\n\n1. Introduction\n\nPecking order theory predicts that firms use internal funds first (Myers & Majluf, 1984). Conference work reports a similar pattern (Smith, 2019).\n\n2. Hypotheses\n\nInternal funds avoid the costs of outside finance (Myers & Majluf, 1984).\n\nH1: Cash buffers are positively associated with investment.\n\nDebt may crowd out investment when lenders demand collateral (Kraus & Litzenberger, 1973).\n\nH2: Leverage is negatively associated with investment.\n\n3. Data and methods\n\nWe use 412 firms from 2017 to 2022 and fixed effects regressions [TODO].\n\n4. Results\n\nAs shown in table 1, cash buffers have a positive coefficient, and H1 is supported. For leverage we accept the null hypothesis, so H2 is not supported.\n\nTable 1. Investment estimates\n\n| Variable | Coefficient |\n| Cash | 0.18 |\n\nNote: n = 412 firms, 2017-2022. Source: Orbis.\n\n5. Discussion\n\nManagerial implications are clear: owners must keep a cash buffer before they invest. Lenders could also review collateral rules.\n\nThe results may not generalise beyond service firms in Central Europe.\n\n6. Conclusion\n\nCash buffers are associated with more investment.\n\nReferences\n\nKraus, A., & Litzenberger, R. H. (1973). A state-preference model of optimal financial leverage. Journal of Finance, 28(4), 911-922. https://doi.org/10.1111/j.1540-6261.1973.tb01415.x\n\nMyers, S. C., & Majluf, N. S. (1984). Corporate financing and investment decisions when firms have information that investors do not have. Journal of Financial Economics, 13(2), 187-221. https://doi.org/10.1016/0304-405X(84)90023-0\n\nSmith, J. (2019). Cash and growth in service firms. Proceedings of the Annual Conference of the European Academy of Management, Lisbon.",
+  "expected": [
+    {
+      "rule": "PRD-01",
+      "section": "abstract",
+      "start": 56,
+      "end": 135,
+      "note": "418 firms"
+    },
+    {
+      "rule": "BUS-T-02",
+      "section": "results",
+      "start": 792,
+      "end": 859,
+      "note": "accept the null"
+    },
+    {
+      "rule": "PRD-T-02",
+      "section": "methods",
+      "start": 622,
+      "end": 694,
+      "note": "[TODO]"
+    },
+    {
+      "rule": "PRD-T-04",
+      "section": "results",
+      "start": 708,
+      "end": 791,
+      "note": "table 1"
+    },
+    {
+      "rule": "PRD-05",
+      "section": "references",
+      "start": 1701,
+      "end": 1836,
+      "note": "Smith, J. (2019)"
+    },
+    {
+      "rule": "BUS-T-03",
+      "section": "discussion",
+      "start": 1002,
+      "end": 1087,
+      "note": "owners must"
+    }
+  ],
+  "planted": false,
+  "annotated_roles": [
+    "business",
+    "production"
+  ]
 }

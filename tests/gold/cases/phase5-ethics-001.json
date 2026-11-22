@@ -1,35 +1,38 @@
 {
- "id": "phase5-ethics-001",
- "licence": "synthetic",
- "design": "survey",
- "text": "Digital tools in small service firms\n\nAbstract\n\nWe survey owners of small service firms in Hungary with a questionnaire.\n\n1. Introduction\n\nSmall firms adopt digital tools at different speeds.\n\n2. Methods\n\nWe sent a questionnaire to 120 firm owners. The study was approved by the university ethics committee. All respondents gave informed consent online. Under the GDPR the legal basis was consent (Art. 6(1)(a)); names were replaced by pseudonymised codes and the data will be deleted after five years.\n\nTable 1. Firms by county\n\n| County | Firms (n) | Share (%) |\n| Győr-Moson-Sopron | 2 | 1.7 |\n| Pest | 118 | 98.3 |\n\n3. Results\n\nOwners with more experience adopt faster.\n\nData availability statement\n\nThe anonymised data are deposited in Zenodo (doi:10.5281/zenodo.0000000).",
- "expected": [
-  {
-   "rule": "ETH-01",
-   "section": "methods",
-   "start": 249,
-   "end": 307,
-   "note": "synthetic"
-  },
-  {
-   "rule": "ETH-06",
-   "start": null,
-   "end": null,
-   "note": "synthetic"
-  },
-  {
-   "rule": "ETH-04",
-   "start": null,
-   "end": null,
-   "note": "synthetic"
-  },
-  {
-   "rule": "ETH-07",
-   "section": "methods",
-   "start": 530,
-   "end": 620,
-   "note": "synthetic"
-  }
- ],
- "planted": true
+  "id": "phase5-ethics-001",
+  "licence": "synthetic",
+  "design": "survey",
+  "text": "Digital tools in small service firms\n\nAbstract\n\nWe survey owners of small service firms in Hungary with a questionnaire.\n\n1. Introduction\n\nSmall firms adopt digital tools at different speeds.\n\n2. Methods\n\nWe sent a questionnaire to 120 firm owners. The study was approved by the university ethics committee. All respondents gave informed consent online. Under the GDPR the legal basis was consent (Art. 6(1)(a)); names were replaced by pseudonymised codes and the data will be deleted after five years.\n\nTable 1. Firms by county\n\n| County | Firms (n) | Share (%) |\n| Győr-Moson-Sopron | 2 | 1.7 |\n| Pest | 118 | 98.3 |\n\n3. Results\n\nOwners with more experience adopt faster.\n\nData availability statement\n\nThe anonymised data are deposited in Zenodo (doi:10.5281/zenodo.0000000).",
+  "expected": [
+    {
+      "rule": "ETH-01",
+      "section": "methods",
+      "start": 249,
+      "end": 307,
+      "note": "synthetic"
+    },
+    {
+      "rule": "ETH-06",
+      "start": null,
+      "end": null,
+      "note": "synthetic"
+    },
+    {
+      "rule": "ETH-04",
+      "start": null,
+      "end": null,
+      "note": "synthetic"
+    },
+    {
+      "rule": "ETH-07",
+      "section": "methods",
+      "start": 530,
+      "end": 620,
+      "note": "synthetic"
+    }
+  ],
+  "planted": true,
+  "annotated_roles": [
+    "ethics"
+  ]
 }

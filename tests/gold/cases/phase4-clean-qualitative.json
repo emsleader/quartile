@@ -1,8 +1,12 @@
 {
- "id": "phase4-clean-qualitative",
- "licence": "synthetic",
- "design": "qualitative",
- "text": "How studio owners decide to add new services\n\nAbstract\n\nWe study eight studio owners through semi-structured interviews.\n\n1. Introduction\n\nThe resource-based view explains growth from hard-to-copy resources (Barney, 1991). Case studies are suited to how and why questions (Eisenhardt, 1989).\n\n2. Methods\n\nWe conducted semi-structured interviews with eight owners and used thematic analysis with two coders.\n\n3. Findings\n\nOwners added services when they had trained staff and spare floor space.\n\n4. Discussion\n\nPractical implications follow. Owners should test a new service with existing clients before buying equipment.\n\nThe findings are limited to small studios in one city and may not transfer to chains.\n\n5. Conclusion\n\nSpare capacity and trained staff came before every new service.\n\nReferences\n\nBarney, J. (1991). Firm resources and sustained competitive advantage. Journal of Management, 17(1), 99-120. https://doi.org/10.1177/014920639101700108\n\nEisenhardt, K. M. (1989). Building theories from case study research. Academy of Management Review, 14(4), 532-550.",
- "expected": [],
- "planted": false
+  "id": "phase4-clean-qualitative",
+  "licence": "synthetic",
+  "design": "qualitative",
+  "text": "How studio owners decide to add new services\n\nAbstract\n\nWe study eight studio owners through semi-structured interviews.\n\n1. Introduction\n\nThe resource-based view explains growth from hard-to-copy resources (Barney, 1991). Case studies are suited to how and why questions (Eisenhardt, 1989).\n\n2. Methods\n\nWe conducted semi-structured interviews with eight owners and used thematic analysis with two coders.\n\n3. Findings\n\nOwners added services when they had trained staff and spare floor space.\n\n4. Discussion\n\nPractical implications follow. Owners should test a new service with existing clients before buying equipment.\n\nThe findings are limited to small studios in one city and may not transfer to chains.\n\n5. Conclusion\n\nSpare capacity and trained staff came before every new service.\n\nReferences\n\nBarney, J. (1991). Firm resources and sustained competitive advantage. Journal of Management, 17(1), 99-120. https://doi.org/10.1177/014920639101700108\n\nEisenhardt, K. M. (1989). Building theories from case study research. Academy of Management Review, 14(4), 532-550.",
+  "expected": [],
+  "planted": false,
+  "annotated_roles": [
+    "business",
+    "production"
+  ]
 }

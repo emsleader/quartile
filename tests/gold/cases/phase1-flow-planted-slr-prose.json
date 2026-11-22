@@ -1,16 +1,19 @@
 {
- "id": "phase1-flow-planted-slr-prose",
- "licence": "synthetic",
- "design": "slr",
- "text": "A systematic literature review of financing in equipment-dependent service firms\n\nAbstract\n\nThis systematic literature review maps studies on how equipment-dependent service firms finance their assets.\n\n# 1. Introduction\n\nNo prior systematic review covers this group of firms. Our aim is to map the evidence.\n\n# 2. Methods\n\nThe search returned 2,310 records. After removing 412 duplicates, 1,908 records remained. Of these, 1,650 were excluded on title and abstract, leaving 248 full texts. A further 190 were excluded at full text, and 58 studies were included.\n\nWe searched Scopus and Web of Science in March 2025 with a Boolean search string. Two reviewers screened titles and abstracts independently. Studies were included if they reported firm-level financing data.\n\n# 3. Results\n\nMost included studies use survey data from Europe. Leasing is the most studied instrument.\n\n# 4. Discussion\n\nThe evidence is thin outside Europe.\n\n# 5. Limitations\n\nThe review covers only English-language, peer-reviewed sources, so grey literature is missing.\n\n# 6. Conclusion\n\nLeasing dominates the studied financing options.",
- "expected": [
-  {
-   "rule": "MTH-03",
-   "section": "methods",
-   "start": 324,
-   "end": 562,
-   "note": "1,908 - 1,650 = 258"
-  }
- ],
- "planted": true
+  "id": "phase1-flow-planted-slr-prose",
+  "licence": "synthetic",
+  "design": "slr",
+  "text": "A systematic literature review of financing in equipment-dependent service firms\n\nAbstract\n\nThis systematic literature review maps studies on how equipment-dependent service firms finance their assets.\n\n# 1. Introduction\n\nNo prior systematic review covers this group of firms. Our aim is to map the evidence.\n\n# 2. Methods\n\nThe search returned 2,310 records. After removing 412 duplicates, 1,908 records remained. Of these, 1,650 were excluded on title and abstract, leaving 248 full texts. A further 190 were excluded at full text, and 58 studies were included.\n\nWe searched Scopus and Web of Science in March 2025 with a Boolean search string. Two reviewers screened titles and abstracts independently. Studies were included if they reported firm-level financing data.\n\n# 3. Results\n\nMost included studies use survey data from Europe. Leasing is the most studied instrument.\n\n# 4. Discussion\n\nThe evidence is thin outside Europe.\n\n# 5. Limitations\n\nThe review covers only English-language, peer-reviewed sources, so grey literature is missing.\n\n# 6. Conclusion\n\nLeasing dominates the studied financing options.",
+  "expected": [
+    {
+      "rule": "MTH-03",
+      "section": "methods",
+      "start": 324,
+      "end": 562,
+      "note": "1,908 - 1,650 = 258"
+    }
+  ],
+  "planted": true,
+  "annotated_roles": [
+    "methods"
+  ]
 }

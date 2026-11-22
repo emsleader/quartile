@@ -1,8 +1,12 @@
 {
- "id": "phase4-heldout-bounds-clean",
- "licence": "synthetic",
- "design": "bounds",
- "text": "Bounds on the return to equipment investment in small studios\n\nAbstract\n\nWe report partial identification bounds for 58 studios.\n\n1. Introduction\n\nReal options theory explains why owners delay investment under uncertainty (Dixit & Pindyck, 1994).\n\n2. Methods\n\nWe use bounds analysis without assuming random assignment (Manski, 2003).\n\n3. Results\n\nThe identified set for the return contains zero for every specification.\n\n4. Discussion\n\nPractical implications are modest. Owners could treat vendor return figures as one point in a wide range.\n\nThe bounds apply only to the 58 studios observed and should not be extrapolated to chains.\n\n5. Conclusion\n\nThe data cannot sign the return to investment.\n\nReferences\n\nDixit, A. K., & Pindyck, R. S. (1994). Investment under uncertainty. Princeton University Press.\n\nManski, C. F. (2003). Partial identification of probability distributions. Springer.",
- "expected": [],
- "planted": false
+  "id": "phase4-heldout-bounds-clean",
+  "licence": "synthetic",
+  "design": "bounds",
+  "text": "Bounds on the return to equipment investment in small studios\n\nAbstract\n\nWe report partial identification bounds for 58 studios.\n\n1. Introduction\n\nReal options theory explains why owners delay investment under uncertainty (Dixit & Pindyck, 1994).\n\n2. Methods\n\nWe use bounds analysis without assuming random assignment (Manski, 2003).\n\n3. Results\n\nThe identified set for the return contains zero for every specification.\n\n4. Discussion\n\nPractical implications are modest. Owners could treat vendor return figures as one point in a wide range.\n\nThe bounds apply only to the 58 studios observed and should not be extrapolated to chains.\n\n5. Conclusion\n\nThe data cannot sign the return to investment.\n\nReferences\n\nDixit, A. K., & Pindyck, R. S. (1994). Investment under uncertainty. Princeton University Press.\n\nManski, C. F. (2003). Partial identification of probability distributions. Springer.",
+  "expected": [],
+  "planted": false,
+  "annotated_roles": [
+    "business",
+    "production"
+  ]
 }
