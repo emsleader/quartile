@@ -20,6 +20,17 @@ export const TESTS = {
   },
 };
 
+// Each phase adds its own structural tests in core/rules/tests/<name>.js (default export: { name: fn }), so
+// parallel work never edits this file.
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
+const EXT = path.join(path.dirname(fileURLToPath(import.meta.url)), "tests");
+if (fs.existsSync(EXT)) for (const f of fs.readdirSync(EXT).filter(f => f.endsWith(".js")).sort()) {
+  const mod = (await import(pathToFileURL(path.join(EXT, f)).href)).default || {};
+  for (const [k, fn] of Object.entries(mod)) { if (TESTS[k]) throw new Error(`structural test ${k} defined twice (${f})`); TESTS[k] = fn; }
+}
+
 function firstSentence(doc, where) { return doc.sentencesIn(where)[0] || null; }
 
 /** Parse "name(a, b)" and run it. Unknown tests throw, so a typo in a rule fails the rule tests. */

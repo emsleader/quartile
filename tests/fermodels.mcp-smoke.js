@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import path from "node:path";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
+import { TOOLS as NEW_TOOLS } from "../tools/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -9,7 +10,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
   await client.connect(new StdioClientTransport({command:process.execPath,args:[path.join(__dirname,"..","mcp","server.js")]}));
   try {
     const names=(await client.listTools()).tools.map(x=>x.name);
-    assert.equal(names.length,35, "Quartile main 0.16.0 + FER tools = 34");
+    assert.equal(names.length,35+NEW_TOOLS.length, "35 tools in mcp/server.js plus the new tools in tools/");
     assert.ok(names.includes("fer_equation_catalog"));
     assert.ok(names.includes("fer_replication_audit"));
     assert.ok(names.includes("fer_literature_index"));

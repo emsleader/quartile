@@ -7,7 +7,9 @@ const server = fs.readFileSync(path.join(ROOT, "mcp", "server.js"), "utf8");
 const names = new Set([...server.matchAll(/registerTool\("([a-z0-9_]+)"/g)].map(m => m[1]));
 const { TOOLS } = await import("../tools/index.js");
 for (const t of TOOLS) names.add(t.name);
-const log = fs.readFileSync(path.join(ROOT, "CHANGELOG.md"), "utf8");
+// changelog.d/*.md holds entries written on phase branches until they are merged into CHANGELOG.md
+const extra = fs.existsSync(path.join(ROOT, "changelog.d")) ? fs.readdirSync(path.join(ROOT, "changelog.d")).filter(f => f.endsWith(".md")).map(f => fs.readFileSync(path.join(ROOT, "changelog.d", f), "utf8")).join("\n") : "";
+const log = fs.readFileSync(path.join(ROOT, "CHANGELOG.md"), "utf8") + "\n" + extra;
 const missing = [...names].filter(n => !new RegExp("`" + n + "`").test(log));
 if (missing.length) { console.error("Tools missing from CHANGELOG.md (write them as `name`): " + missing.join(", ")); process.exit(1); }
 console.log(`CHANGELOG lists all ${names.size} tools.`);
