@@ -1,0 +1,16 @@
+{
+ "id": "phase7-survey",
+ "licence": "synthetic (written for Quartile tests, MIT)",
+ "design": "survey",
+ "text": "Owner views on equipment financing in fitness studios\n\nAbstract\nWe report a questionnaire answered by 318 studio owners in four countries. Respondents rated financing options on a five-point Likert scale.\n\n1. Introduction\nParagraph 1 on equipment-dependent services describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 2 on equipment-dependent services describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 3 on equipment-dependent services describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\n2. Methods\nThe survey instrument had 24 items. Respondents were owners or managers. We invited 1,050 studios and 318 replied (response rate 30.3%). Paragraph 1 on the questionnaire describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 2 on the questionnaire describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\n3. Results\nMost respondents preferred leasing over bank loans (62%). Based on the November 2026 web snapshot, standalone studios hold a market share of 40%.\n\n4. Discussion\nParagraph 1 on owner preferences describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 2 on owner preferences describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\n5. Limitations\nRespondents chose to answer, so non-response bias is possible.\n\n6. Conclusion\nOwners prefer leasing; the survey does not measure market share.\n\nReferences\nSmith, C. (2019). Credit limits and growth. Small Business Economics, 40(2), 100-120.",
+ "expected": [
+  {
+   "rule": "QC-CLAIM-SNAPSHOT",
+   "section": "results",
+   "start": 1706,
+   "end": 1793,
+   "note": "planted"
+  }
+ ],
+ "planted": true
+}

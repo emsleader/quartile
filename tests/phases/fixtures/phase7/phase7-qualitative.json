@@ -1,0 +1,16 @@
+{
+ "id": "phase7-qualitative",
+ "licence": "synthetic (written for Quartile tests, MIT)",
+ "design": "qualitative",
+ "text": "How studio owners decide to add a service: a qualitative study\n\nAbstract\nWe conducted semi-structured interviews with 21 owners and used thematic analysis.\n\n1. Introduction\nParagraph 1 on owner decisions describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 2 on owner decisions describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 3 on owner decisions describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\n2. Methods\nWe ran semi-structured interviews lasting 45 to 70 minutes. Two coders built a coding scheme and used thematic analysis. The interview protocol was preregistered on Zenodo after an initial look at the data. Paragraph 1 on coding describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 2 on coding describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\n3. Results\nThree themes emerged: cash timing, staff skills and space. Paragraph 1 on themes describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 2 on themes describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\n4. Discussion\nParagraph 1 on themes and theory describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 2 on themes and theory describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\n5. Conclusion\nOwners add services when cash timing allows.\n\nReferences\nSmith, C. (2019). Credit limits and growth. Small Business Economics, 40(2), 100-120.",
+ "expected": [
+  {
+   "rule": "QC-CLAIM-PREREG",
+   "section": "methods",
+   "start": 1040,
+   "end": 1125,
+   "note": "planted"
+  }
+ ],
+ "planted": true
+}
