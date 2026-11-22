@@ -3,13 +3,31 @@
 // Claude Desktop / Claude Code (stdio), claude.ai custom connectors and ChatGPT developer mode (Streamable HTTP at /mcp).
 // Usage: node server.js            -> stdio
 //        node server.js --http     -> HTTP on PORT (default 8787), endpoint /mcp
-const { McpServer } = require("@modelcontextprotocol/sdk/server/mcp.js");
-const { z } = require("zod");
-const L = require("../core/lib.js");
-const FM = require("../core/fermodels.js");
-const FER_AGGREGATES = require("../data/fer-hungary-independent-replication-2026-11-17.json");
-const FER_LITERATURE = require("../core/ferliterature.js");
-const VERSION = require("./package.json").version;
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { z } from "zod";
+import L from "../core/lib.js";
+import FM from "../core/fermodels.js";
+import FER_AGGREGATES from "../data/fer-hungary-independent-replication-2026-11-17.json" with { type: "json" };
+import FER_LITERATURE from "../core/ferliterature.js";
+import PKG from "../package.json" with { type: "json" };
+import SP from "../core/surveyplan.js";
+import { registerTools } from "../tools/index.js";
+import fs from "node:fs";
+import { createRequire } from "node:module";
+import { pathToFileURL } from "node:url";
+import CP from "./corpus.js";
+import AI from "../core/aistyle.js";
+import REG from "../core/registry.js";
+import RD from "../core/readiness.js";
+import NET from "../core/net.js";
+import PR from "../core/prose.js";
+import RS from "../core/rstats.js";
+import EV from "../core/evidence.js";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const VERSION = PKG.version;
+const require_ = createRequire(import.meta.url);
 
 const MAX = 400000; // characters per manuscript
 const txt = z.string().min(1).max(MAX);
@@ -21,8 +39,7 @@ const WIDGET_URI = "ui://quartile/report-v1.html";
 let WIDGET = null;
 function widgetHtml() {
   if (WIDGET) return WIDGET;
-  const fs = require("fs"), path = require("path");
-  let lib = fs.readFileSync(require.resolve("@modelcontextprotocol/ext-apps/app-with-deps"), "utf8");
+  let lib = fs.readFileSync(require_.resolve("@modelcontextprotocol/ext-apps/app-with-deps"), "utf8");
   const m = lib.match(/export\s*\{([^}]*)\}\s*;?\s*$/);
   if (m) lib = lib.slice(0, m.index) + "window.__MCPApps={" + m[1].split(",").map(x => { const [a, b] = x.trim().split(/\s+as\s+/); return (b || a) + ":" + a; }).join(",") + "};";
   WIDGET = fs.readFileSync(path.join(__dirname, "widget.html"), "utf8").replace("/*__EXT_APPS__*/", () => lib.replace(/<\/script/gi, "<\\/script"));
@@ -31,8 +48,6 @@ function widgetHtml() {
 const ui = (invoking, invoked) => ({ ui: { resourceUri: WIDGET_URI }, "ui/resourceUri": WIDGET_URI, "openai/outputTemplate": WIDGET_URI, "openai/toolInvocation/invoking": invoking, "openai/toolInvocation/invoked": invoked });
 const RO = { readOnlyHint: true, openWorldHint: false, destructiveHint: false };
 
-const CP = require("./corpus.js");
-const AI = require("../core/aistyle.js"), REG = require("../core/registry.js"), RD = require("../core/readiness.js"), NET = require("../core/net.js"), PR = require("../core/prose.js"), RS = require("../core/rstats.js"), EV = require("../core/evidence.js");
 function build() {
   const s = new McpServer({ name: "quartile", version: VERSION }, { instructions: "Quartile checks academic business and economics manuscripts without changing their science. Call q1_style_guide before rewriting. After rewriting any paragraph, call verify_rewrite with the original and the revision and keep the original whenever pass is false. Never present simulated reviewer output as a real journal decision. Statistics checks show consistency, not who produced a number. The full-text corpus is for patterns only (structure, section lengths, moves, voice): never copy wording from it, and run corpus_originality on any text written with its help." });
 
@@ -115,13 +130,13 @@ function build() {
 
   const spComp = z.object({ type: z.enum(["conjoint", "two_group", "cfa", "regression", "logistic", "correlation"]), per_group: z.boolean().optional().describe("Needed in every country group (e.g. CFA for measurement invariance)"), levels_max: z.number().int().optional(), tasks: z.number().int().optional(), alternatives: z.number().int().optional(), seconds_per_task: z.number().optional(), d: z.number().optional(), items: z.number().int().optional(), factors: z.number().int().optional(), rmsea0: z.number().optional(), rmsea_a: z.number().optional(), min_n: z.number().int().optional(), f2: z.number().optional(), predictors: z.number().int().optional(), total_predictors: z.number().int().optional(), event_rate: z.number().optional(), epv: z.number().optional(), precision: z.number().optional(), r: z.number().optional() });
   s.registerTool("survey_plan", { title: "Survey plan: sample size, invitations and anonymity", description: "Plans one survey that serves several papers. For each planned analysis it computes the sample size in R with academic formulas: conjoint (Johnson-Orme rule, Orme 2010), two-group manipulation (t test, Cohen's d), CFA and measurement invariance (RMSEA close-fit power, MacCallum, Browne & Sugawara 1996; per country group), incremental regression (noncentral F, Cohen's f2), logistic regression (events per variable, Peduzzi et al. 1996, and outcome-rate precision, Riley et al. 2020) and correlation. It combines the papers into completes per group and in total, applies the finite population correction, converts completes into invitations by response rate and completion loss, estimates survey length, checks k-anonymity of the background questions (Sweeney 2002), and returns pattern checks (does the shared survey satisfy every paper), anonymity design rules, the R script and a reproducibility record.", inputSchema: { alpha: z.number().default(0.05), power: z.number().default(0.8), response_rate: z.number().default(0.1).describe("Default response rate if a group has none"), completion_loss: z.number().default(0.15).describe("Share of started surveys lost to incomplete answers or failed checks"), k: z.number().int().default(5).describe("Minimum cell size for anonymity"), eligibility: z.number().default(1).describe("Share of complete answers that qualify for the analyses"), target_total: z.number().int().optional().describe("Planned total completes, if larger than the computed minimum"), shared_items: z.number().int().default(0), seconds_per_item: z.number().default(8), max_minutes: z.number().default(20), groups: z.array(z.object({ name: z.string(), population: z.number().int().optional(), response_rate: z.number().optional() })).min(1).max(30), quasi_identifiers: z.array(z.object({ name: z.string(), categories: z.number().int().optional(), smallest_share: z.number().optional() })).optional().describe("Background questions such as size band or role, with the share of the smallest category"), papers: z.array(z.object({ name: z.string(), items: z.number().int().optional(), interviews: z.number().int().optional(), components: z.array(spComp).min(1).max(10) })).min(1).max(10) }, annotations: RO, _meta: ui("Planning the survey in R", "Survey plan ready") },
-    async (a) => json(await require("../core/surveyplan.js").plan(a)));
+    async (a) => json(await SP.plan(a)));
   const egbaEv = z.union([z.array(z.number()).length(2), z.object({ low: z.number(), high: z.number() }), z.object({ values: z.array(z.number()).min(2), method: z.enum(["ci95", "p10p90"]).default("ci95") })]);
   s.registerTool("egba_bounds", { title: "EGBA: evidence-graded bounds (with survey and interview grades)", description: "Evidence-Graded Bounds Analysis in R. Give a target expression (for example o_I - rho*p_S + (F_I - F_S)/Q), fixed values, and for each uncertain parameter the interval supplied by each evidence grade. Grades are admitted in ladder order (default A-E documentary/public evidence, then S survey answers, then I interview statements). At each rung a parameter's interval is the intersection of what has been admitted; a parameter with no evidence is NOT IDENTIFIED; an interval that does not overlap is reported as a conflict and the earlier interval is kept, so survey or interview evidence can narrow the bounds but never overrule documentary evidence. Survey evidence may be raw answers (95% CI of the mean or 10th-90th percentiles). Returns bounds and a label against the threshold at every rung, conflicts, the breakdown value of a chosen parameter, the R script and a reproducibility record.", inputSchema: { expression: z.string().min(1).max(500), fixed: z.record(z.number()).optional(), parameters: z.record(z.record(egbaEv)), ladder: z.array(z.string()).optional(), threshold: z.number().default(0), label_below: z.string().optional(), label_above: z.string().optional(), breakdown_parameter: z.string().optional(), breakdown_side: z.enum(["high", "low"]).optional(), breakdown_range: z.array(z.number()).length(2).optional() }, annotations: RO, _meta: ui("Computing evidence-graded bounds in R", "Bounds ready") },
-    async (a) => json(await require("../core/surveyplan.js").egba(a)));
+    async (a) => json(await SP.egba(a)));
   const egtIv = z.union([z.array(z.number()).length(2), z.object({ low: z.number(), high: z.number(), unit: z.enum(["days", "weeks", "months"]).optional() })]);
   s.registerTool("egba_time", { title: "EGBA-Time: evidence-graded bounds for financing activation times", description: "Bounds the activation latency of each financing route from incomplete evidence and classifies it against the documented action window. Stage durations (approval, conditions, disbursement, ...) get intervals from evidence grades admitted in ladder order (A-E documentary/public, S survey, I interview; intersection rule, conflicts kept and reported); total latency bounds are the sums of stage bounds, optionally intersected with a directly reported total. Pending routes are right-censored (latency >= elapsed). Survey answers such as '2-4 weeks' enter as intervals with their own unit. Each route is labelled surely on time (upper bound <= window), surely late (lower bound > window), undetermined, not usable (refused/withdrawn/abandoned/conditions unmet) or not identified, with the temporal margin interval and the window needed to be surely on time; screened-out and unattempted routes are flagged ex ante. Returns Manski worst-case bounds on the share of routes usable in time, with 95% Wilson intervals for each endpoint, the R script and a reproducibility record.", inputSchema: { unit: z.enum(["days", "weeks", "months"]).default("days"), max_latency: z.number().default(365), ladder: z.array(z.string()).optional(), routes: z.array(z.object({ id: z.string().optional(), status: z.enum(["completed", "pending", "refused", "withdrawn", "abandoned", "conditions_unmet", "screened_out", "not_attempted"]).default("completed"), elapsed: z.number().optional(), window: z.union([z.number(), z.array(z.number()).length(2)]).optional(), stages: z.record(z.record(egtIv)).optional(), total: z.record(egtIv).optional() })).min(1).max(5000) }, annotations: RO, _meta: ui("Bounding activation times in R", "Time bounds ready") },
-    async (a) => json(await require("../core/surveyplan.js").egbaTime(a)));
+    async (a) => json(await SP.egbaTime(a)));
   s.registerTool("evidence_ledger", { title: "Evidence ledger: template and check", description: "Evidence ledger for empirical claims: one row per claim with source, observation unit, period, value, unit, currency, evidence grade A-E (A official filing or primary law; B official operator disclosure; C independent corroboration; D advertisement, vendor or marketplace statement; E assumption or projection) and a separate status (OBSERVED, DERIVED, CONDITIONAL, NOT_IDENTIFIED). Without a ledger it returns the CSV template. With one it checks required fields, duplicate ids, grade-source mismatches, DERIVED rows without a calculation, assumptions marked OBSERVED, values without units or currency, snapshots used for share or growth, service profit taken from company accounts, discontinuation inferred from missing archive snapshots, and related-party sources without independent verification.", inputSchema: { ledger_csv: z.string().max(5000000).optional() }, annotations: RO, _meta: ui("Checking the evidence ledger", "Ledger checked") },
     async ({ ledger_csv }) => json(ledger_csv ? EV.checkLedger(ledger_csv) : { kind: "ledger", template: EV.template(), fields: EV.FIELDS, classes: EV.CLASSES, statuses: EV.STATUSES, note: "Save the template as a CSV, add one row per material claim, then run this tool on it." }));
   s.registerTool("claim_audit", { title: "Claim audit (what the evidence can carry)", description: "Reads a manuscript and flags sentences whose claims go beyond the evidence named in them: a snapshot or web-visible list read as market share, growth or resilience; a protocol called a preregistration after data exploration; service-level profit from company accounts; survival without a population at risk; legal-entity survival equated with service persistence; asking prices treated as transactions; causal wording on descriptive evidence; model results reported as findings. Also checks for a conflict-of-interest disclosure, evidence status labels and limitations.", inputSchema: { text: txt }, annotations: RO, _meta: ui("Auditing the claims", "Claims audited") },
@@ -156,13 +171,14 @@ function build() {
     ({ journal }) => ({ messages: [{ role: "user", content: { type: "text", text: `Act as the handling editor of ${journal}, then as three reviewers (R1 theory and contribution, R2 methods and identification, R3 field and context). First call journal_lookup for ${journal}, analyze_manuscript and check_statistics on my manuscript. Quote my text exactly for every point, give a fix, and for language or framing points give replacement text that passes verify_rewrite. Mark points that need new analysis as author tasks. This is a simulation for revision, not a decision. I will paste the manuscript next.` } }] }));
   s.registerPrompt("idea_to_paper", { title: "Frame an idea as a Q1 paper", description: "Turn a research idea into a tier-level paper frame without inventing literature or results.", argsSchema: { tier: z.string().optional() } },
     ({ tier = "Q1" }) => ({ messages: [{ role: "user", content: { type: "text", text: `Frame my research idea as a ${tier} paper. Call q1_style_guide first. Give: puzzle, research question, central claim, theory lens and what the paper changes in it, positioning against prior work, hypotheses with mechanisms, design and identification, rival explanations and how to rule them out, robustness, boundary conditions, contributions, a draft abstract with predictions only, an introduction skeleton and likely reviewer objections. Cite only papers you can verify with a search tool; otherwise write [citation needed]. Never invent results. My idea follows.` } }] }));
+  registerTools(s, { ro: RO, ui });
   return s;
 }
 
 async function main() {
   if (process.argv.includes("--http")) {
-    const express = require("express");
-    const { StreamableHTTPServerTransport } = require("@modelcontextprotocol/sdk/server/streamableHttp.js");
+    const { default: express } = await import("express");
+    const { StreamableHTTPServerTransport } = await import("@modelcontextprotocol/sdk/server/streamableHttp.js");
     const app = express(); app.use(express.json({ limit: "6mb" }));
     const token = process.env.QUARTILE_TOKEN;
     app.get("/", (_, res) => res.send("Quartile MCP server " + VERSION + "."));
@@ -181,9 +197,10 @@ async function main() {
     if (!L.loadBank() && process.env.QUARTILE_FETCH_BANK !== "0") L.fetchBank().then(n => console.error(`Journal bank: ${n} journals loaded from SCImago`)).catch(e => console.error("Journal bank not loaded: " + e.message));
     const port = +process.env.PORT || 8787; app.listen(port, () => console.error(`Quartile MCP on http://localhost:${port}${secret ? "/mcp/<secret>" : "/mcp"}${token ? " (bearer token required)" : ""}`));
   } else {
-    const { StdioServerTransport } = require("@modelcontextprotocol/sdk/server/stdio.js");
+    const { StdioServerTransport } = await import("@modelcontextprotocol/sdk/server/stdio.js");
     await build().connect(new StdioServerTransport());
   }
 }
-if (require.main === module) main().catch(e => { console.error(e); process.exit(1); });
-module.exports = { build };
+if (process.argv[1] && import.meta.url === pathToFileURL(fs.realpathSync(process.argv[1])).href) main().catch(e => { console.error(e); process.exit(1); });
+export { build };
+export default { build };

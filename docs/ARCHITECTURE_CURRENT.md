@@ -55,6 +55,7 @@ Module system: CommonJS (`"type": "commonjs"` in `mcp/package.json`). `package.j
 | `verify_rewrite` | `L.verify` | no |
 | `apply_replacements` | `L.applyReplacements` | no |
 | `compare_style` | `L.compareStyle` | no |
+| `q1_style_guide` | `L.styleGuide` | no |
 | `corpus_status`, `corpus_build`, `corpus_analyse`, `corpus_compare`, `corpus_search`, `corpus_originality`, `corpus_profile_export`, `benchmark_corpus` | `mcp/corpus.js` | `corpus_build` and `benchmark_corpus` call OpenAlex |
 | `integrity_screen` | `Integrity.screen` | no |
 | `ai_style_check` | `aistyle.check` | no |

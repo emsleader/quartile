@@ -2,7 +2,7 @@
 // (R, Stata, SPSS, Python, EViews log or a CSV of estimates), allowing for rounding, dropped leading zeros,
 // percentages and sign. A number with no source in the output is listed for the author to trace or correct.
 // This is the only honest way to show where a number came from: match it to the output the author supplies.
-const L = require("./lib.js");
+import L from "./lib.js";
 
 const NUM = /(?<![\p{L}\d.,])[-−–]?(?:(?:\d{1,3}(?:,\d{3})+(?!\d)|\d+)(?:\.\d+)?|\.\d+)(?:[eE][-+]?\d+)?%?/gu;
 function toNum(s) { const neg = /^[-−–]/.test(s); const v = parseFloat(s.replace(/^[-−–]/, "").replace(/,/g, "").replace(/%$/, "")); return neg ? -v : v; }
@@ -53,4 +53,5 @@ function registry(text, outputs = []) {
     rows, summaryNotInResults: summaryOnly, tracedSections: traced.length,
     note: outputs.length ? "Each number was matched to the supplied output allowing for rounding to the reported decimals, a dropped leading zero, percentages of proportions and sign. 'Not found' means the number has no source in the files supplied: it may come from an output you did not supply (add it), or it may be wrong (correct it). A match shows the number is consistent with the output, not that the analysis is right." : "No software output was supplied. Paste the R/Stata/SPSS/Python log or a CSV of estimates as outputs to trace every number. The abstract-versus-results check below runs anyway." };
 }
-module.exports = { registry, manuscriptNumbers, outputNumbers, match };
+export { registry, manuscriptNumbers, outputNumbers, match };
+export default { registry, manuscriptNumbers, outputNumbers, match };

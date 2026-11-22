@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased (committee upgrade, Phase 0)
+- Code base converted to ES modules; `package.json` and the lock file moved to the repository root (owner decision of 22 November 2026). Tool names, inputs and outputs are unchanged.
+- Document model `core/text/parse.js` (paragraphs, sections, sentences with offsets, tables, numbers, citations), section names `core/text/sections.js`, negation scope `core/text/negation.js`, design classifier `core/text/design.js`.
+- Rule engine, schema and loader (`core/rules/`) with a YAML rulebook; the claim audit's eight pattern rules moved to `rulebook/quartile_core.yaml` without changing their behaviour.
+- New tools are registered from `tools/` (one file per tool).
+- CI workflow for every push and pull request; `npm run lint`, `test:rules`, `test:stats`, `test:gold`, `check:changelog`.
+
+## 0.16.2 (2026-11-17)
+- New tool `fer_literature_index`: read-only search of a 100-paper, DOI-verified candidate bibliography for the FER paper, with explicit flags that full texts and journal quartiles were not all verified.
+
+## 0.16.1 (2026-11-17)
+- New tool `fer_equation_catalog`: the FER paper's estimands and tests as a deterministic formula catalogue.
+- New tool `fer_replication_audit`: arithmetic audit of saved aggregate results (no microdata), with an R 4.3.3 aggregate cross-check workflow.
+
 ## 0.16.0 (2026-11-14)
 - New tool `egba_bounds`: Evidence-Graded Bounds Analysis for any arithmetic target expression, with survey (S) and interview (I) evidence grades after the documentary grades A-E. Each rung intersects the admitted intervals; an interval that does not overlap is reported as a conflict and the earlier one is kept, so survey or interview evidence can narrow the bounds but never overrule documentary evidence. Survey answers may be raw values (95% CI of the mean or 10th-90th percentiles). Returns bounds and a label at every rung, conflicts and the breakdown value of a chosen parameter. Only arithmetic operators and min, max, abs, log, exp and sqrt are accepted in the expression.
 - New tool `egba_time` (EGBA-Time): bounds on the activation latency of each financing route from stage intervals (with their own units), censoring of pending routes, classification against the action window (surely on time, surely late, undetermined, not usable, not identified), and Manski worst-case bounds on the share of routes usable in time with 95% Wilson intervals. Unnamed stage lists are refused with a clear message.
@@ -78,6 +92,7 @@ Accuracy release from a hand-checked test on the author's manuscripts (ORBIT, JE
 - 17 regression tests lock in each fix (38 tests in total).
 
 ## 0.8.0 (2026-11-11)
+- Tools in this release: `analyze_manuscript`, `desk_screen`, `check_statistics`, `check_references`, `verify_rewrite`, `apply_replacements`, `journal_lookup`, `journal_suggest`, `q1_style_guide`.
 - New name and design: Quartile.
 - PDF input (pdf.js), alongside Word (.docx), Markdown and text.
 - Journal editor: desk decision and three reviewer reports for a named journal; screen the paper as the editor of each suggested journal; send fixes to Issues.

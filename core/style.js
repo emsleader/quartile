@@ -50,4 +50,5 @@ const TIER_RIGOR = "When the target tier asks for something the text does not co
 const tierOf = () => ($("#editTier") && $("#editTier").value) || "Q1";
 const ROLES = ["opening","abstract","introduction","literature","methods","results","discussion","conclusion","references","declarations","other"];
 
-module.exports = { LEVELS, BASE_RULES, WTYPES, ROLE_RULES, ROLES, TIERS, TIER_RIGOR };
+export { LEVELS, BASE_RULES, WTYPES, ROLE_RULES, ROLES, TIERS, TIER_RIGOR };
+export default { LEVELS, BASE_RULES, WTYPES, ROLE_RULES, ROLES, TIERS, TIER_RIGOR };

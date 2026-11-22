@@ -471,4 +471,4 @@ const Core = (() => {
   return { isCaption, headingLevel, sectionRoles, consistency, citeStyle, bizChecks, deskScreen, parseRef, citeKey, aiTells, similar, detectRole, ruleChecks, HEDGES, CAUSAL, DEFAULT_TERMS, esc, splitParagraphs, numbers, citations, termCounts, multisetDiff, diagnostics, knowledgeFacts, compare, wordDiff, parseJSON, normDoi, csv, countList, words };
 })();
 
-if (typeof module !== "undefined") module.exports = Core;
+export default Core;

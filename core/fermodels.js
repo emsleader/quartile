@@ -1,4 +1,3 @@
-"use strict";
 // Quartile 0.16.x: FER case-specific, deterministic equation catalogue and aggregate evidence audit.
 // Never uploads, stores, or processes identifiable WBES microdata. No R execution occurs here.
 const FORMULAE = Object.freeze([
@@ -70,4 +69,5 @@ function audit(rep){
   const required=checks.filter(x=>x.critical);
   return {version:"Quartile 0.16.x / FER formula audit 1.0",mode:"deterministic_aggregate_arithmetic_only",pass:required.every(x=>x.status==="pass"),summary:{checked:checks.length,passed:checks.length-failed.length,failed:failed.length,critical_failed:required.filter(x=>x.status==="fail").length},checks,notValidated:["Original 6 R scripts have not run on raw .dta; R coefficients and exact R bootstrap seed unverified","Source SHA-256 is a recorded claim; app does not possess raw microdata to verify it","Covariate balance and observed propensity overlap do not establish selection-on-observables","Neither changes nor entrant/leaver coefficient identify the causal effect of Hungarian monetary, energy or lending policy","Researcher/econometrician approval and FER formatting gate are pending"],source_provenance:rep.evidence_status||"user_supplied_unverified_report",archive:src.restricted_storage||null};
 }
-module.exports={FORMULAE,exactMcNemar,audit};
+export {FORMULAE,exactMcNemar,audit};
+export default {FORMULAE,exactMcNemar,audit};

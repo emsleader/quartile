@@ -1,7 +1,11 @@
 #!/usr/bin/env node
 // Build a local journal bank from SCImago Journal Rank CSV exports (scimagojr.com).
 // Usage: node scripts/build-bank.js scimagojr_2024.csv [more.csv ...] [--out data/bank.json] [--areas "Business,Economics,Decision"]
-const fs = require("fs"), path = require("path"), { parseCsv, score } = require("../core/bank.js");
+import fs from "fs";
+import path from "path";
+import { parseCsv, score } from "../core/bank.js";
+import { fileURLToPath } from "node:url";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2), opt = k => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : null; };
 const skip = new Set(["--out", "--areas"].map(k => args.indexOf(k) + 1).filter(i => i > 0));
 const files = args.filter((a, i) => !a.startsWith("--") && !skip.has(i));

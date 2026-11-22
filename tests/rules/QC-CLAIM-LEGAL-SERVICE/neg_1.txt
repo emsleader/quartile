@@ -1,0 +1,3 @@
+# Results
+
+Firm age is reported for every company in the sample.

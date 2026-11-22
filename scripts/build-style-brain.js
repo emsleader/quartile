@@ -2,9 +2,12 @@
 // Build Quartile's Q1 style profile from about 500 recent Q1 articles, using the OpenAlex API (CC0 metadata).
 // Only measurements are stored (sentence length, voice, hedging, rhetorical moves...), never abstract text.
 // Usage: node scripts/build-style-brain.js [--target 500] [--out data/style-profile.json]
+import fs from "fs";
+import path from "path";
+import { measure, summarise } from "../core/stylemetrics.js";
+import { fileURLToPath } from "node:url";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OA_KEY = () => process.env.OPENALEX_API_KEY ? "api_key=" + encodeURIComponent(process.env.OPENALEX_API_KEY) + "&" : ""; // required by OpenAlex since 13 Feb 2026 (free key)
-const fs = require("fs"), path = require("path");
-const { measure, summarise } = require("../core/stylemetrics.js");
 const args = process.argv.slice(2), opt = (k, d) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : d; };
 const TARGET = +opt("--target", 500), OUT = opt("--out", path.join(__dirname, "..", "data", "style-profile.json"));
 const bank = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "bank.json"), "utf8"));

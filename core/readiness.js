@@ -2,9 +2,9 @@
 // It is NOT a prediction of acceptance. Acceptance depends on the contribution, the editor, the reviewers and the
 // fit with the journal, none of which a rule-based tool can observe. The score counts fixable problems, with the
 // penalties below, so the author can see exactly why it is what it is and raise it.
-const L = require("./lib.js");
-const AI = require("./aistyle.js");
-const REG = require("./registry.js");
+import L from "./lib.js";
+import AI from "./aistyle.js";
+import REG from "./registry.js";
 
 const PEN = {
   deskFail: 8, deskWarn: 2,             // per desk-screen check (cap 40)
@@ -37,4 +37,5 @@ function readiness(text, { journal, guidelines, outputs = [] } = {}) {
     formula: "score = 100 − Σ penalties. Desk screen: 8 per failed check, 2 per warning (max 40). Statistics: 6 per high, 3 per other problem (max 25). References: 1 per citation missing from the list, 0.5 per unused entry (max 10). Business design: 3 per high, 1.5 per medium issue (max 15). Q1 rules: 1.5 per high, 0.5 per medium flag (max 8). AI-style: 4 moderate, 10 high. Number registry: 1 per untraced number (max 10), only when at least 40% of numbers are traced (fewer means the outputs are incomplete; no penalty).",
     note: "Readiness counts fixable problems; it does not predict acceptance. No tool can: decisions depend on contribution, fit, editor and reviewers. A high score means the paper is unlikely to be desk-rejected for avoidable reasons." };
 }
-module.exports = { readiness, PEN };
+export { readiness, PEN };
+export default { readiness, PEN };

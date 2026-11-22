@@ -1,7 +1,6 @@
-"use strict";
-const assert = require("node:assert/strict");
-const F = require("../core/fermodels.js");
-const rep = require("./fixture-fer-aggregates.json");
+import assert from "node:assert/strict";
+import F from "../core/fermodels.js";
+import rep from "./fixture-fer-aggregates.json" with { type: "json" };
 assert.equal(F.FORMULAE.length,12,"Twelve specified estimands/tests");
 assert.equal(F.exactMcNemar(60,45).toFixed(9),"0.171564697");
 assert.equal(F.exactMcNemar(0,0),1);

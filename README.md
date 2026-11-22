@@ -51,9 +51,9 @@ The full interface. It runs as a claude.ai artifact, where it can ask Claude and
 ### 2. The MCP server (`mcp/`) for Claude, ChatGPT and other clients
 
 ```bash
-cd mcp && npm install
-node server.js            # stdio (Claude Desktop, Claude Code)
-node server.js --http     # Streamable HTTP on http://localhost:8787/mcp
+npm install
+node mcp/server.js        # stdio (Claude Desktop, Claude Code)
+node mcp/server.js --http # Streamable HTTP on http://localhost:8787/mcp
 ```
 
 **Tools:** `q1_style_guide`, `compare_style`, `integrity_screen`, `corpus_*` (local), `analyze_manuscript`, `desk_screen`, `check_statistics`, `check_references`, `verify_rewrite`, `apply_replacements`, `journal_lookup`, `journal_suggest`. **Prompts:** `q1_edit`, `journal_editor`, `idea_to_paper`. All tools are read-only and stateless; nothing is stored.
@@ -107,7 +107,7 @@ Difficulty = 0.45 × SJR percentile + 0.20 × H-index percentile + 0.20 × citat
 
 ## Tests
 ```bash
-cd mcp && npm install && cd .. && node tests/run.js
+npm install && node tests/run.js
 ```
 Covers the p-value functions against known values, each statistics check, the guard, safe replacement, document parsing, the AI-style score and fixes, the number registry, the readiness score and an MCP round trip over stdio (32 tools). The live checks (Crossref, OpenAlex, LanguageTool) need internet and are not part of the offline tests.
 

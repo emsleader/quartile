@@ -1,8 +1,11 @@
 // Prose lint and readability for academic business writing. Offline.
 // Word lists come from reviewed open-source projects (proselint BSD-3-Clause; too-wordy, no-cliches, weasel-words MIT),
 // pinned in data/prose-rules.json and credited in data/THIRD-PARTY.md. Matching code and replacements are Quartile's own.
-const fs = require("fs"), path = require("path");
-const L = require("./lib.js");
+import fs from "fs";
+import path from "path";
+import L from "./lib.js";
+import { fileURLToPath } from "node:url";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const NOISE = /^(it|there|this) (is|was|are|were)$/i;
 let R = null;
 function rules() { if (!R) { try { R = JSON.parse(fs.readFileSync(process.env.QUARTILE_PROSE_RULES || path.join(__dirname, "..", "data", "prose-rules.json"), "utf8")); } catch (e) { R = { redundancy: [], needless: [], wordy: [], cliches: [], weasel: [] }; } } return R; }
@@ -53,4 +56,5 @@ function lint(text, { maxIssues = 400 } = {}) {
     sources: (r.sources || []).map(s => `${s.name} ${s.version || s.commit.slice(0, 7)} (${s.license})`),
     note: "Word lists from proselint (BSD-3-Clause) and the too-wordy, no-cliches and weasel-words packages (MIT), filtered for business research. Redundancy and wordy-phrase fixes are whole-sentence edits that already passed verify_rewrite; needless variants and clichés are flags only." };
 }
-module.exports = { lint, readability, syllables };
+export { lint, readability, syllables };
+export default { lint, readability, syllables };

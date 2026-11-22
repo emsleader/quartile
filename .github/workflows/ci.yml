@@ -1,0 +1,25 @@
+name: ci
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['20', '22']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '${{ matrix.node }}' }
+      - name: R for the statistics procedures and the validation scripts
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends r-base-core r-cran-foreign r-cran-survival
+      - run: npm ci
+      - run: npm run lint
+      - run: node tests/run.js
+      - run: npm run test:rules        # every rule: positive must flag, negative must not
+      - run: npm run test:bugs         # regression tests for the 13 reported items
+      - run: npm run test:stats        # compare with stored R outputs
+      - run: npm run test:gold         # precision/recall; fails below targets
+      - run: npm run check:changelog   # every tool listed
+      - run: npm run check:licences    # only MIT, BSD, Apache-2.0, ISC (and listed exceptions) bundled

@@ -66,4 +66,5 @@ function compare(text, profile) {
   return { measured: x, distance: +(100 * outside).toFixed(0), withinProfile: METRICS.length - gaps.length, metricsChecked: METRICS.length, largestGaps: gaps.slice(0, 3), allGaps: gaps, moveNotes, profileN: profile.n,
     note: "Distance = share of measures outside the middle 50% of the Q1 profile. It describes style, not quality, and cannot fix a weak contribution." };
 }
-module.exports = { measure, summarise, compare, METRICS, LABEL };
+export { measure, summarise, compare, METRICS, LABEL };
+export default { measure, summarise, compare, METRICS, LABEL };

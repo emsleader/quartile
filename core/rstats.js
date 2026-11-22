@@ -2,8 +2,13 @@
 // runs Rscript, and returns the results, APA-style sentences, the exact script and a reproducibility record
 // (SHA-256 of the data and the script, R and package versions). Only fixed procedures are offered: no
 // user-supplied R code runs unless QUARTILE_ALLOW_R_CODE=1 (local installs).
-const fs = require("fs"), os = require("os"), path = require("path"), crypto = require("crypto");
-const { execFile } = require("child_process");
+import fs from "fs";
+import os from "os";
+import path from "path";
+import crypto from "crypto";
+import { execFile } from "child_process";
+import { fileURLToPath } from "node:url";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const LIB = path.join(__dirname, "rstats.R");
 const sha = b => crypto.createHash("sha256").update(b).digest("hex");
 const rs = s => JSON.stringify(String(s)); // a JSON string literal is a valid R string literal
@@ -45,7 +50,7 @@ async function run({ data, format = "csv", analyses = [], r_code = null, charts 
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "quartile-r-")); let xinfo = null;
   try {
     const isSav = format === "sav", isX = format === "xlsx", bytes = isSav || isX ? Buffer.from(String(data), "base64") : Buffer.from(String(data), "utf8");
-    if (isX) { const X = await require("./excel.js").xlsxToCsv(bytes, sheet); data = X.csv; xinfo = { sheet: X.sheet, sheets: X.sheets }; }
+    if (isX) { const X = await (await import("./excel.js")).default.xlsxToCsv(bytes, sheet); data = X.csv; xinfo = { sheet: X.sheet, sheets: X.sheets }; }
     const dataFile = path.join(dir, isSav ? "data.sav" : "data.csv"); fs.writeFileSync(dataFile, isX ? Buffer.from(data, "utf8") : bytes);
     let cols = null, sep = ",";
     if (!isSav) { const h = csvHeader(data); cols = h.cols; sep = h.sep; }
@@ -80,7 +85,7 @@ async function run({ data, format = "csv", analyses = [], r_code = null, charts 
     const warnings = String(err || "").split("\n").filter(l => /^Warning/.test(l)).slice(0, 20);
     const res = { kind: "rstats", figures, results, apa: results.map(apa).flat().filter(Boolean), record, script: script.replace(rs(LIB), '"rstats.R"'), warnings, output_text: flatten(results),
       note: "Computed in R with fixed, open procedures (core/rstats.R); figures drawn by R. Pass output_text to number_registry as an output to trace every reported number to this run." };
-    if (excel) res.xlsx_base64 = (await require("./excel.js").workbook(res)).toString("base64");
+    if (excel) res.xlsx_base64 = (await (await import("./excel.js")).default.workbook(res)).toString("base64");
     return res;
   } finally { try { fs.rmSync(dir, { recursive: true, force: true }); } catch (e) {} }
 }
@@ -125,4 +130,5 @@ function flatten(results) {
   const out = []; const walk = (o, p) => { if (o == null) return; if (typeof o === "number") out.push(`${p} = ${o}`); else if (Array.isArray(o)) o.forEach((v, i) => walk(v, `${p}[${i}]`)); else if (typeof o === "object") Object.entries(o).forEach(([k, v]) => walk(v, p ? `${p}.${k}` : k)); };
   results.forEach((r, i) => walk(r.result, `${i + 1}.${r.procedure}`)); return out.join("\n");
 }
-module.exports = { run, available, PROCS, apa };
+export { run, available, PROCS, apa };
+export default { run, available, PROCS, apa };

@@ -1,0 +1,3 @@
+# Results
+
+The scenario is not reported as a finding; results show only what the assumed parameters imply.

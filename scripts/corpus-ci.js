@@ -1,9 +1,13 @@
 // Builds the full-text corpus profile on a CI runner: downloads open-access, CC-licensed Q1 papers into a temporary
 // folder, measures every section and writes ONLY measurements and bibliographic metadata to data/.
 // The PDFs and extracted texts are deleted with the runner; nothing else is kept or published.
-const fs = require("fs"), os = require("os"), path = require("path");
+import fs from "fs";
+import os from "os";
+import path from "path";
+import CP from "../mcp/corpus.js";
+import { fileURLToPath } from "node:url";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 process.env.QUARTILE_CORPUS = fs.mkdtempSync(path.join(os.tmpdir(), "quartile-corpus-"));
-const CP = require("../mcp/corpus.js");
 const target = +(process.argv[2] || 500);
 (async () => {
   await CP.build({ target, perJournal: 6 });

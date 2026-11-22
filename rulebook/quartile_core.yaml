@@ -1,0 +1,145 @@
+# Quartile core rules moved from code into the rulebook (Phase 0). Behaviour is unchanged: the claim audit
+# (core/evidence.js) now reads its pattern rules from this file. Wording is Quartile's own.
+source:
+  id: QUARTILE_CORE
+  citation: "Quartile core checks, versions 0.14.0 to 0.16.x (EMS International Kft, MIT licence)."
+  licence_note: "Written by the Quartile authors; no third-party text."
+rules:
+  - id: QC-CLAIM-SNAPSHOT
+    legacy_id: snapshot
+    title: "Snapshot read as share, growth or resilience"
+    role: methods
+    severity: major
+    confidence: medium
+    designs: [all]
+    check: pattern
+    pattern: '\b(market share|market leader|dominat\w+ the market|market(-wide)? growth|growth rate of the market|resilien\w+|survival rates?)\b'
+    context: '\b(snapshot|web(site)?s?|listings?|advert\w*|directory|visible|online presence|google maps|wayback|scrap\w+|register of (visible|online))\b'
+    negation: near
+    source_ref: "Owner's evidence rule: a snapshot or web-visible list is not market share, growth or resilience (thesis research rules, 2026)"
+    message: "Snapshot read as share, growth or resilience: \u2018{match}\u2019."
+    fix: "A list of businesses visible on one date shows presence, not share, growth or survival. Say 'visible on <date>' and keep share and growth NOT IDENTIFIED."
+    tests:
+      positive: [tests/rules/QC-CLAIM-SNAPSHOT/pos_1.txt]
+      negative: [tests/rules/QC-CLAIM-SNAPSHOT/neg_1.txt, tests/rules/QC-CLAIM-SNAPSHOT/neg_2.txt]
+  - id: QC-CLAIM-PREREG
+    legacy_id: prereg
+    title: "Protocol called a preregistration after the data were seen"
+    role: methods
+    severity: major
+    confidence: medium
+    designs: [all]
+    check: pattern
+    pattern: '\b(pre-?regist\w+|registered in advance|prospective(ly)? regist\w+)\b'
+    context: '\b(after|following|post-hoc|exploration|explored|already|initial look|inspected)\b'
+    negation: before
+    source_ref: "Nosek et al. (2018) PNAS 115(11), preregistration is made before data are seen; claim audit 0.14.0"
+    message: "Protocol called a preregistration after the data were seen: \u2018{match}\u2019."
+    fix: "Call it a time-stamped analysis protocol and state that data exploration came first."
+    tests:
+      positive: [tests/rules/QC-CLAIM-PREREG/pos_1.txt]
+      negative: [tests/rules/QC-CLAIM-PREREG/neg_1.txt, tests/rules/QC-CLAIM-PREREG/neg_2.txt]
+  - id: QC-CLAIM-ENTITY-PROFIT
+    legacy_id: entity-profit
+    title: "Service-level profit read from company accounts"
+    role: methods
+    severity: major
+    confidence: medium
+    designs: [all]
+    check: pattern
+    pattern: '\b(profit\w*|margin|profitab\w+|EBITDA)\b[^.]{0,80}\b(service|EMS|offering|line|integrated)\b|\b(service|EMS|offering|integrated)\b[^.]{0,80}\b(profit\w*|margin|profitab\w+)\b'
+    context: '\b(financial statements?|filings?|annual accounts|company accounts|net profit|legal entit\w+|diversified)\b'
+    negation: near
+    source_ref: "Owner's evidence rule: keep observational units distinct; claim audit 0.14.0"
+    message: "Service-level profit read from company accounts: \u2018{match}\u2019."
+    fix: "Company accounts give the whole entity's profit. Model the service's economics as CONDITIONAL, or report it as NOT IDENTIFIED."
+    tests:
+      positive: [tests/rules/QC-CLAIM-ENTITY-PROFIT/pos_1.txt]
+      negative: [tests/rules/QC-CLAIM-ENTITY-PROFIT/neg_1.txt, tests/rules/QC-CLAIM-ENTITY-PROFIT/neg_2.txt]
+  - id: QC-CLAIM-SURVIVAL
+    legacy_id: survival
+    title: "Survival claimed without a population at risk"
+    role: methods
+    severity: major
+    confidence: medium
+    designs: [all]
+    check: pattern
+    pattern: '\b(surviv\w+|exit rate|failure rate|hazard)\b'
+    context: '\b(snapshot|currently active|still (open|operating)|wayback|visible|cross-section\w*)\b'
+    negation: near
+    source_ref: "Survival analysis needs a population at risk, entry, exit and censoring (Kaplan & Meier 1958); claim audit 0.14.0"
+    message: "Survival claimed without a population at risk: \u2018{match}\u2019."
+    fix: "Survival needs the population at risk, entry and exit dates, censoring and the number of events. Survivors visible today cannot show survival."
+    tests:
+      positive: [tests/rules/QC-CLAIM-SURVIVAL/pos_1.txt]
+      negative: [tests/rules/QC-CLAIM-SURVIVAL/neg_1.txt, tests/rules/QC-CLAIM-SURVIVAL/neg_2.txt]
+  - id: QC-CLAIM-LEGAL-SERVICE
+    legacy_id: legal-vs-service
+    title: "Legal-entity survival equated with service persistence"
+    role: methods
+    severity: major
+    confidence: medium
+    designs: [all]
+    check: pattern
+    pattern: '\b(firm|company|entity) (survival|persistence)\b'
+    context: '\b(service|offering|EMS|programme)\b'
+    negation: near
+    source_ref: "Owner's evidence rule: legal-entity survival differs from service persistence; claim audit 0.14.0"
+    message: "Legal-entity survival equated with service persistence: \u2018{match}\u2019."
+    fix: "A company can survive while it drops the service. Keep entity survival and service persistence separate."
+    tests:
+      positive: [tests/rules/QC-CLAIM-LEGAL-SERVICE/pos_1.txt]
+      negative: [tests/rules/QC-CLAIM-LEGAL-SERVICE/neg_1.txt, tests/rules/QC-CLAIM-LEGAL-SERVICE/neg_2.txt]
+  - id: QC-CLAIM-ASKING-PRICE
+    legacy_id: asking-price
+    title: "Asking price treated as a transaction price"
+    role: methods
+    severity: major
+    confidence: medium
+    designs: [all]
+    check: pattern
+    pattern: '\b(prices?|valuations?|resale value|market value)\b'
+    context: '\b(advert\w*|asking|listed|listing|marketplace|classified)\b'
+    except: '\basking\b'
+    negation: none
+    source_ref: "Owner's evidence rule: advertised prices are asking prices; claim audit 0.14.0"
+    message: "Asking price treated as a transaction price: \u2018{match}\u2019."
+    fix: "An advertised price is an asking price; say so, and do not treat it as a realised sale."
+    tests:
+      positive: [tests/rules/QC-CLAIM-ASKING-PRICE/pos_1.txt]
+      negative: [tests/rules/QC-CLAIM-ASKING-PRICE/neg_1.txt, tests/rules/QC-CLAIM-ASKING-PRICE/neg_2.txt]
+  - id: QC-CLAIM-CAUSAL
+    legacy_id: causal
+    title: "Causal wording on descriptive or associational evidence"
+    role: methods
+    severity: major
+    confidence: medium
+    designs: [all]
+    check: pattern
+    pattern: '\b(causes?|caused|leads? to|led to|drives?|driven by|results? in|impact of|effect of)\b'
+    context: '\b(snapshot|cross-section\w*|descriptive|association|correlat\w+|survey)\b'
+    except: '\bnot (identify|establish|claim)|\bassociat\w+ (with|rather)'
+    negation: none
+    source_ref: "STROBE item 20 (von Elm et al. 2007); claim audit 0.14.0"
+    message: "Causal wording on descriptive or associational evidence: \u2018{match}\u2019."
+    fix: "Use 'is associated with' or 'co-occurs with' unless the design identifies a causal effect."
+    tests:
+      positive: [tests/rules/QC-CLAIM-CAUSAL/pos_1.txt]
+      negative: [tests/rules/QC-CLAIM-CAUSAL/neg_1.txt, tests/rules/QC-CLAIM-CAUSAL/neg_2.txt]
+  - id: QC-CLAIM-ASSUMPTION
+    legacy_id: assumption-as-result
+    title: "Model result reported as a finding"
+    role: methods
+    severity: major
+    confidence: medium
+    designs: [all]
+    check: pattern
+    pattern: '\b(we find|results show|shows that|demonstrates?|proves?)\b'
+    context: '\b(assum\w+|scenario|simulat\w+|projected|parameter range|calibrat\w+)\b'
+    negation: near
+    source_ref: "Owner's output contract: CONDITIONAL MODEL RESULT; claim audit 0.14.0"
+    message: "Model result reported as a finding: \u2018{match}\u2019."
+    fix: "Label it a CONDITIONAL MODEL RESULT and name the assumption or range it depends on."
+    tests:
+      positive: [tests/rules/QC-CLAIM-ASSUMPTION/pos_1.txt]
+      negative: [tests/rules/QC-CLAIM-ASSUMPTION/neg_1.txt, tests/rules/QC-CLAIM-ASSUMPTION/neg_2.txt]

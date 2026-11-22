@@ -1,0 +1,3 @@
+# Results
+
+Results show that integration pays off under the assumed parameter range.

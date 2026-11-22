@@ -4,7 +4,10 @@
 //   npm pack too-wordy@0.3.1 no-cliches@0.3.0 weasel-words@0.1.1  (MIT)
 //   node scripts/build-prose-rules.js <proselint dir> <too-wordy dir> <no-cliches dir>
 // Only word lists are taken, no code. Lists are filtered for academic business writing.
-const fs = require("fs"), path = require("path");
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "node:url";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const [PL, TW, NC] = process.argv.slice(2);
 if (!NC) { console.error("usage: node scripts/build-prose-rules.js <proselint> <too-wordy> <no-cliches>"); process.exit(1); }
 const pairs = f => fs.readFileSync(f, "utf8").split(/\r?\n/).filter(Boolean).map(l => l.split(",")).filter(p => p.length === 2 && p[0] && p[1]).map(([a, b]) => [a.trim(), b.trim()]);

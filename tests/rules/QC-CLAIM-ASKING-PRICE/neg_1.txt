@@ -1,0 +1,3 @@
+# Results
+
+Device prices were taken from the manufacturer's invoices.

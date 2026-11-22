@@ -1,6 +1,5 @@
-"use strict";
-const assert=require("node:assert/strict");
-const {search,index}=require("../core/ferliterature");
+import assert from "node:assert/strict";
+import {search,index} from "../core/ferliterature.js";
 assert.equal(index.count,100);
 assert.equal(index.papers.length,100);
 assert.equal(new Set(index.papers.map(p=>p.doi)).size,100);
