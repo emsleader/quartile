@@ -1,0 +1,24 @@
+# Conjoint experiment reporting items. There is no official numbered checklist; the items below are drawn by
+# Quartile from the design and analysis elements set out in the two sources, numbered CJ-1 to CJ-12 by Quartile,
+# with text in Quartile's own words.
+checklist:
+  id: CONJOINT
+  name: "Conjoint experiment reporting"
+  citation: "Hainmueller, J., Hopkins, D. J., & Yamamoto, T. (2014). Causal inference in conjoint analysis: Understanding multidimensional choices via stated preference experiments. Political Analysis, 22(1), 1-30. https://doi.org/10.1093/pan/mpt024; Bansak, K., Hainmueller, J., Hopkins, D. J., & Yamamoto, T. (2021). Conjoint survey experiments. In J. N. Druckman & D. P. Green (Eds.), Advances in Experimental Political Science (pp. 19-41). Cambridge University Press."
+  designs: [experiment]
+  requires: '\bconjoint\b|\bchoice[- ]based\b|\bdiscrete choice experiment\b'
+  numbering: quartile
+  licence_note: "Items derived by Quartile from the two sources; numbers and text are Quartile's."
+items:
+  - { number: "CJ-1", topic: "Attributes and levels", item: "Every attribute and all of its levels are listed (in a table or appendix).", check: auto, where: [methods], detect: '\battributes?\b[^.]{0,80}\blevels?\b|\blevels?\b[^.]{0,80}\battributes?\b' }
+  - { number: "CJ-2", topic: "Attributes and levels", item: "The paper explains how the attributes and levels were chosen.", check: manual, where: [methods], detect: '\b(attributes? (were|was) (chosen|selected|derived|identified)|pre-?test\w*|pilot\w*|focus groups?)\b' }
+  - { number: "CJ-3", topic: "Randomisation", item: "The randomisation of profiles is described: the distribution of levels and any restricted or excluded combinations.", check: auto, where: [methods], detect: '\b(randomi[sz]\w+|uniform(ly)? (distribution|at random)|restrict\w+ (combinations?|profiles?)|implausible (combinations?|profiles?)|fully randomi[sz]ed)\b' }
+  - { number: "CJ-4", topic: "Randomisation", item: "The paper says whether attribute order was randomised across respondents and kept fixed within a respondent.", check: manual, where: [methods], detect: '\b(attribute order|order of (the )?attributes)\b' }
+  - { number: "CJ-5", topic: "Task structure", item: "The number of tasks per respondent and of profiles per task is given.", check: auto, where: [methods], detect: '\b\d+\s+(choice )?tasks?\b|\b(tasks?|pairs?) of (two|2) profiles\b|\bprofiles? per task\b|\b(two|2) profiles\b' }
+  - { number: "CJ-6", topic: "Outcome", item: "The outcome measure is stated: forced choice, rating, or both.", check: auto, where: [methods], detect: '\b(forced[- ]choice|choose (between|one)|rating scale|rated each profile|rate each)\b' }
+  - { number: "CJ-7", topic: "Estimand and estimator", item: "The estimand and estimator are named (for example AMCE or marginal means) with the reference level for each attribute.", check: auto, where: [methods, results], detect: '\b(AMCE|average marginal component effects?|marginal means?)\b' }
+  - { number: "CJ-8", topic: "Estimand and estimator", item: "Standard errors account for repeated tasks by the same respondent (clustered by respondent).", check: auto, where: [methods, results], detect: '\bclustered (by|at the level of|on) (the )?respondents?\b|\brespondent-level cluster\w*\b' }
+  - { number: "CJ-9", topic: "Data quality", item: "Attention or quality checks are described, with how failures were handled.", check: auto, where: [methods], detect: '\b(attention checks?|quality checks?|manipulation checks?|instructed response items?|speeders?)\b' }
+  - { number: "CJ-10", topic: "Sample", item: "The sample source, recruitment and size are given.", check: auto, where: [methods], detect: '\b(recruited|panel|Prolific|MTurk|Mechanical Turk|YouGov|Lucid|Dynata|respondents?)\b' }
+  - { number: "CJ-11", topic: "Diagnostics", item: "Diagnostics for carryover, profile-order and attribute-order effects are reported.", check: manual, where: [methods, results], detect: '\b(carry-?over|profile order|task order|stability (across|over) tasks)\b' }
+  - { number: "CJ-12", topic: "Materials", item: "The full instrument or a screenshot of a choice task is provided.", check: manual, where: all, detect: '\b(screenshot|example (choice )?task|appendix)\b' }

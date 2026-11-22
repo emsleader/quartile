@@ -1,0 +1,24 @@
+# AAPOR disclosure elements: a manual-item stub. The AAPOR Code of Professional Ethics and Practices lists
+# elements to disclose for every survey; the numbering below is Quartile's (A1 to A12) and is NOT the Code's own.
+# All items are check: manual until the owner confirms the item list against the current Code.
+checklist:
+  id: AAPOR_STUB
+  name: "AAPOR disclosure elements (manual stub)"
+  citation: "American Association for Public Opinion Research. AAPOR Code of Professional Ethics and Practices (revised 2021), Section III: Standards for Disclosure; AAPOR Transparency Initiative. https://aapor.org/standards-and-ethics/"
+  designs: [survey]
+  numbering: quartile
+  stub: true
+  licence_note: "Elements paraphrased by Quartile; numbering is Quartile's, not AAPOR's."
+items:
+  - { number: "A1", topic: "Sponsor and conductor", item: "Who sponsored the survey and who carried it out.", check: manual, where: all, detect: '\b(funded by|sponsored by|conducted by|commissioned by|carried out by)\b' }
+  - { number: "A2", topic: "Questions", item: "The exact wording and order of the questions used in the analysis (or where to find them).", check: manual, where: all, detect: '\b(questionnaire (is|are) (provided|available|reproduced)|full (questionnaire|wording)|question wording)\b' }
+  - { number: "A3", topic: "Population", item: "The population the survey is meant to represent.", check: manual, where: [methods], detect: '\b(target population|population of interest)\b' }
+  - { number: "A4", topic: "Dates", item: "The dates of data collection.", check: manual, where: [methods], detect: '\b(19|20)\d{2}\b' }
+  - { number: "A5", topic: "Sampling frame", item: "The sampling frame and its coverage of the population.", check: manual, where: [methods], detect: '\b(sampling frame|sample frame|coverage)\b' }
+  - { number: "A6", topic: "Sample design", item: "How respondents were selected (probability or not), and the sample source or panel provider.", check: manual, where: [methods], detect: '\b(probability sample|random sample|stratified|quota|non-?probability|panel provider|opt-in)\b' }
+  - { number: "A7", topic: "Mode", item: "The mode(s) of data collection and the languages used.", check: manual, where: [methods], detect: '\b(online|telephone|face-to-face|CATI|CAWI|CAPI|mail|mixed-mode)\b' }
+  - { number: "A8", topic: "Sample size", item: "The number of respondents and, for subgroups analysed, their sizes.", check: manual, where: [methods, results], detect: '\b\d[\d,]*\s+(respondents|responses|completed (questionnaires|interviews))\b' }
+  - { number: "A9", topic: "Weighting", item: "Any weighting: the variables and the method used.", check: manual, where: [methods], detect: '\b(weight\w*|raking|post-?stratif\w+)\b' }
+  - { number: "A10", topic: "Precision", item: "The precision of estimates, taking the design into account (margin of error or equivalent), where appropriate.", check: manual, where: [methods, results], detect: '\b(margin of error|design effect|confidence intervals?|standard errors?)\b' }
+  - { number: "A11", topic: "Response rate", item: "Response or participation rates and how they were calculated.", check: manual, where: [methods, results], detect: '\b(response rate|participation rate|AAPOR (RR|response rate)\d*)\b' }
+  - { number: "A12", topic: "Data quality", item: "Any procedures to check data quality (attention checks, removal of speeders or duplicates).", check: manual, where: [methods], detect: '\b(attention checks?|speeders?|straight-?lin\w+|duplicates?)\b' }

@@ -1,0 +1,13 @@
+{
+ "id": "phase1-limits-generic",
+ "licence": "synthetic",
+ "design": "regression",
+ "text": "Leverage and growth in small service firms\n\nAbstract\n\nWe study how leverage relates to sales growth in small service firms in Hungary between 2015 and 2022.\n\n# 1. Introduction\n\nSmall service firms often rely on bank debt. We ask whether leverage is associated with later sales growth.\n\n# 2. Data and Methods\n\nWe use annual accounts from the national company register for 2015 to 2022. Sales growth is the yearly change in log sales. Leverage is total debt divided by total assets. Firm size is the log of total assets. Firm age is the number of years since registration. We estimate a panel regression with firm and year fixed effects and cluster standard errors by firm.\n\n# 3. Results\n\nLeverage is negatively associated with sales growth (coefficient -0.12, standard error 0.04). Firm size is positively associated with growth.\n\n# 4. Discussion\n\nHigher leverage goes together with slower growth in this group of firms.\n\nHigher leverage goes together with slower growth in this sample.\n\n# 5. Limitations\n\nThis study has some limitations. Future research should address them.\n\n# 6. Conclusion\n\nLeverage and growth move in opposite directions for small service firms.",
+ "expected": [
+  {
+   "rule": "MTH-06",
+   "note": "anchor sentence; finding is document-level"
+  }
+ ],
+ "planted": true
+}

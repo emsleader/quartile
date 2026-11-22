@@ -1,0 +1,8 @@
+{
+ "id": "phase1-prereg-link",
+ "licence": "synthetic",
+ "design": "survey",
+ "text": "Owner experience and digital adoption\n\nAbstract\n\nWe report a questionnaire study of small business owners in three Hungarian regions.\n\n# 1. Introduction\n\nDigital tools spread unevenly among small firms. We ask whether owner experience is associated with adoption.\n\n# 2. Data and Methods\n\nThe hypotheses and analysis plan were preregistered before data collection.\n\nWe sent a paper questionnaire to owners listed in the chamber of commerce register in 2023. Adoption is the number of digital tools in use, from a list of eight. Owner experience is years as an owner. Respondents also reported firm size in employees. We estimate an ordered logit regression.\n\n# 3. Results\n\nOwner experience is positively associated with adoption. Larger firms report more tools.\n\n# 4. Discussion\n\nExperienced owners use more digital tools in this sample.\n\n# 5. Limitations\n\nThe sample covers three regions only and relies on self-reported tool use, so the results may not generalise to other regions.\n\n# 6. Conclusion\n\nOwner experience and adoption go together.\n\n# Data availability\n\nThe plan is at https://osf.io/abcd1 (registered 3 March 2023).",
+ "expected": [],
+ "planted": false
+}
