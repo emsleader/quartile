@@ -1,0 +1,21 @@
+Dear Authors,
+
+Your paper "Imaginary Banks and Pretend Loans" has now been evaluated by two referees. Based on their advice, my decision is major revision.
+
+Comments from the editor
+Point 1. The paper reads like a report; please restructure it around one research question.
+Point 2. Compare your estimates with earlier studies of pretend loans.
+
+REVIEWER 1
+1 - The authors should test whether the results hold for the sub-sample of small banks.
+2 - It is unclear how missing values were treated.
+3 - Provide the code used to build the panel.
+
+REVIEWER 2
+* The literature review omits work on relationship lending.
+* The tables report too many decimals; use three.
+* I recommend adding a discussion of managerial implications for loan officers.
+
+Yours sincerely,
+A. Pretend
+Handling Editor

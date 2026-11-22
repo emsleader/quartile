@@ -1,0 +1,15 @@
+Referee #1
+
+General comments
+The question is relevant. However, the paper lacks a theoretical framework, and the hypotheses appear ad hoc.
+
+Specific comments
+1. Section 3: the definition of "make-believe firm" should be given before it is used.
+2. Section 4: the regression in Table 4 omits year dummies; please add them.
+3. Section 5: the policy discussion goes beyond what the data can show and should be toned down.
+
+Referee #2
+
+(a) Please clarify whether the survey was approved by an ethics committee.
+(b) The English needs editing throughout.
+(c) Figure 1 duplicates Table 1 and could be removed.
