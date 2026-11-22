@@ -1,0 +1,16 @@
+{
+ "id": "phase5-ethics-002",
+ "licence": "synthetic",
+ "design": "regression",
+ "text": "Leasing and cash holdings of fitness firms\n\nAbstract\n\nWe study published annual accounts of 80 fitness firms.\n\n2. Methods\n\nWe estimate an OLS regression with fixed effects on firm accounts. No ethics approval was required because no human participants were involved.\n\n3. Results\n\nFirms that lease hold more cash.\n\nFunding\n\nThis research received no specific grant from any funding agency.\n\nDeclaration of competing interests\n\nThe authors declare no competing interests.\n\nData availability statement\n\nThe data are available from the corresponding author upon reasonable request.",
+ "expected": [
+  {
+   "rule": "ETH-05-REQUEST",
+   "section": "data_avail",
+   "start": 500,
+   "end": 577,
+   "note": "synthetic"
+  }
+ ],
+ "planted": true
+}

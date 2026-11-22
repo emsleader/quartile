@@ -1,0 +1,126 @@
+# Ethics and data office (Phase 5, specification Section 10). Text checks run by the rule engine.
+# ETH-04 (conflict of interest), ETH-04-DUAL (dual role) and ETH-07 (small cells) need the author profile or the
+# tables, so they live in core/roles/ethics.js. Wording is Quartile's own; the sources are cited, not quoted.
+source:
+  id: QUARTILE_ETHICS
+  citation: "Quartile ethics and data office rules, built on COPE Core Practices, the ICMJE Recommendations, the WMA Declaration of Helsinki and Regulation (EU) 2016/679 (GDPR)."
+  licence_note: "Rules paraphrased in Quartile's own words; no text reproduced."
+rules:
+  - id: ETH-01
+    title: "Ethics approval: body and reference number"
+    role: ethics
+    severity: major
+    confidence: medium
+    designs: [survey, experiment, qualitative]
+    check: structural
+    test: "eth_approval()"
+    source_ref: "WMA Declaration of Helsinki (2013), para. 23 (research ethics committee); COPE Core Practice: Ethical oversight"
+    message: "Ethics approval is missing or incomplete. For a study with human participants, name the approving body and give the approval reference number (see detail.missing)."
+    fix: "Add one sentence: 'The study was approved by the <named> Research Ethics Committee (ref. <number>, <date>).' If no approval was needed, say so and give the reason."
+    tests:
+      positive: [tests/rules/ETH-01/pos_1.txt, tests/rules/ETH-01/pos_2.txt]
+      negative: [tests/rules/ETH-01/neg_1.txt, tests/rules/ETH-01/neg_2.txt, tests/rules/ETH-01/neg_3.txt]
+  - id: ETH-01-WAIVER
+    title: "Ethics review said to be not required, without a reason"
+    role: ethics
+    severity: minor
+    confidence: low
+    designs: [all]
+    check: pattern
+    pattern: '\b(ethic(s|al)|IRB) (approval|review|clearance)\b[^.]{0,30}\b(was|were|is|are) not (required|needed|necessary|sought)\b'
+    negation: none
+    except: '\b(because|since|as (the|it|this|no|only|all)|given that|due to|under|according to|in line with|in accordance with|exempt\w*)\b'
+    unless_nearby: '\b(exempt\w*|publicly available|secondary data|anonymous|policy|regulations?)\b|\bno (human|personal|identifiable)\b'
+    source_ref: "COPE Core Practice: Ethical oversight (a waiver of review should be explained)"
+    message: "The paper says ethics review was not needed but gives no reason: '{match}'."
+    fix: "Give the reason and the rule it rests on, e.g. 'not required under <institution>'s policy because the survey collected no personal data'."
+    tests:
+      positive: [tests/rules/ETH-01-WAIVER/pos_1.txt]
+      negative: [tests/rules/ETH-01-WAIVER/neg_1.txt, tests/rules/ETH-01-WAIVER/neg_2.txt]
+  - id: ETH-02
+    title: "Informed consent described"
+    role: ethics
+    severity: major
+    confidence: medium
+    designs: [survey, experiment, qualitative]
+    check: structural
+    test: "eth_consent()"
+    source_ref: "WMA Declaration of Helsinki (2013), paras. 25-26 (informed consent); COPE Core Practice: Ethical oversight"
+    message: "No statement on informed consent was found for a study with human participants."
+    fix: "Say how consent was obtained (written, online, oral), what participants were told, and that taking part was voluntary."
+    tests:
+      positive: [tests/rules/ETH-02/pos_1.txt]
+      negative: [tests/rules/ETH-02/neg_1.txt, tests/rules/ETH-02/neg_2.txt]
+  - id: ETH-03
+    title: "Data protection for participants in the EU/EEA"
+    role: ethics
+    severity: minor
+    confidence: low
+    designs: [survey, experiment, qualitative]
+    check: structural
+    test: "eth_data_protection()"
+    source_ref: "Regulation (EU) 2016/679 (GDPR), Art. 6(1) lawful basis, Art. 4(5) and 89(1) pseudonymisation, Art. 5(1)(e) storage limitation"
+    message: "Participants appear to be in the EU/EEA, but the data-protection statement is incomplete (see detail.missing: GDPR legal basis, pseudonymisation, storage period)."
+    fix: "State the GDPR legal basis (e.g. consent, Art. 6(1)(a)), how identifiers were removed or pseudonymised, and how long the data are kept."
+    tests:
+      positive: [tests/rules/ETH-03/pos_1.txt]
+      negative: [tests/rules/ETH-03/neg_1.txt, tests/rules/ETH-03/neg_2.txt, tests/rules/ETH-03/neg_3.txt]
+  - id: ETH-03-PSEUDO
+    title: "Pseudonymised data treated as outside the GDPR"
+    role: ethics
+    severity: minor
+    confidence: medium
+    designs: [all]
+    check: pattern
+    pattern: '\bpseudonymi[sz]\w*\b[^.]{0,80}\b(not personal data|no longer personal data|outside (the scope of )?(the )?GDPR|(the GDPR|GDPR|data protection law) (does|did) not apply|(therefore|thus|hence|so) (fully )?anonymous)'
+    negation: none
+    except: '\b(remains?|still|continues? to be) personal data\b'
+    source_ref: "Regulation (EU) 2016/679 (GDPR), Recital 26 and Art. 4(5): pseudonymised data are still personal data"
+    message: "Pseudonymised data are described as anonymous or outside the GDPR: '{match}'."
+    fix: "Pseudonymised data stay personal data under the GDPR. Call them pseudonymised and give the legal basis, or describe a real anonymisation."
+    tests:
+      positive: [tests/rules/ETH-03-PSEUDO/pos_1.txt]
+      negative: [tests/rules/ETH-03-PSEUDO/neg_1.txt, tests/rules/ETH-03-PSEUDO/neg_2.txt]
+  - id: ETH-05
+    title: "Data and code availability statement"
+    role: ethics
+    severity: minor
+    confidence: medium
+    designs: [regression, bounds, sem, experiment, slr, qualitative, survey, simulation]
+    check: structural
+    test: "eth_availability()"
+    source_ref: "COPE Core Practice: Data and reproducibility; TOP Guidelines (Nosek et al., 2015, Science 348, 1422-1425), data and code transparency"
+    message: "No data and code availability statement was found."
+    fix: "Add a 'Data availability statement': where the data and code are (repository and DOI), or why they cannot be shared and how others can get access."
+    tests:
+      positive: [tests/rules/ETH-05/pos_1.txt]
+      negative: [tests/rules/ETH-05/neg_1.txt, tests/rules/ETH-05/neg_2.txt]
+  - id: ETH-05-REQUEST
+    title: "Data available only on request"
+    role: ethics
+    severity: note
+    confidence: medium
+    designs: [regression, bounds, sem, experiment, slr, qualitative, survey, simulation]
+    check: pattern
+    pattern: '\bavailable (from the (corresponding )?authors? )?(up)?on (reasonable )?request\b'
+    negatable: true
+    source_ref: "Gabelica, Bojčić and Puljak (2022), J. Clin. Epidemiol. 150, 33-41 (most 'available on request' data were not supplied); COPE Core Practice: Data and reproducibility"
+    message: "Data are said to be available on request: '{match}'. Many journals now ask for a repository or a stated access route."
+    fix: "Deposit the data or code (e.g. Zenodo, OSF) with a DOI, or explain the restriction and name who grants access."
+    tests:
+      positive: [tests/rules/ETH-05-REQUEST/pos_1.txt]
+      negative: [tests/rules/ETH-05-REQUEST/neg_1.txt, tests/rules/ETH-05-REQUEST/neg_2.txt]
+  - id: ETH-06
+    title: "Funding statement"
+    role: ethics
+    severity: minor
+    confidence: medium
+    designs: [all]
+    check: structural
+    test: "eth_funding()"
+    source_ref: "ICMJE Recommendations, Section II.B (sources of support); COPE Core Practice: Conflicts of interest / competing interests"
+    message: "No funding statement was found."
+    fix: "Add a 'Funding' section naming each funder and grant number, or state that the research received no specific funding."
+    tests:
+      positive: [tests/rules/ETH-06/pos_1.txt]
+      negative: [tests/rules/ETH-06/neg_1.txt, tests/rules/ETH-06/neg_2.txt]
