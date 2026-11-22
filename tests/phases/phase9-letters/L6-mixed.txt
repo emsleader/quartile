@@ -1,0 +1,15 @@
+Decision: Minor revision
+
+Reviewer 1, Comment 1: Please report the exact p-values in Table 2.
+Reviewer 1, Comment 2: The variable definitions should be moved to an appendix table.
+
+Reviewer 2
+(1) The introduction should be restructured so that the research question comes first.
+    a) Move the motivation paragraph up.
+    b) Delete the repeated summary.
+(2) Explain the sensitivity analysis for the discount rate.
+(3) The ethics approval number is missing.
+
+Associate Editor:
+E1. Shorten the literature review by about one third.
+E2. Add a figure that shows the timeline of the policy reform.

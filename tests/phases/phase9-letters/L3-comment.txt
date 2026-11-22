@@ -1,0 +1,22 @@
+Dear Author,
+
+Thank you for submitting your manuscript to the Fictional Review of Finance.
+
+Reviewer #1 comments
+
+Comment 1:
+The research question is interesting, but the identification strategy is weak. Reverse causality between leverage and growth is not addressed.
+
+Comment 2: The paper does not report the response rate of the survey.
+
+Comment 3:
+Figure 2 has no axis labels.
+
+Reviewer #2 comments
+
+Comment 1: The language needs careful proofreading by a native speaker.
+
+Comment 2: Managerial implications for owners of small firms should be developed.
+
+Kind regards,
+Associate Editor

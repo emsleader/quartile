@@ -1,0 +1,10 @@
+Dear Dr. Example,
+
+Thank you for submitting to the Fictional Journal of Small Business. The editorial team has read your paper with interest.
+
+We ask for the following changes before the paper can be sent to review. First, the abstract must state the sample size and the period. Second, the manuscript exceeds our limit of 9,000 words and should be shortened. Finally, please explain why the bounds approach is preferred to a regression.
+
+Please upload the revised file within 30 days.
+
+With best regards,
+Managing Editor
