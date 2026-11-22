@@ -1,0 +1,1849 @@
+{
+ "built": "2026-11-22",
+ "note": "Measurements of open-access, Creative-Commons-licensed Q1 articles, section by section. No text is stored; see corpus-sources.json for the papers.",
+ "n": 141,
+ "overall": {
+  "n": 141,
+  "totalWords": {
+   "p25": 7779,
+   "median": 11506,
+   "p75": 14655
+  },
+  "references": {
+   "median": 10
+  },
+  "roles": {
+   "abstract": {
+    "present": 0.624,
+    "words": {
+     "p25": 142.25,
+     "median": 209.5,
+     "p75": 288.25
+    },
+    "share": {
+     "p25": 0.011,
+     "median": 0.02,
+     "p75": 0.03
+    },
+    "paragraphs": {
+     "p25": 2,
+     "median": 3,
+     "p75": 4.25
+    },
+    "paragraphWords": {
+     "p25": 42,
+     "median": 76,
+     "p75": 112.625
+    },
+    "citationsPer1k": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0
+    },
+    "meanSentence": {
+     "p25": 21.775,
+     "median": 25.7,
+     "p75": 29.1
+    },
+    "longSentenceShare": {
+     "p25": 0,
+     "median": 0.143,
+     "p75": 0.304
+    },
+    "weShare": {
+     "p25": 0,
+     "median": 0.167,
+     "p75": 0.42
+    },
+    "passiveShare": {
+     "p25": 0.083,
+     "median": 0.167,
+     "p75": 0.25
+    },
+    "hedgesPer100": {
+     "p25": 0,
+     "median": 0.11,
+     "p75": 0.497
+    },
+    "causalPer100": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0.385
+    },
+    "stockPer1k": {
+     "p25": 0,
+     "median": 0,
+     "p75": 0
+    }
+   },
+   "introduction": {
+    "present": 0.872,
+    "words": {
+     "p25": 649.5,
+     "median": 1234,
+     "p75": 2633
+    },
+    "share": {
+     "p25": 0.065,
+     "median": 0.113,
+     "p75": 0.246
+    },
+    "paragraphs": {
+     "p25": 9,
+     "median": 23,
+     "p75": 49.5
+    },
+    "paragraphWords": {
+     "p25": 15.95,
+     "median": 83,
+     "p75": 134.35
+    },
+    "citationsPer1k": {
+     "p25": 7.85,
+     "median": 17.65,
+     "p75": 27.59
+    },
+    "meanSentence": {
+     "p25": 25.2,
+     "median": 28.2,
+     "p75": 32.1
+    },
+    "longSentenceShare": {
+     "p25": 0.168,
+     "median": 0.222,
+     "p75": 0.348
+    },
+    "weShare": {
+     "p25": 0.016,
+     "median": 0.121,
+     "p75": 0.262
+    },
+    "passiveShare": {
+     "p25": 0.13,
+     "median": 0.216,
+     "p75": 0.286
+    },
+    "hedgesPer100": {
+     "p25": 0.14,
+     "median": 0.3,
+     "p75": 0.52
+    },
+    "causalPer100": {
+     "p25": 0,
+     "median": 0.13,
+     "p75": 0.22
+    },
+    "stockPer1k": {
+     "p25": 0,
+     "median": 0.79,
+     "p75": 1.78
+    },
+    "firstParagraphMove": {
+     "background": 0.837,
+     "implication": 0.049,
+     "none": 0.049,
+     "aim": 0.033,
+     "method": 0.016,
+     "finding": 0.008,
+     "gap": 0.008
+    }
+   },
+   "literature": {
+    "present": 0.78,
+    "words": {
+     "p25": 1342.5,
+     "median": 2456.5,
+     "p75": 3658
+    },
+    "share": {
+     "p25": 0.118,
+     "median": 0.232,
+     "p75": 0.379
+    },
+    "paragraphs": {
+     "p25": 19.25,
+     "median": 59.5,
+     "p75": 152
+    },
+    "paragraphWords": {
+     "p25": 15.1,
+     "median": 43.7,
+     "p75": 107.7
+    },
+    "citationsPer1k": {
+     "p25": 7.345,
+     "median": 14.42,
+     "p75": 24.63
+    },
+    "meanSentence": {
+     "p25": 23.725,
+     "median": 27.05,
+     "p75": 31
+    },
+    "longSentenceShare": {
+     "p25": 0.15,
+     "median": 0.212,
+     "p75": 0.3
+    },
+    "weShare": {
+     "p25": 0.02,
+     "median": 0.073,
+     "p75": 0.199
+    },
+    "passiveShare": {
+     "p25": 0.11,
+     "median": 0.191,
+     "p75": 0.262
+    },
+    "hedgesPer100": {
+     "p25": 0.15,
+     "median": 0.37,
+     "p75": 0.617
+    },
+    "causalPer100": {
+     "p25": 0.063,
+     "median": 0.14,
+     "p75": 0.237
+    },
+    "stockPer1k": {
+     "p25": 0.283,
+     "median": 0.915,
+     "p75": 1.915
+    }
+   },
+   "methods": {
+    "present": 0.78,
+    "words": {
+     "p25": 669,
+     "median": 1484,
+     "p75": 2770.75
+    },
+    "share": {
+     "p25": 0.058,
+     "median": 0.149,
+     "p75": 0.233
+    },
+    "paragraphs": {
+     "p25": 12,
+     "median": 34.5,
+     "p75": 70.5
+    },
+    "paragraphWords": {
+     "p25": 15.6,
+     "median": 63.5,
+     "p75": 94.8
+    },
+    "citationsPer1k": {
+     "p25": 1.675,
+     "median": 4.895,
+     "p75": 10.732
+    },
+    "meanSentence": {
+     "p25": 22.6,
+     "median": 26,
+     "p75": 30.725
+    },
+    "longSentenceShare": {
+     "p25": 0.116,
+     "median": 0.171,
+     "p75": 0.256
+    },
+    "weShare": {
+     "p25": 0.029,
+     "median": 0.152,
+     "p75": 0.295
+    },
+    "passiveShare": {
+     "p25": 0.165,
+     "median": 0.275,
+     "p75": 0.399
+    },
+    "hedgesPer100": {
+     "p25": 0.05,
+     "median": 0.17,
+     "p75": 0.383
+    },
+    "causalPer100": {
+     "p25": 0,
+     "median": 0.045,
+     "p75": 0.135
+    },
+    "stockPer1k": {
+     "p25": 0,
+     "median": 0.34,
+     "p75": 1.262
+    }
+   },
+   "results": {
+    "present": 0.816,
+    "words": {
+     "p25": 1165,
+     "median": 2153,
+     "p75": 3719
+    },
+    "share": {
+     "p25": 0.117,
+     "median": 0.216,
+     "p75": 0.334
+    },
+    "paragraphs": {
+     "p25": 21,
+     "median": 49,
+     "p75": 104.5
+    },
+    "paragraphWords": {
+     "p25": 15.8,
+     "median": 56.5,
+     "p75": 93.85
+    },
+    "citationsPer1k": {
+     "p25": 1.345,
+     "median": 3.64,
+     "p75": 9.225
+    },
+    "meanSentence": {
+     "p25": 23.95,
+     "median": 28.5,
+     "p75": 32.4
+    },
+    "longSentenceShare": {
+     "p25": 0.136,
+     "median": 0.222,
+     "p75": 0.293
+    },
+    "weShare": {
+     "p25": 0.032,
+     "median": 0.164,
+     "p75": 0.267
+    },
+    "passiveShare": {
+     "p25": 0.122,
+     "median": 0.169,
+     "p75": 0.259
+    },
+    "hedgesPer100": {
+     "p25": 0.165,
+     "median": 0.38,
+     "p75": 0.675
+    },
+    "causalPer100": {
+     "p25": 0.04,
+     "median": 0.09,
+     "p75": 0.215
+    },
+    "stockPer1k": {
+     "p25": 0,
+     "median": 0.68,
+     "p75": 1.225
+    }
+   },
+   "discussion": {
+    "present": 0.631,
+    "words": {
+     "p25": 554,
+     "median": 1017,
+     "p75": 1649
+    },
+    "share": {
+     "p25": 0.055,
+     "median": 0.102,
+     "p75": 0.163
+    },
+    "paragraphs": {
+     "p25": 9,
+     "median": 18,
+     "p75": 80
+    },
+    "paragraphWords": {
+     "p25": 14.7,
+     "median": 32.5,
+     "p75": 102
+    },
+    "citationsPer1k": {
+     "p25": 2.16,
+     "median": 7.86,
+     "p75": 14.68
+    },
+    "meanSentence": {
+     "p25": 22.9,
+     "median": 26.6,
+     "p75": 31.8
+    },
+    "longSentenceShare": {
+     "p25": 0.111,
+     "median": 0.2,
+     "p75": 0.333
+    },
+    "weShare": {
+     "p25": 0.017,
+     "median": 0.089,
+     "p75": 0.217
+    },
+    "passiveShare": {
+     "p25": 0.091,
+     "median": 0.186,
+     "p75": 0.286
+    },
+    "hedgesPer100": {
+     "p25": 0.22,
+     "median": 0.5,
+     "p75": 1.08
+    },
+    "causalPer100": {
+     "p25": 0,
+     "median": 0.12,
+     "p75": 0.24
+    },
+    "stockPer1k": {
+     "p25": 0,
+     "median": 0.85,
+     "p75": 1.83
+    }
+   },
+   "conclusion": {
+    "present": 0.809,
+    "words": {
+     "p25": 255,
+     "median": 538,
+     "p75": 985.75
+    },
+    "share": {
+     "p25": 0.023,
+     "median": 0.05,
+     "p75": 0.081
+    },
+    "paragraphs": {
+     "p25": 5,
+     "median": 11,
+     "p75": 32.75
+    },
+    "paragraphWords": {
+     "p25": 14.925,
+     "median": 51,
+     "p75": 100.75
+    },
+    "citationsPer1k": {
+     "p25": 0,
+     "median": 2.52,
+     "p75": 9.345
+    },
+    "meanSentence": {
+     "p25": 21.7,
+     "median": 24.75,
+     "p75": 29.05
+    },
+    "longSentenceShare": {
+     "p25": 0.073,
+     "median": 0.162,
+     "p75": 0.25
+    },
+    "weShare": {
+     "p25": 0,
+     "median": 0.149,
+     "p75": 0.333
+    },
+    "passiveShare": {
+     "p25": 0.075,
+     "median": 0.167,
+     "p75": 0.25
+    },
+    "hedgesPer100": {
+     "p25": 0.193,
+     "median": 0.525,
+     "p75": 1.015
+    },
+    "causalPer100": {
+     "p25": 0,
+     "median": 0.105,
+     "p75": 0.268
+    },
+    "stockPer1k": {
+     "p25": 0,
+     "median": 0.4,
+     "p75": 1.96
+    }
+   }
+  }
+ },
+ "fields": {
+  "finance": {
+   "n": 36,
+   "totalWords": {
+    "p25": 11466.5,
+    "median": 13815.5,
+    "p75": 17867.5
+   },
+   "references": {
+    "median": 11
+   },
+   "roles": {
+    "abstract": {
+     "present": 0.861,
+     "words": {
+      "p25": 129,
+      "median": 210,
+      "p75": 293
+     },
+     "share": {
+      "p25": 0.009,
+      "median": 0.017,
+      "p75": 0.025
+     },
+     "paragraphs": {
+      "p25": 1,
+      "median": 3,
+      "p75": 4
+     },
+     "paragraphWords": {
+      "p25": 68,
+      "median": 81,
+      "p75": 109.8
+     },
+     "citationsPer1k": {
+      "p25": 0,
+      "median": 0,
+      "p75": 0
+     },
+     "meanSentence": {
+      "p25": 21.65,
+      "median": 25.2,
+      "p75": 27.25
+     },
+     "longSentenceShare": {
+      "p25": 0,
+      "median": 0.118,
+      "p75": 0.284
+     },
+     "weShare": {
+      "p25": 0.155,
+      "median": 0.4,
+      "p75": 0.5
+     },
+     "passiveShare": {
+      "p25": 0.028,
+      "median": 0.118,
+      "p75": 0.232
+     },
+     "hedgesPer100": {
+      "p25": 0,
+      "median": 0.22,
+      "p75": 0.525
+     },
+     "causalPer100": {
+      "p25": 0,
+      "median": 0,
+      "p75": 0.48
+     },
+     "stockPer1k": {
+      "p25": 0,
+      "median": 0,
+      "p75": 0
+     }
+    },
+    "introduction": {
+     "present": 0.861,
+     "words": {
+      "p25": 814,
+      "median": 1922,
+      "p75": 3490.5
+     },
+     "share": {
+      "p25": 0.072,
+      "median": 0.127,
+      "p75": 0.248
+     },
+     "paragraphs": {
+      "p25": 13.5,
+      "median": 24,
+      "p75": 57.5
+     },
+     "paragraphWords": {
+      "p25": 64.5,
+      "median": 96.1,
+      "p75": 120.65
+     },
+     "citationsPer1k": {
+      "p25": 5.785,
+      "median": 13.84,
+      "p75": 25.21
+     },
+     "meanSentence": {
+      "p25": 25.2,
+      "median": 28.4,
+      "p75": 31.1
+     },
+     "longSentenceShare": {
+      "p25": 0.146,
+      "median": 0.25,
+      "p75": 0.292
+     },
+     "weShare": {
+      "p25": 0.139,
+      "median": 0.278,
+      "p75": 0.379
+     },
+     "passiveShare": {
+      "p25": 0.113,
+      "median": 0.204,
+      "p75": 0.282
+     },
+     "hedgesPer100": {
+      "p25": 0.145,
+      "median": 0.3,
+      "p75": 0.58
+     },
+     "causalPer100": {
+      "p25": 0.045,
+      "median": 0.18,
+      "p75": 0.24
+     },
+     "stockPer1k": {
+      "p25": 0.095,
+      "median": 0.76,
+      "p75": 1.51
+     },
+     "firstParagraphMove": {
+      "background": 0.871,
+      "aim": 0.097,
+      "finding": 0.032
+     }
+    },
+    "literature": {
+     "present": 0.722,
+     "words": {
+      "p25": 1797.25,
+      "median": 2945.5,
+      "p75": 3341.75
+     },
+     "share": {
+      "p25": 0.121,
+      "median": 0.185,
+      "p75": 0.261
+     },
+     "paragraphs": {
+      "p25": 20.5,
+      "median": 52.5,
+      "p75": 147.25
+     },
+     "paragraphWords": {
+      "p25": 19.325,
+      "median": 54.15,
+      "p75": 104.475
+     },
+     "citationsPer1k": {
+      "p25": 4.968,
+      "median": 12.98,
+      "p75": 30.668
+     },
+     "meanSentence": {
+      "p25": 24.2,
+      "median": 26.6,
+      "p75": 30.425
+     },
+     "longSentenceShare": {
+      "p25": 0.144,
+      "median": 0.202,
+      "p75": 0.252
+     },
+     "weShare": {
+      "p25": 0.126,
+      "median": 0.217,
+      "p75": 0.319
+     },
+     "passiveShare": {
+      "p25": 0.123,
+      "median": 0.157,
+      "p75": 0.2
+     },
+     "hedgesPer100": {
+      "p25": 0.153,
+      "median": 0.365,
+      "p75": 0.6
+     },
+     "causalPer100": {
+      "p25": 0.015,
+      "median": 0.145,
+      "p75": 0.333
+     },
+     "stockPer1k": {
+      "p25": 0.375,
+      "median": 0.805,
+      "p75": 2.02
+     }
+    },
+    "methods": {
+     "present": 0.806,
+     "words": {
+      "p25": 845,
+      "median": 2758,
+      "p75": 5946
+     },
+     "share": {
+      "p25": 0.06,
+      "median": 0.197,
+      "p75": 0.347
+     },
+     "paragraphs": {
+      "p25": 15,
+      "median": 41,
+      "p75": 88
+     },
+     "paragraphWords": {
+      "p25": 49.3,
+      "median": 72,
+      "p75": 95.1
+     },
+     "citationsPer1k": {
+      "p25": 2.3,
+      "median": 4.73,
+      "p75": 10.75
+     },
+     "meanSentence": {
+      "p25": 24.1,
+      "median": 27,
+      "p75": 31.2
+     },
+     "longSentenceShare": {
+      "p25": 0.12,
+      "median": 0.16,
+      "p75": 0.246
+     },
+     "weShare": {
+      "p25": 0.18,
+      "median": 0.233,
+      "p75": 0.389
+     },
+     "passiveShare": {
+      "p25": 0.142,
+      "median": 0.196,
+      "p75": 0.288
+     },
+     "hedgesPer100": {
+      "p25": 0.08,
+      "median": 0.2,
+      "p75": 0.42
+     },
+     "causalPer100": {
+      "p25": 0.01,
+      "median": 0.07,
+      "p75": 0.12
+     },
+     "stockPer1k": {
+      "p25": 0,
+      "median": 0.6,
+      "p75": 1.44
+     }
+    },
+    "results": {
+     "present": 0.889,
+     "words": {
+      "p25": 1445.5,
+      "median": 2811,
+      "p75": 4404
+     },
+     "share": {
+      "p25": 0.117,
+      "median": 0.206,
+      "p75": 0.415
+     },
+     "paragraphs": {
+      "p25": 22.75,
+      "median": 54.5,
+      "p75": 115
+     },
+     "paragraphWords": {
+      "p25": 24.575,
+      "median": 63.65,
+      "p75": 91.825
+     },
+     "citationsPer1k": {
+      "p25": 1.675,
+      "median": 2.795,
+      "p75": 7.732
+     },
+     "meanSentence": {
+      "p25": 26.05,
+      "median": 30.3,
+      "p75": 33.375
+     },
+     "longSentenceShare": {
+      "p25": 0.144,
+      "median": 0.216,
+      "p75": 0.27
+     },
+     "weShare": {
+      "p25": 0.129,
+      "median": 0.224,
+      "p75": 0.332
+     },
+     "passiveShare": {
+      "p25": 0.093,
+      "median": 0.141,
+      "p75": 0.181
+     },
+     "hedgesPer100": {
+      "p25": 0.273,
+      "median": 0.435,
+      "p75": 0.708
+     },
+     "causalPer100": {
+      "p25": 0.025,
+      "median": 0.08,
+      "p75": 0.175
+     },
+     "stockPer1k": {
+      "p25": 0.27,
+      "median": 0.7,
+      "p75": 1.06
+     }
+    },
+    "discussion": {
+     "present": 0.444,
+     "words": {
+      "p25": 441.5,
+      "median": 1482,
+      "p75": 2213.25
+     },
+     "share": {
+      "p25": 0.042,
+      "median": 0.095,
+      "p75": 0.143
+     },
+     "paragraphs": {
+      "p25": 6,
+      "median": 12,
+      "p75": 84.5
+     },
+     "paragraphWords": {
+      "p25": 16.95,
+      "median": 58.85,
+      "p75": 101.7
+     },
+     "citationsPer1k": {
+      "p25": 0,
+      "median": 5.08,
+      "p75": 8.635
+     },
+     "meanSentence": {
+      "p25": 20.7,
+      "median": 27.15,
+      "p75": 33.1
+     },
+     "longSentenceShare": {
+      "p25": 0.07,
+      "median": 0.154,
+      "p75": 0.331
+     },
+     "weShare": {
+      "p25": 0,
+      "median": 0.078,
+      "p75": 0.174
+     },
+     "passiveShare": {
+      "p25": 0.057,
+      "median": 0.118,
+      "p75": 0.288
+     },
+     "hedgesPer100": {
+      "p25": 0.175,
+      "median": 0.4,
+      "p75": 1.3
+     },
+     "causalPer100": {
+      "p25": 0,
+      "median": 0.025,
+      "p75": 0.13
+     },
+     "stockPer1k": {
+      "p25": 0,
+      "median": 0.635,
+      "p75": 1.2
+     }
+    },
+    "conclusion": {
+     "present": 0.778,
+     "words": {
+      "p25": 271.25,
+      "median": 609.5,
+      "p75": 1352.75
+     },
+     "share": {
+      "p25": 0.019,
+      "median": 0.057,
+      "p75": 0.081
+     },
+     "paragraphs": {
+      "p25": 5,
+      "median": 14.5,
+      "p75": 34.25
+     },
+     "paragraphWords": {
+      "p25": 17.55,
+      "median": 56.85,
+      "p75": 96.65
+     },
+     "citationsPer1k": {
+      "p25": 0,
+      "median": 2.31,
+      "p75": 7.543
+     },
+     "meanSentence": {
+      "p25": 21.825,
+      "median": 23.75,
+      "p75": 28.825
+     },
+     "longSentenceShare": {
+      "p25": 0.056,
+      "median": 0.146,
+      "p75": 0.205
+     },
+     "weShare": {
+      "p25": 0.147,
+      "median": 0.245,
+      "p75": 0.424
+     },
+     "passiveShare": {
+      "p25": 0.06,
+      "median": 0.129,
+      "p75": 0.185
+     },
+     "hedgesPer100": {
+      "p25": 0.245,
+      "median": 0.54,
+      "p75": 0.945
+     },
+     "causalPer100": {
+      "p25": 0,
+      "median": 0.115,
+      "p75": 0.385
+     },
+     "stockPer1k": {
+      "p25": 0,
+      "median": 0.52,
+      "p75": 1.627
+     }
+    }
+   }
+  },
+  "small_business": {
+   "n": 10,
+   "totalWords": {
+    "p25": 8195.5,
+    "median": 10962,
+    "p75": 12185.75
+   },
+   "references": {
+    "median": 23.5
+   },
+   "roles": {
+    "abstract": {
+     "present": 1,
+     "words": {
+      "p25": 213.75,
+      "median": 261.5,
+      "p75": 304
+     },
+     "share": {
+      "p25": 0.023,
+      "median": 0.025,
+      "p75": 0.03
+     },
+     "paragraphs": {
+      "p25": 1,
+      "median": 2.5,
+      "p75": 4
+     },
+     "paragraphWords": {
+      "p25": 60.675,
+      "median": 114,
+      "p75": 231
+     },
+     "citationsPer1k": {
+      "p25": 0,
+      "median": 0,
+      "p75": 0
+     },
+     "meanSentence": {
+      "p25": 23.325,
+      "median": 25.3,
+      "p75": 29.7
+     },
+     "longSentenceShare": {
+      "p25": 0.085,
+      "median": 0.174,
+      "p75": 0.275
+     },
+     "weShare": {
+      "p25": 0,
+      "median": 0.045,
+      "p75": 0.229
+     },
+     "passiveShare": {
+      "p25": 0.09,
+      "median": 0.191,
+      "p75": 0.325
+     },
+     "hedgesPer100": {
+      "p25": 0,
+      "median": 0.385,
+      "p75": 0.588
+     },
+     "causalPer100": {
+      "p25": 0,
+      "median": 0,
+      "p75": 0.328
+     },
+     "stockPer1k": {
+      "p25": 0,
+      "median": 0,
+      "p75": 4.51
+     }
+    },
+    "introduction": {
+     "present": 1,
+     "words": {
+      "p25": 623.25,
+      "median": 1068.5,
+      "p75": 1378.25
+     },
+     "share": {
+      "p25": 0.053,
+      "median": 0.108,
+      "p75": 0.13
+     },
+     "paragraphs": {
+      "p25": 6.25,
+      "median": 8,
+      "p75": 12.25
+     },
+     "paragraphWords": {
+      "p25": 14.275,
+      "median": 175.9,
+      "p75": 178.925
+     },
+     "citationsPer1k": {
+      "p25": 19.795,
+      "median": 33.795,
+      "p75": 37.472
+     },
+     "meanSentence": {
+      "p25": 26.7,
+      "median": 28.75,
+      "p75": 33.7
+     },
+     "longSentenceShare": {
+      "p25": 0.179,
+      "median": 0.294,
+      "p75": 0.379
+     },
+     "weShare": {
+      "p25": 0,
+      "median": 0.006,
+      "p75": 0.159
+     },
+     "passiveShare": {
+      "p25": 0.085,
+      "median": 0.175,
+      "p75": 0.201
+     },
+     "hedgesPer100": {
+      "p25": 0.145,
+      "median": 0.195,
+      "p75": 0.41
+     },
+     "causalPer100": {
+      "p25": 0,
+      "median": 0.04,
+      "p75": 0.125
+     },
+     "stockPer1k": {
+      "p25": 0.198,
+      "median": 1.235,
+      "p75": 3.508
+     },
+     "firstParagraphMove": {
+      "background": 0.8,
+      "gap": 0.1,
+      "implication": 0.1
+     }
+    },
+    "literature": {
+     "present": 0.9,
+     "words": {
+      "p25": 1915,
+      "median": 2550,
+      "p75": 3625
+     },
+     "share": {
+      "p25": 0.16,
+      "median": 0.221,
+      "p75": 0.472
+     },
+     "paragraphs": {
+      "p25": 12,
+      "median": 22,
+      "p75": 89
+     },
+     "paragraphWords": {
+      "p25": 34,
+      "median": 105.6,
+      "p75": 159.6
+     },
+     "citationsPer1k": {
+      "p25": 14.37,
+      "median": 21.57,
+      "p75": 29.26
+     },
+     "meanSentence": {
+      "p25": 24.4,
+      "median": 25.9,
+      "p75": 32.4
+     },
+     "longSentenceShare": {
+      "p25": 0.16,
+      "median": 0.183,
+      "p75": 0.23
+     },
+     "weShare": {
+      "p25": 0.035,
+      "median": 0.047,
+      "p75": 0.222
+     },
+     "passiveShare": {
+      "p25": 0.167,
+      "median": 0.24,
+      "p75": 0.269
+     },
+     "hedgesPer100": {
+      "p25": 0.33,
+      "median": 0.39,
+      "p75": 0.86
+     },
+     "causalPer100": {
+      "p25": 0.05,
+      "median": 0.1,
+      "p75": 0.23
+     },
+     "stockPer1k": {
+      "p25": 0.83,
+      "median": 1.98,
+      "p75": 2.15
+     }
+    },
+    "methods": {
+     "present": 1,
+     "words": {
+      "p25": 533.5,
+      "median": 1335.5,
+      "p75": 2655.25
+     },
+     "share": {
+      "p25": 0.05,
+      "median": 0.131,
+      "p75": 0.212
+     },
+     "paragraphs": {
+      "p25": 8.5,
+      "median": 23.5,
+      "p75": 36.5
+     },
+     "paragraphWords": {
+      "p25": 14.85,
+      "median": 78.7,
+      "p75": 145.55
+     },
+     "citationsPer1k": {
+      "p25": 7.9,
+      "median": 12.315,
+      "p75": 12.93
+     },
+     "meanSentence": {
+      "p25": 21.85,
+      "median": 25.05,
+      "p75": 28.275
+     },
+     "longSentenceShare": {
+      "p25": 0.133,
+      "median": 0.174,
+      "p75": 0.254
+     },
+     "weShare": {
+      "p25": 0.11,
+      "median": 0.185,
+      "p75": 0.229
+     },
+     "passiveShare": {
+      "p25": 0.283,
+      "median": 0.333,
+      "p75": 0.394
+     },
+     "hedgesPer100": {
+      "p25": 0.03,
+      "median": 0.21,
+      "p75": 0.62
+     },
+     "causalPer100": {
+      "p25": 0,
+      "median": 0.035,
+      "p75": 0.158
+     },
+     "stockPer1k": {
+      "p25": 0,
+      "median": 0,
+      "p75": 1.12
+     }
+    },
+    "results": {
+     "present": 0.8,
+     "words": {
+      "p25": 1116,
+      "median": 2134,
+      "p75": 3400.5
+     },
+     "share": {
+      "p25": 0.117,
+      "median": 0.225,
+      "p75": 0.339
+     },
+     "paragraphs": {
+      "p25": 18.5,
+      "median": 63.5,
+      "p75": 106
+     },
+     "paragraphWords": {
+      "p25": 15.975,
+      "median": 41.45,
+      "p75": 118.075
+     },
+     "citationsPer1k": {
+      "p25": 6.5,
+      "median": 9.845,
+      "p75": 12.832
+     },
+     "meanSentence": {
+      "p25": 24.15,
+      "median": 28,
+      "p75": 29.05
+     },
+     "longSentenceShare": {
+      "p25": 0.189,
+      "median": 0.272,
+      "p75": 0.295
+     },
+     "weShare": {
+      "p25": 0.088,
+      "median": 0.125,
+      "p75": 0.185
+     },
+     "passiveShare": {
+      "p25": 0.135,
+      "median": 0.183,
+      "p75": 0.312
+     },
+     "hedgesPer100": {
+      "p25": 0.2,
+      "median": 0.395,
+      "p75": 0.833
+     },
+     "causalPer100": {
+      "p25": 0.048,
+      "median": 0.075,
+      "p75": 0.3
+     },
+     "stockPer1k": {
+      "p25": 0,
+      "median": 0.53,
+      "p75": 0.9
+     }
+    },
+    "discussion": {
+     "present": 0.9,
+     "words": {
+      "p25": 1029,
+      "median": 1175,
+      "p75": 1618
+     },
+     "share": {
+      "p25": 0.094,
+      "median": 0.128,
+      "p75": 0.178
+     },
+     "paragraphs": {
+      "p25": 6,
+      "median": 8,
+      "p75": 11
+     },
+     "paragraphWords": {
+      "p25": 14.5,
+      "median": 102,
+      "p75": 171.5
+     },
+     "citationsPer1k": {
+      "p25": 4.96,
+      "median": 9.63,
+      "p75": 21.8
+     },
+     "meanSentence": {
+      "p25": 24,
+      "median": 26.5,
+      "p75": 29
+     },
+     "longSentenceShare": {
+      "p25": 0.159,
+      "median": 0.286,
+      "p75": 0.355
+     },
+     "weShare": {
+      "p25": 0.048,
+      "median": 0.135,
+      "p75": 0.333
+     },
+     "passiveShare": {
+      "p25": 0.185,
+      "median": 0.254,
+      "p75": 0.333
+     },
+     "hedgesPer100": {
+      "p25": 0.26,
+      "median": 0.49,
+      "p75": 0.68
+     },
+     "causalPer100": {
+      "p25": 0,
+      "median": 0.17,
+      "p75": 0.27
+     },
+     "stockPer1k": {
+      "p25": 0,
+      "median": 0.85,
+      "p75": 1.78
+     }
+    },
+    "conclusion": {
+     "present": 0.8,
+     "words": {
+      "p25": 348,
+      "median": 417.5,
+      "p75": 591.5
+     },
+     "share": {
+      "p25": 0.029,
+      "median": 0.037,
+      "p75": 0.056
+     },
+     "paragraphs": {
+      "p25": 2,
+      "median": 6,
+      "p75": 13.25
+     },
+     "paragraphWords": {
+      "p25": 28.4,
+      "median": 85.65,
+      "p75": 155.275
+     },
+     "citationsPer1k": {
+      "p25": 1.83,
+      "median": 4.08,
+      "p75": 8.255
+     },
+     "meanSentence": {
+      "p25": 22.8,
+      "median": 24.95,
+      "p75": 31.625
+     },
+     "longSentenceShare": {
+      "p25": 0.082,
+      "median": 0.122,
+      "p75": 0.291
+     },
+     "weShare": {
+      "p25": 0,
+      "median": 0.017,
+      "p75": 0.348
+     },
+     "passiveShare": {
+      "p25": 0.192,
+      "median": 0.22,
+      "p75": 0.304
+     },
+     "hedgesPer100": {
+      "p25": 0.46,
+      "median": 1.045,
+      "p75": 1.223
+     },
+     "causalPer100": {
+      "p25": 0,
+      "median": 0,
+      "p75": 0.168
+     },
+     "stockPer1k": {
+      "p25": 0,
+      "median": 0,
+      "p75": 0.623
+     }
+    }
+   }
+  },
+  "management": {
+   "n": 95,
+   "totalWords": {
+    "p25": 7140.5,
+    "median": 10184,
+    "p75": 13767
+   },
+   "references": {
+    "median": 10
+   },
+   "roles": {
+    "abstract": {
+     "present": 0.495,
+     "words": {
+      "p25": 141.5,
+      "median": 200,
+      "p75": 273.5
+     },
+     "share": {
+      "p25": 0.011,
+      "median": 0.02,
+      "p75": 0.03
+     },
+     "paragraphs": {
+      "p25": 2,
+      "median": 4,
+      "p75": 6.5
+     },
+     "paragraphWords": {
+      "p25": 32.15,
+      "median": 70.4,
+      "p75": 107.6
+     },
+     "citationsPer1k": {
+      "p25": 0,
+      "median": 0,
+      "p75": 0
+     },
+     "meanSentence": {
+      "p25": 21.8,
+      "median": 26,
+      "p75": 29.2
+     },
+     "longSentenceShare": {
+      "p25": 0.035,
+      "median": 0.143,
+      "p75": 0.317
+     },
+     "weShare": {
+      "p25": 0,
+      "median": 0.107,
+      "p75": 0.333
+     },
+     "passiveShare": {
+      "p25": 0.106,
+      "median": 0.167,
+      "p75": 0.232
+     },
+     "hedgesPer100": {
+      "p25": 0,
+      "median": 0,
+      "p75": 0.48
+     },
+     "causalPer100": {
+      "p25": 0,
+      "median": 0,
+      "p75": 0.345
+     },
+     "stockPer1k": {
+      "p25": 0,
+      "median": 0,
+      "p75": 0
+     }
+    },
+    "introduction": {
+     "present": 0.863,
+     "words": {
+      "p25": 633,
+      "median": 1008.5,
+      "p75": 2295.5
+     },
+     "share": {
+      "p25": 0.062,
+      "median": 0.114,
+      "p75": 0.265
+     },
+     "paragraphs": {
+      "p25": 9,
+      "median": 24,
+      "p75": 53
+     },
+     "paragraphWords": {
+      "p25": 15.45,
+      "median": 77.75,
+      "p75": 130.925
+     },
+     "citationsPer1k": {
+      "p25": 7.66,
+      "median": 16.815,
+      "p75": 26.438
+     },
+     "meanSentence": {
+      "p25": 25,
+      "median": 27.95,
+      "p75": 32.125
+     },
+     "longSentenceShare": {
+      "p25": 0.17,
+      "median": 0.222,
+      "p75": 0.369
+     },
+     "weShare": {
+      "p25": 0.001,
+      "median": 0.089,
+      "p75": 0.186
+     },
+     "passiveShare": {
+      "p25": 0.159,
+      "median": 0.225,
+      "p75": 0.331
+     },
+     "hedgesPer100": {
+      "p25": 0.14,
+      "median": 0.345,
+      "p75": 0.52
+     },
+     "causalPer100": {
+      "p25": 0,
+      "median": 0.135,
+      "p75": 0.217
+     },
+     "stockPer1k": {
+      "p25": 0,
+      "median": 0.795,
+      "p75": 1.913
+     },
+     "firstParagraphMove": {
+      "background": 0.829,
+      "none": 0.073,
+      "implication": 0.061,
+      "method": 0.024,
+      "aim": 0.012
+     }
+    },
+    "literature": {
+     "present": 0.789,
+     "words": {
+      "p25": 1251,
+      "median": 2156,
+      "p75": 3849
+     },
+     "share": {
+      "p25": 0.116,
+      "median": 0.239,
+      "p75": 0.395
+     },
+     "paragraphs": {
+      "p25": 23,
+      "median": 71,
+      "p75": 162
+     },
+     "paragraphWords": {
+      "p25": 14.5,
+      "median": 22.2,
+      "p75": 106.4
+     },
+     "citationsPer1k": {
+      "p25": 7.79,
+      "median": 14.22,
+      "p75": 22.305
+     },
+     "meanSentence": {
+      "p25": 23.1,
+      "median": 27.6,
+      "p75": 31
+     },
+     "longSentenceShare": {
+      "p25": 0.158,
+      "median": 0.217,
+      "p75": 0.321
+     },
+     "weShare": {
+      "p25": 0.006,
+      "median": 0.057,
+      "p75": 0.139
+     },
+     "passiveShare": {
+      "p25": 0.107,
+      "median": 0.199,
+      "p75": 0.274
+     },
+     "hedgesPer100": {
+      "p25": 0.145,
+      "median": 0.36,
+      "p75": 0.6
+     },
+     "causalPer100": {
+      "p25": 0.08,
+      "median": 0.15,
+      "p75": 0.23
+     },
+     "stockPer1k": {
+      "p25": 0.13,
+      "median": 0.91,
+      "p75": 1.595
+     }
+    },
+    "methods": {
+     "present": 0.747,
+     "words": {
+      "p25": 714,
+      "median": 1244,
+      "p75": 2316.5
+     },
+     "share": {
+      "p25": 0.062,
+      "median": 0.14,
+      "p75": 0.2
+     },
+     "paragraphs": {
+      "p25": 12,
+      "median": 34,
+      "p75": 68.5
+     },
+     "paragraphWords": {
+      "p25": 14.95,
+      "median": 38.6,
+      "p75": 89.7
+     },
+     "citationsPer1k": {
+      "p25": 0.84,
+      "median": 3.89,
+      "p75": 8.835
+     },
+     "meanSentence": {
+      "p25": 22.4,
+      "median": 25.9,
+      "p75": 29.7
+     },
+     "longSentenceShare": {
+      "p25": 0.112,
+      "median": 0.174,
+      "p75": 0.274
+     },
+     "weShare": {
+      "p25": 0,
+      "median": 0.076,
+      "p75": 0.241
+     },
+     "passiveShare": {
+      "p25": 0.193,
+      "median": 0.297,
+      "p75": 0.417
+     },
+     "hedgesPer100": {
+      "p25": 0.045,
+      "median": 0.15,
+      "p75": 0.34
+     },
+     "causalPer100": {
+      "p25": 0,
+      "median": 0.04,
+      "p75": 0.13
+     },
+     "stockPer1k": {
+      "p25": 0,
+      "median": 0.29,
+      "p75": 1.15
+     }
+    },
+    "results": {
+     "present": 0.789,
+     "words": {
+      "p25": 1042.5,
+      "median": 1807,
+      "p75": 3393
+     },
+     "share": {
+      "p25": 0.116,
+      "median": 0.216,
+      "p75": 0.31
+     },
+     "paragraphs": {
+      "p25": 20.5,
+      "median": 40,
+      "p75": 97
+     },
+     "paragraphWords": {
+      "p25": 15.1,
+      "median": 41.5,
+      "p75": 95.85
+     },
+     "citationsPer1k": {
+      "p25": 0.67,
+      "median": 3.84,
+      "p75": 9.525
+     },
+     "meanSentence": {
+      "p25": 22.75,
+      "median": 28,
+      "p75": 31.75
+     },
+     "longSentenceShare": {
+      "p25": 0.127,
+      "median": 0.222,
+      "p75": 0.298
+     },
+     "weShare": {
+      "p25": 0.005,
+      "median": 0.125,
+      "p75": 0.24
+     },
+     "passiveShare": {
+      "p25": 0.132,
+      "median": 0.206,
+      "p75": 0.281
+     },
+     "hedgesPer100": {
+      "p25": 0.135,
+      "median": 0.36,
+      "p75": 0.66
+     },
+     "causalPer100": {
+      "p25": 0.04,
+      "median": 0.1,
+      "p75": 0.215
+     },
+     "stockPer1k": {
+      "p25": 0,
+      "median": 0.68,
+      "p75": 1.41
+     }
+    },
+    "discussion": {
+     "present": 0.674,
+     "words": {
+      "p25": 537.5,
+      "median": 841,
+      "p75": 1530.5
+     },
+     "share": {
+      "p25": 0.055,
+      "median": 0.099,
+      "p75": 0.152
+     },
+     "paragraphs": {
+      "p25": 10,
+      "median": 28.5,
+      "p75": 79.25
+     },
+     "paragraphWords": {
+      "p25": 14.7,
+      "median": 19.45,
+      "p75": 96.65
+     },
+     "citationsPer1k": {
+      "p25": 3.138,
+      "median": 10.8,
+      "p75": 15.965
+     },
+     "meanSentence": {
+      "p25": 23.075,
+      "median": 26.95,
+      "p75": 31.125
+     },
+     "longSentenceShare": {
+      "p25": 0.124,
+      "median": 0.196,
+      "p75": 0.322
+     },
+     "weShare": {
+      "p25": 0.015,
+      "median": 0.083,
+      "p75": 0.218
+     },
+     "passiveShare": {
+      "p25": 0.106,
+      "median": 0.188,
+      "p75": 0.276
+     },
+     "hedgesPer100": {
+      "p25": 0.228,
+      "median": 0.555,
+      "p75": 1.105
+     },
+     "causalPer100": {
+      "p25": 0,
+      "median": 0.13,
+      "p75": 0.275
+     },
+     "stockPer1k": {
+      "p25": 0,
+      "median": 0.975,
+      "p75": 2.122
+     }
+    },
+    "conclusion": {
+     "present": 0.821,
+     "words": {
+      "p25": 255,
+      "median": 537.5,
+      "p75": 918.25
+     },
+     "share": {
+      "p25": 0.027,
+      "median": 0.05,
+      "p75": 0.085
+     },
+     "paragraphs": {
+      "p25": 5.25,
+      "median": 11,
+      "p75": 34.5
+     },
+     "paragraphWords": {
+      "p25": 14.3,
+      "median": 39.25,
+      "p75": 99.7
+     },
+     "citationsPer1k": {
+      "p25": 0,
+      "median": 2.04,
+      "p75": 9.652
+     },
+     "meanSentence": {
+      "p25": 21.7,
+      "median": 25.2,
+      "p75": 29.05
+     },
+     "longSentenceShare": {
+      "p25": 0.088,
+      "median": 0.171,
+      "p75": 0.25
+     },
+     "weShare": {
+      "p25": 0,
+      "median": 0.088,
+      "p75": 0.282
+     },
+     "passiveShare": {
+      "p25": 0.075,
+      "median": 0.186,
+      "p75": 0.316
+     },
+     "hedgesPer100": {
+      "p25": 0.143,
+      "median": 0.49,
+      "p75": 0.985
+     },
+     "causalPer100": {
+      "p25": 0,
+      "median": 0.105,
+      "p75": 0.263
+     },
+     "stockPer1k": {
+      "p25": 0,
+      "median": 0.455,
+      "p75": 2.067
+     }
+    }
+   }
+  }
+ }
+}
