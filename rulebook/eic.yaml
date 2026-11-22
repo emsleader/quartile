@@ -1,0 +1,91 @@
+# Editor-in-chief text rules (specification Section 5, EIC-05 and EIC-06). Wording is Quartile's own.
+# EIC-01 to EIC-04 need data from outside the text and live in core/roles/eic.js.
+source:
+  id: QUARTILE_EIC
+  citation: "Quartile upgrade specification, Section 5: Role 1, Editor-in-chief (Alavi, 21 November 2026)."
+  licence_note: "Written by the Quartile authors; no third-party text."
+rules:
+  - id: EIC-05-LENGTH
+    title: "Title longer than 20 words"
+    role: eic
+    severity: minor
+    confidence: high
+    designs: [all]
+    check: structural
+    test: "eic_title_length(20)"
+    source_ref: "Quartile specification Section 5, EIC-05 (title of at most 20 words)"
+    message: "The title is longer than 20 words."
+    fix: "Cut the title to 20 words or fewer; move detail to a subtitle or the abstract."
+    tests:
+      positive: [tests/rules/EIC-05-LENGTH/pos_1.txt]
+      negative: [tests/rules/EIC-05-LENGTH/neg_1.txt, tests/rules/EIC-05-LENGTH/neg_2.txt]
+  - id: EIC-05-FORM
+    title: "Title states neither a finding nor a question"
+    role: eic
+    severity: minor
+    confidence: low
+    designs: [all]
+    check: structural
+    test: "eic_title_finding_or_question"
+    source_ref: "Quartile specification Section 5, EIC-05 (title states the finding or the question)"
+    message: "The title names a topic but states neither the finding nor the question."
+    fix: "State the main finding (for example 'Cash buffers shorten ...') or the question the paper answers."
+    tests:
+      positive: [tests/rules/EIC-05-FORM/pos_1.txt]
+      negative: [tests/rules/EIC-05-FORM/neg_1.txt, tests/rules/EIC-05-FORM/neg_2.txt, tests/rules/EIC-05-FORM/neg_3.txt]
+  - id: EIC-05-ABBR
+    title: "Unexplained abbreviation in the title"
+    role: eic
+    severity: minor
+    confidence: medium
+    designs: [all]
+    check: structural
+    test: "eic_title_abbreviations"
+    source_ref: "Quartile specification Section 5, EIC-05 (no unexplained abbreviation in the title)"
+    message: "The title uses an abbreviation that it does not explain."
+    fix: "Write the term in full, or give it in full with the abbreviation in brackets."
+    tests:
+      positive: [tests/rules/EIC-05-ABBR/pos_1.txt]
+      negative: [tests/rules/EIC-05-ABBR/neg_1.txt, tests/rules/EIC-05-ABBR/neg_2.txt]
+  - id: EIC-06-PROBLEM
+    title: "Problem stated without a number or citation"
+    role: eic
+    severity: minor
+    confidence: medium
+    designs: [all]
+    check: structural
+    test: "eic_intro_problem_evidence(3)"
+    source_ref: "Quartile specification Section 5, EIC-06 (a): the problem with a number or citation"
+    message: "The first three paragraphs of the introduction state the problem without a number or a citation."
+    fix: "Support the problem with one figure or one source in the first paragraphs."
+    tests:
+      positive: [tests/rules/EIC-06-PROBLEM/pos_1.txt]
+      negative: [tests/rules/EIC-06-PROBLEM/neg_1.txt, tests/rules/EIC-06-PROBLEM/neg_2.txt]
+  - id: EIC-06-GAP
+    title: "Gap does not name specific studies"
+    role: eic
+    severity: minor
+    confidence: medium
+    designs: [all]
+    check: structural
+    test: "eic_intro_gap_names_studies"
+    source_ref: "Quartile specification Section 5, EIC-06 (b): a gap naming specific studies"
+    message: "The introduction states no research gap that names specific prior studies."
+    fix: "Name the studies closest to yours and say what they leave open."
+    tests:
+      positive: [tests/rules/EIC-06-GAP/pos_1.txt, tests/rules/EIC-06-GAP/pos_2.txt]
+      negative: [tests/rules/EIC-06-GAP/neg_1.txt, tests/rules/EIC-06-GAP/neg_2.txt]
+  - id: EIC-06-AIM
+    title: "No explicit aim sentence in the introduction"
+    role: eic
+    severity: major
+    confidence: medium
+    designs: [all]
+    check: structural
+    test: "eic_intro_aim_sentence"
+    source_ref: "Quartile specification Section 5, EIC-06 (c): one explicit aim sentence"
+    message: "The introduction has no explicit aim sentence."
+    fix: "Add one sentence such as 'This paper examines whether ...' at the end of the introduction's opening."
+    tests:
+      positive: [tests/rules/EIC-06-AIM/pos_1.txt, tests/rules/EIC-06-AIM/pos_2.txt]
+      negative: [tests/rules/EIC-06-AIM/neg_1.txt, tests/rules/EIC-06-AIM/neg_2.txt]

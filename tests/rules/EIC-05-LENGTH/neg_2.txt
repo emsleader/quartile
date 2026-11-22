@@ -1,0 +1,21 @@
+Do Cash Buffers Shorten the Delay Between Signing a Contract and Opening a New Site in Service Firms in Europe?
+
+Abstract
+
+We study the timing of site openings in service firms using a panel of firms.
+
+1. Introduction
+
+Small service firms often delay opening new sites because finance arrives late (Smith, 2019). About 40% of planned sites open more than a year late.
+
+Jones (2020) and Lee et al. (2021) study credit access in manufacturing but do not examine service firms.
+
+This paper examines whether cash buffers shorten the delay between signing and opening.
+
+2. Data and methods
+
+We use a panel of 300 firms observed over five years.
+
+3. Results
+
+Cash buffers are associated with shorter delays.
