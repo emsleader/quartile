@@ -1,0 +1,27 @@
+Firm Leverage and Growth
+
+Abstract
+
+We study how leverage relates to sales growth in 1,240 Hungarian SMEs.
+
+1. Introduction
+
+Small firms borrow to grow. This paper estimates the link between debt and growth.
+
+2. Data and Methods
+
+We use annual accounts for 2015 to 2022 and estimate OLS regressions of sales growth on leverage with firm and year fixed effects.
+
+Control variables include firm age and size.
+
+3. Results
+
+The coefficient on leverage is negative.
+
+4. Conclusion
+
+Leverage matters for growth in small firms.
+
+5. Robustness
+
+Using interest-bearing debt instead of total liabilities gives the same result.

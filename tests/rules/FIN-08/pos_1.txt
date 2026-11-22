@@ -1,0 +1,17 @@
+Access to Finance in Small Firms
+
+Abstract
+
+We describe credit constraints among small firms.
+
+1. Introduction
+
+Credit matters for small firms.
+
+2. Data and Methods
+
+We use the World Bank Enterprise Surveys for Hungary (2019), 1,021 firms. The questionnaire asks owners whether a loan application was rejected. Respondents answer on a five-point Likert scale.
+
+3. Results
+
+Thirty percent of firms report a rejected loan application.

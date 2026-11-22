@@ -1,0 +1,6 @@
+- Phase 2 — finance and statistics reviewer (specification Section 7).
+- New tool `grim_check`: GRIM per reported mean (possible / not possible / not testable), with GRIMMER when an SD is given; accepts a list of means or a text.
+- New statistics modules in `core/stats/`: `dist.js` (t, F, chi-square, normal, binomial), `grim.js`, `grimmer.js` (quick and exact), `debit.js`, `pcurve.js` (caliper test), `recompute.js` (p from t, F, chi-square, z, r with rounding and one-tailed handling). All validated against base R (`tests/validation/distributions.R`, `tests/validation/consistency.R`).
+- `core/roles/finance.js`: code checks STA-01 (GRIM, GRIMMER, DEBIT), STA-02 (p recomputation, decision inconsistency at .05), STA-03 (caliper, note only), STA-04 (percentage columns add to 100), STA-05 (one sample size).
+- `rulebook/finance.yaml`: FIN-01 to FIN-08 with design gates (regression checks never run on bounds, descriptive, qualitative, conceptual or SLR papers); FIN-08 flags Enterprise Survey data used without sampling weights.
+- Method notes: `docs/methods/p-value-recomputation.md`, `docs/methods/grim-grimmer-debit.md`. `check_statistics` is unchanged.
