@@ -344,7 +344,7 @@ mark{background:var(--goldbg);color:inherit;border-bottom:2px solid var(--gold)}
   <div class="card"><h2>Preview</h2><div id="expPreview" style="font-family:'Source Serif 4',Georgia,serif;white-space:pre-wrap"></div></div>
 </section>
 </main>
-<div class="foot">Quartile v0.9.1 · MIT licence · Seyed Mehdi Alavi, EMS International Kft · Checks consistency and protects meaning; it does not predict editorial decisions or prove the origin of numbers.</div>
+<div class="foot">Quartile v0.9.1 · MIT licence · Seyed Mehdi Alavi, EMS Leader · Checks consistency and protects meaning; it does not predict editorial decisions or prove the origin of numbers.</div>
 
 <script>
 // Deterministic text analysis for the Q1 engine. No network, no model calls.
@@ -825,6 +825,10 @@ if (typeof module !== "undefined") module.exports = Core;
 
 </script>
 <script>
+// Statistical reporting checks for the Q1 engine.
+// statcheck-style recomputation of p-values (t, F, r, chi-square, z), regression-table consistency
+// (coefficient / SE / t / p / stars), impossible values, and software-output fingerprints.
+// These are consistency and plausibility checks. They cannot prove who or what produced a number.
 // Statistical reporting checks for the Q1 engine.
 // statcheck-style recomputation of p-values (t, F, r, chi-square, z), regression-table consistency
 // (coefficient / SE / t / p / stars), impossible values, and software-output fingerprints.
