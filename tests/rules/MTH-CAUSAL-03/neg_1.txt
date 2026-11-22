@@ -1,0 +1,3 @@
+# Results
+
+The resource-based view predicts that firm age matters; firm age is associated with survival.

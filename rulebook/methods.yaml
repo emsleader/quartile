@@ -1,0 +1,71 @@
+# Methods reviewer text rules (specification Section 6: MTH-01 claim-design match and MTH-06 specific
+# limitations). The code checks MTH-02 to MTH-05 live in core/roles/methods.js. Wording is Quartile's own.
+source:
+  id: QUARTILE_METHODS
+  citation: "Quartile methods reviewer rules (specification Section 6), built from STROBE (von Elm et al. 2007), PRISMA 2020 (Page et al. 2021) and Nosek et al. (2018)."
+  licence_note: "Rules written by the Quartile authors; guideline content paraphrased, no text reproduced."
+rules:
+  - id: MTH-CAUSAL-01
+    title: "Causal verb with non-causal design"
+    role: methods
+    severity: major
+    designs: [regression, survey, bounds, qualitative, sem, slr]
+    check: pattern
+    pattern: '\b(causes?(?! of\b)|caused|drives?(?! (?:for|to|toward|towards)\b)|leads? to(?! (?:(?:a|an|the|our)\s+)?(?:sample|question|hypothes\w*|conclusion|following|final|second|third|next|section)\b)|results? in(?!\s+(?:the\s+)?(?:tables?|figures?|fig|columns?|panels?|sections?|models?|appendix|line|this|our|both|all|each|first|second|third|last|previous|main|robustness|full|sub-?samples?|chapter)\b)|the effect of)\b'
+    negatable: true
+    unless_nearby: '\b(instrumental variables?|instruments? for|exogenous|natural experiment|quasi-experiment\w*|randomi[sz]\w*|regression discontinuity|difference-in-differences|diff-in-diff|synthetic control|event study|2SLS)\b'
+    where: [abstract, results, discussion, conclusion]
+    source_ref: "STROBE item 20 (von Elm et al. 2007); Booth et al. 2016 ch. 8"
+    message: "Causal wording ('{match}') for a design that does not identify causal effects."
+    fix: "Use 'is associated with' or state the identification assumption."
+    tests:
+      positive: [tests/rules/MTH-CAUSAL-01/pos_1.txt, tests/rules/MTH-CAUSAL-01/pos_2.txt]
+      negative: [tests/rules/MTH-CAUSAL-01/neg_1.txt, tests/rules/MTH-CAUSAL-01/neg_2.txt, tests/rules/MTH-CAUSAL-01/neg_3.txt, tests/rules/MTH-CAUSAL-01/neg_4.txt]
+  - id: MTH-CAUSAL-02
+    title: "Results said to prove or confirm"
+    role: methods
+    severity: minor
+    confidence: medium
+    designs: [regression, survey, bounds, qualitative, sem, slr]
+    check: pattern
+    pattern: '\b(results?|findings?|evidence|analys[ie]s|estimates?|data|tests?|models?|study|paper)\s+(?:clearly\s+|strongly\s+|fully\s+|thus\s+|therefore\s+)?(proves?|proved|proven|confirms?|confirmed)\b'
+    negatable: true
+    where: [abstract, results, discussion, conclusion]
+    source_ref: "STROBE item 20 (cautious interpretation; von Elm et al. 2007)"
+    message: "'{match}' claims more certainty than an observational design gives."
+    fix: "Say the results 'support' or 'are consistent with' the hypothesis."
+    tests:
+      positive: [tests/rules/MTH-CAUSAL-02/pos_1.txt]
+      negative: [tests/rules/MTH-CAUSAL-02/neg_1.txt, tests/rules/MTH-CAUSAL-02/neg_2.txt]
+  - id: MTH-CAUSAL-03
+    title: "'Predicts' may be read as a causal claim"
+    role: methods
+    severity: note
+    confidence: low
+    designs: [regression, survey, bounds, qualitative, sem, slr]
+    check: pattern
+    pattern: '\b(?:strongly\s+|significantly\s+|positively\s+|negatively\s+)?predicts\b'
+    except: '\b(theor\w*|hypothes\w+|H\d+[a-z]?|model|framework|view|perspective|account|literature|proposition)\s+(?:\w+\s+)?predicts\b|\b(out-of-sample|forecast\w*|predictive (accuracy|power|model)|hold-?out|AUC)\b'
+    negatable: true
+    where: [abstract, results, discussion, conclusion]
+    source_ref: "STROBE item 20 (von Elm et al. 2007)"
+    message: "'{match}' may be read as a causal claim."
+    fix: "Say whether this is a forecast or an association; for an association use 'is associated with'."
+    tests:
+      positive: [tests/rules/MTH-CAUSAL-03/pos_1.txt]
+      negative: [tests/rules/MTH-CAUSAL-03/neg_1.txt, tests/rules/MTH-CAUSAL-03/neg_2.txt]
+  - id: MTH-06
+    title: "Limitations are not specific"
+    role: methods
+    severity: minor
+    confidence: medium
+    designs: [all]
+    check: structural
+    test: "limitations_specific()"
+    where: [limitations, discussion, conclusion]
+    source_ref: "STROBE item 19 (von Elm et al. 2007); PRISMA 2020 item 23b (Page et al. 2021)"
+    message: "No limitation names the data, sample, measures or design; the text mentions only general limits or future research."
+    fix: "Name at least one concrete limitation (for example the sample frame, a self-reported measure, or the cross-sectional design) and say how it may bias the results."
+    tests:
+      positive: [tests/rules/MTH-06/pos_1.txt, tests/rules/MTH-06/pos_2.txt]
+      negative: [tests/rules/MTH-06/neg_1.txt, tests/rules/MTH-06/neg_2.txt, tests/rules/MTH-06/neg_3.txt]
