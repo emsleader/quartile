@@ -1,0 +1,6865 @@
+{
+ "note": "Synthetic. dup = true means the pair is the same work. Used while building the rules.",
+ "pairs": [
+  {
+   "a": {
+    "id": "D0000",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms",
+    "author": [
+     {
+      "family": "Kowalczyk",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2000
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0001",
+    "type": "article-journal",
+    "title": "Financial flexiblity and the growth of service firms",
+    "author": [
+     {
+      "family": "Kowalczyk",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2000
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "one-letter typo"
+  },
+  {
+   "a": {
+    "id": "D0002",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms",
+    "author": [
+     {
+      "family": "Kowalczyk",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2000
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0003",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2000
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0004",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms",
+    "author": [
+     {
+      "family": "Kowalczyk",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2000
+      ]
+     ]
+    },
+    "DOI": "10.9999/a.0"
+   },
+   "b": {
+    "id": "D0005",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms",
+    "author": [
+     {
+      "family": "Kowalczyk",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2000
+      ]
+     ]
+    },
+    "DOI": "10.9999/b.0"
+   },
+   "dup": false,
+   "why": "same title, two different DOIs (e.g. erratum)"
+  },
+  {
+   "a": {
+    "id": "D0006",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2001
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0007",
+    "type": "article-journal",
+    "title": "CREDIT CONSTRAINTS AND EQUIPMENT INVESTMENT IN SMALL FIRMS.",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2002
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "case, punctuation, year + 1 (online vs print)"
+  },
+  {
+   "a": {
+    "id": "D0008",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2001
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0009",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2001
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0010",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms evidence from Hungary",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2001
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0011",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms evidence from Poland",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2001
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0012",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2002
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0013",
+    "type": "article-journal",
+    "title": "Survivál of équipment dependent studios in Europe",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2002
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "diacritics"
+  },
+  {
+   "a": {
+    "id": "D0014",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2002
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0015",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2002
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0016",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2003
+      ]
+     ]
+    },
+    "DOI": "10.9999/dup.3"
+   },
+   "b": {
+    "id": "D0017",
+    "type": "article-journal",
+    "title": "Completely different title 3",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2008
+      ]
+     ]
+    },
+    "DOI": "10.9999/DUP.3"
+   },
+   "dup": true,
+   "why": "same DOI, different case"
+  },
+  {
+   "a": {
+    "id": "D0018",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2003
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0019",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2003
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0020",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis evidence from Hungary",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2003
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0021",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis evidence from Poland",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2003
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0022",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2003
+      ]
+     ]
+    },
+    "DOI": "10.9999/a.3"
+   },
+   "b": {
+    "id": "D0023",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2003
+      ]
+     ]
+    },
+    "DOI": "10.9999/b.3"
+   },
+   "dup": false,
+   "why": "same title, two different DOIs (e.g. erratum)"
+  },
+  {
+   "a": {
+    "id": "D0025",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs part 1",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2004
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0026",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs part 2",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2004
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "part 1 vs part 2"
+  },
+  {
+   "a": {
+    "id": "D0027",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2004
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0028",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs",
+    "author": [
+     {
+      "family": "Brown",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2004
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0029",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2005
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0030",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2008
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title, three years apart (new edition)"
+  },
+  {
+   "a": {
+    "id": "D0031",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2005
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0032",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2005
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0033",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services evidence from Hungary",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2005
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0034",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services evidence from Poland",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2005
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0035",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2006
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0036",
+    "type": "article-journal",
+    "title": "Workingcapital and firm performance in emerging markets",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2006
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "one-letter typo"
+  },
+  {
+   "a": {
+    "id": "D0037",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2006
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0038",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2006
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0039",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2006
+      ]
+     ]
+    },
+    "DOI": "10.9999/a.6"
+   },
+   "b": {
+    "id": "D0040",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2006
+      ]
+     ]
+    },
+    "DOI": "10.9999/b.6"
+   },
+   "dup": false,
+   "why": "same title, two different DOIs (e.g. erratum)"
+  },
+  {
+   "a": {
+    "id": "D0041",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2007
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0042",
+    "type": "article-journal",
+    "title": "TRADE CREDIT AS A BUFFER IN RECESSIONS.",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2008
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "case, punctuation, year + 1 (online vs print)"
+  },
+  {
+   "a": {
+    "id": "D0043",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2007
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0044",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2007
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0045",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions evidence from Hungary",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2007
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0046",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions evidence from Poland",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2007
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0047",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions",
+    "author": [
+     {
+      "family": "Jørgensen",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2008
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0048",
+    "type": "article-journal",
+    "title": "Invéstment reversibility ánd exit decisions",
+    "author": [
+     {
+      "family": "Jørgensen",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2008
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "diacritics"
+  },
+  {
+   "a": {
+    "id": "D0049",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions",
+    "author": [
+     {
+      "family": "Jørgensen",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2008
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0050",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2008
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0051",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms",
+    "author": [
+     {
+      "family": "O'Brien",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2009
+      ]
+     ]
+    },
+    "DOI": "10.9999/dup.9"
+   },
+   "b": {
+    "id": "D0052",
+    "type": "article-journal",
+    "title": "Completely different title 9",
+    "author": [
+     {
+      "family": "O'Brien",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2014
+      ]
+     ]
+    },
+    "DOI": "10.9999/DUP.9"
+   },
+   "dup": true,
+   "why": "same DOI, different case"
+  },
+  {
+   "a": {
+    "id": "D0053",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms",
+    "author": [
+     {
+      "family": "O'Brien",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2009
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0054",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2009
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0055",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms evidence from Hungary",
+    "author": [
+     {
+      "family": "O'Brien",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2009
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0056",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms evidence from Poland",
+    "author": [
+     {
+      "family": "O'Brien",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2009
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0057",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms",
+    "author": [
+     {
+      "family": "O'Brien",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2009
+      ]
+     ]
+    },
+    "DOI": "10.9999/a.9"
+   },
+   "b": {
+    "id": "D0058",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms",
+    "author": [
+     {
+      "family": "O'Brien",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2009
+      ]
+     ]
+    },
+    "DOI": "10.9999/b.9"
+   },
+   "dup": false,
+   "why": "same title, two different DOIs (e.g. erratum)"
+  },
+  {
+   "a": {
+    "id": "D0060",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms markets part 1",
+    "author": [
+     {
+      "family": "Al-Sayed",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2010
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0061",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms markets part 2",
+    "author": [
+     {
+      "family": "Al-Sayed",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2010
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "part 1 vs part 2"
+  },
+  {
+   "a": {
+    "id": "D0062",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms markets",
+    "author": [
+     {
+      "family": "Al-Sayed",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2010
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0063",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms markets",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2010
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0064",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms evidence",
+    "author": [
+     {
+      "family": "Ñúñez",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2011
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0065",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms evidence",
+    "author": [
+     {
+      "family": "Ñúñez",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2014
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title, three years apart (new edition)"
+  },
+  {
+   "a": {
+    "id": "D0066",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms evidence",
+    "author": [
+     {
+      "family": "Ñúñez",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2011
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0067",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms evidence",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2011
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0068",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms evidence evidence from Hungary",
+    "author": [
+     {
+      "family": "Ñúñez",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2011
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0069",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms evidence evidence from Poland",
+    "author": [
+     {
+      "family": "Ñúñez",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2011
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0070",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe SMEs",
+    "author": [
+     {
+      "family": "Øster",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0071",
+    "type": "article-journal",
+    "title": "Survival of equipmen dependent studios in Europe SMEs",
+    "author": [
+     {
+      "family": "Øster",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "one-letter typo"
+  },
+  {
+   "a": {
+    "id": "D0072",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe SMEs",
+    "author": [
+     {
+      "family": "Øster",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0073",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe SMEs",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0074",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe SMEs",
+    "author": [
+     {
+      "family": "Øster",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    },
+    "DOI": "10.9999/a.12"
+   },
+   "b": {
+    "id": "D0075",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe SMEs",
+    "author": [
+     {
+      "family": "Øster",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    },
+    "DOI": "10.9999/b.12"
+   },
+   "dup": false,
+   "why": "same title, two different DOIs (e.g. erratum)"
+  },
+  {
+   "a": {
+    "id": "D0076",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis innovation",
+    "author": [
+     {
+      "family": "Szabó",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2013
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0077",
+    "type": "article-journal",
+    "title": "BANK LENDING TO SMES AFTER THE FINANCIAL CRISIS INNOVATION.",
+    "author": [
+     {
+      "family": "Szabó",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2014
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "case, punctuation, year + 1 (online vs print)"
+  },
+  {
+   "a": {
+    "id": "D0078",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis innovation",
+    "author": [
+     {
+      "family": "Szabó",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2013
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0079",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis innovation",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2013
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0080",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis innovation evidence from Hungary",
+    "author": [
+     {
+      "family": "Szabó",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2013
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0081",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis innovation evidence from Poland",
+    "author": [
+     {
+      "family": "Szabó",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2013
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0082",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs service",
+    "author": [
+     {
+      "family": "Weiß",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2014
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0083",
+    "type": "article-journal",
+    "title": "Léásing versus buying: evidence from European SMEs service",
+    "author": [
+     {
+      "family": "Weiß",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2014
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "diacritics"
+  },
+  {
+   "a": {
+    "id": "D0084",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs service",
+    "author": [
+     {
+      "family": "Weiß",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2014
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0085",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs service",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2014
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0086",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services evidence",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2015
+      ]
+     ]
+    },
+    "DOI": "10.9999/dup.15"
+   },
+   "b": {
+    "id": "D0087",
+    "type": "article-journal",
+    "title": "Completely different title 15",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2020
+      ]
+     ]
+    },
+    "DOI": "10.9999/DUP.15"
+   },
+   "dup": true,
+   "why": "same DOI, different case"
+  },
+  {
+   "a": {
+    "id": "D0088",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services evidence",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2015
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0089",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services evidence",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2015
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0090",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services evidence evidence from Hungary",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2015
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0091",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services evidence evidence from Poland",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2015
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0092",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services evidence",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2015
+      ]
+     ]
+    },
+    "DOI": "10.9999/a.15"
+   },
+   "b": {
+    "id": "D0093",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services evidence",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2015
+      ]
+     ]
+    },
+    "DOI": "10.9999/b.15"
+   },
+   "dup": false,
+   "why": "same title, two different DOIs (e.g. erratum)"
+  },
+  {
+   "a": {
+    "id": "D0095",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets capital part 1",
+    "author": [
+     {
+      "family": "Kovács",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2016
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0096",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets capital part 2",
+    "author": [
+     {
+      "family": "Kovács",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2016
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "part 1 vs part 2"
+  },
+  {
+   "a": {
+    "id": "D0097",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets capital",
+    "author": [
+     {
+      "family": "Kovács",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2016
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0098",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets capital",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2016
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0099",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions equipment",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2017
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0100",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions equipment",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2020
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title, three years apart (new edition)"
+  },
+  {
+   "a": {
+    "id": "D0101",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions equipment",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2017
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0102",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions equipment",
+    "author": [
+     {
+      "family": "Brown",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2017
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0103",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions equipment evidence from Hungary",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2017
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0104",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions equipment evidence from Poland",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2017
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0105",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions data",
+    "author": [
+     {
+      "family": "François",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2018
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0106",
+    "type": "article-journal",
+    "title": "Investmnt reversibility and exit decisions data",
+    "author": [
+     {
+      "family": "François",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2018
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "one-letter typo"
+  },
+  {
+   "a": {
+    "id": "D0107",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions data",
+    "author": [
+     {
+      "family": "François",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2018
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0108",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions data",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2018
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0109",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions data",
+    "author": [
+     {
+      "family": "François",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2018
+      ]
+     ]
+    },
+    "DOI": "10.9999/a.18"
+   },
+   "b": {
+    "id": "D0110",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions data",
+    "author": [
+     {
+      "family": "François",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2018
+      ]
+     ]
+    },
+    "DOI": "10.9999/b.18"
+   },
+   "dup": false,
+   "why": "same title, two different DOIs (e.g. erratum)"
+  },
+  {
+   "a": {
+    "id": "D0111",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms SMEs",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0112",
+    "type": "article-journal",
+    "title": "CASH HOLDINGS OF PRIVATE FIRMS SMES.",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2020
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "case, punctuation, year + 1 (online vs print)"
+  },
+  {
+   "a": {
+    "id": "D0113",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms SMEs",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0114",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms SMEs",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0115",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms SMEs evidence from Hungary",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0116",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms SMEs evidence from Poland",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0117",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms firms",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2000
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0118",
+    "type": "article-journal",
+    "title": "Fináncial fléxibility and the growth of service firms firms",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2000
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "diacritics"
+  },
+  {
+   "a": {
+    "id": "D0119",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms firms",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2000
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0120",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms firms",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2000
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0121",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms financial",
+    "author": [
+     {
+      "family": "Ñúñez",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2001
+      ]
+     ]
+    },
+    "DOI": "10.9999/dup.21"
+   },
+   "b": {
+    "id": "D0122",
+    "type": "article-journal",
+    "title": "Completely different title 21",
+    "author": [
+     {
+      "family": "Ñúñez",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2006
+      ]
+     ]
+    },
+    "DOI": "10.9999/DUP.21"
+   },
+   "dup": true,
+   "why": "same DOI, different case"
+  },
+  {
+   "a": {
+    "id": "D0123",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms financial",
+    "author": [
+     {
+      "family": "Ñúñez",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2001
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0124",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms financial",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2001
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0125",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms financial evidence from Hungary",
+    "author": [
+     {
+      "family": "Ñúñez",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2001
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0126",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms financial evidence from Poland",
+    "author": [
+     {
+      "family": "Ñúñez",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2001
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0127",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms financial",
+    "author": [
+     {
+      "family": "Ñúñez",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2001
+      ]
+     ]
+    },
+    "DOI": "10.9999/a.21"
+   },
+   "b": {
+    "id": "D0128",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms financial",
+    "author": [
+     {
+      "family": "Ñúñez",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2001
+      ]
+     ]
+    },
+    "DOI": "10.9999/b.21"
+   },
+   "dup": false,
+   "why": "same title, two different DOIs (e.g. erratum)"
+  },
+  {
+   "a": {
+    "id": "D0130",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe investment part 1",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2002
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0131",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe investment part 2",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2002
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "part 1 vs part 2"
+  },
+  {
+   "a": {
+    "id": "D0132",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe investment",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2002
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0133",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe investment",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2002
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0134",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis capital",
+    "author": [
+     {
+      "family": "Weiß",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2003
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0135",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis capital",
+    "author": [
+     {
+      "family": "Weiß",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2006
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title, three years apart (new edition)"
+  },
+  {
+   "a": {
+    "id": "D0136",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis capital",
+    "author": [
+     {
+      "family": "Weiß",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2003
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0137",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis capital",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2003
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0138",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis capital evidence from Hungary",
+    "author": [
+     {
+      "family": "Weiß",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2003
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0139",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis capital evidence from Poland",
+    "author": [
+     {
+      "family": "Weiß",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2003
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0140",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs markets",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2004
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0141",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs arkets",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2004
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "one-letter typo"
+  },
+  {
+   "a": {
+    "id": "D0142",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs markets",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2004
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0143",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs markets",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2004
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0144",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs markets",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2004
+      ]
+     ]
+    },
+    "DOI": "10.9999/a.24"
+   },
+   "b": {
+    "id": "D0145",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs markets",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2004
+      ]
+     ]
+    },
+    "DOI": "10.9999/b.24"
+   },
+   "dup": false,
+   "why": "same title, two different DOIs (e.g. erratum)"
+  },
+  {
+   "a": {
+    "id": "D0146",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services firms",
+    "author": [
+     {
+      "family": "Ñúñez",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2005
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0147",
+    "type": "article-journal",
+    "title": "THE ECONOMICS OF FRANCHISING IN FITNESS SERVICES FIRMS.",
+    "author": [
+     {
+      "family": "Ñúñez",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2006
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "case, punctuation, year + 1 (online vs print)"
+  },
+  {
+   "a": {
+    "id": "D0148",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services firms",
+    "author": [
+     {
+      "family": "Ñúñez",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2005
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0149",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services firms",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2005
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0150",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services firms evidence from Hungary",
+    "author": [
+     {
+      "family": "Ñúñez",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2005
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0151",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services firms evidence from Poland",
+    "author": [
+     {
+      "family": "Ñúñez",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2005
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0152",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets SMEs",
+    "author": [
+     {
+      "family": "Szabó",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2006
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0153",
+    "type": "article-journal",
+    "title": "Working cápital and firm pérformance in emerging markets SMEs",
+    "author": [
+     {
+      "family": "Szabó",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2006
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "diacritics"
+  },
+  {
+   "a": {
+    "id": "D0154",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets SMEs",
+    "author": [
+     {
+      "family": "Szabó",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2006
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0155",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets SMEs",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2006
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0156",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions innovation",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2007
+      ]
+     ]
+    },
+    "DOI": "10.9999/dup.27"
+   },
+   "b": {
+    "id": "D0157",
+    "type": "article-journal",
+    "title": "Completely different title 27",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    },
+    "DOI": "10.9999/DUP.27"
+   },
+   "dup": true,
+   "why": "same DOI, different case"
+  },
+  {
+   "a": {
+    "id": "D0158",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions innovation",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2007
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0159",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions innovation",
+    "author": [
+     {
+      "family": "Brown",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2007
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0160",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions innovation evidence from Hungary",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2007
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0161",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions innovation evidence from Poland",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2007
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0162",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions innovation",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2007
+      ]
+     ]
+    },
+    "DOI": "10.9999/a.27"
+   },
+   "b": {
+    "id": "D0163",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions innovation",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2007
+      ]
+     ]
+    },
+    "DOI": "10.9999/b.27"
+   },
+   "dup": false,
+   "why": "same title, two different DOIs (e.g. erratum)"
+  },
+  {
+   "a": {
+    "id": "D0165",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions evidence part 1",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2008
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0166",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions evidence part 2",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2008
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "part 1 vs part 2"
+  },
+  {
+   "a": {
+    "id": "D0167",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions evidence",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2008
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0168",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions evidence",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2008
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0169",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms growth",
+    "author": [
+     {
+      "family": "O'Brien",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2009
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0170",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms growth",
+    "author": [
+     {
+      "family": "O'Brien",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title, three years apart (new edition)"
+  },
+  {
+   "a": {
+    "id": "D0171",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms growth",
+    "author": [
+     {
+      "family": "O'Brien",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2009
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0172",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms growth",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2009
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0173",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms growth evidence from Hungary",
+    "author": [
+     {
+      "family": "O'Brien",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2009
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0174",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms growth evidence from Poland",
+    "author": [
+     {
+      "family": "O'Brien",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2009
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0175",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms credit",
+    "author": [
+     {
+      "family": "García",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2010
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0176",
+    "type": "article-journal",
+    "title": "Finanial flexibility and the growth of service firms credit",
+    "author": [
+     {
+      "family": "García",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2010
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "one-letter typo"
+  },
+  {
+   "a": {
+    "id": "D0177",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms credit",
+    "author": [
+     {
+      "family": "García",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2010
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0178",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms credit",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2010
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0179",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms credit",
+    "author": [
+     {
+      "family": "García",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2010
+      ]
+     ]
+    },
+    "DOI": "10.9999/a.30"
+   },
+   "b": {
+    "id": "D0180",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms credit",
+    "author": [
+     {
+      "family": "García",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2010
+      ]
+     ]
+    },
+    "DOI": "10.9999/b.30"
+   },
+   "dup": false,
+   "why": "same title, two different DOIs (e.g. erratum)"
+  },
+  {
+   "a": {
+    "id": "D0181",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms innovation",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2011
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0182",
+    "type": "article-journal",
+    "title": "CREDIT CONSTRAINTS AND EQUIPMENT INVESTMENT IN SMALL FIRMS INNOVATION.",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "case, punctuation, year + 1 (online vs print)"
+  },
+  {
+   "a": {
+    "id": "D0183",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms innovation",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2011
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0184",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms innovation",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2011
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0185",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms innovation evidence from Hungary",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2011
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0186",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms innovation evidence from Poland",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2011
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0187",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe innovation",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0188",
+    "type": "article-journal",
+    "title": "Survivál of équipment dependent studios in Europe innovation",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "diacritics"
+  },
+  {
+   "a": {
+    "id": "D0189",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe innovation",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0190",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe innovation",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0191",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis SMEs",
+    "author": [
+     {
+      "family": "Al-Sayed",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2013
+      ]
+     ]
+    },
+    "DOI": "10.9999/dup.33"
+   },
+   "b": {
+    "id": "D0192",
+    "type": "article-journal",
+    "title": "Completely different title 33",
+    "author": [
+     {
+      "family": "Al-Sayed",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2018
+      ]
+     ]
+    },
+    "DOI": "10.9999/DUP.33"
+   },
+   "dup": true,
+   "why": "same DOI, different case"
+  },
+  {
+   "a": {
+    "id": "D0193",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis SMEs",
+    "author": [
+     {
+      "family": "Al-Sayed",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2013
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0194",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis SMEs",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2013
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0195",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis SMEs evidence from Hungary",
+    "author": [
+     {
+      "family": "Al-Sayed",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2013
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0196",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis SMEs evidence from Poland",
+    "author": [
+     {
+      "family": "Al-Sayed",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2013
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0197",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis SMEs",
+    "author": [
+     {
+      "family": "Al-Sayed",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2013
+      ]
+     ]
+    },
+    "DOI": "10.9999/a.33"
+   },
+   "b": {
+    "id": "D0198",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis SMEs",
+    "author": [
+     {
+      "family": "Al-Sayed",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2013
+      ]
+     ]
+    },
+    "DOI": "10.9999/b.33"
+   },
+   "dup": false,
+   "why": "same title, two different DOIs (e.g. erratum)"
+  },
+  {
+   "a": {
+    "id": "D0200",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs financial part 1",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2014
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0201",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs financial part 2",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2014
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "part 1 vs part 2"
+  },
+  {
+   "a": {
+    "id": "D0202",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs financial",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2014
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0203",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs financial",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2014
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0204",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services firms",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2015
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0205",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services firms",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2018
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title, three years apart (new edition)"
+  },
+  {
+   "a": {
+    "id": "D0206",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services firms",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2015
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0207",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services firms",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2015
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0208",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services firms evidence from Hungary",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2015
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0209",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services firms evidence from Poland",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2015
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0210",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets flexibility",
+    "author": [
+     {
+      "family": "François",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2016
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0211",
+    "type": "article-journal",
+    "title": "Working capital and firm performance n emerging markets flexibility",
+    "author": [
+     {
+      "family": "François",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2016
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "one-letter typo"
+  },
+  {
+   "a": {
+    "id": "D0212",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets flexibility",
+    "author": [
+     {
+      "family": "François",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2016
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0213",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets flexibility",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2016
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0214",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets flexibility",
+    "author": [
+     {
+      "family": "François",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2016
+      ]
+     ]
+    },
+    "DOI": "10.9999/a.36"
+   },
+   "b": {
+    "id": "D0215",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets flexibility",
+    "author": [
+     {
+      "family": "François",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2016
+      ]
+     ]
+    },
+    "DOI": "10.9999/b.36"
+   },
+   "dup": false,
+   "why": "same title, two different DOIs (e.g. erratum)"
+  },
+  {
+   "a": {
+    "id": "D0216",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions firms",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2017
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0217",
+    "type": "article-journal",
+    "title": "TRADE CREDIT AS A BUFFER IN RECESSIONS FIRMS.",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2018
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "case, punctuation, year + 1 (online vs print)"
+  },
+  {
+   "a": {
+    "id": "D0218",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions firms",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2017
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0219",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions firms",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2017
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0220",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions firms evidence from Hungary",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2017
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0221",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions firms evidence from Poland",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2017
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0222",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions Europe",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2018
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0223",
+    "type": "article-journal",
+    "title": "Invéstment reversibility ánd exit decisions Europe",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2018
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "diacritics"
+  },
+  {
+   "a": {
+    "id": "D0224",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions Europe",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2018
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0225",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions Europe",
+    "author": [
+     {
+      "family": "Brown",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2018
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0226",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms flexibility",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    },
+    "DOI": "10.9999/dup.39"
+   },
+   "b": {
+    "id": "D0227",
+    "type": "article-journal",
+    "title": "Completely different title 39",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2024
+      ]
+     ]
+    },
+    "DOI": "10.9999/DUP.39"
+   },
+   "dup": true,
+   "why": "same DOI, different case"
+  },
+  {
+   "a": {
+    "id": "D0228",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms flexibility",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0229",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms flexibility",
+    "author": [
+     {
+      "family": "Brown",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0230",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms flexibility evidence from Hungary",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0231",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms flexibility evidence from Poland",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0232",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms flexibility",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    },
+    "DOI": "10.9999/a.39"
+   },
+   "b": {
+    "id": "D0233",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms flexibility",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    },
+    "DOI": "10.9999/b.39"
+   },
+   "dup": false,
+   "why": "same title, two different DOIs (e.g. erratum)"
+  },
+  {
+   "a": {
+    "id": "D0235",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms financial part 1",
+    "author": [
+     {
+      "family": "Çelik",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2000
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0236",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms financial part 2",
+    "author": [
+     {
+      "family": "Çelik",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2000
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "part 1 vs part 2"
+  },
+  {
+   "a": {
+    "id": "D0237",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms financial",
+    "author": [
+     {
+      "family": "Çelik",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2000
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0238",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms financial",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2000
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0239",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms panel",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2001
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0240",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms panel",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2004
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title, three years apart (new edition)"
+  },
+  {
+   "a": {
+    "id": "D0241",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms panel",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2001
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0242",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms panel",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2001
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0243",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms panel evidence from Hungary",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2001
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0244",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms panel evidence from Poland",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2001
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0245",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe financial",
+    "author": [
+     {
+      "family": "Øster",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2002
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0246",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe fnancial",
+    "author": [
+     {
+      "family": "Øster",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2002
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "one-letter typo"
+  },
+  {
+   "a": {
+    "id": "D0247",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe financial",
+    "author": [
+     {
+      "family": "Øster",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2002
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0248",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe financial",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2002
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0249",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe financial",
+    "author": [
+     {
+      "family": "Øster",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2002
+      ]
+     ]
+    },
+    "DOI": "10.9999/a.42"
+   },
+   "b": {
+    "id": "D0250",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe financial",
+    "author": [
+     {
+      "family": "Øster",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2002
+      ]
+     ]
+    },
+    "DOI": "10.9999/b.42"
+   },
+   "dup": false,
+   "why": "same title, two different DOIs (e.g. erratum)"
+  },
+  {
+   "a": {
+    "id": "D0251",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis risk",
+    "author": [
+     {
+      "family": "Weiß",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2003
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0252",
+    "type": "article-journal",
+    "title": "BANK LENDING TO SMES AFTER THE FINANCIAL CRISIS RISK.",
+    "author": [
+     {
+      "family": "Weiß",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2004
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "case, punctuation, year + 1 (online vs print)"
+  },
+  {
+   "a": {
+    "id": "D0253",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis risk",
+    "author": [
+     {
+      "family": "Weiß",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2003
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0254",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis risk",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2003
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0255",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis risk evidence from Hungary",
+    "author": [
+     {
+      "family": "Weiß",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2003
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0256",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis risk evidence from Poland",
+    "author": [
+     {
+      "family": "Weiß",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2003
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0257",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs credit",
+    "author": [
+     {
+      "family": "García",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2004
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0258",
+    "type": "article-journal",
+    "title": "Léásing versus buying: evidence from European SMEs credit",
+    "author": [
+     {
+      "family": "García",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2004
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "diacritics"
+  },
+  {
+   "a": {
+    "id": "D0259",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs credit",
+    "author": [
+     {
+      "family": "García",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2004
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0260",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs credit",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2004
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0261",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services investment",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2005
+      ]
+     ]
+    },
+    "DOI": "10.9999/dup.45"
+   },
+   "b": {
+    "id": "D0262",
+    "type": "article-journal",
+    "title": "Completely different title 45",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2010
+      ]
+     ]
+    },
+    "DOI": "10.9999/DUP.45"
+   },
+   "dup": true,
+   "why": "same DOI, different case"
+  },
+  {
+   "a": {
+    "id": "D0263",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services investment",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2005
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0264",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services investment",
+    "author": [
+     {
+      "family": "Brown",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2005
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0265",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services investment evidence from Hungary",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2005
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0266",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services investment evidence from Poland",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2005
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0267",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services investment",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2005
+      ]
+     ]
+    },
+    "DOI": "10.9999/a.45"
+   },
+   "b": {
+    "id": "D0268",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services investment",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2005
+      ]
+     ]
+    },
+    "DOI": "10.9999/b.45"
+   },
+   "dup": false,
+   "why": "same title, two different DOIs (e.g. erratum)"
+  },
+  {
+   "a": {
+    "id": "D0270",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets investment part 1",
+    "author": [
+     {
+      "family": "Kowalczyk",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2006
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0271",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets investment part 2",
+    "author": [
+     {
+      "family": "Kowalczyk",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2006
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "part 1 vs part 2"
+  },
+  {
+   "a": {
+    "id": "D0272",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets investment",
+    "author": [
+     {
+      "family": "Kowalczyk",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2006
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0273",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets investment",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2006
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0274",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions financial",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2007
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0275",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions financial",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2010
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title, three years apart (new edition)"
+  },
+  {
+   "a": {
+    "id": "D0276",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions financial",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2007
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0277",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions financial",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2007
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0278",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions financial evidence from Hungary",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2007
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0279",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions financial evidence from Poland",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2007
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0280",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions equipment",
+    "author": [
+     {
+      "family": "François",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2008
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0281",
+    "type": "article-journal",
+    "title": "Investment reversibiity and exit decisions equipment",
+    "author": [
+     {
+      "family": "François",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2008
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "one-letter typo"
+  },
+  {
+   "a": {
+    "id": "D0282",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions equipment",
+    "author": [
+     {
+      "family": "François",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2008
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0283",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions equipment",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2008
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0284",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions equipment",
+    "author": [
+     {
+      "family": "François",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2008
+      ]
+     ]
+    },
+    "DOI": "10.9999/a.48"
+   },
+   "b": {
+    "id": "D0285",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions equipment",
+    "author": [
+     {
+      "family": "François",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2008
+      ]
+     ]
+    },
+    "DOI": "10.9999/b.48"
+   },
+   "dup": false,
+   "why": "same title, two different DOIs (e.g. erratum)"
+  },
+  {
+   "a": {
+    "id": "D0286",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms capital",
+    "author": [
+     {
+      "family": "Zhang",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2009
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0287",
+    "type": "article-journal",
+    "title": "CASH HOLDINGS OF PRIVATE FIRMS CAPITAL.",
+    "author": [
+     {
+      "family": "Zhang",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2010
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "case, punctuation, year + 1 (online vs print)"
+  },
+  {
+   "a": {
+    "id": "D0288",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms capital",
+    "author": [
+     {
+      "family": "Zhang",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2009
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0289",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms capital",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2009
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0290",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms capital evidence from Hungary",
+    "author": [
+     {
+      "family": "Zhang",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2009
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0291",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms capital evidence from Poland",
+    "author": [
+     {
+      "family": "Zhang",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2009
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0292",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms SMEs",
+    "author": [
+     {
+      "family": "Øster",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2010
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0293",
+    "type": "article-journal",
+    "title": "Fináncial fléxibility and the growth of service firms SMEs",
+    "author": [
+     {
+      "family": "Øster",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2010
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "diacritics"
+  },
+  {
+   "a": {
+    "id": "D0294",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms SMEs",
+    "author": [
+     {
+      "family": "Øster",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2010
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0295",
+    "type": "article-journal",
+    "title": "Financial flexibility and the growth of service firms SMEs",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2010
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0296",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms survey",
+    "author": [
+     {
+      "family": "Dvořák",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2011
+      ]
+     ]
+    },
+    "DOI": "10.9999/dup.51"
+   },
+   "b": {
+    "id": "D0297",
+    "type": "article-journal",
+    "title": "Completely different title 51",
+    "author": [
+     {
+      "family": "Dvořák",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2016
+      ]
+     ]
+    },
+    "DOI": "10.9999/DUP.51"
+   },
+   "dup": true,
+   "why": "same DOI, different case"
+  },
+  {
+   "a": {
+    "id": "D0298",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms survey",
+    "author": [
+     {
+      "family": "Dvořák",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2011
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0299",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms survey",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2011
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0300",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms survey evidence from Hungary",
+    "author": [
+     {
+      "family": "Dvořák",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2011
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0301",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms survey evidence from Poland",
+    "author": [
+     {
+      "family": "Dvořák",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2011
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0302",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms survey",
+    "author": [
+     {
+      "family": "Dvořák",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2011
+      ]
+     ]
+    },
+    "DOI": "10.9999/a.51"
+   },
+   "b": {
+    "id": "D0303",
+    "type": "article-journal",
+    "title": "Credit constraints and equipment investment in small firms survey",
+    "author": [
+     {
+      "family": "Dvořák",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2011
+      ]
+     ]
+    },
+    "DOI": "10.9999/b.51"
+   },
+   "dup": false,
+   "why": "same title, two different DOIs (e.g. erratum)"
+  },
+  {
+   "a": {
+    "id": "D0305",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe survey part 1",
+    "author": [
+     {
+      "family": "Dvořák",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0306",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe survey part 2",
+    "author": [
+     {
+      "family": "Dvořák",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "part 1 vs part 2"
+  },
+  {
+   "a": {
+    "id": "D0307",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe survey",
+    "author": [
+     {
+      "family": "Dvořák",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0308",
+    "type": "article-journal",
+    "title": "Survival of equipment dependent studios in Europe survey",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0309",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis service",
+    "author": [
+     {
+      "family": "Jørgensen",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2013
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0310",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis service",
+    "author": [
+     {
+      "family": "Jørgensen",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2016
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title, three years apart (new edition)"
+  },
+  {
+   "a": {
+    "id": "D0311",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis service",
+    "author": [
+     {
+      "family": "Jørgensen",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2013
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0312",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis service",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2013
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0313",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis service evidence from Hungary",
+    "author": [
+     {
+      "family": "Jørgensen",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2013
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0314",
+    "type": "article-journal",
+    "title": "Bank lending to SMEs after the financial crisis service evidence from Poland",
+    "author": [
+     {
+      "family": "Jørgensen",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2013
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0315",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs markets",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2014
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0316",
+    "type": "article-journal",
+    "title": "Leasing vrsus buying: evidence from European SMEs markets",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2014
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "one-letter typo"
+  },
+  {
+   "a": {
+    "id": "D0317",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs markets",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2014
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0318",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs markets",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2014
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0319",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs markets",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2014
+      ]
+     ]
+    },
+    "DOI": "10.9999/a.54"
+   },
+   "b": {
+    "id": "D0320",
+    "type": "article-journal",
+    "title": "Leasing versus buying: evidence from European SMEs markets",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2014
+      ]
+     ]
+    },
+    "DOI": "10.9999/b.54"
+   },
+   "dup": false,
+   "why": "same title, two different DOIs (e.g. erratum)"
+  },
+  {
+   "a": {
+    "id": "D0321",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services panel",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2015
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0322",
+    "type": "article-journal",
+    "title": "THE ECONOMICS OF FRANCHISING IN FITNESS SERVICES PANEL.",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2016
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "case, punctuation, year + 1 (online vs print)"
+  },
+  {
+   "a": {
+    "id": "D0323",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services panel",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2015
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0324",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services panel",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2015
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0325",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services panel evidence from Hungary",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2015
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0326",
+    "type": "article-journal",
+    "title": "The economics of franchising in fitness services panel evidence from Poland",
+    "author": [
+     {
+      "family": "Müller",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2015
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0327",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets Europe",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2016
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0328",
+    "type": "article-journal",
+    "title": "Working cápital and firm pérformance in emerging markets Europe",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2016
+      ]
+     ]
+    }
+   },
+   "dup": true,
+   "why": "diacritics"
+  },
+  {
+   "a": {
+    "id": "D0329",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets Europe",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2016
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0330",
+    "type": "article-journal",
+    "title": "Working capital and firm performance in emerging markets Europe",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2016
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0331",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions markets",
+    "author": [
+     {
+      "family": "Al-Sayed",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2017
+      ]
+     ]
+    },
+    "DOI": "10.9999/dup.57"
+   },
+   "b": {
+    "id": "D0332",
+    "type": "article-journal",
+    "title": "Completely different title 57",
+    "author": [
+     {
+      "family": "Al-Sayed",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2022
+      ]
+     ]
+    },
+    "DOI": "10.9999/DUP.57"
+   },
+   "dup": true,
+   "why": "same DOI, different case"
+  },
+  {
+   "a": {
+    "id": "D0333",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions markets",
+    "author": [
+     {
+      "family": "Al-Sayed",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2017
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0334",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions markets",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2017
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0335",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions markets evidence from Hungary",
+    "author": [
+     {
+      "family": "Al-Sayed",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2017
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0336",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions markets evidence from Poland",
+    "author": [
+     {
+      "family": "Al-Sayed",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2017
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  },
+  {
+   "a": {
+    "id": "D0337",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions markets",
+    "author": [
+     {
+      "family": "Al-Sayed",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2017
+      ]
+     ]
+    },
+    "DOI": "10.9999/a.57"
+   },
+   "b": {
+    "id": "D0338",
+    "type": "article-journal",
+    "title": "Trade credit as a buffer in recessions markets",
+    "author": [
+     {
+      "family": "Al-Sayed",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2017
+      ]
+     ]
+    },
+    "DOI": "10.9999/b.57"
+   },
+   "dup": false,
+   "why": "same title, two different DOIs (e.g. erratum)"
+  },
+  {
+   "a": {
+    "id": "D0340",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions risk part 1",
+    "author": [
+     {
+      "family": "Ñúñez",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2018
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0341",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions risk part 2",
+    "author": [
+     {
+      "family": "Ñúñez",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2018
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "part 1 vs part 2"
+  },
+  {
+   "a": {
+    "id": "D0342",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions risk",
+    "author": [
+     {
+      "family": "Ñúñez",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2018
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0343",
+    "type": "article-journal",
+    "title": "Investment reversibility and exit decisions risk",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2018
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0344",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms panel",
+    "author": [
+     {
+      "family": "François",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0345",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms panel",
+    "author": [
+     {
+      "family": "François",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2022
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title, three years apart (new edition)"
+  },
+  {
+   "a": {
+    "id": "D0346",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms panel",
+    "author": [
+     {
+      "family": "François",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0347",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms panel",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "same title and year, other first author"
+  },
+  {
+   "a": {
+    "id": "D0348",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms panel evidence from Hungary",
+    "author": [
+     {
+      "family": "François",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    }
+   },
+   "b": {
+    "id": "D0349",
+    "type": "article-journal",
+    "title": "Cash holdings of private firms panel evidence from Poland",
+    "author": [
+     {
+      "family": "François",
+      "given": "A."
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    }
+   },
+   "dup": false,
+   "why": "different country"
+  }
+ ]
+}

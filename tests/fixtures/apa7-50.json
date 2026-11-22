@@ -1,0 +1,1433 @@
+{
+ "note": "50 APA 7 reference strings written by hand from the Publication Manual of the American Psychological Association (7th ed., 2020); 'rule' names the manual section used. Italics are written as *...* (markdown). Synthetic records. The owner should spot-check these against the manual.",
+ "cases": [
+  {
+   "rule": "10.1 journal article, one author",
+   "csl": {
+    "type": "article-journal",
+    "author": [
+     {
+      "family": "Kovács",
+      "given": "Péter"
+     }
+    ],
+    "title": "Leasing decisions of small service firms",
+    "issued": {
+     "date-parts": [
+      [
+       2021
+      ]
+     ]
+    },
+    "container-title": "Small Business Economics",
+    "volume": "56",
+    "issue": "3",
+    "page": "1021-1040",
+    "DOI": "10.1007/s11187-020-00123-4"
+   },
+   "expected": "Kovács, P. (2021). Leasing decisions of small service firms. *Small Business Economics*, *56*(3), 1021–1040. https://doi.org/10.1007/s11187-020-00123-4"
+  },
+  {
+   "rule": "9.8 two authors joined with comma and ampersand",
+   "csl": {
+    "type": "article-journal",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "John A."
+     },
+     {
+      "family": "Lee",
+      "given": "Kim"
+     }
+    ],
+    "title": "Credit constraints and growth",
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    },
+    "container-title": "Journal of Corporate Finance",
+    "volume": "12",
+    "issue": "1",
+    "page": "5-20",
+    "DOI": "10.1016/j.jcorpfin.2019.01.002"
+   },
+   "expected": "Smith, J. A., & Lee, K. (2019). Credit constraints and growth. *Journal of Corporate Finance*, *12*(1), 5–20. https://doi.org/10.1016/j.jcorpfin.2019.01.002"
+  },
+  {
+   "rule": "9.8 three authors",
+   "csl": {
+    "type": "article-journal",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "Anna"
+     },
+     {
+      "family": "Szabó",
+      "given": "Béla"
+     },
+     {
+      "family": "Tóth",
+      "given": "Csilla"
+     }
+    ],
+    "title": "Equipment finance in Hungary",
+    "issued": {
+     "date-parts": [
+      [
+       2020
+      ]
+     ]
+    },
+    "container-title": "Acta Oeconomica",
+    "volume": "70",
+    "issue": "2",
+    "page": "201-223",
+    "DOI": "10.1556/032.2020.00010"
+   },
+   "expected": "Nagy, A., Szabó, B., & Tóth, C. (2020). Equipment finance in Hungary. *Acta Oeconomica*, *70*(2), 201–223. https://doi.org/10.1556/032.2020.00010"
+  },
+  {
+   "rule": "9.8 twenty-one or more authors: first 19, ellipsis, last",
+   "csl": {
+    "type": "article-journal",
+    "author": [
+     {
+      "family": "Alpha",
+      "given": "A."
+     },
+     {
+      "family": "Bravo",
+      "given": "B."
+     },
+     {
+      "family": "Charlie",
+      "given": "C."
+     },
+     {
+      "family": "Delta",
+      "given": "D."
+     },
+     {
+      "family": "Echo",
+      "given": "E."
+     },
+     {
+      "family": "Foxtrot",
+      "given": "F."
+     },
+     {
+      "family": "Golf",
+      "given": "G."
+     },
+     {
+      "family": "Hotel",
+      "given": "H."
+     },
+     {
+      "family": "India",
+      "given": "I."
+     },
+     {
+      "family": "Juliett",
+      "given": "J."
+     },
+     {
+      "family": "Kilo",
+      "given": "K."
+     },
+     {
+      "family": "Lima",
+      "given": "L."
+     },
+     {
+      "family": "Mike",
+      "given": "M."
+     },
+     {
+      "family": "November",
+      "given": "N."
+     },
+     {
+      "family": "Oscar",
+      "given": "O."
+     },
+     {
+      "family": "Papa",
+      "given": "P."
+     },
+     {
+      "family": "Quebec",
+      "given": "Q."
+     },
+     {
+      "family": "Romeo",
+      "given": "R."
+     },
+     {
+      "family": "Sierra",
+      "given": "S."
+     },
+     {
+      "family": "Tango",
+      "given": "T."
+     },
+     {
+      "family": "Uniform",
+      "given": "U."
+     }
+    ],
+    "title": "A large team study",
+    "issued": {
+     "date-parts": [
+      [
+       2022
+      ]
+     ]
+    },
+    "container-title": "Research Policy",
+    "volume": "51",
+    "issue": "4",
+    "page": "104-120",
+    "DOI": "10.1016/j.respol.2022.104120"
+   },
+   "expected": "Alpha, A., Bravo, B., Charlie, C., Delta, D., Echo, E., Foxtrot, F., Golf, G., Hotel, H., India, I., Juliett, J., Kilo, K., Lima, L., Mike, M., November, N., Oscar, O., Papa, P., Quebec, Q., Romeo, R., Sierra, S., . . . Uniform, U. (2022). A large team study. *Research Policy*, *51*(4), 104–120. https://doi.org/10.1016/j.respol.2022.104120"
+  },
+  {
+   "rule": "9.8 up to 20 authors all listed",
+   "csl": {
+    "type": "article-journal",
+    "author": [
+     {
+      "family": "Alpha",
+      "given": "A."
+     },
+     {
+      "family": "Bravo",
+      "given": "B."
+     },
+     {
+      "family": "Charlie",
+      "given": "C."
+     },
+     {
+      "family": "Delta",
+      "given": "D."
+     },
+     {
+      "family": "Echo",
+      "given": "E."
+     },
+     {
+      "family": "Foxtrot",
+      "given": "F."
+     },
+     {
+      "family": "Golf",
+      "given": "G."
+     },
+     {
+      "family": "Hotel",
+      "given": "H."
+     },
+     {
+      "family": "India",
+      "given": "I."
+     },
+     {
+      "family": "Juliett",
+      "given": "J."
+     },
+     {
+      "family": "Kilo",
+      "given": "K."
+     },
+     {
+      "family": "Lima",
+      "given": "L."
+     },
+     {
+      "family": "Mike",
+      "given": "M."
+     },
+     {
+      "family": "November",
+      "given": "N."
+     },
+     {
+      "family": "Oscar",
+      "given": "O."
+     },
+     {
+      "family": "Papa",
+      "given": "P."
+     },
+     {
+      "family": "Quebec",
+      "given": "Q."
+     },
+     {
+      "family": "Romeo",
+      "given": "R."
+     },
+     {
+      "family": "Sierra",
+      "given": "S."
+     },
+     {
+      "family": "Tango",
+      "given": "T."
+     }
+    ],
+    "title": "Twenty authors",
+    "issued": {
+     "date-parts": [
+      [
+       2018
+      ]
+     ]
+    },
+    "container-title": "Management Science",
+    "volume": "64",
+    "issue": "9",
+    "page": "1-2"
+   },
+   "expected": "Alpha, A., Bravo, B., Charlie, C., Delta, D., Echo, E., Foxtrot, F., Golf, G., Hotel, H., India, I., Juliett, J., Kilo, K., Lima, L., Mike, M., November, N., Oscar, O., Papa, P., Quebec, Q., Romeo, R., Sierra, S., & Tango, T. (2018). Twenty authors. *Management Science*, *64*(9), 1–2."
+  },
+  {
+   "rule": "10.1 no issue number",
+   "csl": {
+    "type": "article-journal",
+    "author": [
+     {
+      "family": "Brown",
+      "given": "Ruth"
+     }
+    ],
+    "title": "Trade credit in recessions",
+    "issued": {
+     "date-parts": [
+      [
+       2017
+      ]
+     ]
+    },
+    "container-title": "Economics Letters",
+    "volume": "8",
+    "page": "33-45",
+    "DOI": "10.1016/j.econlet.2017.03.001"
+   },
+   "expected": "Brown, R. (2017). Trade credit in recessions. *Economics Letters*, *8*, 33–45. https://doi.org/10.1016/j.econlet.2017.03.001"
+  },
+  {
+   "rule": "9.29 article number instead of pages",
+   "csl": {
+    "type": "article-journal",
+    "author": [
+     {
+      "family": "García",
+      "given": "María"
+     }
+    ],
+    "title": "Fitness studio survival",
+    "issued": {
+     "date-parts": [
+      [
+       2020
+      ]
+     ]
+    },
+    "container-title": "PLOS ONE",
+    "volume": "15",
+    "issue": "4",
+    "article-number": "e0231234",
+    "DOI": "10.1371/journal.pone.0231234"
+   },
+   "expected": "García, M. (2020). Fitness studio survival. *PLOS ONE*, *15*(4), Article e0231234. https://doi.org/10.1371/journal.pone.0231234"
+  },
+  {
+   "rule": "9.34 URL when there is no DOI",
+   "csl": {
+    "type": "article-journal",
+    "author": [
+     {
+      "family": "Zhang",
+      "given": "Li"
+     }
+    ],
+    "title": "Regional banks and SMEs",
+    "issued": {
+     "date-parts": [
+      [
+       2016
+      ]
+     ]
+    },
+    "container-title": "Regional Studies",
+    "volume": "50",
+    "issue": "7",
+    "page": "1100-1115",
+    "URL": "https://example.org/zhang2016"
+   },
+   "expected": "Zhang, L. (2016). Regional banks and SMEs. *Regional Studies*, *50*(7), 1100–1115. https://example.org/zhang2016"
+  },
+  {
+   "rule": "9.37 no DOI or URL for a print source",
+   "csl": {
+    "type": "article-journal",
+    "author": [
+     {
+      "family": "Weiß",
+      "given": "Otto"
+     }
+    ],
+    "title": "Private firms and cash",
+    "issued": {
+     "date-parts": [
+      [
+       2015
+      ]
+     ]
+    },
+    "container-title": "Small Business Economics",
+    "volume": "44",
+    "issue": "2",
+    "page": "301-318"
+   },
+   "expected": "Weiß, O. (2015). Private firms and cash. *Small Business Economics*, *44*(2), 301–318."
+  },
+  {
+   "rule": "6.20 hyphenated given name keeps the hyphen in initials",
+   "csl": {
+    "type": "article-journal",
+    "author": [
+     {
+      "family": "Dupont",
+      "given": "Jean-Paul"
+     }
+    ],
+    "title": "Franchising in Europe",
+    "issued": {
+     "date-parts": [
+      [
+       2014
+      ]
+     ]
+    },
+    "container-title": "Journal of Retailing",
+    "volume": "90",
+    "issue": "1",
+    "page": "1-15"
+   },
+   "expected": "Dupont, J.-P. (2014). Franchising in Europe. *Journal of Retailing*, *90*(1), 1–15."
+  },
+  {
+   "rule": "9.8 particle kept with the surname",
+   "csl": {
+    "type": "article-journal",
+    "author": [
+     {
+      "family": "Berg",
+      "given": "Anna",
+      "non-dropping-particle": "van der"
+     }
+    ],
+    "title": "Leasing and exit",
+    "issued": {
+     "date-parts": [
+      [
+       2013
+      ]
+     ]
+    },
+    "container-title": "De Economist",
+    "volume": "161",
+    "issue": "3",
+    "page": "255-270"
+   },
+   "expected": "van der Berg, A. (2013). Leasing and exit. *De Economist*, *161*(3), 255–270."
+  },
+  {
+   "rule": "9.8 suffix after the initials",
+   "csl": {
+    "type": "article-journal",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "John",
+      "suffix": "Jr."
+     }
+    ],
+    "title": "Bank relationships",
+    "issued": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    },
+    "container-title": "Journal of Banking & Finance",
+    "volume": "36",
+    "issue": "5",
+    "page": "1400-1412"
+   },
+   "expected": "Smith, J., Jr. (2012). Bank relationships. *Journal of Banking & Finance*, *36*(5), 1400–1412."
+  },
+  {
+   "rule": "9.11 group author",
+   "csl": {
+    "type": "article-journal",
+    "author": [
+     {
+      "literal": "Organisation for Economic Co-operation and Development"
+     }
+    ],
+    "title": "SME finance scoreboard",
+    "issued": {
+     "date-parts": [
+      [
+       2022
+      ]
+     ]
+    },
+    "container-title": "OECD Journal",
+    "volume": "3",
+    "page": "1-40"
+   },
+   "expected": "Organisation for Economic Co-operation and Development. (2022). SME finance scoreboard. *OECD Journal*, *3*, 1–40."
+  },
+  {
+   "rule": "9.19 title ending in a question mark takes no extra period",
+   "csl": {
+    "type": "article-journal",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "Ann"
+     }
+    ],
+    "title": "Does leasing help small firms?",
+    "issued": {
+     "date-parts": [
+      [
+       2021
+      ]
+     ]
+    },
+    "container-title": "Journal of Small Business Management",
+    "volume": "59",
+    "issue": "6",
+    "page": "1200-1220"
+   },
+   "expected": "Lee, A. (2021). Does leasing help small firms? *Journal of Small Business Management*, *59*(6), 1200–1220."
+  },
+  {
+   "rule": "9.17 no date",
+   "csl": {
+    "type": "article-journal",
+    "author": [
+     {
+      "family": "Tanaka",
+      "given": "Kenji"
+     }
+    ],
+    "title": "Service productivity",
+    "container-title": "Service Industries Journal",
+    "volume": "9",
+    "issue": "1",
+    "page": "1-9"
+   },
+   "expected": "Tanaka, K. (n.d.). Service productivity. *Service Industries Journal*, *9*(1), 1–9."
+  },
+  {
+   "rule": "6.20 initials separated by a space",
+   "csl": {
+    "type": "article-journal",
+    "author": [
+     {
+      "family": "Jones",
+      "given": "J.P."
+     }
+    ],
+    "title": "Investment cycles",
+    "issued": {
+     "date-parts": [
+      [
+       2011
+      ]
+     ]
+    },
+    "container-title": "Applied Economics",
+    "volume": "43",
+    "issue": "2",
+    "page": "10-20"
+   },
+   "expected": "Jones, J. P. (2011). Investment cycles. *Applied Economics*, *43*(2), 10–20."
+  },
+  {
+   "rule": "10.2 book",
+   "csl": {
+    "type": "book",
+    "author": [
+     {
+      "family": "Porter",
+      "given": "Michael E."
+     }
+    ],
+    "title": "Competitive strategy",
+    "issued": {
+     "date-parts": [
+      [
+       1980
+      ]
+     ]
+    },
+    "publisher": "Free Press"
+   },
+   "expected": "Porter, M. E. (1980). *Competitive strategy*. Free Press."
+  },
+  {
+   "rule": "10.2 edition in parentheses",
+   "csl": {
+    "type": "book",
+    "author": [
+     {
+      "family": "Brealey",
+      "given": "Richard A."
+     },
+     {
+      "family": "Myers",
+      "given": "Stewart C."
+     }
+    ],
+    "title": "Principles of corporate finance",
+    "issued": {
+     "date-parts": [
+      [
+       2020
+      ]
+     ]
+    },
+    "publisher": "McGraw-Hill",
+    "edition": "13"
+   },
+   "expected": "Brealey, R. A., & Myers, S. C. (2020). *Principles of corporate finance* (13th ed.). McGraw-Hill."
+  },
+  {
+   "rule": "10.2 book with DOI",
+   "csl": {
+    "type": "book",
+    "author": [
+     {
+      "family": "Example",
+      "given": "Erin"
+     }
+    ],
+    "title": "Equipment-dependent services",
+    "issued": {
+     "date-parts": [
+      [
+       2025
+      ]
+     ]
+    },
+    "publisher": "Springer",
+    "DOI": "10.1007/978-3-031-00000-0"
+   },
+   "expected": "Example, E. (2025). *Equipment-dependent services*. Springer. https://doi.org/10.1007/978-3-031-00000-0"
+  },
+  {
+   "rule": "10.2 edited book, one editor",
+   "csl": {
+    "type": "book",
+    "editor": [
+     {
+      "family": "Lee",
+      "given": "Ann"
+     }
+    ],
+    "title": "Handbook of SME finance",
+    "issued": {
+     "date-parts": [
+      [
+       2020
+      ]
+     ]
+    },
+    "publisher": "Edward Elgar"
+   },
+   "expected": "Lee, A. (Ed.). (2020). *Handbook of SME finance*. Edward Elgar."
+  },
+  {
+   "rule": "10.2 edited book, two editors",
+   "csl": {
+    "type": "book",
+    "editor": [
+     {
+      "family": "Lee",
+      "given": "Ann"
+     },
+     {
+      "family": "Wu",
+      "given": "Bo"
+     }
+    ],
+    "title": "Small business economics",
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    },
+    "publisher": "Routledge"
+   },
+   "expected": "Lee, A., & Wu, B. (Eds.). (2019). *Small business economics*. Routledge."
+  },
+  {
+   "rule": "9.24 publisher omitted when it is the group author",
+   "csl": {
+    "type": "book",
+    "author": [
+     {
+      "literal": "American Psychological Association"
+     }
+    ],
+    "title": "Publication manual of the American Psychological Association",
+    "issued": {
+     "date-parts": [
+      [
+       2020
+      ]
+     ]
+    },
+    "publisher": "American Psychological Association",
+    "edition": "7",
+    "DOI": "10.1037/0000165-000"
+   },
+   "expected": "American Psychological Association. (2020). *Publication manual of the American Psychological Association* (7th ed.). https://doi.org/10.1037/0000165-000"
+  },
+  {
+   "rule": "10.2 3rd edition with URL",
+   "csl": {
+    "type": "book",
+    "author": [
+     {
+      "family": "Ross",
+      "given": "Stephen A."
+     }
+    ],
+    "title": "Corporate finance",
+    "issued": {
+     "date-parts": [
+      [
+       2016
+      ]
+     ]
+    },
+    "publisher": "McGraw-Hill",
+    "edition": "3",
+    "URL": "https://example.org/ross"
+   },
+   "expected": "Ross, S. A. (2016). *Corporate finance* (3rd ed.). McGraw-Hill. https://example.org/ross"
+  },
+  {
+   "rule": "10.2 ordinal 21st",
+   "csl": {
+    "type": "book",
+    "author": [
+     {
+      "family": "Kovács",
+      "given": "Péter"
+     }
+    ],
+    "title": "Studios",
+    "issued": {
+     "date-parts": [
+      [
+       2010
+      ]
+     ]
+    },
+    "publisher": "Akadémiai Kiadó",
+    "edition": "21"
+   },
+   "expected": "Kovács, P. (2010). *Studios* (21st ed.). Akadémiai Kiadó."
+  },
+  {
+   "rule": "10.3 chapter, one editor",
+   "csl": {
+    "type": "chapter",
+    "author": [
+     {
+      "family": "Kovács",
+      "given": "Péter"
+     }
+    ],
+    "title": "EMS studios",
+    "issued": {
+     "date-parts": [
+      [
+       2018
+      ]
+     ]
+    },
+    "editor": [
+     {
+      "family": "Lee",
+      "given": "Ann"
+     }
+    ],
+    "container-title": "Handbook of fitness",
+    "page": "3-9",
+    "publisher": "Springer"
+   },
+   "expected": "Kovács, P. (2018). EMS studios. In A. Lee (Ed.), *Handbook of fitness* (pp. 3–9). Springer."
+  },
+  {
+   "rule": "10.3 chapter, two editors",
+   "csl": {
+    "type": "chapter",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "John"
+     }
+    ],
+    "title": "Leasing",
+    "issued": {
+     "date-parts": [
+      [
+       2017
+      ]
+     ]
+    },
+    "editor": [
+     {
+      "family": "Lee",
+      "given": "Ann"
+     },
+     {
+      "family": "Wu",
+      "given": "Bo"
+     }
+    ],
+    "container-title": "Equipment finance",
+    "page": "45-60",
+    "publisher": "Routledge"
+   },
+   "expected": "Smith, J. (2017). Leasing. In A. Lee & B. Wu (Eds.), *Equipment finance* (pp. 45–60). Routledge."
+  },
+  {
+   "rule": "10.3 chapter, three editors",
+   "csl": {
+    "type": "chapter",
+    "author": [
+     {
+      "family": "Brown",
+      "given": "Ruth"
+     }
+    ],
+    "title": "Exit decisions",
+    "issued": {
+     "date-parts": [
+      [
+       2016
+      ]
+     ]
+    },
+    "editor": [
+     {
+      "family": "Lee",
+      "given": "Ann"
+     },
+     {
+      "family": "Wu",
+      "given": "Bo"
+     },
+     {
+      "family": "Kim",
+      "given": "Chul"
+     }
+    ],
+    "container-title": "Firm survival",
+    "page": "100-120",
+    "publisher": "Wiley"
+   },
+   "expected": "Brown, R. (2016). Exit decisions. In A. Lee, B. Wu, & C. Kim (Eds.), *Firm survival* (pp. 100–120). Wiley."
+  },
+  {
+   "rule": "10.3 chapter with DOI",
+   "csl": {
+    "type": "chapter",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "Anna"
+     }
+    ],
+    "title": "Bank loans",
+    "issued": {
+     "date-parts": [
+      [
+       2021
+      ]
+     ]
+    },
+    "editor": [
+     {
+      "family": "Tóth",
+      "given": "Csilla"
+     }
+    ],
+    "container-title": "Finance in transition",
+    "page": "11-30",
+    "publisher": "Palgrave Macmillan",
+    "DOI": "10.1007/978-3-030-11111-1_2"
+   },
+   "expected": "Nagy, A. (2021). Bank loans. In C. Tóth (Ed.), *Finance in transition* (pp. 11–30). Palgrave Macmillan. https://doi.org/10.1007/978-3-030-11111-1_2"
+  },
+  {
+   "rule": "10.3 chapter in a later edition",
+   "csl": {
+    "type": "chapter",
+    "author": [
+     {
+      "family": "Zhang",
+      "given": "Li"
+     }
+    ],
+    "title": "Credit scoring",
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    },
+    "editor": [
+     {
+      "family": "Lee",
+      "given": "Ann"
+     }
+    ],
+    "container-title": "Banking handbook",
+    "page": "3-9",
+    "publisher": "Elsevier",
+    "edition": "2"
+   },
+   "expected": "Zhang, L. (2019). Credit scoring. In A. Lee (Ed.), *Banking handbook* (2nd ed., pp. 3–9). Elsevier."
+  },
+  {
+   "rule": "10.3 chapter without editors",
+   "csl": {
+    "type": "chapter",
+    "author": [
+     {
+      "family": "Weiß",
+      "given": "Otto"
+     }
+    ],
+    "title": "Cooperatives",
+    "issued": {
+     "date-parts": [
+      [
+       2015
+      ]
+     ]
+    },
+    "container-title": "Encyclopedia of business",
+    "page": "1-2",
+    "publisher": "Sage"
+   },
+   "expected": "Weiß, O. (2015). Cooperatives. In *Encyclopedia of business* (pp. 1–2). Sage."
+  },
+  {
+   "rule": "10.4 report with number; publisher omitted when it is the author",
+   "csl": {
+    "type": "report",
+    "author": [
+     {
+      "literal": "World Bank"
+     }
+    ],
+    "title": "Enterprise surveys: Hungary 2019",
+    "issued": {
+     "date-parts": [
+      [
+       2021
+      ]
+     ]
+    },
+    "number": "9512",
+    "genre": "Policy Research Working Paper",
+    "publisher": "World Bank",
+    "URL": "https://example.org/wb9512"
+   },
+   "expected": "World Bank. (2021). *Enterprise surveys: Hungary 2019* (Policy Research Working Paper No. 9512). https://example.org/wb9512"
+  },
+  {
+   "rule": "10.4 report by individual authors",
+   "csl": {
+    "type": "report",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "Ann"
+     },
+     {
+      "family": "Kim",
+      "given": "Chul"
+     }
+    ],
+    "title": "Leasing markets in Europe",
+    "issued": {
+     "date-parts": [
+      [
+       2020
+      ]
+     ]
+    },
+    "publisher": "European Investment Bank"
+   },
+   "expected": "Lee, A., & Kim, C. (2020). *Leasing markets in Europe*. European Investment Bank."
+  },
+  {
+   "rule": "10.4 report number without a series name",
+   "csl": {
+    "type": "report",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "John"
+     }
+    ],
+    "title": "Credit survey",
+    "issued": {
+     "date-parts": [
+      [
+       2019
+      ]
+     ]
+    },
+    "number": "12",
+    "publisher": "Central Bank"
+   },
+   "expected": "Smith, J. (2019). *Credit survey* (Report No. 12). Central Bank."
+  },
+  {
+   "rule": "10.4 BibTeX techreport type treated as a report number",
+   "csl": {
+    "type": "report",
+    "author": [
+     {
+      "family": "Brown",
+      "given": "Ruth"
+     }
+    ],
+    "title": "Equipment survey",
+    "issued": {
+     "date-parts": [
+      [
+       2018
+      ]
+     ]
+    },
+    "number": "TR-7",
+    "genre": "techreport",
+    "publisher": "Institute of Finance"
+   },
+   "expected": "Brown, R. (2018). *Equipment survey* (Report No. TR-7). Institute of Finance."
+  },
+  {
+   "rule": "10.4 report with DOI",
+   "csl": {
+    "type": "report",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "Anna"
+     }
+    ],
+    "title": "SME access to finance",
+    "issued": {
+     "date-parts": [
+      [
+       2022
+      ]
+     ]
+    },
+    "publisher": "European Central Bank",
+    "DOI": "10.2866/123456"
+   },
+   "expected": "Nagy, A. (2022). *SME access to finance*. European Central Bank. https://doi.org/10.2866/123456"
+  },
+  {
+   "rule": "10.8 preprint",
+   "csl": {
+    "type": "article",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "John"
+     },
+     {
+      "family": "Kovács",
+      "given": "Péter"
+     }
+    ],
+    "title": "Financial flexibility in service SMEs",
+    "issued": {
+     "date-parts": [
+      [
+       2023
+      ]
+     ]
+    },
+    "publisher": "SSRN",
+    "DOI": "10.2139/ssrn.4400000"
+   },
+   "expected": "Smith, J., & Kovács, P. (2023). *Financial flexibility in service SMEs* [Preprint]. SSRN. https://doi.org/10.2139/ssrn.4400000"
+  },
+  {
+   "rule": "10.8 preprint on arXiv",
+   "csl": {
+    "type": "article",
+    "author": [
+     {
+      "family": "Kim",
+      "given": "Su"
+     }
+    ],
+    "title": "Deep learning for credit risk",
+    "issued": {
+     "date-parts": [
+      [
+       2022
+      ]
+     ]
+    },
+    "publisher": "arXiv",
+    "DOI": "10.48550/arXiv.2201.00001"
+   },
+   "expected": "Kim, S. (2022). *Deep learning for credit risk* [Preprint]. arXiv. https://doi.org/10.48550/arXiv.2201.00001"
+  },
+  {
+   "rule": "10.8 archive name from the container title",
+   "csl": {
+    "type": "article",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "Ann"
+     }
+    ],
+    "title": "Exit and re-entry",
+    "issued": {
+     "date-parts": [
+      [
+       2021
+      ]
+     ]
+    },
+    "container-title": "PsyArXiv",
+    "URL": "https://example.org/psyarxiv/abc"
+   },
+   "expected": "Lee, A. (2021). *Exit and re-entry* [Preprint]. PsyArXiv. https://example.org/psyarxiv/abc"
+  },
+  {
+   "rule": "10.8 preprint without link",
+   "csl": {
+    "type": "article",
+    "author": [
+     {
+      "family": "Brown",
+      "given": "Ruth"
+     }
+    ],
+    "title": "Studio economics",
+    "issued": {
+     "date-parts": [
+      [
+       2024
+      ]
+     ]
+    },
+    "publisher": "SocArXiv"
+   },
+   "expected": "Brown, R. (2024). *Studio economics* [Preprint]. SocArXiv."
+  },
+  {
+   "rule": "10.5 paper in published proceedings",
+   "csl": {
+    "type": "paper-conference",
+    "author": [
+     {
+      "family": "Example",
+      "given": "Erin"
+     }
+    ],
+    "title": "Strategic flexibility in equipment-dependent SMEs",
+    "issued": {
+     "date-parts": [
+      [
+       2026
+      ]
+     ]
+    },
+    "editor": [
+     {
+      "family": "Lee",
+      "given": "Ann"
+     }
+    ],
+    "container-title": "Proceedings of the Example Annual Conference",
+    "page": "45-52",
+    "publisher": "Example Society",
+    "DOI": "10.1234/exconf.2026.45"
+   },
+   "expected": "Example, E. (2026). Strategic flexibility in equipment-dependent SMEs. In A. Lee (Ed.), *Proceedings of the Example Annual Conference* (pp. 45–52). Example Society. https://doi.org/10.1234/exconf.2026.45"
+  },
+  {
+   "rule": "10.5 proceedings without editors",
+   "csl": {
+    "type": "paper-conference",
+    "author": [
+     {
+      "family": "Nagy",
+      "given": "Anna"
+     },
+     {
+      "family": "Tóth",
+      "given": "Csilla"
+     }
+    ],
+    "title": "Bank credit after COVID-19",
+    "issued": {
+     "date-parts": [
+      [
+       2022
+      ]
+     ]
+    },
+    "container-title": "Proceedings of the European Finance Conference",
+    "page": "10-18",
+    "publisher": "EFC"
+   },
+   "expected": "Nagy, A., & Tóth, C. (2022). Bank credit after COVID-19. In *Proceedings of the European Finance Conference* (pp. 10–18). EFC."
+  },
+  {
+   "rule": "10.5 conference presentation",
+   "csl": {
+    "type": "paper-conference",
+    "author": [
+     {
+      "family": "Smith",
+      "given": "John"
+     }
+    ],
+    "title": "Leasing and growth",
+    "issued": {
+     "date-parts": [
+      [
+       2023,
+       6,
+       5
+      ]
+     ]
+    },
+    "event": "Annual Meeting of the Academy of Management",
+    "event-place": "Boston, MA, United States"
+   },
+   "expected": "Smith, J. (2023, June 5). *Leasing and growth* [Paper presentation]. Annual Meeting of the Academy of Management, Boston, MA, United States."
+  },
+  {
+   "rule": "10.5 presentation with year only",
+   "csl": {
+    "type": "paper-conference",
+    "author": [
+     {
+      "family": "Kim",
+      "given": "Su"
+     }
+    ],
+    "title": "Credit and innovation",
+    "issued": {
+     "date-parts": [
+      [
+       2022
+      ]
+     ]
+    },
+    "event": "Finance Workshop",
+    "event-place": "Győr, Hungary"
+   },
+   "expected": "Kim, S. (2022). *Credit and innovation* [Paper presentation]. Finance Workshop, Győr, Hungary."
+  },
+  {
+   "rule": "10.9 data set with version",
+   "csl": {
+    "type": "dataset",
+    "author": [
+     {
+      "family": "Example",
+      "given": "Erin"
+     }
+    ],
+    "title": "Studio panel",
+    "issued": {
+     "date-parts": [
+      [
+       2025
+      ]
+     ]
+    },
+    "version": "1.2",
+    "publisher": "Zenodo",
+    "DOI": "10.5281/zenodo.1234567"
+   },
+   "expected": "Example, E. (2025). *Studio panel* (Version 1.2) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.1234567"
+  },
+  {
+   "rule": "10.9 data set by a group author who is also the publisher",
+   "csl": {
+    "type": "dataset",
+    "author": [
+     {
+      "literal": "World Bank"
+     }
+    ],
+    "title": "Enterprise Surveys",
+    "issued": {
+     "date-parts": [
+      [
+       2023
+      ]
+     ]
+    },
+    "publisher": "World Bank",
+    "URL": "https://example.org/es"
+   },
+   "expected": "World Bank. (2023). *Enterprise Surveys* [Data set]. https://example.org/es"
+  },
+  {
+   "rule": "9.12 no author: title moves to the author position",
+   "csl": {
+    "type": "dataset",
+    "title": "European SME survey",
+    "issued": {
+     "date-parts": [
+      [
+       2021
+      ]
+     ]
+    },
+    "version": "2",
+    "publisher": "Zenodo"
+   },
+   "expected": "*European SME survey* (Version 2) [Data set]. (2021). Zenodo."
+  },
+  {
+   "rule": "10.10 software with version",
+   "csl": {
+    "type": "software",
+    "author": [
+     {
+      "family": "Example",
+      "given": "Erin"
+     }
+    ],
+    "title": "Quartile",
+    "issued": {
+     "date-parts": [
+      [
+       2026
+      ]
+     ]
+    },
+    "version": "0.17.0",
+    "publisher": "Zenodo",
+    "URL": "https://github.com/emsleader/quartile"
+   },
+   "expected": "Example, E. (2026). *Quartile* (Version 0.17.0) [Computer software]. Zenodo. https://github.com/emsleader/quartile"
+  },
+  {
+   "rule": "10.10 software by a group author",
+   "csl": {
+    "type": "software",
+    "author": [
+     {
+      "literal": "R Core Team"
+     }
+    ],
+    "title": "R: A language and environment for statistical computing",
+    "issued": {
+     "date-parts": [
+      [
+       2023
+      ]
+     ]
+    },
+    "version": "4.3.3",
+    "publisher": "R Foundation for Statistical Computing",
+    "URL": "https://www.R-project.org/"
+   },
+   "expected": "R Core Team. (2023). *R: A language and environment for statistical computing* (Version 4.3.3) [Computer software]. R Foundation for Statistical Computing. https://www.R-project.org/"
+  },
+  {
+   "rule": "10.10 software without version",
+   "csl": {
+    "type": "software",
+    "author": [
+     {
+      "family": "Lee",
+      "given": "Ann"
+     }
+    ],
+    "title": "leasecalc",
+    "issued": {
+     "date-parts": [
+      [
+       2020
+      ]
+     ]
+    },
+    "publisher": "GitHub",
+    "URL": "https://example.org/leasecalc"
+   },
+   "expected": "Lee, A. (2020). *leasecalc* [Computer software]. GitHub. https://example.org/leasecalc"
+  },
+  {
+   "rule": "10.10 software with DOI",
+   "csl": {
+    "type": "software",
+    "author": [
+     {
+      "family": "Kim",
+      "given": "Su"
+     },
+     {
+      "family": "Brown",
+      "given": "Ruth"
+     }
+    ],
+    "title": "creditr",
+    "issued": {
+     "date-parts": [
+      [
+       2021
+      ]
+     ]
+    },
+    "version": "2.0",
+    "publisher": "Zenodo",
+    "DOI": "10.5281/zenodo.7654321"
+   },
+   "expected": "Kim, S., & Brown, R. (2021). *creditr* (Version 2.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.7654321"
+  }
+ ]
+}
