@@ -1,5 +1,15 @@
 [
  {
+  "doi": "10.1111/jofi.13090",
+  "title": "Predictably Unequal? The Effects of Machine Learning on Credit Markets",
+  "journal": "Journal of Finance",
+  "year": 2021,
+  "field": "finance",
+  "license": "cc-by-nc-nd",
+  "words": 28087,
+  "measured": true
+ },
+ {
   "doi": "10.1016/j.jfineco.2021.05.008",
   "title": "Do Investors Care about Carbon Risk?",
   "journal": "Journal of Financial Economics",
@@ -28,16 +38,6 @@
   "license": "cc-by-nc-nd",
   "words": 7858,
   "measured": false
- },
- {
-  "doi": "10.1016/j.jmoneco.2019.09.002",
-  "title": "The long-run information effect of central bank communication",
-  "journal": "Journal of Monetary Economics",
-  "year": 2019,
-  "field": "finance",
-  "license": "cc-by-nc-nd",
-  "words": 10173,
-  "measured": true
  },
  {
   "doi": "10.1561/104.00000120",
@@ -110,16 +110,6 @@
   "measured": true
  },
  {
-  "doi": "10.1016/j.jinteco.2019.07.002",
-  "title": "Good for the environment, good for business: Foreign acquisitions and energy intensity",
-  "journal": "Journal of International Economics",
-  "year": 2019,
-  "field": "finance",
-  "license": "cc-by-nc-nd",
-  "words": 15967,
-  "measured": true
- },
- {
   "doi": "10.1016/j.jwb.2021.101267",
   "title": "The role of context in SME internationalization – A review",
   "journal": "Journal of World Business",
@@ -140,13 +130,13 @@
   "measured": true
  },
  {
-  "doi": "10.2308/tar-2019-0506",
-  "title": "Why is Corporate Virtue in the Eye of The Beholder? The Case of ESG Ratings",
-  "journal": "Accounting Review",
+  "doi": "10.1016/j.jcorpfin.2021.102070",
+  "title": "Integrating corporate social responsibility criteria into executive compensation and firm innovation: International evidence",
+  "journal": "Journal of Corporate Finance",
   "year": 2021,
   "field": "finance",
-  "license": "cc-by",
-  "words": 12993,
+  "license": "cc-by-nc-nd",
+  "words": 17056,
   "measured": true
  },
  {
@@ -190,16 +180,6 @@
   "measured": true
  },
  {
-  "doi": "10.1016/j.ibusrev.2019.101592",
-  "title": "Foreign market entries, exits and re-entries: The role of knowledge, network relationships and decision-making logic",
-  "journal": "International Business Review",
-  "year": 2019,
-  "field": "finance",
-  "license": "cc-by-nc-nd",
-  "words": 18031,
-  "measured": true
- },
- {
   "doi": "10.1093/jjfinec/nbac034",
   "title": "Periodicity in Cryptocurrency Volatility and Liquidity",
   "journal": "Journal of Financial Econometrics",
@@ -230,6 +210,16 @@
   "measured": true
  },
  {
+  "doi": "10.1108/cfri-04-2021-0081",
+  "title": "Are corporate social responsibility reports informative? Evidence from textual analysis of banks in China",
+  "journal": "China Finance Review International",
+  "year": 2021,
+  "field": "finance",
+  "license": "cc-by-nc",
+  "words": 7804,
+  "measured": true
+ },
+ {
   "doi": "10.1108/cfri-03-2023-0061",
   "title": "Dynamic interlinkages between cryptocurrencies, NFTs, and DeFis and optimal portfolio investment strategies",
   "journal": "China Finance Review International",
@@ -237,26 +227,6 @@
   "field": "finance",
   "license": "cc-by-nc-nd",
   "words": 8045,
-  "measured": true
- },
- {
-  "doi": "10.1016/j.intman.2020.100738",
-  "title": "Investigating Investments in agility strategies in overcoming the global financial crisis - The case of Indian IT/BPO offshoring firms",
-  "journal": "Journal of International Management",
-  "year": 2020,
-  "field": "finance",
-  "license": "cc-by-nc-nd",
-  "words": 7779,
-  "measured": true
- },
- {
-  "doi": "10.1016/j.jclimf.2022.100001",
-  "title": "China’s carbon market: Development, evaluation, coordination of local and national carbon markets, and common prosperity",
-  "journal": "Journal of Climate Finance",
-  "year": 2022,
-  "field": "finance",
-  "license": "cc-by-nc-nd",
-  "words": 13574,
   "measured": true
  },
  {
@@ -308,16 +278,6 @@
   "license": "cc-by",
   "words": 18385,
   "measured": true
- },
- {
-  "doi": "10.1016/j.jjie.2019.02.003",
-  "title": "GVC journeys: Industrialisation and deindustrialisation in the age of the second unbundling",
-  "journal": "Journal of the Japanese and International Economies",
-  "year": 2019,
-  "field": "finance",
-  "license": "cc-by-nc-nd",
-  "words": 10719,
-  "measured": false
  },
  {
   "doi": "10.1080/20430795.2021.1964813",
@@ -410,6 +370,16 @@
   "measured": true
  },
  {
+  "doi": "10.1142/s2010495220500165",
+  "title": "SIMPLE BAYESIAN FORECAST COMBINATION",
+  "journal": "Annals of Financial Economics",
+  "year": 2020,
+  "field": "finance",
+  "license": "cc-by",
+  "words": 1564,
+  "measured": true
+ },
+ {
   "doi": "10.1108/emjb-01-2022-0019",
   "title": "Does board demographic diversity affect the dividend payout policy in Turkey?",
   "journal": "EuroMed Journal of Business",
@@ -430,23 +400,23 @@
   "measured": true
  },
  {
-  "doi": "10.1016/j.jcomm.2019.100112",
-  "title": "Dealing with tail risk in energy commodity markets: Futures contracts versus exchange-traded funds",
-  "journal": "Journal of Commodity Markets",
+  "doi": "10.1016/j.jempfin.2019.01.004",
+  "title": "Harnessing jump component for crude oil volatility forecasting in the presence of extreme shocks",
+  "journal": "Journal of Empirical Finance",
   "year": 2019,
   "field": "finance",
   "license": "cc-by-nc-nd",
-  "words": 394,
-  "measured": false
+  "words": 9543,
+  "measured": true
  },
  {
-  "doi": "10.1016/j.jbusvent.2019.06.002",
-  "title": "Exploring the multi-level processes of legitimacy in transnational social enterprises",
-  "journal": "Journal of Business Venturing",
-  "year": 2019,
+  "doi": "10.1177/1042258720930991",
+  "title": "Fulfilling the Process Promise: A Review and Agenda for New Venture Creation Process Research",
+  "journal": "Entrepreneurship Theory and Practice",
+  "year": 2020,
   "field": "small_business",
-  "license": "cc-by",
-  "words": 12851,
+  "license": "cc-by-nc",
+  "words": 11936,
   "measured": true
  },
  {
@@ -500,16 +470,6 @@
   "measured": true
  },
  {
-  "doi": "10.1108/jfbm-03-2019-0016",
-  "title": "Embeddedness and entrepreneurial traditions",
-  "journal": "Journal of Family Business Management",
-  "year": 2019,
-  "field": "small_business",
-  "license": "cc-by-nc",
-  "words": 11939,
-  "measured": true
- },
- {
   "doi": "10.1108/jeee-01-2023-0028",
   "title": "The effect of institutional environment on entrepreneurship in emerging economies: female entrepreneurs in Bangladesh",
   "journal": "Journal of Entrepreneurship in Emerging Economies",
@@ -547,6 +507,16 @@
   "field": "management",
   "license": "cc-by-nc-nd",
   "words": 20934,
+  "measured": true
+ },
+ {
+  "doi": "10.5465/annals.2022.0090",
+  "title": "Taming Platform Power: Taking Accountability into Account in the Management of Platforms",
+  "journal": "Academy of Management Annals",
+  "year": 2024,
+  "field": "management",
+  "license": "cc-by-nd",
+  "words": 20504,
   "measured": true
  },
  {
@@ -596,7 +566,7 @@
   "year": 2021,
   "field": "management",
   "license": "cc-by",
-  "words": 16789,
+  "words": 17288,
   "measured": true
  },
  {
@@ -617,6 +587,16 @@
   "field": "management",
   "license": "cc-by-nc-nd",
   "words": 19171,
+  "measured": true
+ },
+ {
+  "doi": "10.1177/10946705221140148",
+  "title": "Healing the Digital Divide With Digital Inclusion: Enabling Human Capabilities",
+  "journal": "Journal of Service Research",
+  "year": 2022,
+  "field": "management",
+  "license": "cc-by-nc",
+  "words": 20320,
   "measured": true
  },
  {
@@ -720,6 +700,16 @@
   "measured": false
  },
  {
+  "doi": "10.1016/j.tourman.2019.104026",
+  "title": "Expanding theory of tourists’ destination loyalty: The role of sensory impressions",
+  "journal": "Tourism Management",
+  "year": 2019,
+  "field": "management",
+  "license": "cc-by-nc-nd",
+  "words": 9623,
+  "measured": true
+ },
+ {
   "doi": "10.1016/j.tourman.2020.104201",
   "title": "Spatial spillovers of agglomeration economies and productivity in the tourism industry: The case of the UK",
   "journal": "Tourism Management",
@@ -790,6 +780,26 @@
   "measured": true
  },
  {
+  "doi": "10.1108/josm-10-2020-0378",
+  "title": "Intention to use analytical artificial intelligence (AI) in services – the effect of technology readiness and awareness",
+  "journal": "Journal of Service Management",
+  "year": 2021,
+  "field": "management",
+  "license": "cc-by-nc",
+  "words": 11818,
+  "measured": true
+ },
+ {
+  "doi": "10.1108/josm-05-2020-0140",
+  "title": "The influence of social distancing on employee well-being: a conceptual framework and research agenda",
+  "journal": "Journal of Service Management",
+  "year": 2020,
+  "field": "management",
+  "license": "cc-by-nc",
+  "words": 6463,
+  "measured": true
+ },
+ {
   "doi": "10.1016/j.technovation.2021.102386",
   "title": "Digital transformation in the healthcare sector through blockchain technology. Insights from academic research and business developments",
   "journal": "Technovation",
@@ -820,6 +830,16 @@
   "measured": true
  },
  {
+  "doi": "10.1108/ijopm-01-2019-0100",
+  "title": "Blockchain-driven customer order management",
+  "journal": "International Journal of Operations and Production Management",
+  "year": 2019,
+  "field": "management",
+  "license": "cc-by-nc",
+  "words": 13230,
+  "measured": true
+ },
+ {
   "doi": "10.1111/ntwe.12216",
   "title": "Dynamics of contention in the gig economy: Rage against the platform, customer or state?",
   "journal": "New Technology, Work and Employment",
@@ -837,6 +857,16 @@
   "field": "management",
   "license": "cc-by",
   "words": 13392,
+  "measured": true
+ },
+ {
+  "doi": "10.1177/10596011221133583",
+  "title": "Insights into Creating and Managing an Inclusive Neurodiverse Workplace for Positive Outcomes: A Multistaged Theoretical Framework",
+  "journal": "Group and Organization Management",
+  "year": 2022,
+  "field": "management",
+  "license": "cc-by-nc",
+  "words": 13365,
   "measured": true
  },
  {
@@ -1070,13 +1100,13 @@
   "measured": true
  },
  {
-  "doi": "10.1016/j.labeco.2020.101819",
-  "title": "Gender gaps and the structure of local labor markets",
+  "doi": "10.1016/j.labeco.2021.101969",
+  "title": "High School Rank in Math and English and the Gender Gap in STEM",
   "journal": "Labour Economics",
-  "year": 2020,
+  "year": 2021,
   "field": "management",
   "license": "cc-by-nc-nd",
-  "words": 10005,
+  "words": 19708,
   "measured": true
  },
  {
@@ -1090,6 +1120,16 @@
   "measured": true
  },
  {
+  "doi": "10.1016/j.infoandorg.2020.100287",
+  "title": "Why is the hypothetico-deductive (H-D) method in information systems not an H-D method?",
+  "journal": "Information and Organization",
+  "year": 2020,
+  "field": "management",
+  "license": "cc-by-nc-nd",
+  "words": 13297,
+  "measured": true
+ },
+ {
   "doi": "10.1016/j.ijme.2019.02.002",
   "title": "Encouraging intrinsic motivation in management training: The use of business simulation games",
   "journal": "International Journal of Management Education",
@@ -1097,6 +1137,16 @@
   "field": "management",
   "license": "cc-by-nc-nd",
   "words": 8336,
+  "measured": true
+ },
+ {
+  "doi": "10.1177/1548051819842796",
+  "title": "How Authentic Leadership Promotes Individual Creativity: The Mediating Role of Affective Commitment",
+  "journal": "Journal of Leadership and Organizational Studies",
+  "year": 2019,
+  "field": "management",
+  "license": "cc-by-nc-nd",
+  "words": 5933,
   "measured": true
  },
  {
@@ -1117,6 +1167,16 @@
   "field": "management",
   "license": "cc-by",
   "words": 7006,
+  "measured": true
+ },
+ {
+  "doi": "10.1061/(asce)me.1943-5479.0000893",
+  "title": "Insights into Ineffectiveness of Gender Equality and Diversity Initiatives in Project-Based Organizations",
+  "journal": "Journal of Management in Engineering",
+  "year": 2021,
+  "field": "management",
+  "license": "cc-by-nc",
+  "words": 12626,
   "measured": true
  },
  {
@@ -1200,6 +1260,26 @@
   "measured": true
  },
  {
+  "doi": "10.1016/j.smr.2019.10.002",
+  "title": "Design archetype utility for understanding and analyzing the governance of contemporary national sport organizations",
+  "journal": "Sport Management Review",
+  "year": 2019,
+  "field": "management",
+  "license": "public-domain",
+  "words": 9666,
+  "measured": true
+ },
+ {
+  "doi": "10.1080/08853134.2020.1778484",
+  "title": "Drivers and outcomes of salespersons’ value opportunity recognition competence in solution selling",
+  "journal": "Journal of Personal Selling and Sales Management",
+  "year": 2020,
+  "field": "management",
+  "license": "cc-by-nc",
+  "words": 9869,
+  "measured": true
+ },
+ {
   "doi": "10.1016/j.jmapro.2020.08.060",
   "title": "High deposition wire arc additive manufacturing of mild steel: Strategies and heat input effect on microstructure and mechanical properties",
   "journal": "Journal of Manufacturing Processes",
@@ -1280,6 +1360,16 @@
   "measured": true
  },
  {
+  "doi": "10.1111/1744-7941.12275",
+  "title": "Impact of flexibility stigma on outcomes: role of flexible work practices usage",
+  "journal": "Asia Pacific Journal of Human Resources",
+  "year": 2020,
+  "field": "management",
+  "license": "cc-by-nc",
+  "words": 8990,
+  "measured": true
+ },
+ {
   "doi": "10.1123/jsm.2019-0039",
   "title": "Temporal Variations in the Relationship Between Legacies and Support: A Longitudinal Case Study in Rio 2016 Olympic Games",
   "journal": "Journal of Sport Management",
@@ -1287,6 +1377,26 @@
   "field": "management",
   "license": "public-domain",
   "words": 10558,
+  "measured": true
+ },
+ {
+  "doi": "10.1016/j.pubrev.2021.102014",
+  "title": "Two-way communication, symmetry, negative spaces, and dialogue",
+  "journal": "Public Relations Review",
+  "year": 2021,
+  "field": "management",
+  "license": "cc-by-nc-nd",
+  "words": 5908,
+  "measured": true
+ },
+ {
+  "doi": "10.1016/j.pubrev.2020.101931",
+  "title": "Engaging for a social licence to operate (SLO)",
+  "journal": "Public Relations Review",
+  "year": 2020,
+  "field": "management",
+  "license": "cc-by-nc-nd",
+  "words": 6353,
   "measured": true
  },
  {
@@ -1307,6 +1417,16 @@
   "field": "management",
   "license": "cc-by",
   "words": 11351,
+  "measured": true
+ },
+ {
+  "doi": "10.32731/smq.291.032020.05",
+  "title": "Host Country Brand Image and Political Consumerism: The Case of Russia 2018 FIFA World Cup",
+  "journal": "Sport Marketing Quarterly",
+  "year": 2020,
+  "field": "management",
+  "license": "public-domain",
+  "words": 9459,
   "measured": true
  },
  {
@@ -1420,6 +1540,16 @@
   "measured": false
  },
  {
+  "doi": "10.1093/workar/waad013",
+  "title": "A Scoping Review of Workplace Interventions to Promote Positive Attitudes Toward Older Workers and Reduce Age-Based Discrimination",
+  "journal": "Work, Aging and Retirement",
+  "year": 2023,
+  "field": "management",
+  "license": "cc-by",
+  "words": 9563,
+  "measured": true
+ },
+ {
   "doi": "10.1177/0959680119863585",
   "title": "Trade unions and precariat in Europe: Representative claims",
   "journal": "European Journal of Industrial Relations",
@@ -1427,6 +1557,16 @@
   "field": "management",
   "license": "cc-by-nc",
   "words": 6974,
+  "measured": true
+ },
+ {
+  "doi": "10.1080/0267257x.2022.2092196",
+  "title": "A strengths-based approach to eliciting deep insights from social marketing customers experiencing vulnerability",
+  "journal": "Journal of Marketing Management",
+  "year": 2022,
+  "field": "management",
+  "license": "cc-by-nc",
+  "words": 13581,
   "measured": true
  },
  {
@@ -1438,6 +1578,16 @@
   "license": "cc-by-nc-nd",
   "words": 8125,
   "measured": false
+ },
+ {
+  "doi": "10.1108/apjml-07-2022-0647",
+  "title": "Consumers' reverse exchange behavior and e-waste recycling to promote sustainable post-consumption behavior",
+  "journal": "Asia Pacific Journal of Marketing and Logistics",
+  "year": 2023,
+  "field": "management",
+  "license": "cc-by-nc",
+  "words": 7207,
+  "measured": true
  },
  {
   "doi": "10.1177/08933189221095602",
@@ -1490,6 +1640,16 @@
   "measured": true
  },
  {
+  "doi": "10.1109/tem.2022.3215727",
+  "title": "Drivers of Digital Transformation in SMEs",
+  "journal": "IEEE Transactions on Engineering Management",
+  "year": 2022,
+  "field": "management",
+  "license": "cc-by",
+  "words": 11069,
+  "measured": false
+ },
+ {
   "doi": "10.1109/tem.2020.2997386",
   "title": "New Product Development During the Last Ten Years: The Ongoing Debate and Future Avenues",
   "journal": "IEEE Transactions on Engineering Management",
@@ -1528,6 +1688,16 @@
   "license": "cc-by-nc-nd",
   "words": 9461,
   "measured": false
+ },
+ {
+  "doi": "10.1061/(asce)co.1943-7862.0001902",
+  "title": "Rework Causation that Undermines Safety Performance during Production in Construction",
+  "journal": "Journal of Construction Engineering and Management",
+  "year": 2020,
+  "field": "management",
+  "license": "cc-by-nc",
+  "words": 8655,
+  "measured": true
  },
  {
   "doi": "10.30935/cedtech/13152",
@@ -1580,13 +1750,13 @@
   "measured": true
  },
  {
-  "doi": "10.30935/cedtech/8247",
-  "title": "Factors Contributing to the Difficulties in Teaching and Learning of Computer Programming: A Literature Review",
+  "doi": "10.30935/cedtech/10786",
+  "title": "The Role of Self-directed Learning, Metacognition, and 21st Century Skills Predicting the Readiness for Online Learning",
   "journal": "Contemporary Educational Technology",
-  "year": 2020,
+  "year": 2021,
   "field": "management",
   "license": "cc-by",
-  "words": 7628,
+  "words": 6282,
   "measured": true
  },
  {
@@ -1610,13 +1780,13 @@
   "measured": true
  },
  {
-  "doi": "10.1080/10438599.2021.1893139",
-  "title": "Non-standard work and innovation: evidence from European industries",
-  "journal": "Economics of Innovation and New Technology",
+  "doi": "10.1177/00108367211007873",
+  "title": "Reciprocal institutional visibility: Youth, peace and security and ‘inclusive’ agendas at the United Nations",
+  "journal": "Cooperation and Conflict",
   "year": 2021,
   "field": "management",
-  "license": "cc-by-nc-nd",
-  "words": 14655,
+  "license": "cc-by-nc",
+  "words": 8105,
   "measured": true
  },
  {
@@ -1630,6 +1800,36 @@
   "measured": true
  },
  {
+  "doi": "10.1108/jstp-04-2023-0118",
+  "title": "Avoiding excessive AI service agent anthropomorphism: examining its role in delivering bad news",
+  "journal": "Journal of Service Theory and Practice",
+  "year": 2023,
+  "field": "management",
+  "license": "cc-by-nc",
+  "words": 8568,
+  "measured": true
+ },
+ {
+  "doi": "10.1108/jstp-04-2023-0123",
+  "title": "Retail robots as sales assistants: how speciesism moderates the effect of robot intelligence on customer perceptions and behaviour",
+  "journal": "Journal of Service Theory and Practice",
+  "year": 2023,
+  "field": "management",
+  "license": "cc-by-nc",
+  "words": 8670,
+  "measured": true
+ },
+ {
+  "doi": "10.1016/j.jairtraman.2021.102043",
+  "title": "Predicting demand for air taxi urban aviation services using machine learning algorithms",
+  "journal": "Journal of Air Transport Management",
+  "year": 2021,
+  "field": "management",
+  "license": "cc-by-nc-nd",
+  "words": 7361,
+  "measured": true
+ },
+ {
   "doi": "10.1111/itor.13224",
   "title": "Network polarization, filter bubbles, and echo chambers: an annotated review of measures and reduction methods",
   "journal": "International Transactions in Operational Research",
@@ -1637,16 +1837,6 @@
   "field": "management",
   "license": "cc-by-nc-nd",
   "words": 15326,
-  "measured": true
- },
- {
-  "doi": "10.1111/itor.12625",
-  "title": "Biased‐randomized iterated local search for a multiperiod vehicle routing problem with price discounts for delivery flexibility",
-  "journal": "International Transactions in Operational Research",
-  "year": 2019,
-  "field": "management",
-  "license": "public-domain",
-  "words": 10383,
   "measured": true
  },
  {
