@@ -1,0 +1,89 @@
+# Production-editor text rules (Phase 4). Wording is Quartile's own.
+source:
+  id: QUARTILE_PRODUCTION
+  citation: "Quartile production-editor rules (Phase 4, specification Section 9). American Psychological Association (2020), Publication Manual of the American Psychological Association (7th ed.)."
+  licence_note: "Rules paraphrased by the Quartile authors; no text from the manual reproduced."
+rules:
+  - id: PRD-T-01
+    title: "Table or figure referred to by position"
+    role: production
+    severity: minor
+    confidence: medium
+    designs: [all]
+    check: pattern
+    pattern: '\b(?:the\s+)?(?:table|figure)\s+(?:below|above)\b|\b(?:following|preceding|above|below)\s+(?:table|figure)\b'
+    negatable: true
+    where: all
+    source_ref: "APA Publication Manual (7th ed., 2020), ch. 7, table and figure callouts: refer by number, because the layout moves them"
+    message: "Table or figure referred to by its position: '{match}'."
+    fix: "Refer to it by number, for example 'Table 2 shows ...'."
+    tests:
+      positive: [tests/rules/PRD-T-01/pos_1.txt]
+      negative: [tests/rules/PRD-T-01/neg_1.txt, tests/rules/PRD-T-01/neg_2.txt]
+  - id: PRD-T-02
+    title: "Placeholder or broken cross-reference left in the text"
+    role: production
+    severity: major
+    confidence: high
+    designs: [all]
+    check: pattern
+    flags: u
+    pattern: '(?:Error! )?Reference source not found|\[(?:[Cc]itation needed|[Rr]ef(?:erence)?s?|TBD|TODO|XX+|\?+)\]|\bTODO\b|\(\?\?\)|\bXX\.X+\b'
+    negatable: true
+    where: all
+    source_ref: "Production check: placeholders and broken Word cross-references must be removed before submission"
+    message: "Placeholder or broken cross-reference: '{match}'."
+    fix: "Replace the placeholder with the real citation, number or cross-reference."
+    tests:
+      positive: [tests/rules/PRD-T-02/pos_1.txt]
+      negative: [tests/rules/PRD-T-02/neg_1.txt, tests/rules/PRD-T-02/neg_2.txt]
+  - id: PRD-T-03
+    title: "Thesis wording left in a journal manuscript"
+    role: production
+    severity: minor
+    confidence: medium
+    designs: [all]
+    check: pattern
+    pattern: '\b(?:this|the present|my) (?:thesis|dissertation)\b|\bin (?:the )?(?:previous|next|following|preceding) chapter\b|\bin Chapter \d+\b'
+    negatable: true
+    where: all
+    source_ref: "Production check: a journal article is self-contained; chapter and thesis references come from the source document"
+    message: "Thesis or chapter wording in a journal manuscript: '{match}'."
+    fix: "Write 'this article' or 'this study', and replace chapter references with section numbers."
+    tests:
+      positive: [tests/rules/PRD-T-03/pos_1.txt]
+      negative: [tests/rules/PRD-T-03/neg_1.txt, tests/rules/PRD-T-03/neg_2.txt]
+  - id: PRD-T-04
+    title: "Numbered table or figure written in lower case"
+    role: production
+    severity: minor
+    confidence: medium
+    designs: [all]
+    check: pattern
+    flags: u
+    pattern: '(?<![\p{L}])(?:table|figure)\s+\d+[a-z]?\b'
+    negatable: true
+    where: all
+    source_ref: "APA Publication Manual (7th ed., 2020), ch. 6, capitalization of numbered tables and figures"
+    message: "Numbered table or figure in lower case: '{match}'."
+    fix: "Capitalise it: 'Table 2', 'Figure 1'."
+    tests:
+      positive: [tests/rules/PRD-T-04/pos_1.txt]
+      negative: [tests/rules/PRD-T-04/neg_1.txt, tests/rules/PRD-T-04/neg_2.txt]
+  - id: PRD-T-05
+    title: "'et al' without a full stop"
+    role: production
+    severity: minor
+    confidence: high
+    designs: [all]
+    check: pattern
+    flags: u
+    pattern: '\bet al(?=[\s,;)])'
+    negatable: true
+    where: all
+    source_ref: "APA Publication Manual (7th ed., 2020), ch. 8, author names in citations ('et al.' takes a full stop)"
+    message: "'et al' needs a full stop: '{match}'."
+    fix: "Write 'et al.'."
+    tests:
+      positive: [tests/rules/PRD-T-05/pos_1.txt]
+      negative: [tests/rules/PRD-T-05/neg_1.txt, tests/rules/PRD-T-05/neg_2.txt]

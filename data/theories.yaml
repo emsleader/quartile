@@ -1,0 +1,2953 @@
+# Theory and mechanism dictionary for BUS-01 (named theory) and BUS-02 (theory before a hypothesis).
+# One reference per theory: a classic or founding work. Every reference has verified: false. The owner checks each
+# one in Scite before it is cited anywhere. Where a DOI is given, its registered title was compared with the title
+# here (Crossref or OpenAlex metadata, 22 November 2026); this is not a substitute for the owner's check.
+# Matching: name and aliases are matched case-insensitively at a word start; acronyms are matched case-sensitively
+# as whole words. The older list in core/core.js (THEORIES) is kept unchanged; every term in it is covered here.
+version: 1
+checked: 2026-11-22
+theories:
+  - id: agency-theory
+    name: agency theory
+    aliases:
+      - principal-agent theory
+      - agency costs
+      - agency problem
+    field: finance
+    reference:
+      authors: Jensen, M. C., & Meckling, W. H.
+      year: 1976
+      title: "Theory of the firm: Managerial behavior, agency costs and ownership structure"
+      venue: Journal of Financial Economics, 3(4), 305-360
+      doi: 10.1016/0304-405X(76)90026-X
+      verified: false
+  - id: pecking-order-theory
+    name: pecking order theory
+    aliases:
+      - pecking order
+      - pecking-order
+      - financing hierarchy
+      - hierarchy of financing
+    field: finance
+    reference:
+      authors: Myers, S. C., & Majluf, N. S.
+      year: 1984
+      title: Corporate financing and investment decisions when firms have information that investors do not have
+      venue: Journal of Financial Economics, 13(2), 187-221
+      doi: 10.1016/0304-405X(84)90023-0
+      verified: false
+  - id: trade-off-theory
+    name: trade-off theory
+    aliases:
+      - static trade-off
+      - tradeoff theory
+      - trade off theory
+      - optimal leverage
+    field: finance
+    reference:
+      authors: Kraus, A., & Litzenberger, R. H.
+      year: 1973
+      title: A state-preference model of optimal financial leverage
+      venue: Journal of Finance, 28(4), 911-922
+      doi: 10.1111/j.1540-6261.1973.tb01415.x
+      verified: false
+  - id: resource-based-view
+    name: resource-based view
+    aliases:
+      - resource based view
+      - resource-based theory
+      - resource based theory
+      - VRIN
+      - VRIO
+    acronyms:
+      - RBV
+    field: strategy
+    reference:
+      authors: Barney, J.
+      year: 1991
+      title: Firm resources and sustained competitive advantage
+      venue: Journal of Management, 17(1), 99-120
+      doi: 10.1177/014920639101700108
+      verified: false
+  - id: transaction-cost-economics
+    name: transaction cost economics
+    aliases:
+      - transaction cost
+      - transaction-cost
+      - make-or-buy
+      - asset specificity
+    acronyms:
+      - TCE
+    field: economics
+    reference:
+      authors: Williamson, O. E.
+      year: 1979
+      title: "Transaction-cost economics: The governance of contractual relations"
+      venue: Journal of Law and Economics, 22(2), 233-261
+      doi: 10.1086/466942
+      verified: false
+  - id: dynamic-capabilities
+    name: dynamic capabilities
+    aliases:
+      - dynamic capability
+      - dynamic capabilities view
+    field: strategy
+    reference:
+      authors: Teece, D. J., Pisano, G., & Shuen, A.
+      year: 1997
+      title: Dynamic capabilities and strategic management
+      venue: Strategic Management Journal, 18(7), 509-533
+      doi: 10.1002/(SICI)1097-0266(199708)18:7<509::AID-SMJ882>3.0.CO;2-Z
+      verified: false
+  - id: economies-of-scope
+    name: economies of scope
+    aliases:
+      - scope economies
+      - diseconomies of scope
+    field: economics
+    reference:
+      authors: Panzar, J. C., & Willig, R. D.
+      year: 1981
+      title: Economies of scope
+      venue: American Economic Review, 71(2), 268-272
+      doi: null
+      verified: false
+  - id: real-options
+    name: real options theory
+    aliases:
+      - real options
+      - real option
+      - option value of waiting
+      - investment under uncertainty
+    field: finance
+    reference:
+      authors: Dixit, A. K., & Pindyck, R. S.
+      year: 1994
+      title: Investment under uncertainty
+      venue: Princeton University Press
+      doi: 10.1515/9781400830176
+      verified: false
+  - id: signalling-theory
+    name: signalling theory
+    aliases:
+      - signaling theory
+      - job market signalling
+      - job market signaling
+      - costly signal
+    field: economics
+    reference:
+      authors: Spence, M.
+      year: 1973
+      title: Job market signaling
+      venue: Quarterly Journal of Economics, 87(3), 355-374
+      doi: 10.2307/1882010
+      verified: false
+  - id: stakeholder-theory
+    name: stakeholder theory
+    aliases:
+      - stakeholder approach
+      - stakeholder management
+    field: strategy
+    reference:
+      authors: Freeman, R. E.
+      year: 1984
+      title: "Strategic management: A stakeholder approach"
+      venue: Pitman
+      doi: null
+      verified: false
+  - id: institutional-isomorphism
+    name: institutional isomorphism
+    aliases:
+      - institutional theory
+      - neo-institutional theory
+      - neoinstitutional theory
+      - mimetic isomorphism
+      - coercive isomorphism
+      - normative isomorphism
+    field: organization
+    reference:
+      authors: DiMaggio, P. J., & Powell, W. W.
+      year: 1983
+      title: "The iron cage revisited: Institutional isomorphism and collective rationality in organizational fields"
+      venue: American Sociological Review, 48(2), 147-160
+      doi: 10.2307/2095101
+      verified: false
+  - id: institutionalized-organizations
+    name: institutionalized myth and ceremony
+    aliases:
+      - myth and ceremony
+      - rationalized myths
+      - decoupling theory
+    field: organization
+    reference:
+      authors: Meyer, J. W., & Rowan, B.
+      year: 1977
+      title: "Institutionalized organizations: Formal structure as myth and ceremony"
+      venue: American Journal of Sociology, 83(2), 340-363
+      doi: 10.1086/226550
+      verified: false
+  - id: market-for-lemons
+    name: market for lemons
+    aliases:
+      - information asymmetry
+      - asymmetric information
+      - adverse selection
+      - lemons problem
+    field: economics
+    reference:
+      authors: Akerlof, G. A.
+      year: 1970
+      title: 'The market for "lemons": Quality uncertainty and the market mechanism'
+      venue: Quarterly Journal of Economics, 84(3), 488-500
+      doi: 10.2307/1879431
+      verified: false
+  - id: credit-rationing
+    name: credit rationing theory
+    aliases:
+      - credit rationing
+      - equilibrium credit rationing
+    field: finance
+    reference:
+      authors: Stiglitz, J. E., & Weiss, A.
+      year: 1981
+      title: Credit rationing in markets with imperfect information
+      venue: American Economic Review, 71(3), 393-410
+      doi: null
+      verified: false
+  - id: modigliani-miller
+    name: Modigliani-Miller theorem
+    aliases:
+      - Modigliani-Miller
+      - Modigliani and Miller
+      - capital structure irrelevance
+      - irrelevance proposition
+    acronyms:
+      - MM theorem
+    field: finance
+    reference:
+      authors: Modigliani, F., & Miller, M. H.
+      year: 1958
+      title: The cost of capital, corporation finance and the theory of investment
+      venue: American Economic Review, 48(3), 261-297
+      doi: null
+      verified: false
+  - id: upper-echelons
+    name: upper echelons theory
+    aliases:
+      - upper echelons
+      - upper-echelons
+    field: strategy
+    reference:
+      authors: Hambrick, D. C., & Mason, P. A.
+      year: 1984
+      title: "Upper echelons: The organization as a reflection of its top managers"
+      venue: Academy of Management Review, 9(2), 193-206
+      doi: 10.5465/amr.1984.4277628
+      verified: false
+  - id: contingency-theory
+    name: contingency theory
+    aliases:
+      - structural contingency theory
+      - contingency approach
+    field: organization
+    reference:
+      authors: Lawrence, P. R., & Lorsch, J. W.
+      year: 1967
+      title: "Organization and environment: Managing differentiation and integration"
+      venue: Harvard University, Graduate School of Business Administration
+      doi: null
+      verified: false
+  - id: technology-acceptance-model
+    name: technology acceptance model
+    aliases:
+      - technology acceptance
+      - perceived usefulness
+      - perceived ease of use
+    acronyms:
+      - TAM
+    field: information systems
+    reference:
+      authors: Davis, F. D.
+      year: 1989
+      title: Perceived usefulness, perceived ease of use, and user acceptance of information technology
+      venue: MIS Quarterly, 13(3), 319-340
+      doi: 10.2307/249008
+      verified: false
+  - id: utaut
+    name: unified theory of acceptance and use of technology
+    aliases:
+      - utaut
+      - unified theory of acceptance
+    field: information systems
+    reference:
+      authors: Venkatesh, V., Morris, M. G., Davis, G. B., & Davis, F. D.
+      year: 2003
+      title: "User acceptance of information technology: Toward a unified view"
+      venue: MIS Quarterly, 27(3), 425-478
+      doi: 10.2307/30036540
+      verified: false
+  - id: diffusion-of-innovations
+    name: diffusion of innovations
+    aliases:
+      - diffusion of innovation
+      - innovation diffusion theory
+      - diffusion theory
+    field: marketing
+    reference:
+      authors: Rogers, E. M.
+      year: 1962
+      title: Diffusion of innovations
+      venue: Free Press
+      doi: null
+      verified: false
+  - id: social-exchange-theory
+    name: social exchange theory
+    aliases:
+      - social exchange
+    field: organizational behaviour
+    reference:
+      authors: Blau, P. M.
+      year: 1964
+      title: Exchange and power in social life
+      venue: Wiley
+      doi: null
+      verified: false
+  - id: stewardship-theory
+    name: stewardship theory
+    aliases:
+      - stewardship perspective
+    field: governance
+    reference:
+      authors: Davis, J. H., Schoorman, F. D., & Donaldson, L.
+      year: 1997
+      title: Toward a stewardship theory of management
+      venue: Academy of Management Review, 22(1), 20-47
+      doi: 10.5465/amr.1997.9707180258
+      verified: false
+  - id: legitimacy-theory
+    name: legitimacy theory
+    aliases:
+      - organizational legitimacy
+      - organisational legitimacy
+    field: organization
+    reference:
+      authors: Suchman, M. C.
+      year: 1995
+      title: "Managing legitimacy: Strategic and institutional approaches"
+      venue: Academy of Management Review, 20(3), 571-610
+      doi: 10.5465/amr.1995.9508080331
+      verified: false
+  - id: prospect-theory
+    name: prospect theory
+    aliases:
+      - loss aversion
+    field: behavioural economics
+    reference:
+      authors: Kahneman, D., & Tversky, A.
+      year: 1979
+      title: "Prospect theory: An analysis of decision under risk"
+      venue: Econometrica, 47(2), 263-291
+      doi: 10.2307/1914185
+      verified: false
+  - id: behavioral-theory-of-the-firm
+    name: behavioral theory of the firm
+    aliases:
+      - behavioural theory of the firm
+      - behavioral theory
+      - problemistic search
+      - aspiration levels
+    acronyms:
+      - BTOF
+    field: organization
+    reference:
+      authors: Cyert, R. M., & March, J. G.
+      year: 1963
+      title: A behavioral theory of the firm
+      venue: Prentice-Hall
+      doi: null
+      verified: false
+  - id: knowledge-based-view
+    name: knowledge-based view
+    aliases:
+      - knowledge based view
+      - knowledge-based theory of the firm
+    acronyms:
+      - KBV
+    field: strategy
+    reference:
+      authors: Grant, R. M.
+      year: 1996
+      title: Toward a knowledge-based theory of the firm
+      venue: Strategic Management Journal, 17(S2), 109-122
+      doi: 10.1002/smj.4250171110
+      verified: false
+  - id: financial-growth-cycle
+    name: financial growth cycle
+    aliases:
+      - life cycle theory
+      - life-cycle theory
+      - financial life cycle
+      - financial life-cycle
+    field: finance
+    reference:
+      authors: Berger, A. N., & Udell, G. F.
+      year: 1998
+      title: "The economics of small business finance: The roles of private equity and debt markets in the financial growth cycle"
+      venue: Journal of Banking & Finance, 22(6-8), 613-673
+      doi: 10.1016/S0378-4266(98)00038-7
+      verified: false
+  - id: balanced-scorecard
+    name: balanced scorecard
+    aliases:
+      - balanced score card
+    acronyms:
+      - BSC
+    field: accounting
+    reference:
+      authors: Kaplan, R. S., & Norton, D. P.
+      year: 1992
+      title: "The balanced scorecard: Measures that drive performance"
+      venue: Harvard Business Review, 70(1), 71-79
+      doi: null
+      verified: false
+  - id: levers-of-control
+    name: levers of control
+    aliases:
+      - levers-of-control
+      - interactive control systems
+      - diagnostic control systems
+    field: accounting
+    reference:
+      authors: Simons, R.
+      year: 1995
+      title: "Levers of control: How managers use innovative control systems to drive strategic renewal"
+      venue: Harvard Business School Press
+      doi: null
+      verified: false
+  - id: cybernetic-control
+    name: cybernetic control theory
+    aliases:
+      - cybernetic
+      - cybernetics
+    field: accounting
+    reference:
+      authors: Wiener, N.
+      year: 1948
+      title: "Cybernetics: Or control and communication in the animal and the machine"
+      venue: Technology Press and John Wiley & Sons
+      doi: null
+      verified: false
+  - id: goal-setting-theory
+    name: goal-setting theory
+    aliases:
+      - goal setting theory
+    field: organizational behaviour
+    reference:
+      authors: Locke, E. A., & Latham, G. P.
+      year: 1990
+      title: A theory of goal setting and task performance
+      venue: Prentice-Hall
+      doi: null
+      verified: false
+  - id: expectancy-theory
+    name: expectancy theory
+    aliases:
+      - valence-instrumentality-expectancy
+      - VIE theory
+    field: organizational behaviour
+    reference:
+      authors: Vroom, V. H.
+      year: 1964
+      title: Work and motivation
+      venue: Wiley
+      doi: null
+      verified: false
+  - id: organizational-learning
+    name: organizational learning
+    aliases:
+      - organisational learning
+      - learning organization
+      - learning organisation
+    field: organization
+    reference:
+      authors: Levitt, B., & March, J. G.
+      year: 1988
+      title: Organizational learning
+      venue: Annual Review of Sociology, 14, 319-340
+      doi: 10.1146/annurev.so.14.080188.001535
+      verified: false
+  - id: absorptive-capacity
+    name: absorptive capacity
+    aliases:
+      - absorptive capacities
+    field: innovation
+    reference:
+      authors: Cohen, W. M., & Levinthal, D. A.
+      year: 1990
+      title: "Absorptive capacity: A new perspective on learning and innovation"
+      venue: Administrative Science Quarterly, 35(1), 128-152
+      doi: 10.2307/2393553
+      verified: false
+  - id: effectuation
+    name: effectuation theory
+    aliases:
+      - effectuation
+      - effectual logic
+      - effectual reasoning
+    field: entrepreneurship
+    reference:
+      authors: Sarasvathy, S. D.
+      year: 2001
+      title: "Causation and effectuation: Toward a theoretical shift from economic inevitability to entrepreneurial contingency"
+      venue: Academy of Management Review, 26(2), 243-263
+      doi: 10.5465/amr.2001.4378020
+      verified: false
+  - id: bricolage
+    name: entrepreneurial bricolage
+    aliases:
+      - bricolage
+    field: entrepreneurship
+    reference:
+      authors: Baker, T., & Nelson, R. E.
+      year: 2005
+      title: "Creating something from nothing: Resource construction through entrepreneurial bricolage"
+      venue: Administrative Science Quarterly, 50(3), 329-366
+      doi: 10.2189/asqu.2005.50.3.329
+      verified: false
+  - id: economies-of-scale
+    name: economies of scale
+    aliases:
+      - scale economies
+      - scale and scope
+    field: economics
+    reference:
+      authors: Chandler, A. D.
+      year: 1990
+      title: "Scale and scope: The dynamics of industrial capitalism"
+      venue: Belknap Press of Harvard University Press
+      doi: null
+      verified: false
+  - id: opportunity-cost
+    name: opportunity cost
+    aliases:
+      - opportunity costs
+      - cost and choice
+    field: economics
+    reference:
+      authors: Buchanan, J. M.
+      year: 1969
+      title: "Cost and choice: An inquiry in economic theory"
+      venue: Markham
+      doi: null
+      verified: false
+  - id: sunk-cost-effect
+    name: sunk cost effect
+    aliases:
+      - sunk cost
+      - sunk-cost
+      - sunk cost fallacy
+    field: behavioural economics
+    reference:
+      authors: Arkes, H. R., & Blumer, C.
+      year: 1985
+      title: The psychology of sunk cost
+      venue: Organizational Behavior and Human Decision Processes, 35(1), 124-140
+      doi: 10.1016/0749-5978(85)90049-4
+      verified: false
+  - id: investment-irreversibility
+    name: investment irreversibility
+    aliases:
+      - irreversible investment
+      - irreversibility
+      - partial irreversibility
+    field: finance
+    reference:
+      authors: Pindyck, R. S.
+      year: 1991
+      title: Irreversibility, uncertainty, and investment
+      venue: Journal of Economic Literature, 29(3), 1110-1148
+      doi: null
+      verified: false
+  - id: asset-redeployability
+    name: asset redeployability
+    aliases:
+      - redeployability
+      - redeployable assets
+      - redeployab
+      - liquidation values
+    field: finance
+    reference:
+      authors: Shleifer, A., & Vishny, R. W.
+      year: 1992
+      title: "Liquidation values and debt capacity: A market equilibrium approach"
+      venue: Journal of Finance, 47(4), 1343-1366
+      doi: 10.1111/j.1540-6261.1992.tb04661.x
+      verified: false
+  - id: switching-costs
+    name: switching costs
+    aliases:
+      - switching cost
+      - consumer switching costs
+      - lock-in
+    field: economics
+    reference:
+      authors: Klemperer, P.
+      year: 1987
+      title: Markets with consumer switching costs
+      venue: Quarterly Journal of Economics, 102(2), 375-394
+      doi: 10.2307/1885068
+      verified: false
+  - id: financial-flexibility
+    name: financial flexibility
+    aliases:
+      - value of financial flexibility
+      - financial slack
+    field: finance
+    reference:
+      authors: Gamba, A., & Triantis, A.
+      year: 2008
+      title: The value of financial flexibility
+      venue: Journal of Finance, 63(5), 2263-2296
+      doi: 10.1111/j.1540-6261.2008.01397.x
+      verified: false
+  - id: bounded-rationality
+    name: bounded rationality
+    aliases:
+      - satisficing
+      - boundedly rational
+    field: behavioural economics
+    reference:
+      authors: Simon, H. A.
+      year: 1955
+      title: A behavioral model of rational choice
+      venue: Quarterly Journal of Economics, 69(1), 99-118
+      doi: 10.2307/1884852
+      verified: false
+  - id: nature-of-the-firm
+    name: theory of the firm
+    aliases:
+      - nature of the firm
+      - Coasian theory of the firm
+    field: economics
+    reference:
+      authors: Coase, R. H.
+      year: 1937
+      title: The nature of the firm
+      venue: Economica, 4(16), 386-405
+      doi: 10.1111/j.1468-0335.1937.tb00002.x
+      verified: false
+  - id: structure-conduct-performance
+    name: structure-conduct-performance paradigm
+    aliases:
+      - structure-conduct-performance
+      - industrial organization
+      - industrial organisation
+      - industrial organization economics
+      - SCP paradigm
+    field: economics
+    reference:
+      authors: Bain, J. S.
+      year: 1959
+      title: Industrial organization
+      venue: Wiley
+      doi: null
+      verified: false
+  - id: relationship-lending
+    name: relationship lending
+    aliases:
+      - relationship banking
+      - lending relationships
+    field: finance
+    reference:
+      authors: Petersen, M. A., & Rajan, R. G.
+      year: 1994
+      title: "The benefits of lending relationships: Evidence from small business data"
+      venue: Journal of Finance, 49(1), 3-37
+      doi: 10.1111/j.1540-6261.1994.tb04418.x
+      verified: false
+  - id: free-cash-flow
+    name: free cash flow hypothesis
+    aliases:
+      - free cash flow theory
+      - agency costs of free cash flow
+    field: finance
+    reference:
+      authors: Jensen, M. C.
+      year: 1986
+      title: Agency costs of free cash flow, corporate finance, and takeovers
+      venue: American Economic Review, 76(2), 323-329
+      doi: null
+      verified: false
+  - id: debt-overhang
+    name: debt overhang
+    aliases:
+      - underinvestment problem
+      - debt overhang problem
+    field: finance
+    reference:
+      authors: Myers, S. C.
+      year: 1977
+      title: Determinants of corporate borrowing
+      venue: Journal of Financial Economics, 5(2), 147-175
+      doi: 10.1016/0304-405X(77)90015-0
+      verified: false
+  - id: market-timing
+    name: market timing theory
+    aliases:
+      - market timing hypothesis
+      - equity market timing
+    field: finance
+    reference:
+      authors: Baker, M., & Wurgler, J.
+      year: 2002
+      title: Market timing and capital structure
+      venue: Journal of Finance, 57(1), 1-32
+      doi: 10.1111/1540-6261.00414
+      verified: false
+  - id: precautionary-cash
+    name: precautionary motive for cash holdings
+    aliases:
+      - precautionary motive
+      - precautionary savings motive
+      - precautionary cash holdings
+    field: finance
+    reference:
+      authors: Opler, T., Pinkowitz, L., Stulz, R., & Williamson, R.
+      year: 1999
+      title: The determinants and implications of corporate cash holdings
+      venue: Journal of Financial Economics, 52(1), 3-46
+      doi: 10.1016/S0304-405X(99)00003-3
+      verified: false
+  - id: financing-constraints
+    name: financing constraints theory
+    aliases:
+      - financial constraints theory
+      - financing constraints
+      - investment-cash flow sensitivity
+      - cash flow sensitivity of investment
+    field: finance
+    reference:
+      authors: Fazzari, S. M., Hubbard, R. G., & Petersen, B. C.
+      year: 1988
+      title: Financing constraints and corporate investment
+      venue: Brookings Papers on Economic Activity, 1988(1), 141-206
+      doi: 10.2307/2534426
+      verified: false
+  - id: efficient-market-hypothesis
+    name: efficient market hypothesis
+    aliases:
+      - efficient markets hypothesis
+      - market efficiency
+    acronyms:
+      - EMH
+    field: finance
+    reference:
+      authors: Fama, E. F.
+      year: 1970
+      title: "Efficient capital markets: A review of theory and empirical work"
+      venue: Journal of Finance, 25(2), 383-417
+      doi: 10.2307/2325486
+      verified: false
+  - id: capm
+    name: capital asset pricing model
+    aliases:
+      - capital asset pricing
+    acronyms:
+      - CAPM
+    field: finance
+    reference:
+      authors: Sharpe, W. F.
+      year: 1964
+      title: "Capital asset prices: A theory of market equilibrium under conditions of risk"
+      venue: Journal of Finance, 19(3), 425-442
+      doi: 10.1111/j.1540-6261.1964.tb02865.x
+      verified: false
+  - id: portfolio-theory
+    name: modern portfolio theory
+    aliases:
+      - portfolio theory
+      - portfolio selection
+      - mean-variance
+    acronyms:
+      - MPT
+    field: finance
+    reference:
+      authors: Markowitz, H.
+      year: 1952
+      title: Portfolio selection
+      venue: Journal of Finance, 7(1), 77-91
+      doi: 10.1111/j.1540-6261.1952.tb01525.x
+      verified: false
+  - id: option-pricing
+    name: option pricing theory
+    aliases:
+      - Black-Scholes
+      - Black and Scholes model
+      - option pricing model
+    field: finance
+    reference:
+      authors: Black, F., & Scholes, M.
+      year: 1973
+      title: The pricing of options and corporate liabilities
+      venue: Journal of Political Economy, 81(3), 637-654
+      doi: 10.1086/260062
+      verified: false
+  - id: arbitrage-pricing-theory
+    name: arbitrage pricing theory
+    aliases:
+      - arbitrage theory of capital asset pricing
+    acronyms:
+      - APT
+    field: finance
+    reference:
+      authors: Ross, S. A.
+      year: 1976
+      title: The arbitrage theory of capital asset pricing
+      venue: Journal of Economic Theory, 13(3), 341-360
+      doi: 10.1016/0022-0531(76)90046-6
+      verified: false
+  - id: dividend-signalling
+    name: dividend signalling theory
+    aliases:
+      - dividend signaling
+      - dividend signalling
+      - signalling role of dividends
+    field: finance
+    reference:
+      authors: Bhattacharya, S.
+      year: 1979
+      title: Imperfect information, dividend policy, and "the bird in the hand" fallacy
+      venue: Bell Journal of Economics, 10(1), 259-270
+      doi: 10.2307/3003330
+      verified: false
+  - id: dividend-irrelevance
+    name: dividend irrelevance theory
+    aliases:
+      - dividend irrelevance
+      - dividend policy irrelevance
+    field: finance
+    reference:
+      authors: Miller, M. H., & Modigliani, F.
+      year: 1961
+      title: Dividend policy, growth, and the valuation of shares
+      venue: Journal of Business, 34(4), 411-433
+      doi: 10.1086/294442
+      verified: false
+  - id: catering-theory
+    name: catering theory of dividends
+    aliases:
+      - catering theory
+    field: finance
+    reference:
+      authors: Baker, M., & Wurgler, J.
+      year: 2004
+      title: A catering theory of dividends
+      venue: Journal of Finance, 59(3), 1125-1165
+      doi: 10.1111/j.1540-6261.2004.00658.x
+      verified: false
+  - id: tax-shield
+    name: debt tax shield
+    aliases:
+      - tax shield
+      - tax advantage of debt
+      - interest tax shield
+    field: finance
+    reference:
+      authors: Modigliani, F., & Miller, M. H.
+      year: 1963
+      title: "Corporate income taxes and the cost of capital: A correction"
+      venue: American Economic Review, 53(3), 433-443
+      doi: null
+      verified: false
+  - id: noise-trader
+    name: noise trader theory
+    aliases:
+      - noise trader risk
+      - noise traders
+    field: finance
+    reference:
+      authors: De Long, J. B., Shleifer, A., Summers, L. H., & Waldmann, R. J.
+      year: 1990
+      title: Noise trader risk in financial markets
+      venue: Journal of Political Economy, 98(4), 703-738
+      doi: 10.1086/261703
+      verified: false
+  - id: herding
+    name: herd behaviour
+    aliases:
+      - herd behavior
+      - herding
+      - informational cascades
+    field: finance
+    reference:
+      authors: Banerjee, A. V.
+      year: 1992
+      title: A simple model of herd behavior
+      venue: Quarterly Journal of Economics, 107(3), 797-817
+      doi: 10.2307/2118364
+      verified: false
+  - id: hubris-hypothesis
+    name: hubris hypothesis
+    aliases:
+      - managerial hubris
+      - hubris theory
+    field: finance
+    reference:
+      authors: Roll, R.
+      year: 1986
+      title: The hubris hypothesis of corporate takeovers
+      venue: Journal of Business, 59(2), 197-216
+      doi: 10.1086/296325
+      verified: false
+  - id: market-for-corporate-control
+    name: market for corporate control
+    aliases:
+      - corporate control market
+    field: finance
+    reference:
+      authors: Manne, H. G.
+      year: 1965
+      title: Mergers and the market for corporate control
+      venue: Journal of Political Economy, 73(2), 110-120
+      doi: 10.1086/259000
+      verified: false
+  - id: separation-ownership-control
+    name: separation of ownership and control
+    aliases:
+      - separation of ownership and decision
+      - decision control and decision management
+    field: governance
+    reference:
+      authors: Fama, E. F., & Jensen, M. C.
+      year: 1983
+      title: Separation of ownership and control
+      venue: Journal of Law and Economics, 26(2), 301-325
+      doi: 10.1086/467037
+      verified: false
+  - id: modern-corporation
+    name: Berle-Means corporation
+    aliases:
+      - Berle and Means
+      - managerialism
+      - managerial capitalism
+    field: governance
+    reference:
+      authors: Berle, A. A., & Means, G. C.
+      year: 1932
+      title: The modern corporation and private property
+      venue: Macmillan
+      doi: null
+      verified: false
+  - id: managerial-entrenchment
+    name: managerial entrenchment
+    aliases:
+      - management entrenchment
+      - entrenchment hypothesis
+    field: governance
+    reference:
+      authors: Shleifer, A., & Vishny, R. W.
+      year: 1989
+      title: "Management entrenchment: The case of manager-specific investments"
+      venue: Journal of Financial Economics, 25(1), 123-139
+      doi: 10.1016/0304-405X(89)90099-8
+      verified: false
+  - id: law-and-finance
+    name: law and finance
+    aliases:
+      - legal origins
+      - legal origin theory
+      - investor protection
+    field: finance
+    reference:
+      authors: La Porta, R., Lopez-de-Silanes, F., Shleifer, A., & Vishny, R. W.
+      year: 1998
+      title: Law and finance
+      venue: Journal of Political Economy, 106(6), 1113-1155
+      doi: 10.1086/250042
+      verified: false
+  - id: incomplete-contracts
+    name: incomplete contracts theory
+    aliases:
+      - incomplete contracting
+      - Grossman-Hart
+      - costs and benefits of ownership
+    field: economics
+    reference:
+      authors: Grossman, S. J., & Hart, O. D.
+      year: 1986
+      title: "The costs and benefits of ownership: A theory of vertical and lateral integration"
+      venue: Journal of Political Economy, 94(4), 691-719
+      doi: 10.1086/261404
+      verified: false
+  - id: property-rights-theory
+    name: property rights theory of the firm
+    aliases:
+      - property rights theory
+      - property-rights theory
+      - Grossman-Hart-Moore
+    field: economics
+    reference:
+      authors: Hart, O., & Moore, J.
+      year: 1990
+      title: Property rights and the nature of the firm
+      venue: Journal of Political Economy, 98(6), 1119-1158
+      doi: 10.1086/261729
+      verified: false
+  - id: team-production
+    name: team production theory
+    aliases:
+      - team production
+    field: economics
+    reference:
+      authors: Alchian, A. A., & Demsetz, H.
+      year: 1972
+      title: Production, information costs, and economic organization
+      venue: American Economic Review, 62(5), 777-795
+      doi: null
+      verified: false
+  - id: moral-hazard
+    name: moral hazard
+    aliases:
+      - hidden action
+      - moral hazard problem
+    field: economics
+    reference:
+      authors: Holmström, B.
+      year: 1979
+      title: Moral hazard and observability
+      venue: Bell Journal of Economics, 10(1), 74-91
+      doi: 10.2307/3003320
+      verified: false
+  - id: screening-theory
+    name: screening theory
+    aliases:
+      - screening model
+      - self-selection screening
+    field: economics
+    reference:
+      authors: Rothschild, M., & Stiglitz, J.
+      year: 1976
+      title: "Equilibrium in competitive insurance markets: An essay on the economics of imperfect information"
+      venue: Quarterly Journal of Economics, 90(4), 629-649
+      doi: 10.2307/1885326
+      verified: false
+  - id: multitask-agency
+    name: multitask principal-agent model
+    aliases:
+      - multitask agency
+      - multi-task agency
+      - multitasking model
+    field: economics
+    reference:
+      authors: Holmström, B., & Milgrom, P.
+      year: 1991
+      title: "Multitask principal-agent analyses: Incentive contracts, asset ownership, and job design"
+      venue: Journal of Law, Economics, & Organization, 7(special issue), 24-52
+      doi: 10.1093/jleo/7.special_issue.24
+      verified: false
+  - id: tournament-theory
+    name: tournament theory
+    aliases:
+      - rank-order tournaments
+      - tournament model
+    field: economics
+    reference:
+      authors: Lazear, E. P., & Rosen, S.
+      year: 1981
+      title: Rank-order tournaments as optimum labor contracts
+      venue: Journal of Political Economy, 89(5), 841-864
+      doi: 10.1086/261010
+      verified: false
+  - id: efficiency-wage
+    name: efficiency wage theory
+    aliases:
+      - efficiency wages
+      - efficiency wage
+      - shirking model
+    field: economics
+    reference:
+      authors: Shapiro, C., & Stiglitz, J. E.
+      year: 1984
+      title: Equilibrium unemployment as a worker discipline device
+      venue: American Economic Review, 74(3), 433-444
+      doi: null
+      verified: false
+  - id: human-capital-theory
+    name: human capital theory
+    aliases:
+      - human capital investment
+      - investment in human capital
+    field: economics
+    reference:
+      authors: Becker, G. S.
+      year: 1962
+      title: "Investment in human capital: A theoretical analysis"
+      venue: Journal of Political Economy, 70(5, Part 2), 9-49
+      doi: 10.1086/258724
+      verified: false
+  - id: five-forces
+    name: five forces framework
+    aliases:
+      - five forces
+      - competitive forces
+      - Porter's five forces
+      - generic strategies
+      - competitive strategy
+    field: strategy
+    reference:
+      authors: Porter, M. E.
+      year: 1980
+      title: "Competitive strategy: Techniques for analyzing industries and competitors"
+      venue: Free Press
+      doi: null
+      verified: false
+  - id: value-chain
+    name: value chain framework
+    aliases:
+      - value chain
+      - competitive advantage framework
+    field: strategy
+    reference:
+      authors: Porter, M. E.
+      year: 1985
+      title: "Competitive advantage: Creating and sustaining superior performance"
+      venue: Free Press
+      doi: null
+      verified: false
+  - id: resource-dependence
+    name: resource dependence theory
+    aliases:
+      - resource dependency theory
+      - resource dependence
+      - resource-dependence
+    acronyms:
+      - RDT
+    field: organization
+    reference:
+      authors: Pfeffer, J., & Salancik, G. R.
+      year: 1978
+      title: "The external control of organizations: A resource dependence perspective"
+      venue: Harper & Row
+      doi: null
+      verified: false
+  - id: population-ecology
+    name: population ecology
+    aliases:
+      - organizational ecology
+      - organisational ecology
+      - density dependence
+    field: organization
+    reference:
+      authors: Hannan, M. T., & Freeman, J.
+      year: 1977
+      title: The population ecology of organizations
+      venue: American Journal of Sociology, 82(5), 929-964
+      doi: 10.1086/226424
+      verified: false
+  - id: structural-inertia
+    name: structural inertia theory
+    aliases:
+      - structural inertia
+      - organizational inertia
+      - organisational inertia
+    field: organization
+    reference:
+      authors: Hannan, M. T., & Freeman, J.
+      year: 1984
+      title: Structural inertia and organizational change
+      venue: American Sociological Review, 49(2), 149-164
+      doi: 10.2307/2095567
+      verified: false
+  - id: liability-of-newness
+    name: liability of newness
+    aliases:
+      - liability of smallness
+      - imprinting
+    field: organization
+    reference:
+      authors: Stinchcombe, A. L.
+      year: 1965
+      title: Social structure and organizations. In J. G. March (Ed.), Handbook of organizations (pp. 142-193)
+      venue: Rand McNally
+      doi: null
+      verified: false
+  - id: exploration-exploitation
+    name: exploration and exploitation
+    aliases:
+      - exploration-exploitation
+      - exploration versus exploitation
+    field: organization
+    reference:
+      authors: March, J. G.
+      year: 1991
+      title: Exploration and exploitation in organizational learning
+      venue: Organization Science, 2(1), 71-87
+      doi: 10.1287/orsc.2.1.71
+      verified: false
+  - id: ambidexterity
+    name: organizational ambidexterity
+    aliases:
+      - organisational ambidexterity
+      - ambidextrous organization
+      - ambidexterity
+    field: organization
+    reference:
+      authors: Tushman, M. L., & O'Reilly, C. A.
+      year: 1996
+      title: "Ambidextrous organizations: Managing evolutionary and revolutionary change"
+      venue: California Management Review, 38(4), 8-30
+      doi: 10.2307/41165852
+      verified: false
+  - id: disruptive-innovation
+    name: disruptive innovation theory
+    aliases:
+      - disruptive innovation
+      - disruptive technology
+      - innovator's dilemma
+    field: innovation
+    reference:
+      authors: Christensen, C. M.
+      year: 1997
+      title: "The innovator's dilemma: When new technologies cause great firms to fail"
+      venue: Harvard Business School Press
+      doi: null
+      verified: false
+  - id: creative-destruction
+    name: creative destruction
+    aliases:
+      - Schumpeterian competition
+      - Schumpeterian innovation
+    field: economics
+    reference:
+      authors: Schumpeter, J. A.
+      year: 1942
+      title: Capitalism, socialism and democracy
+      venue: Harper & Brothers
+      doi: null
+      verified: false
+  - id: entrepreneurial-opportunity
+    name: individual-opportunity nexus
+    aliases:
+      - entrepreneurial opportunity
+      - opportunity recognition
+      - opportunity discovery
+    field: entrepreneurship
+    reference:
+      authors: Shane, S., & Venkataraman, S.
+      year: 2000
+      title: The promise of entrepreneurship as a field of research
+      venue: Academy of Management Review, 25(1), 217-226
+      doi: 10.5465/amr.2000.2791611
+      verified: false
+  - id: entrepreneurial-orientation
+    name: entrepreneurial orientation
+    aliases:
+      - entrepreneurial posture
+    field: entrepreneurship
+    reference:
+      authors: Lumpkin, G. T., & Dess, G. G.
+      year: 1996
+      title: Clarifying the entrepreneurial orientation construct and linking it to performance
+      venue: Academy of Management Review, 21(1), 135-172
+      doi: 10.5465/amr.1996.9602161568
+      verified: false
+  - id: social-capital
+    name: social capital theory
+    aliases:
+      - social capital
+      - intellectual capital and social capital
+    field: organization
+    reference:
+      authors: Nahapiet, J., & Ghoshal, S.
+      year: 1998
+      title: Social capital, intellectual capital, and the organizational advantage
+      venue: Academy of Management Review, 23(2), 242-266
+      doi: 10.5465/amr.1998.533225
+      verified: false
+  - id: weak-ties
+    name: strength of weak ties
+    aliases:
+      - weak ties
+      - weak tie theory
+    field: sociology
+    reference:
+      authors: Granovetter, M. S.
+      year: 1973
+      title: The strength of weak ties
+      venue: American Journal of Sociology, 78(6), 1360-1380
+      doi: 10.1086/225469
+      verified: false
+  - id: structural-holes
+    name: structural holes theory
+    aliases:
+      - structural holes
+      - brokerage
+    field: sociology
+    reference:
+      authors: Burt, R. S.
+      year: 1992
+      title: "Structural holes: The social structure of competition"
+      venue: Harvard University Press
+      doi: null
+      verified: false
+  - id: embeddedness
+    name: embeddedness
+    aliases:
+      - social embeddedness
+      - structural embeddedness
+    field: sociology
+    reference:
+      authors: Granovetter, M.
+      year: 1985
+      title: "Economic action and social structure: The problem of embeddedness"
+      venue: American Journal of Sociology, 91(3), 481-510
+      doi: 10.1086/228311
+      verified: false
+  - id: theory-of-planned-behaviour
+    name: theory of planned behaviour
+    aliases:
+      - theory of planned behavior
+      - planned behaviour
+      - planned behavior
+    acronyms:
+      - TPB
+    field: psychology
+    reference:
+      authors: Ajzen, I.
+      year: 1991
+      title: The theory of planned behavior
+      venue: Organizational Behavior and Human Decision Processes, 50(2), 179-211
+      doi: 10.1016/0749-5978(91)90020-T
+      verified: false
+  - id: theory-of-reasoned-action
+    name: theory of reasoned action
+    aliases:
+      - reasoned action
+    acronyms:
+      - TRA
+    field: psychology
+    reference:
+      authors: Fishbein, M., & Ajzen, I.
+      year: 1975
+      title: "Belief, attitude, intention, and behavior: An introduction to theory and research"
+      venue: Addison-Wesley
+      doi: null
+      verified: false
+  - id: self-determination-theory
+    name: self-determination theory
+    aliases:
+      - intrinsic motivation theory
+    acronyms:
+      - SDT
+    field: psychology
+    reference:
+      authors: Deci, E. L., & Ryan, R. M.
+      year: 1985
+      title: Intrinsic motivation and self-determination in human behavior
+      venue: Plenum
+      doi: null
+      verified: false
+  - id: social-identity-theory
+    name: social identity theory
+    aliases:
+      - social identification
+    field: psychology
+    reference:
+      authors: Tajfel, H., & Turner, J. C.
+      year: 1979
+      title: An integrative theory of intergroup conflict. In W. G. Austin & S. Worchel (Eds.), The social psychology of intergroup relations (pp. 33-47)
+      venue: Brooks/Cole
+      doi: null
+      verified: false
+  - id: self-efficacy
+    name: self-efficacy theory
+    aliases:
+      - self-efficacy
+    field: psychology
+    reference:
+      authors: Bandura, A.
+      year: 1977
+      title: "Self-efficacy: Toward a unifying theory of behavioral change"
+      venue: Psychological Review, 84(2), 191-215
+      doi: 10.1037/0033-295X.84.2.191
+      verified: false
+  - id: social-cognitive-theory
+    name: social cognitive theory
+    aliases:
+      - social learning theory
+    field: psychology
+    reference:
+      authors: Bandura, A.
+      year: 1986
+      title: "Social foundations of thought and action: A social cognitive theory"
+      venue: Prentice-Hall
+      doi: null
+      verified: false
+  - id: equity-theory
+    name: equity theory
+    aliases:
+      - inequity theory
+    field: organizational behaviour
+    reference:
+      authors: Adams, J. S.
+      year: 1965
+      title: Inequity in social exchange
+      venue: Advances in Experimental Social Psychology, 2, 267-299
+      doi: 10.1016/S0065-2601(08)60108-2
+      verified: false
+  - id: two-factor-theory
+    name: two-factor theory
+    aliases:
+      - motivation-hygiene theory
+      - hygiene factors
+    field: organizational behaviour
+    reference:
+      authors: Herzberg, F., Mausner, B., & Snyderman, B. B.
+      year: 1959
+      title: The motivation to work
+      venue: Wiley
+      doi: null
+      verified: false
+  - id: hierarchy-of-needs
+    name: hierarchy of needs
+    aliases:
+      - Maslow's hierarchy
+      - need hierarchy
+    field: psychology
+    reference:
+      authors: Maslow, A. H.
+      year: 1943
+      title: A theory of human motivation
+      venue: Psychological Review, 50(4), 370-396
+      doi: 10.1037/h0054346
+      verified: false
+  - id: job-demands-resources
+    name: job demands-resources model
+    aliases:
+      - job demands-resources
+      - job demands resources
+      - JD-R model
+    acronyms:
+      - JD-R
+    field: organizational behaviour
+    reference:
+      authors: Demerouti, E., Bakker, A. B., Nachreiner, F., & Schaufeli, W. B.
+      year: 2001
+      title: The job demands-resources model of burnout
+      venue: Journal of Applied Psychology, 86(3), 499-512
+      doi: 10.1037/0021-9010.86.3.499
+      verified: false
+  - id: conservation-of-resources
+    name: conservation of resources theory
+    aliases:
+      - conservation of resources
+    field: organizational behaviour
+    reference:
+      authors: Hobfoll, S. E.
+      year: 1989
+      title: "Conservation of resources: A new attempt at conceptualizing stress"
+      venue: American Psychologist, 44(3), 513-524
+      doi: 10.1037/0003-066X.44.3.513
+      verified: false
+  - id: job-characteristics
+    name: job characteristics model
+    aliases:
+      - job characteristics theory
+      - job design theory
+    field: organizational behaviour
+    reference:
+      authors: Hackman, J. R., & Oldham, G. R.
+      year: 1976
+      title: "Motivation through the design of work: Test of a theory"
+      venue: Organizational Behavior and Human Performance, 16(2), 250-279
+      doi: 10.1016/0030-5073(76)90016-7
+      verified: false
+  - id: leader-member-exchange
+    name: leader-member exchange theory
+    aliases:
+      - leader-member exchange
+    acronyms:
+      - LMX
+    field: organizational behaviour
+    reference:
+      authors: Graen, G. B., & Uhl-Bien, M.
+      year: 1995
+      title: "Relationship-based approach to leadership: Development of leader-member exchange (LMX) theory of leadership over 25 years"
+      venue: Leadership Quarterly, 6(2), 219-247
+      doi: 10.1016/1048-9843(95)90036-5
+      verified: false
+  - id: transformational-leadership
+    name: transformational leadership theory
+    aliases:
+      - transformational leadership
+      - transactional leadership
+    field: organizational behaviour
+    reference:
+      authors: Bass, B. M.
+      year: 1985
+      title: Leadership and performance beyond expectations
+      venue: Free Press
+      doi: null
+      verified: false
+  - id: psychological-contract
+    name: psychological contract theory
+    aliases:
+      - psychological contract
+      - psychological contracts
+    field: organizational behaviour
+    reference:
+      authors: Rousseau, D. M.
+      year: 1989
+      title: Psychological and implied contracts in organizations
+      venue: Employee Responsibilities and Rights Journal, 2(2), 121-139
+      doi: 10.1007/BF01384942
+      verified: false
+  - id: organizational-justice
+    name: organizational justice theory
+    aliases:
+      - organizational justice
+      - organisational justice
+      - procedural justice
+      - distributive justice
+    field: organizational behaviour
+    reference:
+      authors: Colquitt, J. A.
+      year: 2001
+      title: "On the dimensionality of organizational justice: A construct validation of a measure"
+      venue: Journal of Applied Psychology, 86(3), 386-400
+      doi: 10.1037/0021-9010.86.3.386
+      verified: false
+  - id: organizational-support
+    name: organizational support theory
+    aliases:
+      - perceived organizational support
+      - perceived organisational support
+    acronyms:
+      - POS
+    field: organizational behaviour
+    reference:
+      authors: Eisenberger, R., Huntington, R., Hutchison, S., & Sowa, D.
+      year: 1986
+      title: Perceived organizational support
+      venue: Journal of Applied Psychology, 71(3), 500-507
+      doi: 10.1037/0021-9010.71.3.500
+      verified: false
+  - id: attraction-selection-attrition
+    name: attraction-selection-attrition framework
+    aliases:
+      - attraction-selection-attrition
+      - person-organization fit
+      - person-organisation fit
+    acronyms:
+      - ASA
+    field: organizational behaviour
+    reference:
+      authors: Schneider, B.
+      year: 1987
+      title: The people make the place
+      venue: Personnel Psychology, 40(3), 437-453
+      doi: 10.1111/j.1744-6570.1987.tb00609.x
+      verified: false
+  - id: sensemaking
+    name: sensemaking theory
+    aliases:
+      - sensemaking
+      - sense-making
+    field: organization
+    reference:
+      authors: Weick, K. E.
+      year: 1995
+      title: Sensemaking in organizations
+      venue: Sage
+      doi: null
+      verified: false
+  - id: organizational-culture
+    name: organizational culture theory
+    aliases:
+      - organizational culture
+      - organisational culture
+    field: organization
+    reference:
+      authors: Schein, E. H.
+      year: 1985
+      title: Organizational culture and leadership
+      venue: Jossey-Bass
+      doi: null
+      verified: false
+  - id: cultural-dimensions
+    name: cultural dimensions theory
+    aliases:
+      - cultural dimensions
+      - Hofstede's dimensions
+      - power distance
+      - uncertainty avoidance
+    field: international business
+    reference:
+      authors: Hofstede, G.
+      year: 1980
+      title: "Culture's consequences: International differences in work-related values"
+      venue: Sage
+      doi: null
+      verified: false
+  - id: attention-based-view
+    name: attention-based view
+    aliases:
+      - attention based view
+      - attention-based view of the firm
+    acronyms:
+      - ABV
+    field: strategy
+    reference:
+      authors: Ocasio, W.
+      year: 1997
+      title: Towards an attention-based view of the firm
+      venue: Strategic Management Journal, 18(S1), 187-206
+      doi: null
+      verified: false
+  - id: strategic-choice
+    name: strategic choice theory
+    aliases:
+      - strategic choice perspective
+    field: organization
+    reference:
+      authors: Child, J.
+      year: 1972
+      title: "Organizational structure, environment and performance: The role of strategic choice"
+      venue: Sociology, 6(1), 1-22
+      doi: 10.1177/003803857200600101
+      verified: false
+  - id: strategy-structure
+    name: strategy-structure thesis
+    aliases:
+      - structure follows strategy
+      - strategy and structure
+    field: strategy
+    reference:
+      authors: Chandler, A. D.
+      year: 1962
+      title: "Strategy and structure: Chapters in the history of the industrial enterprise"
+      venue: MIT Press
+      doi: null
+      verified: false
+  - id: miles-snow
+    name: Miles and Snow typology
+    aliases:
+      - Miles-Snow typology
+      - prospector-defender
+      - prospectors and defenders
+      - strategic typology
+    field: strategy
+    reference:
+      authors: Miles, R. E., & Snow, C. C.
+      year: 1978
+      title: Organizational strategy, structure, and process
+      venue: McGraw-Hill
+      doi: null
+      verified: false
+  - id: competitive-dynamics
+    name: competitive dynamics
+    aliases:
+      - awareness-motivation-capability
+      - competitor analysis and interfirm rivalry
+    field: strategy
+    reference:
+      authors: Chen, M.-J.
+      year: 1996
+      title: "Competitor analysis and interfirm rivalry: Toward a theoretical integration"
+      venue: Academy of Management Review, 21(1), 100-134
+      doi: 10.5465/amr.1996.9602161567
+      verified: false
+  - id: relational-view
+    name: relational view
+    aliases:
+      - relational view of the firm
+      - relational rents
+    field: strategy
+    reference:
+      authors: Dyer, J. H., & Singh, H.
+      year: 1998
+      title: "The relational view: Cooperative strategy and sources of interorganizational competitive advantage"
+      venue: Academy of Management Review, 23(4), 660-679
+      doi: 10.5465/amr.1998.1255632
+      verified: false
+  - id: core-competence
+    name: core competence
+    aliases:
+      - core competences
+      - core competencies
+      - core competency
+    field: strategy
+    reference:
+      authors: Prahalad, C. K., & Hamel, G.
+      year: 1990
+      title: The core competence of the corporation
+      venue: Harvard Business Review, 68(3), 79-91
+      doi: null
+      verified: false
+  - id: strategic-factor-markets
+    name: strategic factor markets
+    aliases:
+      - strategic factor market
+    field: strategy
+    reference:
+      authors: Barney, J. B.
+      year: 1986
+      title: "Strategic factor markets: Expectations, luck, and business strategy"
+      venue: Management Science, 32(10), 1231-1241
+      doi: 10.1287/mnsc.32.10.1231
+      verified: false
+  - id: growth-of-the-firm
+    name: theory of the growth of the firm
+    aliases:
+      - Penrosian growth
+      - Penrose effect
+      - growth of the firm
+    field: strategy
+    reference:
+      authors: Penrose, E. T.
+      year: 1959
+      title: The theory of the growth of the firm
+      venue: Blackwell
+      doi: null
+      verified: false
+  - id: evolutionary-economics
+    name: evolutionary theory of economic change
+    aliases:
+      - evolutionary economics
+      - organizational routines
+      - organisational routines
+      - evolutionary theory
+    field: economics
+    reference:
+      authors: Nelson, R. R., & Winter, S. G.
+      year: 1982
+      title: An evolutionary theory of economic change
+      venue: Belknap Press of Harvard University Press
+      doi: null
+      verified: false
+  - id: path-dependence
+    name: path dependence
+    aliases:
+      - path dependency
+      - increasing returns and lock-in
+    field: economics
+    reference:
+      authors: Arthur, W. B.
+      year: 1989
+      title: Competing technologies, increasing returns, and lock-in by historical events
+      venue: Economic Journal, 99(394), 116-131
+      doi: 10.2307/2234208
+      verified: false
+  - id: network-effects
+    name: network externalities
+    aliases:
+      - network effects
+      - network externality
+    field: economics
+    reference:
+      authors: Katz, M. L., & Shapiro, C.
+      year: 1985
+      title: Network externalities, competition, and compatibility
+      venue: American Economic Review, 75(3), 424-440
+      doi: null
+      verified: false
+  - id: two-sided-markets
+    name: two-sided markets
+    aliases:
+      - two-sided market
+      - platform competition
+      - multi-sided platforms
+    field: economics
+    reference:
+      authors: Rochet, J.-C., & Tirole, J.
+      year: 2003
+      title: Platform competition in two-sided markets
+      venue: Journal of the European Economic Association, 1(4), 990-1029
+      doi: 10.1162/154247603322493212
+      verified: false
+  - id: open-innovation
+    name: open innovation
+    aliases:
+      - open innovation paradigm
+    field: innovation
+    reference:
+      authors: Chesbrough, H. W.
+      year: 2003
+      title: "Open innovation: The new imperative for creating and profiting from technology"
+      venue: Harvard Business School Press
+      doi: null
+      verified: false
+  - id: service-dominant-logic
+    name: service-dominant logic
+    aliases:
+      - service dominant logic
+      - S-D logic
+    acronyms:
+      - SDL
+    field: marketing
+    reference:
+      authors: Vargo, S. L., & Lusch, R. F.
+      year: 2004
+      title: Evolving to a new dominant logic for marketing
+      venue: Journal of Marketing, 68(1), 1-17
+      doi: 10.1509/jmkg.68.1.1.24036
+      verified: false
+  - id: servqual
+    name: SERVQUAL model
+    aliases:
+      - service quality gap model
+      - gaps model of service quality
+    acronyms:
+      - SERVQUAL
+    field: marketing
+    reference:
+      authors: Parasuraman, A., Zeithaml, V. A., & Berry, L. L.
+      year: 1988
+      title: "SERVQUAL: A multiple-item scale for measuring consumer perceptions of service quality"
+      venue: Journal of Retailing, 64(1), 12-40
+      doi: null
+      verified: false
+  - id: expectation-confirmation
+    name: expectation-confirmation theory
+    aliases:
+      - expectation confirmation theory
+      - expectation-disconfirmation
+      - expectancy disconfirmation
+    acronyms:
+      - ECT
+    field: marketing
+    reference:
+      authors: Oliver, R. L.
+      year: 1980
+      title: A cognitive model of the antecedents and consequences of satisfaction decisions
+      venue: Journal of Marketing Research, 17(4), 460-469
+      doi: 10.1177/002224378001700405
+      verified: false
+  - id: commitment-trust
+    name: commitment-trust theory
+    aliases:
+      - commitment-trust theory of relationship marketing
+      - relationship marketing theory
+    field: marketing
+    reference:
+      authors: Morgan, R. M., & Hunt, S. D.
+      year: 1994
+      title: The commitment-trust theory of relationship marketing
+      venue: Journal of Marketing, 58(3), 20-38
+      doi: 10.1177/002224299405800302
+      verified: false
+  - id: brand-equity
+    name: customer-based brand equity
+    aliases:
+      - brand equity
+      - customer based brand equity
+    acronyms:
+      - CBBE
+    field: marketing
+    reference:
+      authors: Keller, K. L.
+      year: 1993
+      title: Conceptualizing, measuring, and managing customer-based brand equity
+      venue: Journal of Marketing, 57(1), 1-22
+      doi: 10.1177/002224299305700101
+      verified: false
+  - id: market-orientation
+    name: market orientation
+    aliases:
+      - market-oriented culture
+    field: marketing
+    reference:
+      authors: Narver, J. C., & Slater, S. F.
+      year: 1990
+      title: The effect of a market orientation on business profitability
+      venue: Journal of Marketing, 54(4), 20-35
+      doi: 10.1177/002224299005400403
+      verified: false
+  - id: elaboration-likelihood
+    name: elaboration likelihood model
+    aliases:
+      - elaboration likelihood
+      - central and peripheral routes
+    acronyms:
+      - ELM
+    field: marketing
+    reference:
+      authors: Petty, R. E., & Cacioppo, J. T.
+      year: 1986
+      title: "Communication and persuasion: Central and peripheral routes to attitude change"
+      venue: Springer
+      doi: null
+      verified: false
+  - id: uses-and-gratifications
+    name: uses and gratifications theory
+    aliases:
+      - uses and gratifications
+    field: marketing
+    reference:
+      authors: Katz, E., Blumler, J. G., & Gurevitch, M.
+      year: 1973
+      title: Uses and gratifications research
+      venue: Public Opinion Quarterly, 37(4), 509-523
+      doi: 10.1086/268109
+      verified: false
+  - id: is-success-model
+    name: information systems success model
+    aliases:
+      - IS success model
+      - DeLone and McLean model
+    field: information systems
+    reference:
+      authors: DeLone, W. H., & McLean, E. R.
+      year: 1992
+      title: "Information systems success: The quest for the dependent variable"
+      venue: Information Systems Research, 3(1), 60-95
+      doi: 10.1287/isre.3.1.60
+      verified: false
+  - id: task-technology-fit
+    name: task-technology fit
+    aliases:
+      - task technology fit
+    acronyms:
+      - TTF
+    field: information systems
+    reference:
+      authors: Goodhue, D. L., & Thompson, R. L.
+      year: 1995
+      title: Task-technology fit and individual performance
+      venue: MIS Quarterly, 19(2), 213-236
+      doi: 10.2307/249689
+      verified: false
+  - id: toe-framework
+    name: technology-organization-environment framework
+    aliases:
+      - technology-organization-environment
+      - technology-organisation-environment
+      - TOE framework
+    field: information systems
+    reference:
+      authors: Tornatzky, L. G., & Fleischer, M.
+      year: 1990
+      title: The processes of technological innovation
+      venue: Lexington Books
+      doi: null
+      verified: false
+  - id: positive-accounting-theory
+    name: positive accounting theory
+    aliases:
+      - positive accounting
+    acronyms:
+      - PAT
+    field: accounting
+    reference:
+      authors: Watts, R. L., & Zimmerman, J. L.
+      year: 1986
+      title: Positive accounting theory
+      venue: Prentice-Hall
+      doi: null
+      verified: false
+  - id: earnings-management
+    name: earnings management
+    aliases:
+      - earnings manipulation
+      - accruals management
+    field: accounting
+    reference:
+      authors: Healy, P. M., & Wahlen, J. M.
+      year: 1999
+      title: A review of the earnings management literature and its implications for standard setting
+      venue: Accounting Horizons, 13(4), 365-383
+      doi: 10.2308/acch.1999.13.4.365
+      verified: false
+  - id: voluntary-disclosure
+    name: voluntary disclosure theory
+    aliases:
+      - discretionary disclosure
+      - disclosure theory
+    field: accounting
+    reference:
+      authors: Verrecchia, R. E.
+      year: 1983
+      title: Discretionary disclosure
+      venue: Journal of Accounting and Economics, 5, 179-194
+      doi: 10.1016/0165-4101(83)90011-3
+      verified: false
+  - id: institutional-voids
+    name: institutional voids
+    aliases:
+      - institutional void
+    field: international business
+    reference:
+      authors: Khanna, T., & Palepu, K.
+      year: 1997
+      title: Why focused strategies may be wrong for emerging markets
+      venue: Harvard Business Review, 75(4), 41-51
+      doi: null
+      verified: false
+  - id: uppsala-model
+    name: Uppsala internationalization model
+    aliases:
+      - Uppsala model
+      - internationalization process model
+      - internationalisation process model
+      - psychic distance
+    field: international business
+    reference:
+      authors: Johanson, J., & Vahlne, J.-E.
+      year: 1977
+      title: "The internationalization process of the firm: A model of knowledge development and increasing foreign market commitments"
+      venue: Journal of International Business Studies, 8(1), 23-32
+      doi: 10.1057/palgrave.jibs.8490676
+      verified: false
+  - id: eclectic-paradigm
+    name: eclectic paradigm
+    aliases:
+      - OLI paradigm
+      - OLI framework
+      - ownership-location-internalization
+    acronyms:
+      - OLI
+    field: international business
+    reference:
+      authors: Dunning, J. H.
+      year: 1988
+      title: "The eclectic paradigm of international production: A restatement and some possible extensions"
+      venue: Journal of International Business Studies, 19(1), 1-31
+      doi: 10.1057/palgrave.jibs.8490372
+      verified: false
+  - id: liability-of-foreignness
+    name: liability of foreignness
+    aliases:
+      - liabilities of foreignness
+    acronyms:
+      - LOF
+    field: international business
+    reference:
+      authors: Zaheer, S.
+      year: 1995
+      title: Overcoming the liability of foreignness
+      venue: Academy of Management Journal, 38(2), 341-363
+      doi: 10.5465/256683
+      verified: false
+  - id: international-new-ventures
+    name: international new ventures theory
+    aliases:
+      - international new ventures
+      - born global
+      - born globals
+      - born-global
+    acronyms:
+      - INV
+    field: international business
+    reference:
+      authors: Oviatt, B. M., & McDougall, P. P.
+      year: 1994
+      title: Toward a theory of international new ventures
+      venue: Journal of International Business Studies, 25(1), 45-64
+      doi: 10.1057/palgrave.jibs.8490193
+      verified: false
+  - id: institution-based-view
+    name: institution-based view
+    aliases:
+      - institution based view
+      - institution-based view of business strategy
+    field: international business
+    reference:
+      authors: Peng, M. W., Wang, D. Y. L., & Jiang, Y.
+      year: 2008
+      title: "An institution-based view of international business strategy: A focus on emerging economies"
+      venue: Journal of International Business Studies, 39(5), 920-936
+      doi: 10.1057/palgrave.jibs.8400377
+      verified: false
+  - id: new-institutional-economics
+    name: new institutional economics
+    aliases:
+      - institutional economics
+      - institutions and economic performance
+      - rules of the game
+    acronyms:
+      - NIE
+    field: economics
+    reference:
+      authors: North, D. C.
+      year: 1990
+      title: Institutions, institutional change and economic performance
+      venue: Cambridge University Press
+      doi: 10.1017/CBO9780511808678
+      verified: false
+  - id: collective-action
+    name: collective action theory
+    aliases:
+      - logic of collective action
+      - free-rider problem
+      - free rider problem
+    field: economics
+    reference:
+      authors: Olson, M.
+      year: 1965
+      title: "The logic of collective action: Public goods and the theory of groups"
+      venue: Harvard University Press
+      doi: null
+      verified: false
+  - id: nash-equilibrium
+    name: game theory
+    aliases:
+      - Nash equilibrium
+      - non-cooperative game theory
+      - game-theoretic
+    field: economics
+    reference:
+      authors: Nash, J. F.
+      year: 1950
+      title: Equilibrium points in n-person games
+      venue: Proceedings of the National Academy of Sciences, 36(1), 48-49
+      doi: 10.1073/pnas.36.1.48
+      verified: false
+  - id: contestable-markets
+    name: contestable markets theory
+    aliases:
+      - contestable markets
+      - contestable market
+      - contestability
+    field: economics
+    reference:
+      authors: Baumol, W. J., Panzar, J. C., & Willig, R. D.
+      year: 1982
+      title: Contestable markets and the theory of industry structure
+      venue: Harcourt Brace Jovanovich
+      doi: null
+      verified: false
+  - id: limit-pricing
+    name: limit pricing
+    aliases:
+      - entry deterrence
+      - limit price
+    field: economics
+    reference:
+      authors: Milgrom, P., & Roberts, J.
+      year: 1982
+      title: "Limit pricing and entry under incomplete information: An equilibrium analysis"
+      venue: Econometrica, 50(2), 443-459
+      doi: 10.2307/1912637
+      verified: false
+  - id: endogenous-growth
+    name: endogenous growth theory
+    aliases:
+      - endogenous growth
+      - endogenous technological change
+    field: economics
+    reference:
+      authors: Romer, P. M.
+      year: 1990
+      title: Endogenous technological change
+      venue: Journal of Political Economy, 98(5, Part 2), S71-S102
+      doi: 10.1086/261725
+      verified: false
+  - id: solow-growth
+    name: Solow growth model
+    aliases:
+      - neoclassical growth model
+      - Solow model
+      - Solow-Swan
+    field: economics
+    reference:
+      authors: Solow, R. M.
+      year: 1956
+      title: A contribution to the theory of economic growth
+      venue: Quarterly Journal of Economics, 70(1), 65-94
+      doi: 10.2307/1884513
+      verified: false
+  - id: permanent-income
+    name: permanent income hypothesis
+    aliases:
+      - permanent-income hypothesis
+      - consumption function
+    field: economics
+    reference:
+      authors: Friedman, M.
+      year: 1957
+      title: A theory of the consumption function
+      venue: Princeton University Press
+      doi: null
+      verified: false
+  - id: rational-expectations
+    name: rational expectations
+    aliases:
+      - rational expectations hypothesis
+    field: economics
+    reference:
+      authors: Muth, J. F.
+      year: 1961
+      title: Rational expectations and the theory of price movements
+      venue: Econometrica, 29(3), 315-335
+      doi: 10.2307/1909635
+      verified: false
+  - id: q-theory
+    name: q theory of investment
+    aliases:
+      - Tobin's q
+      - Tobin q theory
+      - q-theory
+    field: finance
+    reference:
+      authors: Tobin, J.
+      year: 1969
+      title: A general equilibrium approach to monetary theory
+      venue: Journal of Money, Credit and Banking, 1(1), 15-29
+      doi: 10.2307/1991374
+      verified: false
+  - id: neoclassical-investment
+    name: neoclassical investment theory
+    aliases:
+      - user cost of capital
+      - neoclassical theory of investment
+    field: economics
+    reference:
+      authors: Jorgenson, D. W.
+      year: 1963
+      title: Capital theory and investment behavior
+      venue: American Economic Review, 53(2), 247-259
+      doi: null
+      verified: false
+  - id: financial-accelerator
+    name: financial accelerator
+    aliases:
+      - financial accelerator mechanism
+      - balance sheet channel
+    field: economics
+    reference:
+      authors: Bernanke, B., Gertler, M., & Gilchrist, S.
+      year: 1996
+      title: The financial accelerator and the flight to quality
+      venue: Review of Economics and Statistics, 78(1), 1-15
+      doi: 10.2307/2109844
+      verified: false
+  - id: costly-state-verification
+    name: costly state verification
+    aliases:
+      - costly-state-verification
+    acronyms:
+      - CSV
+    field: finance
+    reference:
+      authors: Townsend, R. M.
+      year: 1979
+      title: Optimal contracts and competitive markets with costly state verification
+      venue: Journal of Economic Theory, 21(2), 265-293
+      doi: 10.1016/0022-0531(79)90031-0
+      verified: false
+  - id: delegated-monitoring
+    name: delegated monitoring
+    aliases:
+      - financial intermediation theory
+      - delegated monitor
+    field: finance
+    reference:
+      authors: Diamond, D. W.
+      year: 1984
+      title: Financial intermediation and delegated monitoring
+      venue: Review of Economic Studies, 51(3), 393-414
+      doi: 10.2307/2297430
+      verified: false
+  - id: bank-runs
+    name: bank run theory
+    aliases:
+      - bank runs
+      - Diamond-Dybvig
+    field: finance
+    reference:
+      authors: Diamond, D. W., & Dybvig, P. H.
+      year: 1983
+      title: Bank runs, deposit insurance, and liquidity
+      venue: Journal of Political Economy, 91(3), 401-419
+      doi: 10.1086/261155
+      verified: false
+  - id: hold-up-problem
+    name: informational hold-up
+    aliases:
+      - hold-up problem
+      - hold up problem
+      - informed versus arm's-length debt
+    field: finance
+    reference:
+      authors: Rajan, R. G.
+      year: 1992
+      title: "Insiders and outsiders: The choice between informed and arm's-length debt"
+      venue: Journal of Finance, 47(4), 1367-1400
+      doi: 10.1111/j.1540-6261.1992.tb04662.x
+      verified: false
+  - id: collateral-screening
+    name: collateral as a screening device
+    aliases:
+      - collateral signalling
+      - collateral signaling
+      - screening by collateral
+    field: finance
+    reference:
+      authors: Bester, H.
+      year: 1985
+      title: Screening vs. rationing in credit markets with imperfect information
+      venue: American Economic Review, 75(4), 850-855
+      doi: null
+      verified: false
+  - id: trade-credit
+    name: trade credit theory
+    aliases:
+      - trade credit
+      - supplier credit
+    field: finance
+    reference:
+      authors: Petersen, M. A., & Rajan, R. G.
+      year: 1997
+      title: "Trade credit: Theories and evidence"
+      venue: Review of Financial Studies, 10(3), 661-691
+      doi: 10.1093/rfs/10.3.661
+      verified: false
+  - id: lending-technologies
+    name: lending technologies framework
+    aliases:
+      - lending technologies
+      - transactions lending
+      - soft information
+    field: finance
+    reference:
+      authors: Berger, A. N., & Udell, G. F.
+      year: 2006
+      title: A more complete conceptual framework for SME finance
+      venue: Journal of Banking & Finance, 30(11), 2945-2966
+      doi: 10.1016/j.jbankfin.2006.05.008
+      verified: false
+  - id: discouraged-borrowers
+    name: discouraged borrower theory
+    aliases:
+      - discouraged borrowers
+      - discouraged borrower
+      - borrower discouragement
+    field: finance
+    reference:
+      authors: Kon, Y., & Storey, D. J.
+      year: 2003
+      title: A theory of discouraged borrowers
+      venue: Small Business Economics, 21(1), 37-49
+      doi: 10.1023/A:1024447603600
+      verified: false
+  - id: bootstrap-financing
+    name: bootstrap financing
+    aliases:
+      - financial bootstrapping
+      - bootstrapping
+    field: entrepreneurship
+    reference:
+      authors: Winborg, J., & Landström, H.
+      year: 2001
+      title: "Financial bootstrapping in small businesses: Examining small business managers' resource acquisition behaviors"
+      venue: Journal of Business Venturing, 16(3), 235-254
+      doi: 10.1016/S0883-9026(99)00055-5
+      verified: false
+  - id: gibrats-law
+    name: Gibrat's law
+    aliases:
+      - law of proportionate effect
+      - Gibrat law
+    field: economics
+    reference:
+      authors: Gibrat, R.
+      year: 1931
+      title: Les inégalités économiques
+      venue: Sirey
+      doi: null
+      verified: false
+  - id: passive-learning
+    name: passive learning model
+    aliases:
+      - Jovanovic learning model
+      - selection and the evolution of industry
+    field: economics
+    reference:
+      authors: Jovanovic, B.
+      year: 1982
+      title: Selection and the evolution of industry
+      venue: Econometrica, 50(3), 649-670
+      doi: 10.2307/1912606
+      verified: false
+  - id: real-options-reasoning
+    name: real options reasoning
+    aliases:
+      - real options logic
+      - real options perspective
+    field: strategy
+    reference:
+      authors: McGrath, R. G.
+      year: 1999
+      title: "Falling forward: Real options reasoning and entrepreneurial failure"
+      venue: Academy of Management Review, 24(1), 13-30
+      doi: 10.5465/amr.1999.1580438
+      verified: false
+  - id: strategic-flexibility
+    name: strategic flexibility
+    aliases:
+      - resource flexibility
+      - coordination flexibility
+    field: strategy
+    reference:
+      authors: Sanchez, R.
+      year: 1995
+      title: Strategic flexibility in product competition
+      venue: Strategic Management Journal, 16(S1), 135-159
+      doi: 10.1002/smj.4250160921
+      verified: false
+  - id: organizational-slack
+    name: organizational slack
+    aliases:
+      - organisational slack
+      - slack resources
+    field: organization
+    reference:
+      authors: Bourgeois, L. J.
+      year: 1981
+      title: On the measurement of organizational slack
+      venue: Academy of Management Review, 6(1), 29-39
+      doi: 10.5465/amr.1981.4287985
+      verified: false
+  - id: threat-rigidity
+    name: threat-rigidity
+    aliases:
+      - threat rigidity
+      - threat-rigidity effect
+    field: organization
+    reference:
+      authors: Staw, B. M., Sandelands, L. E., & Dutton, J. E.
+      year: 1981
+      title: "Threat rigidity effects in organizational behavior: A multilevel analysis"
+      venue: Administrative Science Quarterly, 26(4), 501-524
+      doi: 10.2307/2392337
+      verified: false
+  - id: escalation-of-commitment
+    name: escalation of commitment
+    aliases:
+      - escalating commitment
+      - escalation theory
+    field: organizational behaviour
+    reference:
+      authors: Staw, B. M.
+      year: 1976
+      title: "Knee-deep in the big muddy: A study of escalating commitment to a chosen course of action"
+      venue: Organizational Behavior and Human Performance, 16(1), 27-44
+      doi: 10.1016/0030-5073(76)90005-2
+      verified: false
+  - id: heuristics-and-biases
+    name: heuristics and biases
+    aliases:
+      - availability heuristic
+      - representativeness heuristic
+      - anchoring heuristic
+    field: behavioural economics
+    reference:
+      authors: Tversky, A., & Kahneman, D.
+      year: 1974
+      title: "Judgment under uncertainty: Heuristics and biases"
+      venue: Science, 185(4157), 1124-1131
+      doi: 10.1126/science.185.4157.1124
+      verified: false
+  - id: mental-accounting
+    name: mental accounting
+    aliases:
+      - mental accounts
+    field: behavioural economics
+    reference:
+      authors: Thaler, R.
+      year: 1985
+      title: Mental accounting and consumer choice
+      venue: Marketing Science, 4(3), 199-214
+      doi: 10.1287/mksc.4.3.199
+      verified: false
+  - id: endowment-effect
+    name: endowment effect
+    aliases:
+      - status quo bias
+    field: behavioural economics
+    reference:
+      authors: Kahneman, D., Knetsch, J. L., & Thaler, R. H.
+      year: 1990
+      title: Experimental tests of the endowment effect and the Coase theorem
+      venue: Journal of Political Economy, 98(6), 1325-1348
+      doi: 10.1086/261737
+      verified: false
+  - id: socioemotional-wealth
+    name: socioemotional wealth
+    aliases:
+      - socio-emotional wealth
+      - SEW perspective
+    acronyms:
+      - SEW
+    field: family business
+    reference:
+      authors: Gómez-Mejía, L. R., Haynes, K. T., Núñez-Nickel, M., Jacobson, K. J. L., & Moyano-Fuentes, J.
+      year: 2007
+      title: "Socioemotional wealth and business risks in family-controlled firms: Evidence from Spanish olive oil mills"
+      venue: Administrative Science Quarterly, 52(1), 106-137
+      doi: 10.2189/asqu.52.1.106
+      verified: false
+  - id: family-firm-agency
+    name: agency theory of the family firm
+    aliases:
+      - altruism in family firms
+      - family firm agency costs
+    field: family business
+    reference:
+      authors: Schulze, W. S., Lubatkin, M. H., Dino, R. N., & Buchholtz, A. K.
+      year: 2001
+      title: "Agency relationships in family firms: Theory and evidence"
+      venue: Organization Science, 12(2), 99-116
+      doi: 10.1287/orsc.12.2.99.10114
+      verified: false
+  - id: csr-pyramid
+    name: pyramid of corporate social responsibility
+    aliases:
+      - CSR pyramid
+      - pyramid of CSR
+      - Carroll's pyramid
+    field: strategy
+    reference:
+      authors: Carroll, A. B.
+      year: 1991
+      title: "The pyramid of corporate social responsibility: Toward the moral management of organizational stakeholders"
+      venue: Business Horizons, 34(4), 39-48
+      doi: 10.1016/0007-6813(91)90005-G
+      verified: false
+  - id: shared-value
+    name: shared value
+    aliases:
+      - creating shared value
+    acronyms:
+      - CSV framework
+    field: strategy
+    reference:
+      authors: Porter, M. E., & Kramer, M. R.
+      year: 2011
+      title: Creating shared value
+      venue: Harvard Business Review, 89(1/2), 62-77
+      doi: null
+      verified: false
+  - id: triple-bottom-line
+    name: triple bottom line
+    aliases:
+      - triple-bottom-line
+      - people, planet, profit
+    acronyms:
+      - TBL
+    field: strategy
+    reference:
+      authors: Elkington, J.
+      year: 1997
+      title: "Cannibals with forks: The triple bottom line of 21st century business"
+      venue: Capstone
+      doi: null
+      verified: false
+  - id: natural-resource-based-view
+    name: natural-resource-based view
+    aliases:
+      - natural resource-based view
+      - natural resource based view
+    acronyms:
+      - NRBV
+    field: strategy
+    reference:
+      authors: Hart, S. L.
+      year: 1995
+      title: A natural-resource-based view of the firm
+      venue: Academy of Management Review, 20(4), 986-1014
+      doi: 10.5465/amr.1995.9512280033
+      verified: false
+  - id: punctuated-equilibrium
+    name: punctuated equilibrium model
+    aliases:
+      - punctuated equilibrium
+    field: organization
+    reference:
+      authors: Romanelli, E., & Tushman, M. L.
+      year: 1994
+      title: "Organizational transformation as punctuated equilibrium: An empirical test"
+      venue: Academy of Management Journal, 37(5), 1141-1166
+      doi: 10.5465/256669
+      verified: false
+  - id: garbage-can
+    name: garbage can model
+    aliases:
+      - garbage can model of organizational choice
+      - organized anarchies
+    field: organization
+    reference:
+      authors: Cohen, M. D., March, J. G., & Olsen, J. P.
+      year: 1972
+      title: A garbage can model of organizational choice
+      venue: Administrative Science Quarterly, 17(1), 1-25
+      doi: 10.2307/2392088
+      verified: false
+  - id: theory-of-constraints
+    name: theory of constraints
+    aliases:
+      - drum-buffer-rope
+    acronyms:
+      - TOC
+    field: operations
+    reference:
+      authors: Goldratt, E. M., & Cox, J.
+      year: 1984
+      title: "The goal: Excellence in manufacturing"
+      venue: North River Press
+      doi: null
+      verified: false
+  - id: resource-orchestration
+    name: resource orchestration
+    aliases:
+      - resource management process
+      - structuring, bundling and leveraging
+    field: strategy
+    reference:
+      authors: Sirmon, D. G., Hitt, M. A., & Ireland, R. D.
+      year: 2007
+      title: "Managing firm resources in dynamic environments to create value: Looking inside the black box"
+      venue: Academy of Management Review, 32(1), 273-292
+      doi: 10.5465/amr.2007.23466005
+      verified: false
+  - id: business-model-activity-system
+    name: business model as an activity system
+    aliases:
+      - activity system perspective
+      - business model design
+    field: strategy
+    reference:
+      authors: Zott, C., & Amit, R.
+      year: 2010
+      title: "Business model design: An activity system perspective"
+      venue: Long Range Planning, 43(2-3), 216-226
+      doi: 10.1016/j.lrp.2009.07.004
+      verified: false
+  - id: bass-diffusion
+    name: Bass diffusion model
+    aliases:
+      - Bass model
+      - new product growth model
+    field: marketing
+    reference:
+      authors: Bass, F. M.
+      year: 1969
+      title: A new product growth for model consumer durables
+      venue: Management Science, 15(5), 215-227
+      doi: 10.1287/mnsc.15.5.215
+      verified: false
+  - id: social-comparison
+    name: social comparison theory
+    aliases:
+      - social comparison
+    field: psychology
+    reference:
+      authors: Festinger, L.
+      year: 1954
+      title: A theory of social comparison processes
+      venue: Human Relations, 7(2), 117-140
+      doi: 10.1177/001872675400700202
+      verified: false
+  - id: cognitive-dissonance
+    name: cognitive dissonance theory
+    aliases:
+      - cognitive dissonance
+    field: psychology
+    reference:
+      authors: Festinger, L.
+      year: 1957
+      title: A theory of cognitive dissonance
+      venue: Stanford University Press
+      doi: null
+      verified: false
+  - id: attribution-theory
+    name: attribution theory
+    aliases:
+      - causal attribution
+    field: psychology
+    reference:
+      authors: Heider, F.
+      year: 1958
+      title: The psychology of interpersonal relations
+      venue: Wiley
+      doi: null
+      verified: false
+  - id: three-factor-model
+    name: Fama-French three-factor model
+    aliases:
+      - three-factor model
+      - Fama-French model
+      - Fama and French factors
+    field: finance
+    reference:
+      authors: Fama, E. F., & French, K. R.
+      year: 1993
+      title: Common risk factors in the returns on stocks and bonds
+      venue: Journal of Financial Economics, 33(1), 3-56
+      doi: 10.1016/0304-405X(93)90023-5
+      verified: false
+  - id: momentum
+    name: momentum effect
+    aliases:
+      - momentum strategies
+      - momentum anomaly
+    field: finance
+    reference:
+      authors: Jegadeesh, N., & Titman, S.
+      year: 1993
+      title: "Returns to buying winners and selling losers: Implications for stock market efficiency"
+      venue: Journal of Finance, 48(1), 65-91
+      doi: 10.1111/j.1540-6261.1993.tb04702.x
+      verified: false
+  - id: limits-to-arbitrage
+    name: limits to arbitrage
+    aliases:
+      - limits of arbitrage
+    field: finance
+    reference:
+      authors: Shleifer, A., & Vishny, R. W.
+      year: 1997
+      title: The limits of arbitrage
+      venue: Journal of Finance, 52(1), 35-55
+      doi: 10.1111/j.1540-6261.1997.tb03807.x
+      verified: false
+  - id: corporate-governance-survey
+    name: investor protection and corporate governance
+    aliases:
+      - corporate governance theory
+      - agency view of governance
+    field: governance
+    reference:
+      authors: Shleifer, A., & Vishny, R. W.
+      year: 1997
+      title: A survey of corporate governance
+      venue: Journal of Finance, 52(2), 737-783
+      doi: 10.1111/j.1540-6261.1997.tb04820.x
+      verified: false
+  - id: liquidity-preference
+    name: liquidity preference theory
+    aliases:
+      - liquidity preference
+      - Keynesian liquidity preference
+    field: economics
+    reference:
+      authors: Keynes, J. M.
+      year: 1936
+      title: The general theory of employment, interest and money
+      venue: Macmillan
+      doi: null
+      verified: false
+  - id: transactions-demand-for-cash
+    name: transactions demand for cash
+    aliases:
+      - Baumol-Tobin model
+      - inventory model of cash
+      - Baumol model
+    field: finance
+    reference:
+      authors: Baumol, W. J.
+      year: 1952
+      title: "The transactions demand for cash: An inventory theoretic approach"
+      venue: Quarterly Journal of Economics, 66(4), 545-556
+      doi: 10.2307/1882104
+      verified: false
+  - id: managerial-discretion
+    name: managerial discretion
+    aliases:
+      - latitude of action
+    field: strategy
+    reference:
+      authors: Hambrick, D. C., & Finkelstein, S.
+      year: 1987
+      title: "Managerial discretion: A bridge between polar views of organizational outcomes"
+      venue: Research in Organizational Behavior, 9, 369-406
+      doi: null
+      verified: false
+  - id: institutional-logics
+    name: institutional logics
+    aliases:
+      - institutional logics perspective
+      - institutional logic
+    field: organization
+    reference:
+      authors: Thornton, P. H., & Ocasio, W.
+      year: 1999
+      title: "Institutional logics and the historical contingency of power in organizations: Executive succession in the higher education publishing industry, 1958-1990"
+      venue: American Journal of Sociology, 105(3), 801-843
+      doi: 10.1086/210361
+      verified: false
+  - id: knowledge-creation
+    name: organizational knowledge creation theory
+    aliases:
+      - knowledge creation theory
+      - SECI model
+      - tacit knowledge conversion
+    field: organization
+    reference:
+      authors: Nonaka, I.
+      year: 1994
+      title: A dynamic theory of organizational knowledge creation
+      venue: Organization Science, 5(1), 14-37
+      doi: 10.1287/orsc.5.1.14
+      verified: false
+  - id: communities-of-practice
+    name: communities of practice
+    aliases:
+      - community of practice
+      - situated learning
+      - legitimate peripheral participation
+    field: organization
+    reference:
+      authors: Lave, J., & Wenger, E.
+      year: 1991
+      title: "Situated learning: Legitimate peripheral participation"
+      venue: Cambridge University Press
+      doi: 10.1017/CBO9780511815355
+      verified: false
+  - id: lead-user
+    name: lead user theory
+    aliases:
+      - lead users
+      - lead user
+    field: innovation
+    reference:
+      authors: von Hippel, E.
+      year: 1986
+      title: "Lead users: A source of novel product concepts"
+      venue: Management Science, 32(7), 791-805
+      doi: 10.1287/mnsc.32.7.791
+      verified: false
+  - id: profiting-from-innovation
+    name: profiting from innovation
+    aliases:
+      - complementary assets
+      - appropriability regime
+      - appropriability regimes
+    acronyms:
+      - PFI
+    field: innovation
+    reference:
+      authors: Teece, D. J.
+      year: 1986
+      title: "Profiting from technological innovation: Implications for integration, collaboration, licensing and public policy"
+      venue: Research Policy, 15(6), 285-305
+      doi: 10.1016/0048-7333(86)90027-2
+      verified: false
+  - id: first-mover-advantage
+    name: first-mover advantage
+    aliases:
+      - first mover advantage
+      - first-mover advantages
+      - pioneering advantage
+    field: strategy
+    reference:
+      authors: Lieberman, M. B., & Montgomery, D. B.
+      year: 1988
+      title: First-mover advantages
+      venue: Strategic Management Journal, 9(S1), 41-58
+      doi: 10.1002/smj.4250090706
+      verified: false
+  - id: coopetition
+    name: co-opetition
+    aliases:
+      - coopetition
+      - co-opetition strategy
+    field: strategy
+    reference:
+      authors: Brandenburger, A. M., & Nalebuff, B. J.
+      year: 1996
+      title: Co-opetition
+      venue: Doubleday
+      doi: null
+      verified: false
+  - id: blue-ocean
+    name: blue ocean strategy
+    aliases:
+      - blue oceans
+      - value innovation
+    field: strategy
+    reference:
+      authors: Kim, W. C., & Mauborgne, R.
+      year: 2005
+      title: "Blue ocean strategy: How to create uncontested market space and make the competition irrelevant"
+      venue: Harvard Business School Press
+      doi: null
+      verified: false
+  - id: servitization
+    name: servitization
+    aliases:
+      - servitisation
+      - servitization of business
+    field: operations
+    reference:
+      authors: Vandermerwe, S., & Rada, J.
+      year: 1988
+      title: "Servitization of business: Adding value by adding services"
+      venue: European Management Journal, 6(4), 314-324
+      doi: 10.1016/0263-2373(88)90033-3
+      verified: false
+  - id: service-profit-chain
+    name: service-profit chain
+    aliases:
+      - service profit chain
+    field: operations
+    reference:
+      authors: Heskett, J. L., Jones, T. O., Loveman, G. W., Sasser, W. E., & Schlesinger, L. A.
+      year: 1994
+      title: Putting the service-profit chain to work
+      venue: Harvard Business Review, 72(2), 164-174
+      doi: null
+      verified: false
+  - id: franchising-agency
+    name: agency theory of franchising
+    aliases:
+      - franchising theory
+      - resource scarcity theory of franchising
+      - resource scarcity theory
+    field: entrepreneurship
+    reference:
+      authors: Lafontaine, F.
+      year: 1992
+      title: "Agency theory and franchising: Some empirical results"
+      venue: RAND Journal of Economics, 23(2), 263-283
+      doi: 10.2307/2555988
+      verified: false
+  - id: plural-form
+    name: plural form
+    aliases:
+      - plural form organization
+      - plural-form franchising
+      - company-owned and franchised units
+    field: entrepreneurship
+    reference:
+      authors: Bradach, J. L.
+      year: 1997
+      title: Using the plural form in the management of restaurant chains
+      venue: Administrative Science Quarterly, 42(2), 276-303
+      doi: 10.2307/2393921
+      verified: false
+  - id: organizational-identity
+    name: organizational identity
+    aliases:
+      - organisational identity
+    field: organization
+    reference:
+      authors: Albert, S., & Whetten, D. A.
+      year: 1985
+      title: Organizational identity
+      venue: Research in Organizational Behavior, 7, 263-295
+      doi: null
+      verified: false
+  - id: life-cycle-hypothesis
+    name: life-cycle hypothesis of consumption
+    aliases:
+      - life-cycle hypothesis
+      - life cycle hypothesis
+    field: economics
+    reference:
+      authors: Modigliani, F., & Brumberg, R.
+      year: 1954
+      title: "Utility analysis and the consumption function: An interpretation of cross-section data. In K. K. Kurihara (Ed.), Post-Keynesian economics (pp. 388-436)"
+      venue: Rutgers University Press
+      doi: null
+      verified: false
