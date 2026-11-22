@@ -105,6 +105,14 @@ node scripts/build-bank.js scimagojr_2024.csv --areas "Business,Economics,Decisi
 ```
 Difficulty = 0.45 × SJR percentile + 0.20 × H-index percentile + 0.20 × citations-per-document percentile + 0.15 × (100 − output percentile), within the journal's main category (×0.6 for conference proceedings). Very hard ≥ 80, Hard ≥ 60, Moderate ≥ 40, otherwise Accessible.
 
+## Limits
+
+- Quartile checks consistency, reporting and wording. It cannot judge whether a theory is interesting or a contribution is important; it only shows the evidence for a person to judge.
+- The contribution test depends on the literature it can search. A missing closest paper is possible.
+- Simulated reviewer output is not a prediction of a journal decision.
+- Commercial journal lists (ABS/AJG, Scopus, Web of Science) and similarity checkers (iThenticate/Turnitin) are not included because of their licences. Quartile uses open data (Crossref, OpenAlex, DOAJ, SCImago public data within its terms) and the user's own licensed access.
+- Privacy: manuscripts are processed locally. Two tools send text out and say so in their results: `grammar_check` (LanguageTool) and `literature_overlap` (OpenAlex). Reference and journal lookups send only DOIs, reference strings, titles or ISSNs.
+
 ## Tests
 ```bash
 npm install && node tests/run.js

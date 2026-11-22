@@ -29,7 +29,7 @@ function readiness(text, { journal, guidelines, outputs = [] } = {}) {
   const ai = AI.check(text, { maxFixes: 0 }); add("AI-style signal", ai.band === "high" ? PEN.aiHigh : ai.band === "moderate" ? PEN.aiModerate : 0, 10, `score ${ai.score} (${ai.band})`);
   let reg = null; if (outputs.length) { reg = REG.registry(text, outputs); const cov = reg.numbers ? reg.matched / reg.numbers : 1;
     // when most numbers are untraced, the outputs supplied are probably incomplete: report it, do not penalise
-    if (cov >= 0.4) add("Number registry", reg.notFound * PEN.numNotFound, 10, `${reg.notFound} of ${reg.numbers} numbers not found in the supplied output`);
+    if (cov >= 0.4) { const nf = reg.untraced ? reg.untraced.notFoundInSuppliedOutput : reg.notFound; add("Number registry", nf * PEN.numNotFound, 10, `${nf} of ${reg.numbers} numbers not found in the supplied output` + (reg.untraced && reg.untraced.outputNotSupplied ? ` (${reg.untraced.outputNotSupplied} more in tables whose output was not supplied: no penalty)` : "")); }
     else reg.incomplete = `Only ${reg.matched} of ${reg.numbers} numbers matched: the outputs supplied probably do not cover all tables. Supply every output file to trace the rest; no penalty applied.`; }
   const total = items.reduce((s, i) => s + i.penalty, 0), score = Math.max(0, Math.round(100 - total));
   return { kind: "readiness", score, band: score >= 80 ? "ready to submit after a final read" : score >= 60 ? "revise before submitting" : "not ready: fix the listed problems first",

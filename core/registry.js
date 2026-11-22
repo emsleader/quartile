@@ -24,7 +24,7 @@ function manuscriptNumbers(text) {
       if (!dec && !s.endsWith("%") && (Math.abs(v) < 100 || (v >= 1900 && v <= 2100))) continue; // small integers, years
       if (/\b(Table|Figure|Fig\.|Section|Model|Column|Hypothesis|H|Eq\.|Equation|Appendix|Step|Wave)\s*$/i.test(before)) continue;
       if (/^[-–]\d/.test(after) && v >= 1900 && v <= 2100) continue;
-      out.push({ text: s, value: v, decimals: dec, percent: s.endsWith("%"), role, para: p.id, context: (before + s + after).replace(/\s+/g, " ").trim() });
+      out.push({ text: s, value: v, decimals: dec, percent: s.endsWith("%"), role, para: p.id, table: !!p.isTable, context: (before + s + after).replace(/\s+/g, " ").trim() });
     }
   });
   return out;
@@ -48,9 +48,15 @@ function registry(text, outputs = []) {
   const summaryOnly = nums.filter(n => ["abstract", "conclusion"].includes(n.role) && !results.has(n.value) && n.decimals > 0).map(n => ({ text: n.text, role: n.role, context: n.context }));
   const traced = rows.filter(r => ["results", "methods", "abstract", "conclusion", "discussion"].includes(r.role) || r.role === "body");
   const cnt = s => rows.filter(r => r.status === s).length;
+  // bug item 9: a table none of whose numbers is in the supplied output most likely comes from an output that was
+  // not supplied. Its untraced numbers are reported apart and carry no readiness penalty.
+  const tablesMatched = new Set(rows.filter(r => r.table && (r.status === "matched" || r.status === "check")).map(r => r.para));
+  rows.forEach(r => { if (r.status === "not found in output") r.untracedReason = r.table && !tablesMatched.has(r.para) ? "output not supplied" : "not in the supplied output"; });
+  const untraced = { outputNotSupplied: rows.filter(r => r.untracedReason === "output not supplied").length, notFoundInSuppliedOutput: rows.filter(r => r.untracedReason === "not in the supplied output").length,
+    note: "Numbers in a table with no match in any supplied output are listed as 'output not supplied': supply that table's output to trace them." };
   return { kind: "number_registry", numbers: rows.length, matched: cnt("matched"), check: cnt("check"), notFound: cnt("not found in output"), outputsSupplied: outputs.length, outputValues: vals.length,
     coverage: vals.length && rows.length ? +(100 * cnt("matched") / rows.length).toFixed(1) : null,
-    rows, summaryNotInResults: summaryOnly, tracedSections: traced.length,
+    rows, untraced, summaryNotInResults: summaryOnly, tracedSections: traced.length,
     note: outputs.length ? "Each number was matched to the supplied output allowing for rounding to the reported decimals, a dropped leading zero, percentages of proportions and sign. 'Not found' means the number has no source in the files supplied: it may come from an output you did not supply (add it), or it may be wrong (correct it). A match shows the number is consistent with the output, not that the analysis is right." : "No software output was supplied. Paste the R/Stata/SPSS/Python log or a CSV of estimates as outputs to trace every number. The abstract-versus-results check below runs anyway." };
 }
 export { registry, manuscriptNumbers, outputNumbers, match };

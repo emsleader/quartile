@@ -78,7 +78,7 @@ async function literatureOverlap(text, { maxQueries = 25, ownDois = [] } = {}) {
     if (res.length) hits.push({ sentence: s, phrase, matches: res });
   });
   const warning = errors >= pick.length ? "OpenAlex did not answer" + (lastStatus ? ` (HTTP ${lastStatus})` : "") + (process.env.OPENALEX_API_KEY ? ": the daily budget may be used up." : ": the server needs a free OPENALEX_API_KEY (required since February 2026).") + " No overlap was checked; this is not a clean result." : null;
-  return { kind: "literature_overlap", sentencesQueried: pick.length, sentencesWithMatches: hits.length, queryErrors: errors, warning, hits,
+  return { kind: "literature_overlap", privacy: { sentTo: "api.openalex.org", what: "10-word phrases from the manuscript, as search queries", count: pick.length }, sentencesQueried: pick.length, sentencesWithMatches: hits.length, queryErrors: errors, warning, hits,
     note: "Exact 10-word phrases from your most distinctive sentences were searched in the OpenAlex full-text index and in titles and abstracts (published, mostly open-access literature). A match means the phrase appears in another work: check it, quote and cite, or rewrite. This covers indexed scholarly full texts, not the whole web, and short common phrases can match by chance." };
 }
 
@@ -108,7 +108,7 @@ async function grammar(text, { language = "auto", spelling = false } = {}) {
     });
     await sleep(3500); // public API limit: 20 requests per minute
   }
-  return { kind: "grammar", issues: issues.slice(0, 300), count: issues.length, chunksChecked: chunks.length - failed, chunksFailed: failed,
+  return { kind: "grammar", privacy: { sentTo: "api.languagetool.org", what: "the manuscript text without headings, tables and references, in chunks", chunks: chunks.length }, issues: issues.slice(0, 300), count: issues.length, chunksChecked: chunks.length - failed, chunksFailed: failed,
     replacements: sentenceEdits(issues),
     note: "Grammar and style rules from LanguageTool (public API, open-source rule set). Pass the replacements you accept to apply_replacements: each is checked by the hallucination guard. Spelling suggestions for names and technical terms are suppressed unless spelling is true." };
 }
