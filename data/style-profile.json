@@ -7,8 +7,8 @@
   "n": 501,
   "metrics": {
    "words": {
-    "p25": 126,
-    "median": 158,
+    "p25": 128,
+    "median": 160,
     "p75": 205
    },
    "sentences": {
@@ -18,7 +18,7 @@
    },
    "meanSentence": {
     "p25": 21.1,
-    "median": 24.4,
+    "median": 24.5,
     "p75": 28
    },
    "sdSentence": {
@@ -44,17 +44,17 @@
    "hedgesPer100": {
     "p25": 0,
     "median": 0,
-    "p75": 0.71
+    "p75": 0.7
    },
    "causalPer100": {
     "p25": 0,
     "median": 0,
-    "p75": 0.41
+    "p75": 0.4
    },
    "stockPer1k": {
     "p25": 0,
     "median": 0,
-    "p75": 3.76
+    "p75": 3.8
    },
    "numbers": {
     "p25": 0,
@@ -62,29 +62,29 @@
     "p75": 2
    }
   },
-  "dataClauseShare": 0.122,
+  "dataClauseShare": 0.126,
   "firstMove": {
-   "background": 0.593,
+   "background": 0.597,
    "aim": 0.228,
-   "method": 0.082,
+   "method": 0.08,
    "implication": 0.042,
-   "finding": 0.036,
+   "finding": 0.034,
    "gap": 0.02
   },
   "lastMove": {
-   "background": 0.523,
+   "background": 0.521,
    "implication": 0.226,
-   "finding": 0.092,
-   "aim": 0.076,
+   "finding": 0.096,
+   "aim": 0.072,
    "method": 0.064,
-   "gap": 0.02
+   "gap": 0.022
   },
   "movePresence": {
-   "background": 0.96,
-   "gap": 0.188,
-   "aim": 0.647,
-   "method": 0.543,
-   "finding": 0.469,
+   "background": 0.962,
+   "gap": 0.19,
+   "aim": 0.645,
+   "method": 0.539,
+   "finding": 0.471,
    "implication": 0.527
   }
  },
@@ -104,21 +104,21 @@
     },
     "meanSentence": {
      "p25": 20.1,
-     "median": 23.3,
-     "p75": 26.75
+     "median": 23.4,
+     "p75": 26.8
     },
     "sdSentence": {
-     "p25": 5.4,
+     "p25": 5.35,
      "median": 7.7,
-     "p75": 10.05
+     "p75": 10.1
     },
     "longSentenceShare": {
      "p25": 0,
-     "median": 0.1,
+     "median": 0.111,
      "p75": 0.2
     },
     "weShare": {
-     "p25": 0.143,
+     "p25": 0.155,
      "median": 0.5,
      "p75": 0.667
     },
@@ -148,21 +148,21 @@
      "p75": 2
     }
    },
-   "dataClauseShare": 0.114,
+   "dataClauseShare": 0.12,
    "firstMove": {
-    "background": 0.491,
-    "aim": 0.246,
-    "method": 0.168,
+    "background": 0.503,
+    "aim": 0.24,
+    "method": 0.162,
     "implication": 0.048,
     "finding": 0.036,
     "gap": 0.012
    },
    "lastMove": {
-    "background": 0.569,
-    "implication": 0.174,
-    "finding": 0.162,
+    "background": 0.551,
+    "finding": 0.18,
+    "implication": 0.18,
     "method": 0.048,
-    "aim": 0.036,
+    "aim": 0.03,
     "gap": 0.012
    },
    "movePresence": {
@@ -170,15 +170,15 @@
     "gap": 0.096,
     "aim": 0.599,
     "method": 0.575,
-    "finding": 0.587,
-    "implication": 0.419
+    "finding": 0.593,
+    "implication": 0.425
    }
   },
   "small_business": {
    "n": 167,
    "metrics": {
     "words": {
-     "p25": 134.5,
+     "p25": 136.5,
      "median": 183,
      "p75": 247
     },
@@ -189,12 +189,12 @@
     },
     "meanSentence": {
      "p25": 21.1,
-     "median": 24.1,
+     "median": 24.2,
      "p75": 26.9
     },
     "sdSentence": {
      "p25": 6.45,
-     "median": 8.3,
+     "median": 8.1,
      "p75": 10.5
     },
     "longSentenceShare": {
@@ -225,7 +225,7 @@
     "stockPer1k": {
      "p25": 0,
      "median": 0,
-     "p75": 4.175
+     "p75": 4.34
     },
     "numbers": {
      "p25": 0,
@@ -233,18 +233,18 @@
      "p75": 2
     }
    },
-   "dataClauseShare": 0.162,
+   "dataClauseShare": 0.168,
    "firstMove": {
-    "background": 0.593,
-    "aim": 0.275,
+    "background": 0.599,
+    "aim": 0.269,
     "method": 0.042,
     "finding": 0.036,
     "gap": 0.03,
     "implication": 0.024
    },
    "lastMove": {
-    "background": 0.449,
-    "implication": 0.251,
+    "background": 0.455,
+    "implication": 0.246,
     "aim": 0.114,
     "method": 0.102,
     "finding": 0.054,
@@ -253,10 +253,10 @@
    "movePresence": {
     "background": 0.97,
     "gap": 0.275,
-    "aim": 0.754,
-    "method": 0.647,
+    "aim": 0.749,
+    "method": 0.641,
     "finding": 0.461,
-    "implication": 0.629
+    "implication": 0.623
    }
   },
   "management": {
@@ -280,7 +280,7 @@
     "sdSentence": {
      "p25": 7,
      "median": 8.8,
-     "p75": 11.5
+     "p75": 11.65
     },
     "longSentenceShare": {
      "p25": 0,
@@ -288,19 +288,19 @@
      "p75": 0.317
     },
     "weShare": {
-     "p25": 0.333,
+     "p25": 0.317,
      "median": 0.5,
      "p75": 0.667
     },
     "passiveShare": {
      "p25": 0,
      "median": 0.143,
-     "p75": 0.236
+     "p75": 0.25
     },
     "hedgesPer100": {
      "p25": 0,
      "median": 0,
-     "p75": 0.58
+     "p75": 0.565
     },
     "causalPer100": {
      "p25": 0,
@@ -320,26 +320,26 @@
    },
    "dataClauseShare": 0.09,
    "firstMove": {
-    "background": 0.695,
-    "aim": 0.162,
+    "background": 0.689,
+    "aim": 0.174,
     "implication": 0.054,
-    "finding": 0.036,
     "method": 0.036,
+    "finding": 0.03,
     "gap": 0.018
    },
    "lastMove": {
-    "background": 0.551,
+    "background": 0.557,
     "implication": 0.251,
-    "aim": 0.078,
-    "finding": 0.06,
+    "aim": 0.072,
+    "finding": 0.054,
     "method": 0.042,
-    "gap": 0.018
+    "gap": 0.024
    },
    "movePresence": {
-    "background": 0.958,
-    "gap": 0.192,
+    "background": 0.964,
+    "gap": 0.198,
     "aim": 0.587,
-    "method": 0.407,
+    "method": 0.401,
     "finding": 0.359,
     "implication": 0.533
    }
@@ -978,9 +978,9 @@
    "n": 6,
    "metrics": {
     "words": {
-     "p25": 97.75,
-     "median": 113,
-     "p75": 126.75
+     "p25": 113,
+     "median": 129.5,
+     "p75": 137
     },
     "sentences": {
      "p25": 5,
@@ -988,29 +988,29 @@
      "p75": 5.75
     },
     "meanSentence": {
-     "p25": 19.55,
-     "median": 22.3,
-     "p75": 25.2
+     "p25": 19.8,
+     "median": 23.6,
+     "p75": 29.65
     },
     "sdSentence": {
-     "p25": 6.05,
-     "median": 7.2,
-     "p75": 8.125
+     "p25": 4.675,
+     "median": 7.85,
+     "p75": 10.05
     },
     "longSentenceShare": {
      "p25": 0,
-     "median": 0,
-     "p75": 0.15
+     "median": 0.1,
+     "p75": 0.237
     },
     "weShare": {
-     "p25": 0.063,
-     "median": 0.25,
-     "p75": 0.363
+     "p25": 0.425,
+     "median": 0.5,
+     "p75": 0.575
     },
     "passiveShare": {
-     "p25": 0.063,
-     "median": 0.291,
-     "p75": 0.383
+     "p25": 0,
+     "median": 0.125,
+     "p75": 0.312
     },
     "hedgesPer100": {
      "p25": 0,
@@ -1028,28 +1028,28 @@
      "p75": 0
     },
     "numbers": {
-     "p25": 0,
-     "median": 0,
-     "p75": 3.75
+     "p25": 0.25,
+     "median": 3,
+     "p75": 8.75
     }
    },
    "dataClauseShare": 0,
    "firstMove": {
-    "aim": 0.333,
-    "method": 0.333,
-    "background": 0.333
-   },
-   "lastMove": {
     "background": 0.5,
     "aim": 0.333,
-    "finding": 0.167
+    "method": 0.167
+   },
+   "lastMove": {
+    "finding": 0.667,
+    "aim": 0.167,
+    "background": 0.167
    },
    "movePresence": {
     "background": 0.833,
     "gap": 0,
     "aim": 0.5,
     "method": 0.333,
-    "finding": 0.5,
+    "finding": 0.667,
     "implication": 0.167
    }
   },
@@ -1529,37 +1529,37 @@
     "words": {
      "p25": 130.25,
      "median": 163,
-     "p75": 196.5
+     "p75": 181.5
     },
     "sentences": {
      "p25": 6,
      "median": 6,
-     "p75": 7.5
+     "p75": 6.75
     },
     "meanSentence": {
-     "p25": 20.775,
-     "median": 24.5,
-     "p75": 27.1
+     "p25": 21.475,
+     "median": 26.3,
+     "p75": 27.3
     },
     "sdSentence": {
-     "p25": 8,
-     "median": 8.3,
-     "p75": 8.9
+     "p25": 8.3,
+     "median": 8.6,
+     "p75": 9.05
     },
     "longSentenceShare": {
-     "p25": 0,
-     "median": 0.063,
-     "p75": 0.157
+     "p25": 0.031,
+     "median": 0.134,
+     "p75": 0.161
     },
     "weShare": {
      "p25": 0.542,
-     "median": 0.667,
-     "p75": 0.791
+     "median": 0.691,
+     "p75": 0.803
     },
     "passiveShare": {
      "p25": 0,
      "median": 0,
-     "p75": 0.083
+     "p75": 0.107
     },
     "hedgesPer100": {
      "p25": 0.12,
@@ -1574,23 +1574,23 @@
     "stockPer1k": {
      "p25": 0,
      "median": 0,
-     "p75": 3.607
+     "p75": 4.012
     },
     "numbers": {
-     "p25": 0.25,
-     "median": 1.5,
+     "p25": 1.25,
+     "median": 2,
      "p75": 2
     }
    },
-   "dataClauseShare": 0.333,
+   "dataClauseShare": 0.5,
    "firstMove": {
-    "aim": 0.667,
-    "finding": 0.167,
-    "background": 0.167
+    "aim": 0.5,
+    "background": 0.333,
+    "finding": 0.167
    },
    "lastMove": {
-    "background": 0.667,
-    "implication": 0.167,
+    "background": 0.5,
+    "implication": 0.333,
     "finding": 0.167
    },
    "movePresence": {
@@ -1599,7 +1599,7 @@
     "aim": 0.833,
     "method": 1,
     "finding": 1,
-    "implication": 0.5
+    "implication": 0.667
    }
   },
   "Journal of Financial Intermediation": {
@@ -2954,14 +2954,14 @@
    "n": 8,
    "metrics": {
     "words": {
-     "p25": 118.25,
+     "p25": 139.5,
      "median": 146,
      "p75": 155
     },
     "sentences": {
      "p25": 5,
-     "median": 5.5,
-     "p75": 6.25
+     "median": 6,
+     "p75": 7
     },
     "meanSentence": {
      "p25": 20.95,
@@ -2969,8 +2969,8 @@
      "p75": 30.525
     },
     "sdSentence": {
-     "p25": 8.05,
-     "median": 9.5,
+     "p25": 6.325,
+     "median": 9,
      "p75": 11.5
     },
     "longSentenceShare": {
@@ -2979,14 +2979,14 @@
      "p75": 0.213
     },
     "weShare": {
-     "p25": 0.383,
+     "p25": 0.321,
      "median": 0.535,
      "p75": 0.578
     },
     "passiveShare": {
      "p25": 0,
      "median": 0,
-     "p75": 0.213
+     "p75": 0.17
     },
     "hedgesPer100": {
      "p25": 0,
@@ -3001,7 +3001,7 @@
     "stockPer1k": {
      "p25": 0,
      "median": 0,
-     "p75": 0
+     "p75": 1.725
     },
     "numbers": {
      "p25": 0,
@@ -3009,16 +3009,16 @@
      "p75": 1.25
     }
    },
-   "dataClauseShare": 0.125,
+   "dataClauseShare": 0.25,
    "firstMove": {
-    "background": 0.625,
-    "aim": 0.25,
+    "background": 0.75,
+    "aim": 0.125,
     "method": 0.125
    },
    "lastMove": {
-    "background": 0.625,
-    "implication": 0.25,
-    "method": 0.125
+    "background": 0.75,
+    "method": 0.125,
+    "implication": 0.125
    },
    "movePresence": {
     "background": 1,
@@ -3026,7 +3026,7 @@
     "aim": 0.625,
     "method": 0.625,
     "finding": 0.625,
-    "implication": 0.25
+    "implication": 0.125
    }
   },
   "Journal of Business Venturing Insights": {
@@ -3190,44 +3190,44 @@
    "n": 8,
    "metrics": {
     "words": {
-     "p25": 150,
-     "median": 178.5,
-     "p75": 197.5
+     "p25": 166.25,
+     "median": 191.5,
+     "p75": 201.25
     },
     "sentences": {
-     "p25": 5.5,
-     "median": 7,
+     "p25": 6,
+     "median": 8,
      "p75": 8.25
     },
     "meanSentence": {
      "p25": 21.925,
-     "median": 23.95,
-     "p75": 26.725
+     "median": 24.95,
+     "p75": 26.95
     },
     "sdSentence": {
-     "p25": 7.275,
+     "p25": 7.725,
      "median": 10.45,
      "p75": 12
     },
     "longSentenceShare": {
-     "p25": 0,
+     "p25": 0.094,
      "median": 0.146,
      "p75": 0.271
     },
     "weShare": {
      "p25": 0,
      "median": 0.056,
-     "p75": 0.542
+     "p75": 0.261
     },
     "passiveShare": {
-     "p25": 0,
+     "p25": 0.094,
      "median": 0.195,
      "p75": 0.281
     },
     "hedgesPer100": {
      "p25": 0,
      "median": 0.25,
-     "p75": 0.713
+     "p75": 0.623
     },
     "causalPer100": {
      "p25": 0,
@@ -3236,8 +3236,8 @@
     },
     "stockPer1k": {
      "p25": 0,
-     "median": 0,
-     "p75": 3.988
+     "median": 1.82,
+     "p75": 4.865
     },
     "numbers": {
      "p25": 0,
@@ -3257,8 +3257,8 @@
    "movePresence": {
     "background": 1,
     "gap": 0.375,
-    "aim": 1,
-    "method": 0.75,
+    "aim": 0.875,
+    "method": 0.625,
     "finding": 0.5,
     "implication": 0.5
    }
@@ -4525,9 +4525,9 @@
    "n": 6,
    "metrics": {
     "words": {
-     "p25": 96,
-     "median": 98.5,
-     "p75": 109.25
+     "p25": 96.25,
+     "median": 99,
+     "p75": 110
     },
     "sentences": {
      "p25": 3.25,
@@ -4537,12 +4537,12 @@
     "meanSentence": {
      "p25": 21.15,
      "median": 27.1,
-     "p75": 31.55
+     "p75": 31.775
     },
     "sdSentence": {
-     "p25": 3.325,
-     "median": 6.55,
-     "p75": 9.1
+     "p25": 5.725,
+     "median": 8.8,
+     "p75": 9.475
     },
     "longSentenceShare": {
      "p25": 0,
@@ -4562,11 +4562,11 @@
     "hedgesPer100": {
      "p25": 0,
      "median": 0.37,
-     "p75": 0.853
+     "p75": 0.845
     },
     "causalPer100": {
-     "p25": 0.223,
-     "median": 0.97,
+     "p25": 0.22,
+     "median": 0.965,
      "p75": 2.19
     },
     "stockPer1k": {
@@ -4583,19 +4583,18 @@
    "dataClauseShare": 0,
    "firstMove": {
     "background": 0.5,
-    "finding": 0.167,
-    "aim": 0.167,
+    "aim": 0.333,
     "method": 0.167
    },
    "lastMove": {
-    "background": 0.667,
-    "finding": 0.333
+    "background": 0.833,
+    "finding": 0.167
    },
    "movePresence": {
-    "background": 0.667,
+    "background": 0.833,
     "gap": 0.167,
     "aim": 0.333,
-    "method": 0.667,
+    "method": 0.5,
     "finding": 0.667,
     "implication": 0
    }
@@ -5152,9 +5151,9 @@
    "n": 6,
    "metrics": {
     "words": {
-     "p25": 165.25,
-     "median": 179,
-     "p75": 196.5
+     "p25": 174,
+     "median": 194,
+     "p75": 199
     },
     "sentences": {
      "p25": 5.5,
@@ -5164,12 +5163,12 @@
     "meanSentence": {
      "p25": 23.5,
      "median": 24.5,
-     "p75": 30.825
+     "p75": 36.075
     },
     "sdSentence": {
-     "p25": 7.925,
-     "median": 9,
-     "p75": 9.7
+     "p25": 7.975,
+     "median": 9.5,
+     "p75": 10.8
     },
     "longSentenceShare": {
      "p25": 0.119,
@@ -5177,24 +5176,24 @@
      "p75": 0.237
     },
     "weShare": {
-     "p25": 0.514,
-     "median": 0.556,
-     "p75": 0.589
+     "p25": 0.447,
+     "median": 0.528,
+     "p75": 0.556
     },
     "passiveShare": {
      "p25": 0,
-     "median": 0,
-     "p75": 0.094
+     "median": 0.063,
+     "p75": 0.138
     },
     "hedgesPer100": {
-     "p25": 0.12,
-     "median": 0.49,
-     "p75": 1.01
+     "p25": 0,
+     "median": 0.24,
+     "p75": 0.495
     },
     "causalPer100": {
      "p25": 0,
-     "median": 0.25,
-     "p75": 0.522
+     "median": 0,
+     "p75": 0.375
     },
     "stockPer1k": {
      "p25": 0,
@@ -5209,17 +5208,18 @@
    },
    "dataClauseShare": 0,
    "firstMove": {
-    "background": 0.667,
-    "aim": 0.333
+    "background": 0.5,
+    "aim": 0.5
    },
    "lastMove": {
     "implication": 0.333,
-    "aim": 0.333,
-    "background": 0.333
+    "background": 0.333,
+    "aim": 0.167,
+    "gap": 0.167
    },
    "movePresence": {
     "background": 0.833,
-    "gap": 0.167,
+    "gap": 0.333,
     "aim": 0.667,
     "method": 0.167,
     "finding": 0.333,
@@ -6160,13 +6160,13 @@
    "field": "finance"
   },
   {
-   "doi": "10.1093/rfs/hhaa009",
+   "doi": "10.1093/rfs/hhz137",
    "year": 2020,
    "journal": "Review of Financial Studies",
    "field": "finance"
   },
   {
-   "doi": "10.1093/rfs/hhz137",
+   "doi": "10.1093/rfs/hhaa009",
    "year": 2020,
    "journal": "Review of Financial Studies",
    "field": "finance"
@@ -6388,6 +6388,12 @@
    "field": "finance"
   },
   {
+   "doi": "10.1561/104.00000112",
+   "year": 2022,
+   "journal": "Critical Finance Review",
+   "field": "finance"
+  },
+  {
    "doi": "10.1561/104.00000122",
    "year": 2022,
    "journal": "Critical Finance Review",
@@ -6400,26 +6406,20 @@
    "field": "finance"
   },
   {
+   "doi": "10.1561/104.00000113",
+   "year": 2022,
+   "journal": "Critical Finance Review",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1561/104.00000115",
+   "year": 2022,
+   "journal": "Critical Finance Review",
+   "field": "finance"
+  },
+  {
    "doi": "10.1561/104.00000104",
    "year": 2021,
-   "journal": "Critical Finance Review",
-   "field": "finance"
-  },
-  {
-   "doi": "10.1561/104.00000088",
-   "year": 2020,
-   "journal": "Critical Finance Review",
-   "field": "finance"
-  },
-  {
-   "doi": "10.1561/104.00000097",
-   "year": 2021,
-   "journal": "Critical Finance Review",
-   "field": "finance"
-  },
-  {
-   "doi": "10.1561/104.00000100",
-   "year": 2022,
    "journal": "Critical Finance Review",
    "field": "finance"
   },
@@ -6646,12 +6646,6 @@
    "field": "finance"
   },
   {
-   "doi": "10.1016/j.jcorpfin.2021.102058",
-   "year": 2021,
-   "journal": "Journal of Corporate Finance",
-   "field": "finance"
-  },
-  {
    "doi": "10.1016/j.jcorpfin.2020.101679",
    "year": 2020,
    "journal": "Journal of Corporate Finance",
@@ -6671,6 +6665,12 @@
   },
   {
    "doi": "10.1016/j.jcorpfin.2020.101560",
+   "year": 2020,
+   "journal": "Journal of Corporate Finance",
+   "field": "finance"
+  },
+  {
+   "doi": "10.1016/j.jcorpfin.2020.101836",
    "year": 2020,
    "journal": "Journal of Corporate Finance",
    "field": "finance"
@@ -7516,8 +7516,8 @@
    "field": "small_business"
   },
   {
-   "doi": "10.1177/0266242620943194",
-   "year": 2020,
+   "doi": "10.1177/02662426251314108",
+   "year": 2025,
    "journal": "International Small Business Journal",
    "field": "small_business"
   },
@@ -7624,6 +7624,12 @@
    "field": "small_business"
   },
   {
+   "doi": "10.1080/22797254.2021.1872929",
+   "year": 2021,
+   "journal": "Entrepreneurship and Regional Development",
+   "field": "small_business"
+  },
+  {
    "doi": "10.1080/08985626.2020.1734262",
    "year": 2020,
    "journal": "Entrepreneurship and Regional Development",
@@ -7656,12 +7662,6 @@
   {
    "doi": "10.1080/08985626.2022.2047799",
    "year": 2022,
-   "journal": "Entrepreneurship and Regional Development",
-   "field": "small_business"
-  },
-  {
-   "doi": "10.1080/08985626.2020.1713222",
-   "year": 2020,
    "journal": "Entrepreneurship and Regional Development",
    "field": "small_business"
   },
@@ -7876,13 +7876,13 @@
    "field": "small_business"
   },
   {
-   "doi": "10.1108/jfbm-12-2021-0153",
+   "doi": "10.1108/jfbm-04-2022-0054",
    "year": 2022,
    "journal": "Journal of Family Business Management",
    "field": "small_business"
   },
   {
-   "doi": "10.1108/jfbm-04-2022-0054",
+   "doi": "10.1108/jfbm-12-2021-0153",
    "year": 2022,
    "journal": "Journal of Family Business Management",
    "field": "small_business"
@@ -8398,13 +8398,13 @@
    "field": "management"
   },
   {
-   "doi": "10.1177/1094670520952537",
+   "doi": "10.1177/1094670520948134",
    "year": 2020,
    "journal": "Journal of Service Research",
    "field": "management"
   },
   {
-   "doi": "10.1177/1094670520948134",
+   "doi": "10.1177/1094670520952537",
    "year": 2020,
    "journal": "Journal of Service Research",
    "field": "management"
@@ -8434,14 +8434,14 @@
    "field": "management"
   },
   {
-   "doi": "10.1287/mnsc.2023.4695",
-   "year": 2023,
+   "doi": "10.1287/mnsc.2019.3340",
+   "year": 2020,
    "journal": "Management Science",
    "field": "management"
   },
   {
-   "doi": "10.1287/mnsc.2019.3340",
-   "year": 2020,
+   "doi": "10.1287/mnsc.2023.4695",
+   "year": 2023,
    "journal": "Management Science",
    "field": "management"
   },
@@ -8656,13 +8656,13 @@
    "field": "management"
   },
   {
-   "doi": "10.5465/amp.2018.0183",
+   "doi": "10.5465/amp.2018.0178",
    "year": 2020,
    "journal": "Academy of Management Perspectives",
    "field": "management"
   },
   {
-   "doi": "10.5465/amp.2018.0065",
+   "doi": "10.5465/amp.2018.0183",
    "year": 2020,
    "journal": "Academy of Management Perspectives",
    "field": "management"
