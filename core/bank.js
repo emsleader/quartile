@@ -31,4 +31,5 @@ function score(J) {
   return J;
 }
 const buildBank = (csvText, areas) => score(parseCsv(csvText, areas));
-module.exports = { parseCsv, score, buildBank };
+export { parseCsv, score, buildBank };
+export default { parseCsv, score, buildBank };

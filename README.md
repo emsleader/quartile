@@ -51,9 +51,9 @@ The full interface. It runs as a claude.ai artifact, where it can ask Claude and
 ### 2. The MCP server (`mcp/`) for Claude, ChatGPT and other clients
 
 ```bash
-cd mcp && npm install
-node server.js            # stdio (Claude Desktop, Claude Code)
-node server.js --http     # Streamable HTTP on http://localhost:8787/mcp
+npm install
+node mcp/server.js        # stdio (Claude Desktop, Claude Code)
+node mcp/server.js --http # Streamable HTTP on http://localhost:8787/mcp
 ```
 
 **Tools:** `q1_style_guide`, `compare_style`, `integrity_screen`, `corpus_*` (local), `analyze_manuscript`, `desk_screen`, `check_statistics`, `check_references`, `verify_rewrite`, `apply_replacements`, `journal_lookup`, `journal_suggest`. **Prompts:** `q1_edit`, `journal_editor`, `idea_to_paper`. All tools are read-only and stateless; nothing is stored.
@@ -105,9 +105,29 @@ node scripts/build-bank.js scimagojr_2024.csv --areas "Business,Economics,Decisi
 ```
 Difficulty = 0.45 × SJR percentile + 0.20 × H-index percentile + 0.20 × citations-per-document percentile + 0.15 × (100 − output percentile), within the journal's main category (×0.6 for conference proceedings). Very hard ≥ 80, Hard ≥ 60, Moderate ≥ 40, otherwise Accessible.
 
+## Simulated review committee (0.17.0)
+
+`committee_review` reviews a manuscript the way an editorial committee would: editor-in-chief, methods, finance and statistics, business administration, production and ethics, plus writing style. Every finding has a rule ID, the exact text span, the rule's source, a severity, a confidence and a fix. The report is labelled "Simulated pre-submission review — not a journal decision" and is returned as JSON, Markdown and Word.
+
+| Area | Tools |
+|---|---|
+| Committee | `committee_review`, `contribution_test`, `reporting_checklist`, `grim_check`, `hypothesis_map`, `ethics_check`, `style_check`, `response_tracker`, `rulebook_status`, `rule_feedback` |
+| Quartile Library (local reference library) | `library_add`, `library_import`, `library_export`, `library_search`, `library_verify`, `library_match_manuscript`, `library_bibliography`, `library_dedupe`, `library_screening` |
+| Quartile Record (paper history and learning) | `record_paper`, `record_event`, `record_letter`, `record_requests`, `record_lessons`, `record_timeline`, `record_stats` |
+
+Rules live in `rulebook/*.yaml`; each has a source and positive and negative tests. Statistics functions are validated against R (`tests/validation/`). The Library and the Record are stored on your machine in `~/.quartile` (set `QUARTILE_HOME` to change it). The dual-role check reads your own `~/.quartile/author.yaml` (example: `tests/fixtures/author.example.yaml`). Phase reports with open questions: `docs/reports/`.
+
+## Limits
+
+- Quartile checks consistency, reporting and wording. It cannot judge whether a theory is interesting or a contribution is important; it only shows the evidence for a person to judge.
+- The contribution test depends on the literature it can search. A missing closest paper is possible.
+- Simulated reviewer output is not a prediction of a journal decision.
+- Commercial journal lists (ABS/AJG, Scopus, Web of Science) and similarity checkers (iThenticate/Turnitin) are not included because of their licences. Quartile uses open data (Crossref, OpenAlex, DOAJ, SCImago public data within its terms) and the user's own licensed access.
+- Privacy: manuscripts are processed locally. Two tools send text out and say so in their results: `grammar_check` (LanguageTool) and `literature_overlap` (OpenAlex). Reference and journal lookups send only DOIs, reference strings, titles or ISSNs.
+
 ## Tests
 ```bash
-cd mcp && npm install && cd .. && node tests/run.js
+npm install && node tests/run.js
 ```
 Covers the p-value functions against known values, each statistics check, the guard, safe replacement, document parsing, the AI-style score and fixes, the number registry, the readiness score and an MCP round trip over stdio (32 tools). The live checks (Crossref, OpenAlex, LanguageTool) need internet and are not part of the offline tests.
 

@@ -333,12 +333,15 @@ q_egba <- function(d, cells, Q = c(500, 1000, 2000, 4000, 6000, 8000, 10000), q_
     m <- one(FALSE); n <- one(TRUE)
     changed <- if (is.data.frame(m$paired) && is.data.frame(n$paired)) any(m$paired$label != n$paired$label) else NA
     c(m, list(norp = n, label_changed_without_related_party = changed)) })
-  list(method = "Evidence-Graded Bounds Analysis (EGBA), paired evaluation", q_star = q_star, Q = Q, cells = out)
+  warn <- if (length(cells) > 8) paste0(length(cells), " cells: figures with more than 8 cells are hard to read; line types and shades repeat after 5 and 4 cells. Consider one figure per country.") else NULL
+  list(method = "Evidence-Graded Bounds Analysis (EGBA), paired evaluation", q_star = q_star, Q = Q, cells = out, warnings = warn)
 }
 egba_plots <- function(d, a) {
   r <- q_egba(d, a$cells, a$q_grid %||% c(500, 1000, 2000, 4000, 6000, 8000, 10000), a$q_star %||% 500); figs <- list()
   add <- function(f) figs[[length(figs) + 1]] <<- f
-  shades <- c("grey10", "grey45", "grey70", "grey30"); ltys <- c(1, 2, 4, 5, 3)
+  shades0 <- c("grey10", "grey45", "grey70", "grey30"); ltys0 <- c(1, 2, 4, 5, 3)
+  # bug items 11-12: recycle shades and line types for any number of cells
+  k_all <- max(1, length(r$cells)); shades <- rep_len(shades0, k_all); ltys <- rep_len(ltys0, k_all)
   pc <- Filter(function(c) is.data.frame(c$paired), r$cells)
   if (length(pc)) add(q_fig("EGBA: paired cost difference per session", function() {
     Qs <- r$Q; k <- length(pc); allv <- unlist(lapply(pc, function(c) c(c$paired$E1_low, c$paired$E1_high)))

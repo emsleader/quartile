@@ -2,7 +2,9 @@
 // Ledger: one row per material claim, graded by evidence class (A-E) and, separately, by status
 // (OBSERVED / DERIVED / CONDITIONAL / NOT_IDENTIFIED). checkLedger validates a ledger; claimAudit reads a
 // manuscript and flags claims that go further than this kind of evidence can support.
-const L = require("./lib.js");
+import L from "./lib.js";
+import { loadRules } from "./rules/loader.js";
+import { patternHits } from "./rules/engine.js";
 
 const FIELDS = ["claim_id", "claim", "source_url", "source_document_title", "publication_date", "capture_date", "retrieval_date", "source_type",
   "country", "legal_entity_id", "site_id", "sector", "technology_type", "business_model", "observation_unit", "period",
@@ -62,38 +64,14 @@ function checkLedger(text) {
 }
 
 // ---- manuscript claim audit ----
-const RULES = [
-  { id: "snapshot", re: /\b(market share|market leader|dominat\w+ the market|market(-wide)? growth|growth rate of the market|resilien\w+|survival rates?)\b/i, ctx: /\b(snapshot|web(site)?s?|listings?|advert\w*|directory|visible|online presence|google maps|wayback|scrap\w+|register of (visible|online))\b/i,
-    label: "Snapshot read as share, growth or resilience", fix: "A list of businesses visible on one date shows presence, not share, growth or survival. Say 'visible on <date>' and keep share and growth NOT IDENTIFIED." },
-  { id: "prereg", re: /\b(pre-?regist\w+|registered in advance|prospective(ly)? regist\w+)\b/i, ctx: /\b(after|following|post-hoc|exploration|explored|already|initial look|inspected)\b/i,
-    label: "Protocol called a preregistration after the data were seen", fix: "Call it a time-stamped analysis protocol and state that data exploration came first." },
-  { id: "entity-profit", re: /\b(profit\w*|margin|profitab\w+|EBITDA)\b[^.]{0,80}\b(service|EMS|offering|line|integrated)\b|\b(service|EMS|offering|integrated)\b[^.]{0,80}\b(profit\w*|margin|profitab\w+)\b/i, ctx: /\b(financial statements?|filings?|annual accounts|company accounts|net profit|legal entit\w+|diversified)\b/i,
-    label: "Service-level profit read from company accounts", fix: "Company accounts give the whole entity's profit. Model the service's economics as CONDITIONAL, or report it as NOT IDENTIFIED." },
-  { id: "survival", re: /\b(surviv\w+|exit rate|failure rate|hazard)\b/i, ctx: /\b(snapshot|currently active|still (open|operating)|wayback|visible|cross-section\w*)\b/i,
-    label: "Survival claimed without a population at risk", fix: "Survival needs the population at risk, entry and exit dates, censoring and the number of events. Survivors visible today cannot show survival." },
-  { id: "legal-vs-service", re: /\b(firm|company|entity) (survival|persistence)\b/i, ctx: /\b(service|offering|EMS|programme)\b/i,
-    label: "Legal-entity survival equated with service persistence", fix: "A company can survive while it drops the service. Keep entity survival and service persistence separate." },
-  { id: "asking-price", re: /\b(prices?|valuations?|resale value|market value)\b/i, ctx: /\b(advert\w*|asking|listed|listing|marketplace|classified)\b/i, soft: /\b(asking|listed|advertised)\b/i,
-    label: "Asking price treated as a transaction price", fix: "An advertised price is an asking price; say so, and do not treat it as a realised sale.", needsNot: true },
-  { id: "causal", re: /\b(causes?|caused|leads? to|led to|drives?|driven by|results? in|impact of|effect of)\b/i, ctx: /\b(snapshot|cross-section\w*|descriptive|association|correlat\w+|survey)\b/i,
-    label: "Causal wording on descriptive or associational evidence", fix: "Use 'is associated with' or 'co-occurs with' unless the design identifies a causal effect." },
-  { id: "assumption-as-result", re: /\b(we find|results show|shows that|demonstrates?|proves?)\b/i, ctx: /\b(assum\w+|scenario|simulat\w+|projected|parameter range|calibrat\w+)\b/i,
-    label: "Model result reported as a finding", fix: "Label it a CONDITIONAL MODEL RESULT and name the assumption or range it depends on." },
-];
-// a denial ("never a preregistration", "is not read as", "rather than") within a few words before the trigger
-const NEG = "(?:not|never|no longer|no|nor|neither|rather than|instead of|cannot|can't|does not|do not|is not|was not|are not|were not|without)";
-function NEG_BEFORE(s, trig) { const m = s.match(trig); if (!m) return false; const before = s.slice(0, m.index).split(/\s+/).slice(-6).join(" "); return new RegExp("\\b" + NEG + "\\b", "i").test(before); }
-function NEG_NEAR(s) { return new RegExp("\\b" + NEG + "\\b(?:\\W+\\w+){0,6}?\\W+(?:read|used|infer\\w*|treated|taken|interpreted|claim\\w*|equat\\w*|reported|shown|identif\\w*|estimat\\w*|establish\\w*|imply|implies|mean|means|prove\\w*|count\\w*)\\b", "i").test(s); }
+// The pattern rules live in rulebook/quartile_core.yaml (moved there in Phase 0, behaviour unchanged).
+const RULES = loadRules().filter(r => r.source_id === "QUARTILE_CORE" && r.legacy_id).map(r => ({ ...r, label: r.title }));
 function claimAudit(text) {
   const d = L.parse(text), out = [];
   const paras = d.paras.filter(p => !p.isHeading && !p.isRef && !p.isTable && !["references"].includes(d.roleOf(p.id)));
   paras.forEach(p => p.text.split(/(?<=[.!?])\s+(?=[A-Z])/).forEach(s => RULES.forEach(r => {
-    if (!r.re.test(s) || !r.ctx.test(s)) return;
-    if (r.id === "asking-price" && r.soft.test(s) && /\basking\b/i.test(s)) return; // already labelled as asking
-    if (r.id === "causal" && /\bnot (identify|establish|claim)|\bassociat\w+ (with|rather)/i.test(s)) return;
-    if (r.id === "prereg" && NEG_BEFORE(s, /pre-?regist|registered in advance|prospective(ly)? regist/i)) return;
-    if (["entity-profit", "snapshot", "survival", "legal-vs-service", "assumption-as-result"].includes(r.id) && NEG_NEAR(s)) return;
-    out.push({ rule: r.id, label: r.label, sentence: s.trim(), section: d.roleOf(p.id), fix: r.fix });
+    if (!patternHits(r, s).length) return;
+    out.push({ rule: r.legacy_id, label: r.label, sentence: s.trim(), section: d.roleOf(p.id), fix: r.fix });
   })));
   const all = d.paras.filter(p => !p.isRef).map(p => p.text).join(" "); // headings included: "10. Conflict of interest" or "9. Limitations" are disclosures
   const checks = [
@@ -102,8 +80,9 @@ function claimAudit(text) {
     { ok: !/\b(market share|growth rate)\b/i.test(all) || /\b(not identified|cannot (be )?(estimat|identif))/i.test(all), t: "Share or growth either identified or explicitly not identified", fix: "If the data are a snapshot, say that share and growth are not identified." },
     { ok: /\b(limitations?|threats to validity)\b/i.test(all), t: "Limitations section or paragraph", fix: "State what the evidence cannot show." },
   ];
-  return { kind: "claims", flagged: out.length, findings: out, checks, rules: RULES.map(r => ({ id: r.id, label: r.label })),
+  return { kind: "claims", flagged: out.length, findings: out, checks, rules: RULES.map(r => ({ id: r.legacy_id, label: r.label, rulebook_id: r.id })),
     output_contract: ["FACT/OBSERVED", "DERIVED", "CONDITIONAL MODEL RESULT", "NOT IDENTIFIED"],
     note: "Rule-based: a flag means the sentence combines a strong claim with evidence words that cannot carry it. Read each in context; some will be fine." };
 }
-module.exports = { checkLedger, claimAudit, template, FIELDS, CLASSES, STATUSES, parseCsv };
+export { checkLedger, claimAudit, template, FIELDS, CLASSES, STATUSES, parseCsv };
+export default { checkLedger, claimAudit, template, FIELDS, CLASSES, STATUSES, parseCsv };

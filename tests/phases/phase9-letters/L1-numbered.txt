@@ -1,0 +1,26 @@
+Dear Dr. Example,
+
+Manuscript ID JIE-2026-0001 entitled "A Fictional Study of Widget Firms" which you submitted to the Journal of Imaginary Economics has been reviewed. The reviewers' comments are included below.
+
+I regret that the paper cannot be accepted in its current form, but I invite a major revision. Please submit your revised manuscript within 60 days and include a point-by-point response to the reviewers.
+
+Editor's comments:
+1. The contribution relative to existing work on widget firms is not clear. Please state it in the introduction.
+2. The paper should engage with recent literature on credit constraints.
+3. Please shorten the paper to 8,000 words.
+
+Reviewer 1
+
+1. The empirical model needs a formal model specification with numbered equations.
+2. The robustness section should include an alternative measure of firm size.
+3. Standard errors should be clustered at the region level.
+   This matters because firms in one region share shocks.
+
+Reviewer 2:
+1) The sample selection procedure is not described.
+2) Please discuss policy implications for regulators.
+3) Table 3 is hard to read; split it into two tables.
+
+Sincerely,
+Professor Imaginary
+Editor, Journal of Imaginary Economics

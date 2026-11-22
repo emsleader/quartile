@@ -1,5 +1,109 @@
 # Changelog
 
+## 0.17.0 (2026-11-22) — simulated review committee
+
+Phases 0 to 9 of `docs/Quartile_Upgrade_Specification.md`. Phase reports are in `docs/reports/`.
+
+### Phase 0 — Foundation
+- Code base converted to ES modules; `package.json` and the lock file moved to the repository root (owner decision of 22 November 2026). Tool names, inputs and outputs are unchanged.
+- Document model `core/text/parse.js` (paragraphs, sections, sentences with offsets, tables, numbers, citations), section names `core/text/sections.js`, negation scope `core/text/negation.js`, design classifier `core/text/design.js`.
+- Rule engine, schema and loader (`core/rules/`) with a YAML rulebook; the claim audit's eight pattern rules moved to `rulebook/quartile_core.yaml` without changing their behaviour.
+- New tools are registered from `tools/` (one file per tool).
+- CI workflow for every push and pull request; `npm run lint`, `test:rules`, `test:stats`, `test:gold`, `check:changelog`.
+
+### Phase 1 — Methods reviewer
+
+- New tool `reporting_checklist`: item-by-item reporting table (found / not_found / needs_human, with the evidence sentence) for PRISMA 2020, STROBE, CHERRIES, conjoint reporting, COREQ and an AAPOR manual stub; checklist chosen by design or by name; labelled as a simulated pre-submission review.
+- Reporting checklists as YAML data in `rulebook/checklists/` with their own schema and loader (`core/roles/checklists.js`). Official item numbers where the statement has them; item text paraphrased.
+- Methods role (`core/roles/methods.js`): MTH-02 checklist summary, MTH-03 sample-flow arithmetic (single and multi-step flows, "after removing X, Y remained", PRISMA "(n = …)" and "label: N" counts), MTH-04 variables used in the results but not defined in the methods, MTH-05 preregistration claimed without a registry link (negation-aware).
+- New rulebook file `rulebook/methods.yaml` with 4 rules: MTH-CAUSAL-01 (causal verbs on non-experimental designs), MTH-CAUSAL-02 ("results prove / confirm"), MTH-CAUSAL-03 ("predicts", note only), MTH-06 (limitations are specific; structural test in `core/rules/tests/phase1.js`).
+- 18 synthetic gold cases `tests/gold/cases/phase1-*.json` (built by `tests/gold/phase1-build.js` with `plant.js`) and phase tests `tests/phases/phase1-methods.test.js`.
+
+- Phase 2 — finance and statistics reviewer (specification Section 7).
+- New tool `grim_check`: GRIM per reported mean (possible / not possible / not testable), with GRIMMER when an SD is given; accepts a list of means or a text.
+- New statistics modules in `core/stats/`: `dist.js` (t, F, chi-square, normal, binomial), `grim.js`, `grimmer.js` (quick and exact), `debit.js`, `pcurve.js` (caliper test), `recompute.js` (p from t, F, chi-square, z, r with rounding and one-tailed handling). All validated against base R (`tests/validation/distributions.R`, `tests/validation/consistency.R`).
+- `core/roles/finance.js`: code checks STA-01 (GRIM, GRIMMER, DEBIT), STA-02 (p recomputation, decision inconsistency at .05), STA-03 (caliper, note only), STA-04 (percentage columns add to 100), STA-05 (one sample size).
+- `rulebook/finance.yaml`: FIN-01 to FIN-08 with design gates (regression checks never run on bounds, descriptive, qualitative, conceptual or SLR papers); FIN-08 flags Enterprise Survey data used without sampling weights.
+- Method notes: `docs/methods/p-value-recomputation.md`, `docs/methods/grim-grimmer-debit.md`. `check_statistics` is unchanged.
+
+- Phase 3, editor-in-chief role (`core/roles/eic.js`, specification Section 5). New tool `contribution_test`: contribution claims (EIC-01) and "first / novel / no study has" claims (EIC-02) with the 3 closest prior papers and a similarity score. Default source is the private corpus on this machine; `live: true` also searches OpenAlex and the output lists the exact phrases sent. Blocker only when the closest paper is not cited, its score is at or above 0.55 (specification value, not yet calibrated) and the score comes from a real text comparison.
+- EIC-03 scope fit: TF-IDF cosine of the abstract against the journal's aims text and recent titles (supplied list, or Crossref by ISSN when `fetch_titles: true`; only the ISSN is sent), with the 5 most similar titles.
+- EIC-04 format limits against limits given in the input or the journal bank; the bank has no limits yet, so the check says "limits not available" and lists the measured values.
+- New rulebook `rulebook/eic.yaml` (6 rules: EIC-05 title length, form and abbreviations; EIC-06 problem, gap and aim in the introduction) with structural tests in `core/rules/tests/phase3.js`.
+
+### Phase 4 — Business-administration committee and production editor
+
+- New tool `hypothesis_map`: each hypothesis or proposition (H1, Hypothesis 1, P1 ...) is listed with the theory or cited finding before it and the verdict in the results (supported, not supported, mixed, not found). Local only; output carries the simulation label.
+- `core/roles/business.js`: BUS-01 named theory, BUS-02 theory before each hypothesis, BUS-03 each hypothesis tested, BUS-04 construct validity (reliability, AVE, HTMT, common-method variance), BUS-05 managerial implications with a concrete action, BUS-06 boundary conditions, BUS-07 unit of analysis. Each check runs only on the designs it applies to.
+- `core/roles/production.js`: PRD-01 number consistency (abstract and conclusion against body and tables), PRD-02 tables and figures, PRD-03 abbreviations (body and abstract separately), PRD-04 reference integrity both ways (BibTeX/RIS read locally with citation-js), PRD-05 citation policy (Q1/Q2 share from the journal bank), PRD-06 terminology drift from the author's glossary, PRD-07 reference recency and self-citation share.
+- `data/theories.yaml`: 216 theories and mechanisms with aliases and one reference each, all marked `verified: false` until the owner checks them. The older theory list in `core/core.js` is unchanged.
+- Rulebook: `rulebook/business.yaml` (4 rules) and `rulebook/production.yaml` (5 rules), each with tests.
+- Gold set: 14 synthetic Phase 4 cases (`tests/gold/cases/phase4-*.json`, built by `tests/gold/phase4-build.js`), 7 of them clean controls.
+
+### Phase 5 — Ethics and data office
+
+- New tool `ethics_check`: simulated ethics and data office review (labelled "Simulated pre-submission review — not a journal decision") of text or a local .docx/.pdf/.txt file, with an optional local author profile and declared design.
+- New rulebook `rulebook/ethics.yaml` (8 rules): ETH-01 ethics approval with named body and reference number, ETH-01-WAIVER, ETH-02 informed consent, ETH-03 GDPR data protection for EU/EEA participants, ETH-03-PSEUDO, ETH-05 data and code availability, ETH-05-REQUEST, ETH-06 funding. Negation-aware: a stated "no human participants" ends ETH-01 to ETH-03.
+- Ethics role (`core/roles/ethics.js`): ETH-04 conflict-of-interest statement (heading-aware), ETH-04-DUAL dual-role flag from the local `author.yaml` (affiliations and business interests compared with the studied sector through a documented synonym table), ETH-07 small cells (counts below 5) in firm-level survey tables.
+- Author profile read from the tool input, `QUARTILE_AUTHOR_PROFILE` or `$QUARTILE_HOME/author.yaml`; fictional template in `tests/fixtures/author.example.yaml`.
+- Methods written up in `docs/methods/ethics.md` and `docs/methods/dual-role.md`.
+
+### Phase 6 — Writing rulebook
+
+- New tool `style_check`: style findings (role writing) for a manuscript text. It runs the STY code checks and the writing-role rules in the rulebook. Severity is minor at most and confidence is medium or low.
+- New `core/style/checks.js`: STY code checks built on retext (retext-english, retext-passive, retext-simplify, retext-readability), write-good, and the word lists in `data/prose-rules.json` (the lists `core/prose.js` uses; `core/prose.js` is unchanged).
+- New `rulebook/style.yaml`: documents 8 STY code checks (`source.code_checks`) and 2 STY pattern rules (STY-LONG-01, STY-THEREIS-01).
+- New `rulebook/q1corpus.yaml`: 4 note-level structural rules and 1 manual checklist item, with limits taken from `data/style-profile.json` (numbers only). New structural test `profile_metric_at_most` in `core/rules/tests/phase6.js`.
+- Seven documented, empty source files for the priority books (BELCHER2019, HUFF1999, THOMSON2013, BOOTH2016, MCCLOSKEY2019, COCHRANE, WILLIAMS), with extraction status "awaiting owner". No book was supplied, so no rule is attributed to a book.
+- New guide `docs/CONTRIBUTING_RULES.md`: how a person adds a paraphrased rule from a book, with a worked example from a fictional source.
+
+### Phase 7 — Committee report, response tracker, feedback loop
+
+- New tool `committee_review`: runs the rulebook and the six role modules for the detected or declared design and returns the committee report (specification Section 13): one light per role with an icon and a word, blockers, majors, top 3 issues, readiness score, overall readiness state (ready to submit / revise first / not ready), human checklist and every finding with rule ID, span, source and fix. Returns Markdown, and DOCX (base64) with `docx: true`. Labelled "Simulated pre-submission review — not a journal decision".
+- New tool `response_tracker`: splits a reviewer letter into comments (Reviewer 1, R1.3, Comment 2:, numbered lists), finds changed paragraphs between the old and new manuscript with jsdiff, and builds the response table (comment, change old → new, location, status). Export to Markdown or DOCX is refused while any comment is open.
+- New tool `rule_feedback`: saves "this flag is wrong / right" verdicts locally in `$QUARTILE_HOME/feedback.jsonl`. A rule with more than 3 confirmed false positives is shown as a note in the committee report until the owner resets it.
+- New tool `rulebook_status`: rules per source, test coverage from `tests/rules`, precision per rule from local feedback, and downgraded rules.
+- New modules: `core/report/committee.js`, `core/report/render.js` (JSON, Markdown, HTML, DOCX; black headings; Okabe-Ito colour-blind-safe lights), `core/report/feedback.js`; `core/roles/response.js` filled in.
+- Tests: `tests/phases/phase7-*.test.js` and five synthetic papers in `tests/phases/fixtures/phase7/`.
+
+### Phase 8 — Quartile Library (specification Section 20)
+
+- New local reference library in `core/library/` on the shared sql.js database (`$QUARTILE_HOME/library/library.sqlite`); schema of 20.2 in `core/library/schema.sql` with FTS4 search (this sql.js build has no FTS5). PDFs are stored as files under `library/files/<item-id>/` with SHA-256; CSL-JSON backup `library.json`.
+- `library_add`: add by DOI (Crossref, then OpenAlex; only the DOI is sent), or from a BibTeX, RIS or CSL-JSON string; tag, file into a collection, or attach a PDF to an existing item. Quartile from the user's SCImago bank by ISSN.
+- `library_import`: BibTeX, RIS, CSL-JSON and Zotero exports (CSL JSON, RIS, Zotero RDF with nested collections). Same DOI is skipped as a duplicate; similar records are listed as suggested merges.
+- `library_export`: BibTeX with stable cite keys (AuthorYearWord), pandoc-ready .bib, RIS, CSL-JSON; no overwrite without `overwrite: true`.
+- `library_search`: full-text search with collection, tag, quartile, type and year filters.
+- `library_verify`: verification log (history kept); live Crossref check for retractions, corrections and expressions of concern.
+- `library_match_manuscript`: matches author-year and numbered citations and the reference list to the library; flags cited-not-in-library, in-list-not-cited, ambiguous, year and author mismatches (LIB-MAT-01 to 06) and applies the owner's citation policy (LIB-POL-01 to 05).
+- `library_bibliography`: APA 7 reference list from our own formatter (`core/library/apa7.js`); citeproc and @citation-js/plugin-csl are not bundled.
+- `library_dedupe`: suggested merges (same DOI; or title similarity >= 0.92, year within 1, same first author); merging needs `confirm: true`.
+- `library_screening`: SLR screening decisions per reviewer and stage, PRISMA 2020 counts, CSV export; Cohen's kappa in base R with `scripts/screening-agreement.R`.
+
+### Phase 9 — Quartile Record (paper history and learning, specification Section 21)
+
+- New local paper record in the shared Library database (`$QUARTILE_HOME/library/library.sqlite`): papers, events, event files, requests and lessons (`core/record/schema.sql`). Events and event files are append-only; database triggers refuse UPDATE and DELETE. Mistakes are fixed with a `correction` event that points to the old event.
+- Event files are copied to `$QUARTILE_HOME/record/files/<event-id>/` with their SHA-256.
+- Paper status is derived from the latest status event (date order, corrections applied).
+- Letter splitter (`core/record/split.js`) for editor and reviewer letters: "Editor:", "Reviewer 1", "R1.3", "Comment 2:", numbered, bulleted and lettered lists, and prose letters.
+- Category proposals (specification 21.5 hints plus our hints for the other 21.4 categories) and lesson proposals in rulebook format (`check: manual`).
+- Owner-only lesson decisions (approve, edit, reject, retire). Approved lessons go to `$QUARTILE_HOME/record/lessons.yaml`, never into the repository rulebook. A category asked by two or more journals is proposed with scope `all`.
+- Exports for other modules: `getApprovedLessons({ journal })` (committee review) and `openRequests({ paper_id, revision })` (submission readiness, response tracker).
+- New tools: `record_paper`, `record_event`, `record_letter`, `record_requests`, `record_lessons`, `record_timeline` (Markdown and DOCX), `record_stats` (descriptive counts and dates only).
+- New guide: `docs/RECORD_FIRST_DATA.md` (how to enter the FER paper).
+
+### Integration
+- `committee_review` now also runs the writing checks (role `writing`, switch off with `writing: false`), lists approved lessons from earlier letters for the target journal (Quartile Record) as checklist items, matches citations against the local Quartile Library when one exists, and passes `glossary`, `citation_policy`, `author` and `author_profile` to the roles.
+- Old claim-audit rules that a role now checks more precisely (`QC-CLAIM-CAUSAL`, `QC-CLAIM-PREREG`) are dropped from the committee report when the role flags the same sentence, so one problem counts once.
+- `QC-CLAIM-ASKING-PRICE` no longer flags a sentence that already calls the prices "advertised" (owner approval, 22 November 2026). `claim_audit` output changes only for such sentences.
+- Gold set: a case can list `annotated_roles`; the gold run never reads the owner's real author profile.
+
+## 0.16.2 (2026-11-17)
+- New tool `fer_literature_index`: read-only search of a 100-paper, DOI-verified candidate bibliography for the FER paper, with explicit flags that full texts and journal quartiles were not all verified.
+
+## 0.16.1 (2026-11-17)
+- New tool `fer_equation_catalog`: the FER paper's estimands and tests as a deterministic formula catalogue.
+- New tool `fer_replication_audit`: arithmetic audit of saved aggregate results (no microdata), with an R 4.3.3 aggregate cross-check workflow.
+
 ## 0.16.0 (2026-11-14)
 - New tool `egba_bounds`: Evidence-Graded Bounds Analysis for any arithmetic target expression, with survey (S) and interview (I) evidence grades after the documentary grades A-E. Each rung intersects the admitted intervals; an interval that does not overlap is reported as a conflict and the earlier one is kept, so survey or interview evidence can narrow the bounds but never overrule documentary evidence. Survey answers may be raw values (95% CI of the mean or 10th-90th percentiles). Returns bounds and a label at every rung, conflicts and the breakdown value of a chosen parameter. Only arithmetic operators and min, max, abs, log, exp and sqrt are accepted in the expression.
 - New tool `egba_time` (EGBA-Time): bounds on the activation latency of each financing route from stage intervals (with their own units), censoring of pending routes, classification against the action window (surely on time, surely late, undetermined, not usable, not identified), and Manski worst-case bounds on the share of routes usable in time with 95% Wilson intervals. Unnamed stage lists are refused with a clear message.
@@ -78,6 +182,7 @@ Accuracy release from a hand-checked test on the author's manuscripts (ORBIT, JE
 - 17 regression tests lock in each fix (38 tests in total).
 
 ## 0.8.0 (2026-11-11)
+- Tools in this release: `analyze_manuscript`, `desk_screen`, `check_statistics`, `check_references`, `verify_rewrite`, `apply_replacements`, `journal_lookup`, `journal_suggest`, `q1_style_guide`.
 - New name and design: Quartile.
 - PDF input (pdf.js), alongside Word (.docx), Markdown and text.
 - Journal editor: desk decision and three reviewer reports for a named journal; screen the paper as the editor of each suggested journal; send fixes to Issues.

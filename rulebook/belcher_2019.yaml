@@ -1,0 +1,12 @@
+# Priority source BELCHER2019 (specification Section 12). This file is documented and still empty on purpose.
+# No rule may be written here until a person has read the book (or essay) and paraphrases each rule in their
+# own words, with the chapter or page in source_ref. Never copy text from the source. See docs/CONTRIBUTING_RULES.md.
+source:
+  id: BELCHER2019
+  citation: "Belcher, Writing Your Journal Article in Twelve Weeks, 2nd ed., U. Chicago Press"
+  licence_note: "Rules paraphrased; no text reproduced"
+  access: library
+  target_rules: 30
+  target_areas: "argument, structure, submission"
+  extraction_status: "awaiting owner"
+rules: []

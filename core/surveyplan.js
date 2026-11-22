@@ -1,8 +1,13 @@
 // Survey planner: sample size per planned analysis, completes per group, invitations, survey length and an
 // anonymity check. The calculation runs in R (core/surveyplan.R, base R only); this file turns the JSON plan
 // into an R list, runs Rscript and returns the result with the exact script and a reproducibility record.
-const fs = require("fs"), os = require("os"), path = require("path"), crypto = require("crypto");
-const { execFile } = require("child_process");
+import fs from "fs";
+import os from "os";
+import path from "path";
+import crypto from "crypto";
+import { execFile } from "child_process";
+import { fileURLToPath } from "node:url";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const R_LIB = path.join(__dirname, "rstats.R"), R_PLAN = path.join(__dirname, "surveyplan.R"), R_EGBA = path.join(__dirname, "egba.R"), R_EGT = path.join(__dirname, "egba_time.R");
 const sha = b => crypto.createHash("sha256").update(b).digest("hex");
 const rscript = () => process.env.QUARTILE_RSCRIPT || "Rscript";
@@ -64,4 +69,5 @@ function plan(spec) {
     });
   });
 }
-module.exports = { plan, egba, egbaTime, toR };
+export { plan, egba, egbaTime, toR };
+export default { plan, egba, egbaTime, toR };

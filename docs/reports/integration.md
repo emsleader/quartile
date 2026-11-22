@@ -1,0 +1,8 @@
+Integration — phases 0 to 9 merged (0.17.0)
+Status: done. All phase branches merged without conflicts; the owner approved all phases and the open changes on 22 November 2026.
+What changed: committee_review now runs the writing role, lists approved lessons from earlier letters (Quartile Record), matches citations against the local Quartile Library when one exists, and passes glossary, citation_policy, author and author_profile to the roles. QC-CLAIM-CAUSAL and QC-CLAIM-PREREG are dropped from the committee report when MTH-CAUSAL-* or MTH-05 flags the same sentence. QC-CLAIM-ASKING-PRICE no longer flags sentences that already call the prices "advertised" (owner approval). Gold cases can list annotated_roles; the gold run never reads the owner's real author profile. CHANGELOG entries from changelog.d merged into 0.17.0. 61 tools.
+Tests: tests/run.js 101/101; rules 50 rules, 166 checks; bugs 12 files (13 items); phases 21 files; statistics vs R 15 functions, 2,201 cases; gold 39 cases; lint, changelog and licence checks pass. Two Phase 7 assertions were adapted to the merged roles (design may be detected for other phases' gold cases; the causal rule ID is now MTH-CAUSAL-01).
+Metrics: on 39 synthetic gold cases, scored for their annotated roles only, every role has precision 1.00 and recall 1.00, and all 26 planted errors are found. These cases were written by the sessions that wrote the checks; real precision needs the owner's annotated manuscripts (QUARTILE_GOLD_PRIVATE).
+Validation: stats vs R, max absolute difference 3.5e-11.
+Known limits and open questions for the owner: see docs/reports/phase-0.md to phase-9.md.
+Dependencies added: none in the integration step.

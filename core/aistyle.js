@@ -9,7 +9,7 @@
 //   bands: < 25 low, 25-45 moderate, > 45 high; paragraph hotspots > 60 (v1.1, from the 2026 benchmark)
 // mu and sd are reference values for edited business and economics journal prose (v1, set by hand from the
 // measured Q1 abstracts and the corpus; recalibrated by scripts/benchmark.js on labelled samples).
-const L = require("./lib.js");
+import L from "./lib.js";
 const C = L.Core;
 
 const STOCK = ["delve", "delves", "delving", "crucial", "pivotal", "landscape", "underscore", "underscores", "showcase", "showcases", "tapestry", "testament", "multifaceted", "notably", "comprehensive", "leverage", "leverages", "leveraging", "foster", "fosters", "fostering", "navigate", "navigating", "realm", "holistic", "seamless", "seamlessly", "meticulous", "meticulously", "vibrant", "interplay", "nuanced", "paramount", "intricate", "intricacies", "robust framework", "shed light", "sheds light", "in today's", "ever-evolving", "it is important to note", "it is worth noting", "plays a crucial role", "plays a pivotal role", "a key role", "in the realm of", "serves as a", "valuable insights", "deeper understanding", "unlock", "unlocks", "harness", "harnessing", "embark", "elevate", "garner", "garnered", "bolster", "bolstered"];
@@ -77,4 +77,5 @@ function check(text, { maxFixes = 200 } = {}) {
     replacements: edits, formula: "score = 100 × Σ w·min(max(z,0),3)/3 ÷ Σ w, with z = (rate − typical) / sd per feature (sentence-length CV reversed). Bands: <25 low, 25–45 moderate, >45 high; paragraphs above 60 are hotspots.",
     note: "A style signal, not proof of authorship. No tool can tell reliably whether a person or an AI wrote a text; human prose can score high and edited AI prose low. Use the score to find passages that read as generic, then fix them. Pass the replacements you accept to apply_replacements: each already passed verify_rewrite." };
 }
-module.exports = { check, measure, score, FEATURES, fixSentence };
+export { check, measure, score, FEATURES, fixSentence };
+export default { check, measure, score, FEATURES, fixSentence };

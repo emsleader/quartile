@@ -2,8 +2,13 @@
 // runs Rscript, and returns the results, APA-style sentences, the exact script and a reproducibility record
 // (SHA-256 of the data and the script, R and package versions). Only fixed procedures are offered: no
 // user-supplied R code runs unless QUARTILE_ALLOW_R_CODE=1 (local installs).
-const fs = require("fs"), os = require("os"), path = require("path"), crypto = require("crypto");
-const { execFile } = require("child_process");
+import fs from "fs";
+import os from "os";
+import path from "path";
+import crypto from "crypto";
+import { execFile } from "child_process";
+import { fileURLToPath } from "node:url";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const LIB = path.join(__dirname, "rstats.R");
 const sha = b => crypto.createHash("sha256").update(b).digest("hex");
 const rs = s => JSON.stringify(String(s)); // a JSON string literal is a valid R string literal
@@ -45,7 +50,7 @@ async function run({ data, format = "csv", analyses = [], r_code = null, charts 
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "quartile-r-")); let xinfo = null;
   try {
     const isSav = format === "sav", isX = format === "xlsx", bytes = isSav || isX ? Buffer.from(String(data), "base64") : Buffer.from(String(data), "utf8");
-    if (isX) { const X = await require("./excel.js").xlsxToCsv(bytes, sheet); data = X.csv; xinfo = { sheet: X.sheet, sheets: X.sheets }; }
+    if (isX) { const X = await (await import("./excel.js")).default.xlsxToCsv(bytes, sheet); data = X.csv; xinfo = { sheet: X.sheet, sheets: X.sheets }; }
     const dataFile = path.join(dir, isSav ? "data.sav" : "data.csv"); fs.writeFileSync(dataFile, isX ? Buffer.from(data, "utf8") : bytes);
     let cols = null, sep = ",";
     if (!isSav) { const h = csvHeader(data); cols = h.cols; sep = h.sep; }
@@ -80,7 +85,7 @@ async function run({ data, format = "csv", analyses = [], r_code = null, charts 
     const warnings = String(err || "").split("\n").filter(l => /^Warning/.test(l)).slice(0, 20);
     const res = { kind: "rstats", figures, results, apa: results.map(apa).flat().filter(Boolean), record, script: script.replace(rs(LIB), '"rstats.R"'), warnings, output_text: flatten(results),
       note: "Computed in R with fixed, open procedures (core/rstats.R); figures drawn by R. Pass output_text to number_registry as an output to trace every reported number to this run." };
-    if (excel) res.xlsx_base64 = (await require("./excel.js").workbook(res)).toString("base64");
+    if (excel) res.xlsx_base64 = (await (await import("./excel.js")).default.workbook(res)).toString("base64");
     return res;
   } finally { try { fs.rmSync(dir, { recursive: true, force: true }); } catch (e) {} }
 }
@@ -105,14 +110,17 @@ function apa(x) {
     case "efa": return [`EFA, ${r.factors} factor(s), ${r.rotation} (n = ${r.n}): KMO = ${fr(r.kmo)}, Bartlett χ²(${r.bartlett.df}) = ${f2(r.bartlett.chisq)}, ${fp(r.bartlett.p)}.`];
     case "survival": return [`Survival of ${x.time} (event ${x.event}; n = ${r.n}, ${r.events} events)${r.log_rank ? `: log-rank χ²(${r.log_rank.df}) = ${f2(r.log_rank.chisq)}, ${fp(r.log_rank.p)}` : ""}.`, ...(r.groups || []).map(g => `  ${g.group}: n = ${g.n}, events = ${g.events}, median = ${g.median_time == null ? "not reached" : f2(g.median_time)}.`), ...((r.cox && r.cox.coefficients) || []).map(c => `  Cox ${c.term}: HR = ${f2(c.hazard_ratio)}, 95% CI [${f2(c.hr_ci_low)}, ${f2(c.hr_ci_high)}], ${fp(c.p)}.`), ...(r.cox ? [`  Cox model: concordance = ${fr(r.cox.concordance)}, proportional-hazards test ${r.cox.ph_test_global_p == null ? "–" : fp(r.cox.ph_test_global_p)}.`] : [])];
     case "chart": return [];
-    case "egba": return Object.entries(r.cells || {}).flatMap(([cell, c]) => {
+    case "egba": return [...(r.warnings ? [`EGBA warning: ${[].concat(r.warnings).join(" ")}`] : []), ...Object.entries(r.cells || {}).flatMap(([cell, c]) => {
       const rows = [], P = c.paired, F = c.frontier;
-      if (P && typeof P === "object" && P.Q) P.Q.forEach((q, i) => rows.push(`EGBA ${cell}, Q = ${q.toLocaleString("en-US")}: E1 from ${f2(P.E1_low[i])} to ${f2(P.E1_high[i])} EUR per session (${P.label[i]}).`));
+      // bug item 13: an assumption-sensitive cell with no evidence grade says the sign is not identified at any rung
+      const noSign = l => l === "assumption-sensitive" && c.evidence_grade_at_q_star == null ? " (sign not identified at any rung)" : "";
+      const A = v => [].concat(v); // a one-value grid arrives from R as a scalar
+      if (P && typeof P === "object" && P.Q != null) A(P.Q).forEach((q, i) => rows.push(`EGBA ${cell}, Q = ${q.toLocaleString("en-US")}: E1 from ${f2(A(P.E1_low)[i])} to ${f2(A(P.E1_high)[i])} EUR per session (${A(P.label)[i]})${noSign(A(P.label)[i])}.`));
       else rows.push(`EGBA ${cell}: paired comparison ${P}.`);
-      if (F && typeof F === "object" && F.Q) rows.push(`  ${cell} frontier at Q = ${F.Q[0].toLocaleString("en-US")}: integration favoured while o_I < ${f2(F.oI_star_IR[0])} (robust) / ${f2(F.oI_star_SR[0])} (most favourable); M2 ceiling ${c.M2_ceiling == null ? "not identified" : f2(c.M2_ceiling)}.`);
+      if (F && typeof F === "object" && F.Q != null) rows.push(`  ${cell} frontier at Q = ${A(F.Q)[0].toLocaleString("en-US")}: integration favoured while o_I < ${f2(A(F.oI_star_IR)[0])} (robust) / ${f2(A(F.oI_star_SR)[0])} (most favourable); M2 ceiling ${c.M2_ceiling == null ? "not identified" : f2(c.M2_ceiling)}.`);
       else rows.push(`  ${cell} frontier: NOT IDENTIFIED${c.missing && c.missing.length ? " (missing " + [].concat(c.missing).join(", ") + ")" : ""}.`);
       rows.push(`  ${cell}: evidence grade at Q* = ${c.evidence_grade_at_q_star == null ? "none (not identified or assumption-sensitive at every rung)" : c.evidence_grade_at_q_star}; label changes without related-party sources: ${c.label_changed_without_related_party == null ? "n/a" : c.label_changed_without_related_party ? "yes" : "no"}; status ${c.status}.`);
-      return rows; });
+      return rows; })];
     case "data_audit": { const v = r.variables || []; return [`Data audit: ${r.rows} rows, ${r.columns} columns, ${r.complete_rows} complete rows, ${r.duplicate_rows} duplicate rows${r.duplicate_ids != null ? `, ${r.duplicate_ids} duplicate ${r.id} values` : ""}.`, ...v.filter(c => c.missing_pct > 0 || c.outliers_iqr > 0 || (c.non_numeric_values || "") !== "" || /mixed/.test(c.type)).map(c => `  ${c.variable} (${c.type}): ${f2(c.missing_pct)}% missing${c.outliers_iqr ? `, ${c.outliers_iqr} extreme values (beyond 3 IQR)` : ""}${c.non_numeric_values ? `, non-numeric entries: ${c.non_numeric_values}` : ""}.`)]; }
     case "power": return [r.test === "survival" ? `Power (survival, HR = ${r.effect_size}, α = ${r.alpha}, power = ${r.power}): ${r.events_needed} events needed${r.firms_needed != null ? `, about ${r.firms_needed} firms at an event rate of ${r.event_rate}` : ""} (${r.method}).` : `Power (${r.test}, ${r.test === "proportions" ? `p1 = ${r.p1} vs p2 = ${r.p2}` : `${r.effect} = ${r.effect_size}`}, α = ${r.alpha}): ${r.n_per_group != null ? `n = ${r.n_per_group} per group` : r.n_pairs != null ? `${r.n_pairs} pairs` : `N = ${r.n}`} for power = ${f2(r.power)}.`];
     case "descriptives": return Object.entries(r).filter(([k]) => k !== "procedure").map(([v, s]) => `${v}: M = ${f2(s.mean)}, SD = ${f2(s.sd)}, Mdn = ${f2(s.median)}, n = ${s.n}.`);
@@ -125,4 +133,5 @@ function flatten(results) {
   const out = []; const walk = (o, p) => { if (o == null) return; if (typeof o === "number") out.push(`${p} = ${o}`); else if (Array.isArray(o)) o.forEach((v, i) => walk(v, `${p}[${i}]`)); else if (typeof o === "object") Object.entries(o).forEach(([k, v]) => walk(v, p ? `${p}.${k}` : k)); };
   results.forEach((r, i) => walk(r.result, `${i + 1}.${r.procedure}`)); return out.join("\n");
 }
-module.exports = { run, available, PROCS, apa };
+export { run, available, PROCS, apa };
+export default { run, available, PROCS, apa };

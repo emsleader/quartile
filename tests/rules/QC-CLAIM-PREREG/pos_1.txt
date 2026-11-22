@@ -1,0 +1,3 @@
+# Results
+
+The protocol was preregistered on Zenodo after an initial look at the data.

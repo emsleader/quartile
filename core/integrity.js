@@ -46,4 +46,5 @@ function screen(text, sources = [], extraLookup = null) {
     basis: "Screening aligned with COPE Council, 'Plagiarism in a submitted manuscript' (https://doi.org/10.24318/cope.2019.2.1) and the COPE flowchart on redundant publication in a submitted manuscript. Grades are Quartile's heuristics: COPE sets no numeric threshold, and an editor judges what was copied as well as how much. Only overlap with the texts supplied (and the local corpus) can be found; this is not a web-wide plagiarism check."
   };
 }
-module.exports = { screen, sentencesOf };
+export { screen, sentencesOf };
+export default { screen, sentencesOf };

@@ -1,0 +1,3 @@
+# Results
+
+The results in Table 3 are stable. This leads to the second hypothesis.

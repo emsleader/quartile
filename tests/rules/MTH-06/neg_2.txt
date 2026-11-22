@@ -1,0 +1,11 @@
+# Methods
+
+We use a regression of growth on leverage.
+
+# Results
+
+Growth falls with leverage.
+
+# Discussion
+
+This study has limitations. It does not cover firms outside Hungary, so the results may not generalise.

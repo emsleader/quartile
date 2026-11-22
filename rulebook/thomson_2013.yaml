@@ -1,0 +1,12 @@
+# Priority source THOMSON2013 (specification Section 12). This file is documented and still empty on purpose.
+# No rule may be written here until a person has read the book (or essay) and paraphrases each rule in their
+# own words, with the chapter or page in source_ref. Never copy text from the source. See docs/CONTRIBUTING_RULES.md.
+source:
+  id: THOMSON2013
+  citation: "Thomson & Kamler, Writing for Peer Reviewed Journals, Routledge"
+  licence_note: "Rules paraphrased; no text reproduced"
+  access: library
+  target_rules: 25
+  target_areas: "contribution, reviewer response"
+  extraction_status: "awaiting owner"
+rules: []

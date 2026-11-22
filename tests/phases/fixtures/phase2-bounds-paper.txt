@@ -1,0 +1,25 @@
+What Archival Records Can Say About Finance-Driven Delay: A Bounds Analysis
+
+Abstract
+
+We study 214 small service firms with public filings. Instead of point estimates, we report bounds on the share of investment delay that finance can explain. The identified set is wide, and we state what the data cannot identify.
+
+1. Introduction
+
+Small firms often delay investment. Whether finance causes the delay is hard to see in archival data. This paper asks what can be learned without strong assumptions.
+
+2. Data and Methods
+
+We use the annual accounts of 214 firms from 2016 to 2023, together with sales, total assets and leverage, as reported. The approach is partial identification in the spirit of Manski: we derive bounds on the share of delay attributable to finance under monotone treatment response and monotone treatment selection. The bounds analysis uses no instrument and makes no claim about a point estimate. We compare the identified set across three evidence grades. The World Bank Enterprise Surveys are cited for context only.
+
+3. Results
+
+Under the weakest assumptions, the identified set for the finance share is [0.04, 0.61]. Adding monotone treatment selection narrows it to [0.12, 0.47]. Sales and leverage enter only as observed quantities. None of these numbers is a causal coefficient.
+
+4. Discussion
+
+The width of the bounds is itself a finding: archival records alone cannot attribute delay to finance with precision.
+
+5. Conclusion
+
+Bounds show what the evidence allows. A point estimate would need assumptions the data do not support.

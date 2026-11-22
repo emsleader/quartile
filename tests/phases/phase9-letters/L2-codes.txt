@@ -1,0 +1,10 @@
+Editor: Please address the comments below.
+
+R1.1: The theoretical framework is thin; link the hypotheses to a theory of the firm.
+R1.2: The data section should report descriptive statistics for all variables.
+R1.3: Explain how the instrument satisfies the exclusion restriction.
+R1.4 - The discussion of external validity beyond the fictional country is missing.
+
+R2.1: The replication package (code and data) must be shared.
+R2.2: Several references are formatted inconsistently; follow the journal's citation style.
+R2.3: The limitations section should mention measurement error in survey answers.

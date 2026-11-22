@@ -217,4 +217,4 @@ const Stats = (() => {
   }
   return { checkAll, grim, shares, ciP, apaResults, coefChecks, tableCells, impossible, software, lastDigits, pT, pF, pChi, pZ, pR };
 })();
-if (typeof module !== "undefined") module.exports = Stats;
+export default Stats;

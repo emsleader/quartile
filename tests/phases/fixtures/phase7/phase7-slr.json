@@ -1,0 +1,16 @@
+{
+ "id": "phase7-slr",
+ "licence": "synthetic (written for Quartile tests, MIT)",
+ "design": "slr",
+ "text": "Financing equipment-dependent service SMEs: a systematic literature review\n\nAbstract\nThis systematic literature review follows PRISMA 2020 and covers 64 studies published from 2000 to 2025.\n\n1. Introduction\nParagraph 1 on SME financing describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 2 on SME financing describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 3 on SME financing describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\n2. Methods\nWe searched Scopus and Web of Science. Records identified: 1,212; after duplicates removed: 980; screened: 980; full texts assessed: 160; included: 64. Paragraph 1 on screening describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 2 on screening describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\n3. Results\nMost included studies use survey data (n = 38). Survival is higher among studios still operating today. Paragraph 1 on synthesis describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\n4. Discussion\nParagraph 1 on gaps describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 2 on gaps describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\n5. Conclusion\nEvidence on financing is thin for service SMEs.\n\nReferences\nSmith, C. (2019). Credit limits and growth. Small Business Economics, 40(2), 100-120.",
+ "expected": [
+  {
+   "rule": "QC-CLAIM-SURVIVAL",
+   "section": "results",
+   "start": 1635,
+   "end": 1690,
+   "note": "planted"
+  }
+ ],
+ "planted": true
+}

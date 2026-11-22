@@ -1,0 +1,97 @@
+{
+  "id": "phase4-issues-sem-c",
+  "licence": "synthetic",
+  "design": "sem",
+  "text": "Trust and commitment in franchise networks\n\nAbstract\n\nWe study 214 franchisees with structural equation modelling.\n\n1. Introduction\n\nSocial exchange theory explains how trust builds commitment in franchise networks. Franchisees invest when they trust the franchisor.\n\n2. Hypotheses\n\nTrust lowers the perceived risk of investing in the network.\n\nH1: Trust is positively associated with commitment.\n\nCommitment leads franchisees to follow network rules.\n\nH2: Trust is positively associated with rule compliance.\n\n3. Methods\n\nWe use PLS-SEM with three-item scales (Hair et al, 2019). Composite reliability exceeded 0.80 and a marker variable test showed no common method variance. The AVE for commitment was 0.44. The HTMT ratio between trust and commitment was 0.93.\n\n4. Results\n\nThe table below reports the paths. H1 is supported (β = 0.41). The path for H2 is reported in Table 3. Table 3 gives the full model, and Table 1 gives the measurement model.\n\nTable 1. Measurement model\n\n| Construct | CR |\n| Trust | 0.86 |\n\nNote: n = 214 franchisees. Source: own survey, 2024.\n\n5. Discussion\n\nThe paths prove that trust builds commitment. Managerial implications: franchisors should share cost data with franchisees each quarter.\n\nThe model may not apply to networks outside retail services.\n\n6. Conclusion\n\nTrust builds commitment in franchise networks.\n\nReferences\n\nPlaceholder, A. (2020). An unused reference kept for the reference list test. Journal of Retailing, 96(1), 1-10.",
+  "expected": [
+    {
+      "rule": "BUS-01",
+      "section": "introduction",
+      "start": 133,
+      "end": 215,
+      "note": "Social exchange theory explains"
+    },
+    {
+      "rule": "BUS-04",
+      "section": "methods",
+      "start": 678,
+      "end": 710,
+      "note": "AVE for commitment was 0.44"
+    },
+    {
+      "rule": "BUS-04",
+      "section": "methods",
+      "start": 711,
+      "end": 764,
+      "note": "HTMT ratio between trust and commitment was 0.93"
+    },
+    {
+      "rule": "PRD-02",
+      "section": "results",
+      "start": 841,
+      "end": 880,
+      "note": "reported in Table 3"
+    },
+    {
+      "rule": "PRD-03",
+      "section": "methods",
+      "start": 678,
+      "end": 710,
+      "note": "The AVE for commitment"
+    },
+    {
+      "rule": "PRD-03",
+      "section": "methods",
+      "start": 711,
+      "end": 764,
+      "note": "The HTMT ratio"
+    },
+    {
+      "rule": "PRD-03",
+      "section": "methods",
+      "start": 523,
+      "end": 580,
+      "note": "We use PLS-SEM"
+    },
+    {
+      "rule": "PRD-02",
+      "section": "results",
+      "start": 881,
+      "end": 951,
+      "note": "Table 3 gives the full model"
+    },
+    {
+      "rule": "PRD-T-01",
+      "section": "results",
+      "start": 778,
+      "end": 812,
+      "note": "table below"
+    },
+    {
+      "rule": "PRD-T-05",
+      "section": "methods",
+      "start": 523,
+      "end": 580,
+      "note": "Hair et al, 2019"
+    },
+    {
+      "rule": "BUS-T-01",
+      "section": "discussion",
+      "start": 1090,
+      "end": 1135,
+      "note": "prove that"
+    },
+    {
+      "rule": "PRD-04",
+      "section": "references",
+      "start": 1365,
+      "end": 1477,
+      "note": "Placeholder, A. (2020)"
+    }
+  ],
+  "planted": false,
+  "annotated_roles": [
+    "business",
+    "production"
+  ]
+}

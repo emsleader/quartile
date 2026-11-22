@@ -1,11 +1,14 @@
 // Excel in and out for the statistics tool (exceljs 4.4.0, MIT).
 // xlsxToCsv: first sheet (or a named sheet) to CSV text. workbook: results, figures and the reproducibility
 // record as one .xlsx file. Everything in the workbook comes from the R run; nothing is written by hand.
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 let ExcelJS = null;
-const lib = () => ExcelJS || (ExcelJS = require(require.resolve("exceljs", { paths: [__dirname, require("path").join(__dirname, "..", "mcp")] })));
+const lib = async () => ExcelJS || (ExcelJS = (await import("exceljs")).default);
 
 async function xlsxToCsv(buf, sheetName) {
-  const wb = new (lib().Workbook)(); await wb.xlsx.load(buf);
+  const wb = new ((await lib()).Workbook)(); await wb.xlsx.load(buf);
   const ws = sheetName ? wb.getWorksheet(sheetName) : wb.worksheets[0];
   if (!ws) throw new Error(sheetName ? `No sheet named '${sheetName}' (sheets: ${wb.worksheets.map(w => w.name).join(", ")})` : "The workbook has no sheets.");
   const cell = v => { if (v == null) return ""; if (typeof v === "object") { if (v instanceof Date) return v.toISOString().slice(0, 10); if ("result" in v) return cell(v.result); if ("text" in v) return cell(v.text); if (v.richText) return v.richText.map(t => t.text).join(""); if ("error" in v) return ""; } return String(v); };
@@ -30,7 +33,7 @@ function tables(result) {
   walk(result, ""); return { scalars, tables: out };
 }
 async function workbook(res, title = "Quartile statistics") {
-  const wb = new (lib().Workbook)(); wb.creator = "Quartile"; wb.created = new Date(res.record.created);
+  const wb = new ((await lib()).Workbook)(); wb.creator = "Quartile"; wb.created = new Date(res.record.created);
   const head = r => { r.font = { bold: true }; r.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "FFEDEFF3" } }; };
   const sum = wb.addWorksheet("Summary"); sum.columns = [{ width: 140 }];
   sum.addRow([title]).font = { bold: true, size: 14 }; sum.addRow([`Computed in ${res.record.r_version}, ${res.record.created}`]); sum.addRow([]);
@@ -54,4 +57,5 @@ async function workbook(res, title = "Quartile statistics") {
   rp.addRow([]); rp.addRow(["R script"]).font = { bold: true }; res.script.split("\n").forEach(l => rp.addRow(["", l]));
   return Buffer.from(await wb.xlsx.writeBuffer());
 }
-module.exports = { xlsxToCsv, workbook, tables };
+export { xlsxToCsv, workbook, tables };
+export default { xlsxToCsv, workbook, tables };

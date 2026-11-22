@@ -1,9 +1,27 @@
-// Run: node tests/run.js   (from the repo root, after npm install in mcp/)
-const assert = require("assert");
-const path = require("path");
-require("./fermodels.test.js");
-require("./ferliterature.test.js");
-const L = require("../core/lib.js");
+// Run: node tests/run.js   (from the repo root, after npm install)
+import assert from "assert";
+import path from "path";
+import "./fermodels.test.js";
+import "./ferliterature.test.js";
+import L from "../core/lib.js";
+import M_corpus from "../mcp/corpus.js";
+import M_ai from "../core/aistyle.js";
+import M_reg from "../core/registry.js";
+import M_rd from "../core/readiness.js";
+import M_prose from "../core/prose.js";
+import M_net from "../core/net.js";
+import M_ev from "../core/evidence.js";
+import M_rs from "../core/rstats.js";
+import M_xl from "../core/excel.js";
+import M_sp from "../core/surveyplan.js";
+import M_os from "node:os";
+import M_fs from "node:fs";
+import M_exceljs from "exceljs";
+import { Client } from "@modelcontextprotocol/sdk/client/index.js";
+import { TOOLS as NEW_TOOLS } from "../tools/index.js";
+import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
+import { fileURLToPath } from "node:url";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 let n = 0; const ok = (c, m) => { assert.ok(c, m); n++; };
 
 // statistics
@@ -69,10 +87,10 @@ ok(L.Stats.ciP("the difference was 11.14 pp [2.84, 19.44] (p = 0.009; Figure 2)"
   ok(L.Integrity.screen("Entirely new words written for this study about firms and banks today.", [{ id: "a", title: "x", text: src }]).grade === "none", "no overlap"); }
 let corpusDone = Promise.resolve();
 // private corpus (local folder; synthetic Markdown papers)
-{ const os = require("os"), fs = require("fs"), dir = fs.mkdtempSync(os.tmpdir() + "/qc-"); process.env.QUARTILE_CORPUS = dir; fs.mkdirSync(dir + "/finance");
+{ const os = M_os, fs = M_fs, dir = fs.mkdtempSync(os.tmpdir() + "/qc-"); process.env.QUARTILE_CORPUS = dir; fs.mkdirSync(dir + "/finance");
   const sec = (h, n, t) => "# " + h + "\n\n" + Array.from({ length: n }, (_, i) => `We find that ${t} is associated with investment among small firms in paragraph ${i} (Smith, 2019). Using a panel of 900 firms, we estimate the role of ${t} for lenders. These results inform policymakers who monitor ${t} in markets. However, little is known about how ${t} shapes service firms over time.`).join("\n\n") + "\n\n";
   ["leverage", "audit", "cash", "credit", "tax", "trade", "collateral", "growth", "banks", "equity", "debt", "risk"].forEach(t => fs.writeFileSync(`${dir}/finance/${t}.md`, sec("Abstract", 1, t) + sec("1. Introduction", 6, t) + sec("2. Literature review", 8, t) + sec("3. Data and methods", 6, t) + sec("4. Results", 9, t) + sec("5. Discussion", 5, t) + sec("6. Conclusion", 3, t) + "# References\n\nSmith, J. (2019). Credit. Journal of Finance, 1, 1-2.\n"));
-  const CP = require("../mcp/corpus.js");
+  const CP = M_corpus;
   corpusDone = (async () => { const p = await CP.analyse(); ok(p.n === 12 && p.fields.finance && p.fields.finance.roles.results, "corpus analysed by field and section");
     const c = CP.compare(fs.readFileSync(dir + "/finance/audit.md", "utf8"), "finance"); ok(c.recognisedSections.length >= 6 && typeof c.distance === "number", "corpus_compare section by section");
     const sr = await CP.search("audit and investment", 3); ok(sr.results.length && sr.results.every(r => r.snippet.split(" ").length <= 41), "corpus_search short snippets");
@@ -80,7 +98,7 @@ let corpusDone = Promise.resolve();
 
 // AI-style signal, number registry, readiness (offline)
 {
-  const AI = require("../core/aistyle.js"), REG = require("../core/registry.js"), RD = require("../core/readiness.js");
+  const AI = M_ai, REG = M_reg, RD = M_rd;
   const gen = "# Introduction\n\nMoreover, this study delves into the multifaceted landscape of finance — a crucial realm. It is not merely a study, but a testament. Furthermore, we leverage robust data, rich models, and deep insights. This highlights the importance of cash. Notably, firms navigate risk.";
   const hum = "# Introduction\n\nSmall firms hold more cash when banks lend less. We test this with 1,250 Hungarian firms observed from 2012 to 2020, using the 2015 lending shock. Cash rises by about a third of a standard deviation, and the effect is larger where firms have few tangible assets to pledge.";
   const g = AI.check(gen), h2 = AI.check(hum);
@@ -96,13 +114,13 @@ let corpusDone = Promise.resolve();
   ok(r.summaryNotInResults.some(x => x.text === "0.051"), "abstract number missing from results");
   const rd = RD.readiness(ms, { outputs: [{ name: "stata.log", text: out }] });
   ok(rd.score >= 0 && rd.score <= 100 && rd.penalties.length && /does not predict acceptance/.test(rd.note), "readiness score with penalties");
-  const PR = require("../core/prose.js"), pl = PR.lint("# Intro\n\nIn order to study the the cash, we use firms due to the fact that data are adequate enough. It is important to note that we test this. Firms are very large.");
+  const PR = M_prose, pl = PR.lint("# Intro\n\nIn order to study the the cash, we use firms due to the fact that data are adequate enough. It is important to note that we test this. Firms are very large.");
   ok(pl.byType.redundancy === 1 && pl.byType["repeated word"] === 1 && pl.byType.intensifier === 1, "prose lint finds redundancy, repeated word, intensifier");
   ok(pl.replacements.some(e => /^To study .* because data are adequate\.$/.test(e.replacement)) && pl.replacements.every(e => L.verify(e.quote, e.replacement).pass), "prose fixes compose and pass the guard");
   ok(PR.readability("The firm holds cash. ".repeat(30)).fleschReadingEase > 60, "readability");
   const gr = L.Stats.grim("Satisfaction (M = 3.47, N = 25) and loyalty (M = 3.48, n = 25).");
   ok(gr.length === 2 && !gr[0].ok && gr[1].ok, "GRIM test");
-  const N = require("../core/net.js"); ok(["verifyReferences", "literatureOverlap", "grammar"].every(f => typeof N[f] === "function"), "network checks load");
+  const N = M_net; ok(["verifyReferences", "literatureOverlap", "grammar"].every(f => typeof N[f] === "function"), "network checks load");
 }
 
 // regressions reported on ORBIT (12 Nov 2026)
@@ -117,7 +135,7 @@ let corpusDone = Promise.resolve();
 
 // evidence ledger and claim audit
 {
-  const EV = require("../core/evidence.js");
+  const EV = M_ev;
   const led = EV.template() + 'C002,"Market share of standalone studios is 40%",https://x.org,Directory,,2026-11-09,2026-11-09,web directory snapshot,DE,,,fitness,WB-EMS,standalone,web record,2026-11,40,,percent,,A,OBSERVED,,,,no,\nC003,"EMS service profit margin 18%",,Annual accounts,,,,official filing,RO,J40/1,,fitness,WB-EMS,integrated,legal entity,2024,18,,percent,p.4,A,DERIVED,,,,yes,\nC003,"Studio closed in 2023",,Wayback,,,,wayback snapshot,PL,,,,,standalone,site,2023,,,,,C,OBSERVED,,,,no,\n';
   const lc = EV.checkLedger(led), probs = lc.issues.map(i => i.problem).join(" | ");
   ok(lc.claims === 4 && /Grade A with source type/.test(probs) && /market share, growth or resilience/.test(probs), "ledger: grade A on a snapshot, snapshot used for share");
@@ -137,7 +155,7 @@ let corpusDone = Promise.resolve();
 
   // regressions from the 13 Nov 2026 report on a bounds-based manuscript (plain text from DOCX)
   {
-    const RD = require("../core/readiness.js");
+    const RD = M_rd;
     const ms = "Specialist or add-on: bounds on the cost of a new service\nAbstract\nThis paper develops bounds on the incremental cost of adding a service to a host business, using filings for 56 firms. It contributes partial-identification bounds instead of point estimates.\n1. Introduction\nSmall firms add services to use idle capacity. We contribute bounds that hold under weak assumptions, citing prior work (Panzar & Willig, 1981; Teece, 1980).\nLiterature Review\nEconomies of scope and opportunity cost explain when sharing resources lowers cost (Panzar & Willig, 1981). Real options describe the value of waiting (Dixit & Pindyck, 1994).\nTheory and Propositions\nP1: shared resources lower the incremental cost when they are idle.\nData and Methods\nWe use filed accounts and advertised prices and compute partial-identification bounds; no model is estimated.\nBounds Analysis\nThe bounds on cost per session are 11.2 to 18.4.\nImplications for Small-Business Owners\nOwners should measure idle capacity first.\nLimitations\nThe bounds are wide.\nConclusion\nWe contribute bounds on the incremental cost.\nReferences\nDixit, A. K., & Pindyck, R. S. (1994). Investment under uncertainty. Princeton University Press.\nPanzar, J. C., & Willig, R. D. (1981). Economies of scope. American Economic Review, 71(2), 268-272.\nTeece, D. J. (1980). Economies of scope and the scope of the enterprise. Journal of Economic Behavior & Organization, 1(3), 223-247.";
     const a = L.analyze(ms), probs = a.businessResearchIssues.map(i => i.problem).join(" | "), desk = a.deskScreen.criteria.flatMap(c => c.checks).map(c => c.s + ":" + c.t).join(" | ");
     ok(!/Methods missing/.test(desk) && /Literature or theory section present/.test(desk), "plain-text headings: methods and literature found");
@@ -159,15 +177,15 @@ let corpusDone = Promise.resolve();
 
 // statistics in R (skipped when R is not installed)
 const rDone = (async () => {
-  const RS = require("../core/rstats.js"); if (!(await RS.available())) { console.log("R not installed: statistics tests skipped"); return; }
+  const RS = M_rs; if (!(await RS.available())) { console.log("R not installed: statistics tests skipped"); return; }
   const csv = "y,x,g\n" + [[1, 2, "a"], [2, 3, "a"], [3, 5, "a"], [4, 4, "b"], [5, 7, "b"], [6, 8, "b"], [7, 9, "b"], [8, 12, "a"]].map(r => r.join(",")).join("\n");
   const r = await RS.run({ data: csv, analyses: [{ procedure: "regression", dependent: "y", independents: ["x"] }, { procedure: "ttest", variable: "y", group: "g" }, { procedure: "correlation", variables: ["x", "y"] }] });
   const b = r.results[0].result.coefficients[1];
   ok(Math.abs(b.b - 0.7044025) < 1e-6 && Math.abs(r.results[2].result.pairs[0].r - 0.9691250) < 1e-6, "R regression and correlation match known values");
   ok(/^[0-9a-f]{64}$/.test(r.record.data_sha256) && /R version/.test(r.record.r_version) && /q_regression/.test(r.script), "reproducibility record and script");
-  ok(L.Stats && require("../core/registry.js").registry("# Results\n\nThe slope is 0.70 (r = .97).", [{ name: "R", text: r.output_text }]).matched === 2, "R output feeds the number registry");
+  ok(L.Stats && M_reg.registry("# Results\n\nThe slope is 0.70 (r = .97).", [{ name: "R", text: r.output_text }]).matched === 2, "R output feeds the number registry");
   ok(r.figures.length >= 3 && r.figures.every(f => /^iVBOR/.test(f.png_base64) && /^[0-9a-f]{64}$/.test(f.sha256)), "R draws the figures (PNG, hashed)");
-  const X = require("../core/excel.js"), xb = await X.workbook(r), E = require("../mcp/node_modules/exceljs"), wb = new E.Workbook(); await wb.xlsx.load(xb);
+  const X = M_xl, xb = await X.workbook(r), E = M_exceljs, wb = new E.Workbook(); await wb.xlsx.load(xb);
   ok(["Summary", "Figures", "Reproducibility"].every(n => wb.getWorksheet(n)) && wb.getWorksheet("Figures").getImages().length === r.figures.length, "results workbook with tables, figures and record");
   const xin = await RS.run({ data: xb.toString("base64"), format: "xlsx", sheet: "Summary", analyses: [{ procedure: "frequencies", variable: "Quartile statistics" }], charts: false });
   ok(!xin.error && xin.record.data_format === "xlsx" && xin.record.excel_sheet === "Summary", "Excel input read by sheet");
@@ -188,7 +206,7 @@ const rDone = (async () => {
   ok(Math.abs(ex.frontier.oI_star_IR[0] - 14) < 1e-9 && er.results[0].result.cells["YY:all"].status === "NOT IDENTIFIED" && ex.norp.paired === undefined || typeof ex.norp.paired === "string", "EGBA frontier, NOT IDENTIFIED cell, related-party rerun");
   ok(er.figures.filter(f => /EGBA/.test(f.title)).length === 4 && er.apa.some(l => /E1 from -43.00 to -6.00/.test(l)), "EGBA figures and APA lines");
   // egba_bounds, egba_time and survey_plan (hand-checked)
-  const SP = require("../core/surveyplan.js");
+  const SP = M_sp;
   const gb = await SP.egba({ expression: "o_I - rho*p_S + (F_I - F_S)/Q", fixed: { Q: 1000 }, parameters: { o_I: { E: [2, 8] }, rho: { B: [0.08, 0.1] }, p_S: { D: [50, 100] }, F_I: { C: [5000, 10000], S: [6000, 9000] }, F_S: { C: [20000, 40000], I: [50000, 60000] } }, breakdown_parameter: "o_I", breakdown_side: "high" });
   const rE = gb.rungs.find(r => r.rung === "E"), rS = gb.rungs.find(r => r.rung === "S");
   ok(gb.rungs[0].status === "NOT IDENTIFIED" && rE.low === -43 && rE.high === -6 && rS.low === -42 && rS.high === -7 && gb.conflicts.length === 1 && gb.conflicts[0].rung === "I" && gb.breakdown.value === 15, "egba_bounds: ladder intersection, interview conflict kept out, breakdown value");
@@ -204,12 +222,11 @@ const rDone = (async () => {
 // MCP over stdio
 (async () => {
   await corpusDone; await rDone;
-  const { Client } = require("../mcp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/index.js");
-  const { StdioClientTransport } = require("../mcp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/stdio.js");
   const c = new Client({ name: "test", version: "1" });
   await c.connect(new StdioClientTransport({ command: process.execPath, args: [path.join(__dirname, "..", "mcp", "server.js")] }));
   const tools = (await c.listTools()).tools.map(t => t.name);
-  ok(tools.length === 35 && ["integrity_screen", "ai_style_check", "number_registry", "submission_readiness", "verify_references_live", "literature_overlap", "grammar_check", "corpus_profile_export", "prose_check", "benchmark_corpus", "run_statistics", "evidence_ledger", "claim_audit", "survey_plan", "egba_bounds", "egba_time"].every(t => tools.includes(t)), "35 tools");
+  // 35 tools registered in mcp/server.js plus the new tools in tools/ (one file each)
+  ok(tools.length === 35 + NEW_TOOLS.length && ["integrity_screen", "ai_style_check", "number_registry", "submission_readiness", "verify_references_live", "literature_overlap", "grammar_check", "corpus_profile_export", "prose_check", "benchmark_corpus", "run_statistics", "evidence_ledger", "claim_audit", "survey_plan", "egba_bounds", "egba_time"].every(t => tools.includes(t)), "35 tools");
   const r = await c.callTool({ name: "verify_rewrite", arguments: { original: "Sales rose 5%.", revised: "Sales rose 7%." } });
   ok(r.structuredContent.pass === false, "tool call over stdio");
   const pr = (await c.listPrompts()).prompts.map(p => p.name); ok(pr.length === 3, "3 prompts");

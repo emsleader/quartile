@@ -1,0 +1,11 @@
+# Abstract
+
+We study how small service firms in nine European countries finance the replacement of expensive equipment when bank credit is scarce, using a survey of owners and managers that was collected between 2016 and 2021 and linked to firm accounts filed with national registers in each country.
+
+We find that firms which report a rejected loan application in one year delay the replacement of their main machines by about fourteen months on average, and that this delay is longest for young firms, for firms without real estate collateral and for firms in rural regions.
+
+The association remains after we control for sector, country, year, firm size, owner experience and prior investment, and it is similar when we use an alternative measure of credit constraints based on discouraged borrowers who did not apply because they expected a refusal.
+
+We also show that leasing and supplier credit partly replace bank loans for firms with strong customer demand, but that these substitutes are expensive and short, so that they do not remove the gap between constrained and unconstrained firms over a five-year horizon.
+
+The results suggest that lenders and public guarantee schemes that look only at collateral may miss viable service firms whose main asset is a stream of repeat customers, and they point to simple changes in loan assessment that could reduce delays in equipment replacement for this group of firms.

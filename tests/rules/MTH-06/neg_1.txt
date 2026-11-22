@@ -1,0 +1,11 @@
+# Methods
+
+We use a regression of growth on leverage.
+
+# Results
+
+Growth falls with leverage.
+
+# Discussion
+
+The main limitation is the cross-sectional design, which cannot separate cause from effect.

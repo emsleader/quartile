@@ -1,6 +1,8 @@
 // Error-injection benchmark: how often each module finds a known, injected error (recall) and how often the same
 // alarm fires on the clean paper. Shared by scripts/benchmark.js and the MCP tool benchmark_corpus.
-const L = require("./lib.js"), AI = require("./aistyle.js"), REG = require("./registry.js");
+import L from "./lib.js";
+import AI from "./aistyle.js";
+import REG from "./registry.js";
 function addToRole(t, role, add) { const d = L.parse(t), s = d.sections.find(x => x.role === role) || d.sections.find(x => x.role === "introduction"); if (!s) return null; const p = s.paras.map(id => d.byId(id)).find(p => p && !p.isHeading && !p.isTable && p.text.length > 200); return p ? t.replace(p.text, p.text + add) : null; }
 // ---- injections: each returns the corrupted text, or null if the paper has nothing to corrupt ----
 const INJ = {
@@ -32,4 +34,5 @@ function run(texts) {
     aiStyleOnCleanPapers: aiScores.length ? { median: aiScores[Math.floor(aiScores.length / 2)], p90: aiScores[Math.floor(aiScores.length * 0.9)], max: aiScores[aiScores.length - 1] } : null, perPaper,
     note: "Recall: share of injected errors found. False-alarm rate: share of clean papers where the same alarm fires (some are real problems in the paper, so read them). Use aiStyleOnCleanPapers to recalibrate the AI-style reference values." };
 }
-module.exports = { run, INJ, DET };
+export { run, INJ, DET };
+export default { run, INJ, DET };

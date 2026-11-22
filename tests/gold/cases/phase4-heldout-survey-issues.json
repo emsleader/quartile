@@ -1,0 +1,42 @@
+{
+  "id": "phase4-heldout-survey-issues",
+  "licence": "synthetic",
+  "design": "survey",
+  "text": "Owner attitudes and the adoption of booking software\n\nAbstract\n\nWe survey 305 owners of small salons on booking software.\n\n1. Introduction\n\nThe theory of planned behaviour (Ajzen, 1991) links attitudes to intentions. The technology acceptance model (Davis, 1989) adds perceived usefulness.\n\n2. Theory and hypotheses\n\nPerceived usefulness raises the intention to adopt new software (Davis, 1989).\n\nHypothesis 1: Perceived usefulness is positively associated with adoption intention.\n\nOwners who feel in control of technology are more willing to try it (Ajzen, 1991).\n\nHypothesis 2: Owner self-efficacy is positively associated with adoption intention.\n\n3. Methods\n\nThe questionnaire reached 305 owners. Constructs were measured with four items each on a five-point Likert scale. Cronbach's alpha ranged from 0.78 to 0.88, and the average variance extracted (AVE) ranged from 0.55 to 0.69. The heterotrait-monotrait ratio (HTMT) was used for discriminant validity. The HTMT value between usefulness and intention was 0.88.\n\n4. Results\n\nUsefulness is related to intention (β = 0.38), and Hypothesis 1 is supported. Hypothesis 2 is examined in the second model.\n\n5. Discussion\n\nSoftware vendors could offer a free trial month to owners who doubt the benefits.\n\n6. Conclusion\n\nPerceived usefulness matters for adoption.\n\nReferences\n\nDavis, F. D. (1989). Perceived usefulness, perceived ease of use, and user acceptance of information technology. MIS Quarterly, 13(3), 319-340.",
+  "expected": [
+    {
+      "rule": "BUS-04",
+      "note": "document-level"
+    },
+    {
+      "rule": "BUS-04",
+      "section": "methods",
+      "start": 963,
+      "end": 1020,
+      "note": "HTMT value between"
+    },
+    {
+      "rule": "BUS-03",
+      "section": "literature",
+      "start": 567,
+      "end": 650,
+      "note": "Hypothesis 2: Owner"
+    },
+    {
+      "rule": "BUS-06",
+      "note": "document-level"
+    },
+    {
+      "rule": "PRD-04",
+      "section": "introduction",
+      "start": 140,
+      "end": 216,
+      "note": "(Ajzen, 1991)"
+    }
+  ],
+  "planted": false,
+  "annotated_roles": [
+    "business",
+    "production"
+  ]
+}

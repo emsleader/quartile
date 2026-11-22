@@ -1,0 +1,16 @@
+{
+ "id": "phase7-regression",
+ "licence": "synthetic (written for Quartile tests, MIT)",
+ "design": "regression",
+ "text": "Cash holdings and growth in European service SMEs\n\nAbstract\nWe study how cash holdings relate to sales growth in 2,140 service SMEs observed in 2022. We estimate OLS regressions with sector fixed effects.\n\n1. Introduction\nSmall service firms face tight credit limits. Paragraph 1 on credit constraints describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 2 on credit constraints describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 3 on credit constraints describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\n2. Data and methods\nWe use OLS regression of sales growth on cash holdings with sector fixed effects and robust standard errors. The coefficient on cash is the quantity of interest. Paragraph 1 on the sample describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 2 on the sample describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 3 on the sample describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\n3. Results\nThe coefficient on cash is 0.21 (SE 0.05, p < 0.001). Cash holdings cause higher sales growth in this cross-sectional sample. Leverage is negatively associated with growth (b = -0.12, SE 0.04).\n\n4. Discussion\nParagraph 1 on interpretation describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\nParagraph 2 on interpretation describes the setting in plain terms. Prior studies report mixed evidence on this question (Smith, 2019; Jones and Lee, 2021). We keep the units of observation distinct and report each step with its sample size.\n\n5. Limitations\nThe design is cross-sectional and does not identify causal effects.\n\n6. Conclusion\nCash holdings are associated with growth among service SMEs.\n\nReferences\nJones, A., and Lee, B. (2021). Liquidity in small firms. Journal of Small Business Finance, 12(3), 1-20.\nSmith, C. (2019). Credit limits and growth. Small Business Economics, 40(2), 100-120.",
+ "expected": [
+  {
+   "rule": "QC-CLAIM-CAUSAL",
+   "section": "results",
+   "start": 1977,
+   "end": 2048,
+   "note": "planted"
+  }
+ ],
+ "planted": true
+}

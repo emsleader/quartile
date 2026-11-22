@@ -1,0 +1,53 @@
+{
+  "L1-numbered.txt": [
+    {"number": "E1", "key": "contribution relative to existing work"},
+    {"number": "E2", "key": "engage with recent literature"},
+    {"number": "E3", "key": "shorten the paper"},
+    {"number": "R1.1", "key": "formal model specification"},
+    {"number": "R1.2", "key": "alternative measure of firm size"},
+    {"number": "R1.3", "key": "clustered at the region level"},
+    {"number": "R2.1", "key": "sample selection procedure"},
+    {"number": "R2.2", "key": "policy implications for regulators"},
+    {"number": "R2.3", "key": "Table 3 is hard to read"}
+  ],
+  "L2-codes.txt": [
+    {"number": "R1.1", "key": "theoretical framework is thin"},
+    {"number": "R1.2", "key": "descriptive statistics"},
+    {"number": "R1.3", "key": "exclusion restriction"},
+    {"number": "R1.4", "key": "external validity"},
+    {"number": "R2.1", "key": "replication package"},
+    {"number": "R2.2", "key": "formatted inconsistently"},
+    {"number": "R2.3", "key": "measurement error"}
+  ],
+  "L3-comment.txt": [
+    {"number": "R1.1", "key": "identification strategy is weak"},
+    {"number": "R1.2", "key": "response rate"},
+    {"number": "R1.3", "key": "no axis labels"},
+    {"number": "R2.1", "key": "proofreading"},
+    {"number": "R2.2", "key": "Managerial implications"}
+  ],
+  "L4-bullets.txt": [
+    {"number": "R1.1", "key": "contribution is overstated"},
+    {"number": "R1.2", "key": "firm fixed effects"},
+    {"number": "R1.3", "key": "not derived from theory"},
+    {"number": "R1.4", "key": "word limit"},
+    {"number": "R1.5", "key": "data availability statement"},
+    {"number": "R1.6", "key": "missing DOIs"}
+  ],
+  "L5-prose.txt": [
+    {"number": "E1", "key": "clearer statement of what is new"},
+    {"number": "E2", "key": "cite papers published in this journal"},
+    {"number": "E3", "key": "how the interviews were coded"},
+    {"number": "E4", "key": "conclusion is too long"},
+    {"number": "E5", "key": "limitations of a single-country study"}
+  ],
+  "L6-mixed.txt": [
+    {"number": "R1.1", "key": "exact p-values"},
+    {"number": "R1.2", "key": "variable definitions"},
+    {"number": "R2.1", "key": "restructured so that the research question"},
+    {"number": "R2.2", "key": "sensitivity analysis"},
+    {"number": "R2.3", "key": "ethics approval number"},
+    {"number": "AE1", "key": "Shorten the literature review"},
+    {"number": "AE2", "key": "timeline of the policy reform"}
+  ]
+}

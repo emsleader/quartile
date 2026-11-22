@@ -1,8 +1,9 @@
 // Network checks (run where the server has internet: Render, Claude Desktop, a local server).
 // Crossref for DOI verification and corrections/retractions, OpenAlex full-text search for overlap with published
 // literature, LanguageTool for grammar. Each function degrades gracefully when a service is unreachable.
+import L from "./lib.js";
+import Integrity from "./integrity.js";
 const OA_KEY = () => process.env.OPENALEX_API_KEY ? "api_key=" + encodeURIComponent(process.env.OPENALEX_API_KEY) + "&" : ""; // required by OpenAlex since 13 Feb 2026 (free key)
-const L = require("./lib.js");
 const UA = { "User-Agent": "Quartile (https://github.com/emsleader/quartile)" };
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function getJSON(url, opts = {}, tries = 3) {
@@ -61,7 +62,7 @@ async function verifyReferences(text, { max = 80 } = {}) {
 
 // ---------- overlap with published literature (OpenAlex full-text index) ----------
 async function literatureOverlap(text, { maxQueries = 25, ownDois = [] } = {}) {
-  const S = require("./integrity.js").sentencesOf(text).filter(s => s.split(" ").length >= 14 && !/\((?:[^()]*(?:19|20)\d{2})[^()]*\)/.test(s));
+  const S = Integrity.sentencesOf(text).filter(s => s.split(" ").length >= 14 && !/\((?:[^()]*(?:19|20)\d{2})[^()]*\)/.test(s));
   // most distinctive sentences first: longer words, fewer digits
   const pick = S.map(s => ({ s, score: s.split(" ").filter(w => w.length > 7).length - (s.match(/\d/g) || []).length })).sort((a, b) => b.score - a.score).slice(0, maxQueries);
   const own = new Set(ownDois.map(d => norm(d)));
@@ -77,7 +78,7 @@ async function literatureOverlap(text, { maxQueries = 25, ownDois = [] } = {}) {
     if (res.length) hits.push({ sentence: s, phrase, matches: res });
   });
   const warning = errors >= pick.length ? "OpenAlex did not answer" + (lastStatus ? ` (HTTP ${lastStatus})` : "") + (process.env.OPENALEX_API_KEY ? ": the daily budget may be used up." : ": the server needs a free OPENALEX_API_KEY (required since February 2026).") + " No overlap was checked; this is not a clean result." : null;
-  return { kind: "literature_overlap", sentencesQueried: pick.length, sentencesWithMatches: hits.length, queryErrors: errors, warning, hits,
+  return { kind: "literature_overlap", privacy: { sentTo: "api.openalex.org", what: "10-word phrases from the manuscript, as search queries", count: pick.length }, sentencesQueried: pick.length, sentencesWithMatches: hits.length, queryErrors: errors, warning, hits,
     note: "Exact 10-word phrases from your most distinctive sentences were searched in the OpenAlex full-text index and in titles and abstracts (published, mostly open-access literature). A match means the phrase appears in another work: check it, quote and cite, or rewrite. This covers indexed scholarly full texts, not the whole web, and short common phrases can match by chance." };
 }
 
@@ -107,8 +108,9 @@ async function grammar(text, { language = "auto", spelling = false } = {}) {
     });
     await sleep(3500); // public API limit: 20 requests per minute
   }
-  return { kind: "grammar", issues: issues.slice(0, 300), count: issues.length, chunksChecked: chunks.length - failed, chunksFailed: failed,
+  return { kind: "grammar", privacy: { sentTo: "api.languagetool.org", what: "the manuscript text without headings, tables and references, in chunks", chunks: chunks.length }, issues: issues.slice(0, 300), count: issues.length, chunksChecked: chunks.length - failed, chunksFailed: failed,
     replacements: sentenceEdits(issues),
     note: "Grammar and style rules from LanguageTool (public API, open-source rule set). Pass the replacements you accept to apply_replacements: each is checked by the hallucination guard. Spelling suggestions for names and technical terms are suppressed unless spelling is true." };
 }
-module.exports = { verifyReferences, literatureOverlap, grammar };
+export { verifyReferences, literatureOverlap, grammar };
+export default { verifyReferences, literatureOverlap, grammar };

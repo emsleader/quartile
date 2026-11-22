@@ -2,10 +2,14 @@
 // user's own computer. Quartile downloads open-access articles into it, extracts and measures every section, and
 // compares manuscripts with the result. Full texts never leave the folder; only measurements are written to
 // corpus-profile.json inside it.
+import fs from "fs";
+import path from "path";
+import L from "../core/lib.js";
+import SM from "../core/stylemetrics.js";
+import { fileURLToPath } from "node:url";
+import Benchmark from "../core/benchmark.js";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OA_KEY = () => process.env.OPENALEX_API_KEY ? "api_key=" + encodeURIComponent(process.env.OPENALEX_API_KEY) + "&" : ""; // required by OpenAlex since 13 Feb 2026 (free key)
-const fs = require("fs"), path = require("path");
-const L = require("../core/lib.js");
-const SM = require("../core/stylemetrics.js");
 const ROLES = ["abstract", "introduction", "literature", "methods", "results", "discussion", "conclusion"];
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const safe = s => String(s).replace(/^https?:\/\/doi\.org\//, "").replace(/[^A-Za-z0-9._-]+/g, "_").slice(0, 120);
@@ -21,7 +25,7 @@ function writeIndex(f, idx) { fs.writeFileSync(indexPath(f), JSON.stringify(idx,
 // ---------- text extraction ----------
 let pdfjs = null;
 async function pdfToText(file) {
-  if (!pdfjs) { const warn = console.warn, log = console.log; console.warn = () => {}; console.log = () => {}; pdfjs = require("pdfjs-dist/legacy/build/pdf.js"); console.warn = warn; console.log = log; }
+  if (!pdfjs) { const warn = console.warn, log = console.log; console.warn = () => {}; console.log = () => {}; pdfjs = (await import("pdfjs-dist/legacy/build/pdf.js")).default; console.warn = warn; console.log = log; }
   const data = new Uint8Array(fs.readFileSync(file));
   const pdf = await pdfjs.getDocument({ data, disableFontFace: true, isEvalSupported: false, useSystemFonts: false, stopAtErrors: false, maxImageSize: 1, verbosity: 0 }).promise, lines = [];
   for (let n = 1; n <= pdf.numPages; n++) {
@@ -50,7 +54,7 @@ async function pdfToText(file) {
   return out.join("\n").replace(/\n{3,}/g, "\n\n").trim();
 }
 async function docxToText(file) {
-  const mammoth = require("mammoth"); const r = await mammoth.convertToMarkdown({ path: file });
+  const mammoth = (await import("mammoth")).default; const r = await mammoth.convertToMarkdown({ path: file });
   return r.value.replace(/^(#{1,6})\s*\*\*(.*?)\*\*\s*$/gm, "$1 $2").replace(/\\([.#()\-_*\[\]])/g, "$1");
 }
 async function fileText(file) {
@@ -203,7 +207,7 @@ async function benchmark({ n = 10, minYear = 2025 } = {}) {
   const idx = readIndex(f), pick = idx.papers.filter(p => p.file && (+p.year || 0) >= minYear).sort((a, b) => (+b.year || 0) - (+a.year || 0)).slice(0, n);
   if (!pick.length) return { error: `No corpus papers from ${minYear} or later yet (${idx.papers.length} papers in the folder). Wait for corpus_build or lower min_year.` };
   const texts = []; for (const p of pick) { try { texts.push({ id: p.doi, text: await fileText(path.join(f, p.file)) }); } catch (e) {} }
-  const res = require("../core/benchmark.js").run(texts), meta = new Map(pick.map(p => [p.doi, p]));
+  const res = Benchmark.run(texts), meta = new Map(pick.map(p => [p.doi, p]));
   res.perPaper = res.perPaper.map(r => { const m = meta.get(r.id) || {}; return { doi: r.id, title: m.title, journal: m.journal, year: m.year, field: m.field, aiStyle: r.ai, alarmsOnClean: r.alarmsOnClean, missed: r.missed }; });
   return { kind: "benchmark", ...res };
 }
@@ -268,4 +272,5 @@ async function originality(text) {
   return { kind: "originality", pass: hits.length === 0, sentencesChecked: sents.length, overlapping: hits, rule: "Rewrite any flagged sentence in your own words. Quartile uses the corpus for patterns (structure, length, moves, voice), never for wording." };
 }
 async function sentenceLookup() { if (!folder()) return null; if (!GRAMS) await buildGrams(); return s => { const w = normW(s); let run = 0, max = 0, at = -1; for (let k = 0; k + NG <= w.length; k++) { const i = GRAMS.get(w.slice(k, k + NG).join(" ")); if (i !== undefined) { run++; if (run > max) { max = run; at = i; } } else run = 0; } if (!max) return null; const d = INDEX.docs[at]; return { id: d.p.doi || d.p.file, title: (d.p.title || "corpus paper") + (d.p.doi ? " (doi:" + d.p.doi + ")" : ""), covered: Math.min(1, (max + NG - 1) / w.length) }; }; }
-module.exports = { analyseInBackground, benchmark, exportProfile, loadCorpusProfile, sentenceLookup, build, analyse, status, compare, search, originality, measurePaper, fileText, pdfToText, summarise };
+export { analyseInBackground, benchmark, exportProfile, loadCorpusProfile, sentenceLookup, build, analyse, status, compare, search, originality, measurePaper, fileText, pdfToText, summarise };
+export default { analyseInBackground, benchmark, exportProfile, loadCorpusProfile, sentenceLookup, build, analyse, status, compare, search, originality, measurePaper, fileText, pdfToText, summarise };

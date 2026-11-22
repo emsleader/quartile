@@ -1,0 +1,26 @@
+{
+  "H1.txt": [
+    {"number": "E1", "key": "restructure it around one research question"},
+    {"number": "E2", "key": "Compare your estimates"},
+    {"number": "R1.1", "key": "sub-sample of small banks"},
+    {"number": "R1.2", "key": "missing values"},
+    {"number": "R1.3", "key": "code used to build the panel"},
+    {"number": "R2.1", "key": "relationship lending"},
+    {"number": "R2.2", "key": "too many decimals"},
+    {"number": "R2.3", "key": "managerial implications for loan officers"}
+  ],
+  "H2.txt": [
+    {"number": "R1.1", "key": "lacks a theoretical framework"},
+    {"number": "R1.2", "key": "definition of \"make-believe firm\""},
+    {"number": "R1.3", "key": "omits year dummies"},
+    {"number": "R1.4", "key": "toned down"},
+    {"number": "R2.1", "key": "ethics committee"},
+    {"number": "R2.2", "key": "English needs editing"},
+    {"number": "R2.3", "key": "Figure 1 duplicates Table 1"}
+  ],
+  "H3.txt": [
+    {"number": "AE1", "key": "state the sample size and the period"},
+    {"number": "AE2", "key": "exceeds our limit"},
+    {"number": "AE3", "key": "bounds approach is preferred"}
+  ]
+}

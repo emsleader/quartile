@@ -1,8 +1,16 @@
 // Document-level API shared by the MCP server and the tests.
 // Everything here is deterministic: no AI calls, no network unless a function says so.
-const Core = require("./core.js");
-const Stats = require("./stats.js");
-const Style = require("./style.js");
+import Core from "./core.js";
+import Stats from "./stats.js";
+import Style from "./style.js";
+import SM from "./stylemetrics.js";
+import Integrity from "./integrity.js";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import fs from "node:fs";
+import pathMod from "node:path";
+import Bank from "./bank.js";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function parse(text) {
   const paras = Core.splitParagraphs(String(text || ""));
@@ -80,7 +88,7 @@ function applyReplacements(text, reps, terms) {
 // ---- journal bank (user-built from their own SCImago export; not distributed) ----
 let BANK = null;
 function loadBank(path) {
-  const fs = require("fs"); const env = (process.env.QUARTILE_BANK || "").startsWith("${") ? "" : process.env.QUARTILE_BANK; const p = path || env || require("path").join(__dirname, "..", "data", "bank.json");
+  const env = (process.env.QUARTILE_BANK || "").startsWith("${") ? "" : process.env.QUARTILE_BANK; const p = path || env || pathMod.join(__dirname, "..", "data", "bank.json");
   try { BANK = JSON.parse(fs.readFileSync(p, "utf8")); } catch (e) { BANK = []; }
   return BANK.length;
 }
@@ -89,7 +97,7 @@ function setBank(list) { BANK = Array.isArray(list) ? list : []; return BANK.len
 async function fetchBank({ url = process.env.QUARTILE_BANK_URL || "https://www.scimagojr.com/journalrank.php?out=xls", areas = (process.env.QUARTILE_BANK_AREAS || "Business,Economics,Decision").split(",").map(x => x.trim()).filter(Boolean) } = {}) {
   const res = await fetch(url, { headers: { "User-Agent": "Quartile/0.8 (academic journal lookup; https://github.com/emsleader/quartile)" } });
   if (!res.ok) throw new Error("SCImago download failed: HTTP " + res.status);
-  const list = require("./bank.js").buildBank(await res.text(), areas);
+  const list = Bank.buildBank(await res.text(), areas);
   if (!list.length) throw new Error("SCImago download returned no journals");
   return setBank(list);
 }
@@ -109,8 +117,7 @@ function journalSuggest({ keywords = [], quartile, maxDifficulty = 100, limit = 
 
 // ---- Q1 style profile (measurements from about 500 Q1 abstracts; data/style-profile.json) ----
 let PROFILE = null;
-function loadProfile() { if (PROFILE) return PROFILE; try { PROFILE = JSON.parse(require("fs").readFileSync(process.env.QUARTILE_PROFILE || require("path").join(__dirname, "..", "data", "style-profile.json"), "utf8")); } catch (e) { PROFILE = null; } return PROFILE; }
-const SM = require("./stylemetrics.js");
+function loadProfile() { if (PROFILE) return PROFILE; try { PROFILE = JSON.parse(fs.readFileSync(process.env.QUARTILE_PROFILE || pathMod.join(__dirname, "..", "data", "style-profile.json"), "utf8")); } catch (e) { PROFILE = null; } return PROFILE; }
 function pickProfile(field, journal) {
   const P = loadProfile(); if (!P) return null;
   if (journal) { const k = Object.keys(P.journals).find(x => x.toLowerCase() === String(journal).toLowerCase()); if (k) return { name: k, scope: "journal", ...P.journals[k] }; }
@@ -133,5 +140,5 @@ function styleGuide(tier = "Q1", type = "A", role) {
     nonNegotiable: ["Keep every number, statistic, unit, sample size and p-value exactly.", "Keep every citation attached to the same claim.", "Keep protected constructs verbatim and distinct.", "Never strengthen a hedge or turn association into causation.", "Never add claims, findings, names, references or numbers; every revised sentence must come from an original sentence.", "Run verify_rewrite on every revised paragraph and keep the original if pass is false."] };
 }
 
-const Integrity = require("./integrity.js");
-module.exports = { Integrity, compareStyle, profileSummary, loadProfile, Core, Stats, Style, parse, analyze, references, desk, verify, applyReplacements, loadBank, setBank, fetchBank, journalLookup, journalSuggest, styleGuide, diffLevel };
+export { Integrity, compareStyle, profileSummary, loadProfile, Core, Stats, Style, parse, analyze, references, desk, verify, applyReplacements, loadBank, setBank, fetchBank, journalLookup, journalSuggest, styleGuide, diffLevel };
+export default { Integrity, compareStyle, profileSummary, loadProfile, Core, Stats, Style, parse, analyze, references, desk, verify, applyReplacements, loadBank, setBank, fetchBank, journalLookup, journalSuggest, styleGuide, diffLevel };

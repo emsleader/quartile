@@ -1,0 +1,42 @@
+# CHERRIES (Checklist for Reporting Results of Internet E-Surveys). The statement groups its items by category and
+# does not number them; the numbers below are Quartile's (category.item, in the order of the statement's table).
+# Item text paraphrased in Quartile's own words.
+checklist:
+  id: CHERRIES
+  name: "CHERRIES (web and e-mail surveys)"
+  citation: "Eysenbach, G. (2004). Improving the quality of Web surveys: the Checklist for Reporting Results of Internet E-Surveys (CHERRIES). Journal of Medical Internet Research, 6(3), e34. https://doi.org/10.2196/jmir.6.3.e34"
+  designs: [survey]
+  requires: '\b(online|web-?based|web|internet|e-?mail(ed)?|Qualtrics|SurveyMonkey|LimeSurvey|Google Forms|MTurk|Mechanical Turk|Prolific)\b[^.]{0,40}\b(survey|questionnaire|panel)s?\b|\b(survey|questionnaire)s?\b[^.]{0,40}\b(online|web|internet|e-?mail|Qualtrics|SurveyMonkey|LimeSurvey)\b'
+  numbering: quartile
+  licence_note: "Categories and item order from the statement's checklist table; numbers are Quartile's; text paraphrased."
+items:
+  - { number: "1.1", topic: "Design", item: "The survey design is described, including the target population and the sample frame, and whether the sample is a convenience sample.", check: auto, where: [methods], detect: '\b(target population|sampling frame|sample frame|convenience sample|population of interest)\b' }
+  - { number: "2.1", topic: "Ethics approval and consent", item: "Approval by an ethics board (IRB) is reported.", check: auto, where: all, detect: '\b(ethics (committee|board|approval)|IRB|institutional review board|research ethics)\b' }
+  - { number: "2.2", topic: "Ethics approval and consent", item: "The informed consent process is described, including what respondents were told (length, data storage, investigator, purpose).", check: auto, where: all, detect: '\b(informed consent|consent (form|was obtained|to participate))\b' }
+  - { number: "2.3", topic: "Ethics approval and consent", item: "Measures to protect personal data are described.", check: auto, where: all, detect: '\b(data protection|GDPR|anonymi[sz]\w+|confidential\w*|pseudonymi[sz]\w+|personal data)\b' }
+  - { number: "3.1", topic: "Development and pre-testing", item: "The questionnaire's usability and technical function were tested before fielding, and this is reported.", check: auto, where: [methods], detect: '\b(pre-?test\w*|pilot(ed| study| test)?|cognitive interviews?)\b' }
+  - { number: "4.1", topic: "Recruitment and sample", item: "The paper says whether the survey was open (anyone could take it) or closed (invited sample only).", check: manual, where: [methods], detect: '\b(open survey|closed survey|invitation only|password|unique (link|token))\b' }
+  - { number: "4.2", topic: "Recruitment and sample", item: "The mode of first contact is described (online or offline).", check: auto, where: [methods], detect: '\b(invit\w+|contacted|recruited|e-?mail(ed)?|letter|telephone)\b' }
+  - { number: "4.3", topic: "Recruitment and sample", item: "The way the survey was announced or advertised is described.", check: manual, where: [methods], detect: '\b(advertis\w+|announced|posted on|social media|newsletter|mailing list)\b' }
+  - { number: "5.1", topic: "Survey administration", item: "The delivery mode is stated (web page or e-mail).", check: auto, where: [methods], detect: '\b(web-?based|online|e-?mail|Qualtrics|SurveyMonkey|LimeSurvey|Google Forms)\b' }
+  - { number: "5.2", topic: "Survey administration", item: "The context in which the survey was posted is described (which site or list), since it shapes who responds.", check: manual, where: [methods] }
+  - { number: "5.3", topic: "Survey administration", item: "The paper says whether participation was voluntary or mandatory.", check: auto, where: [methods], detect: '\b(voluntar\w+|mandatory|compulsory)\b' }
+  - { number: "5.4", topic: "Survey administration", item: "Any incentives are described.", check: auto, where: [methods], detect: '\b(incentives?|lottery|prize draw|voucher|compensat\w+|paid|reward)\b' }
+  - { number: "5.5", topic: "Survey administration", item: "The time frame of data collection is given.", check: auto, where: [methods], detect: '\b(between|from)\s+(January|February|March|April|May|June|July|August|September|October|November|December|\d{1,2}\s)|\b(fielded|collected|administered|conducted)\b[^.]{0,40}\b(19|20)\d{2}\b' }
+  - { number: "5.6", topic: "Survey administration", item: "Any randomisation of item or questionnaire order is reported.", check: manual, where: [methods], detect: '\b(randomi[sz]ed (order|the order)|order (was|were) randomi[sz]ed|rotated)\b' }
+  - { number: "5.7", topic: "Survey administration", item: "Use of adaptive questioning (items shown depending on earlier answers) is reported.", check: manual, where: [methods], detect: '\b(adaptive|skip logic|branching|conditional (display|questions?))\b' }
+  - { number: "5.8", topic: "Survey administration", item: "The number of questionnaire items is given.", check: auto, where: [methods], detect: '\b\d+\s+(items|questions)\b' }
+  - { number: "5.9", topic: "Survey administration", item: "The number of screens (pages) is given.", check: manual, where: [methods], detect: '\b\d+\s+(screens|pages)\b' }
+  - { number: "5.10", topic: "Survey administration", item: "Any completeness check before submission (forced response, warnings) is reported.", check: manual, where: [methods], detect: '\b(forced[- ]response|required (questions|fields)|completeness check)\b' }
+  - { number: "5.11", topic: "Survey administration", item: "The paper says whether respondents could review and change their answers.", check: manual, where: [methods], detect: '\b(back button|review (their|the) answers|change (their )?answers)\b' }
+  - { number: "6.1", topic: "Response rates", item: "The number of unique site visitors is reported, with how uniqueness was determined.", check: manual, where: [methods, results] }
+  - { number: "6.2", topic: "Response rates", item: "The view rate is reported (unique survey visitors divided by unique site visitors).", check: manual, where: [methods, results], detect: '\bview rate\b' }
+  - { number: "6.3", topic: "Response rates", item: "The participation rate is reported (people who agreed to take part divided by visitors to the first page).", check: auto, where: [methods, results], detect: '\b(participation rate|response rate)\b' }
+  - { number: "6.4", topic: "Response rates", item: "The completion rate is reported (people who finished divided by people who agreed).", check: auto, where: [methods, results], detect: '\b(completion rate|completed (the )?(survey|questionnaire))\b' }
+  - { number: "7.1", topic: "Preventing multiple entries", item: "Use of cookies to stop repeat entries is reported.", check: manual, where: [methods], detect: '\bcookies?\b' }
+  - { number: "7.2", topic: "Preventing multiple entries", item: "Any IP-address check is reported.", check: manual, where: [methods], detect: '\bIP[- ]address\w*\b|\bIP check\b' }
+  - { number: "7.3", topic: "Preventing multiple entries", item: "Any log-file analysis for duplicates is reported.", check: manual, where: [methods], detect: '\blog[- ]files?\b' }
+  - { number: "7.4", topic: "Preventing multiple entries", item: "Any registration or login requirement is reported.", check: manual, where: [methods], detect: '\b(registration|log-?in|password)\b' }
+  - { number: "8.1", topic: "Analysis", item: "The handling of incomplete questionnaires is explained.", check: auto, where: [methods, results], detect: '\b(incomplete (questionnaires|responses|surveys)|partial (responses|completes)|missing (data|responses|values))\b' }
+  - { number: "8.2", topic: "Analysis", item: "The handling of questionnaires with unusual completion times is explained.", check: manual, where: [methods, results], detect: '\b(speeders?|completion times?|response times?|too (fast|quickly)|straight-?lin\w+)\b' }
+  - { number: "8.3", topic: "Analysis", item: "Any statistical correction for the non-representative sample (weighting, propensity scores) is described.", check: manual, where: [methods, results], detect: '\b(weight\w*|propensity scores?|post-?stratif\w+|raking)\b' }

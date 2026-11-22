@@ -3,13 +3,15 @@
 // on the clean paper. Run it on 30-50 of your own papers (Markdown or text; PDF/DOCX via the corpus extractor):
 //   node scripts/benchmark.js <folder> [--out results.json]
 // The papers stay where they are. Only counts are written; nothing from the papers is copied into the results.
-const fs = require("fs"), path = require("path");
-const L = require("../core/lib.js"), B = require("../core/benchmark.js");
+import fs from "fs";
+import path from "path";
+import L from "../core/lib.js";
+import B from "../core/benchmark.js";
 const dir = process.argv[2]; if (!dir) { console.error("usage: node scripts/benchmark.js <folder> [--out file]"); process.exit(1); }
 const outFile = (process.argv.indexOf("--out") > 0) ? process.argv[process.argv.indexOf("--out") + 1] : null;
 async function textOf(f) {
   if (/\.(md|txt)$/i.test(f)) return fs.readFileSync(f, "utf8");
-  if (/\.(pdf|docx)$/i.test(f)) { const CP = require("../mcp/corpus.js"); return CP.fileText(f); }
+  if (/\.(pdf|docx)$/i.test(f)) { const CP = (await import("../mcp/corpus.js")).default; return CP.fileText(f); }
   return null;
 }
 (async () => {

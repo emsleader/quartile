@@ -1,0 +1,12 @@
+# Priority source BOOTH2016 (specification Section 12). This file is documented and still empty on purpose.
+# No rule may be written here until a person has read the book (or essay) and paraphrases each rule in their
+# own words, with the chapter or page in source_ref. Never copy text from the source. See docs/CONTRIBUTING_RULES.md.
+source:
+  id: BOOTH2016
+  citation: "Booth, Colomb, Williams et al., The Craft of Research, 4th ed., U. Chicago Press"
+  licence_note: "Rules paraphrased; no text reproduced"
+  access: library
+  target_rules: 30
+  target_areas: "question, claim, evidence, warrant"
+  extraction_status: "awaiting owner"
+rules: []

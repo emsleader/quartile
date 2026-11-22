@@ -1,0 +1,3 @@
+# Results
+
+The protocol was time-stamped on Zenodo before any data were collected.
