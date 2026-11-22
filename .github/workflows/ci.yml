@@ -19,6 +19,7 @@ jobs:
       - run: node tests/run.js
       - run: npm run test:rules        # every rule: positive must flag, negative must not
       - run: npm run test:bugs         # regression tests for the 13 reported items
+      - run: npm run test:phases       # tests added by each phase
       - run: npm run test:stats        # compare with stored R outputs
       - run: npm run test:gold         # precision/recall; fails below targets
       - run: npm run check:changelog   # every tool listed

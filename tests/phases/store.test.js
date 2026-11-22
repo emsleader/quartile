@@ -1,0 +1,12 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import os from "node:os";
+process.env.QUARTILE_HOME = fs.mkdtempSync(os.tmpdir() + "/qhome-");
+const { openDb, dbPath } = await import("../../core/store/db.js");
+const h = await openDb(["CREATE TABLE IF NOT EXISTS t (id TEXT PRIMARY KEY, v INTEGER)"]);
+h.run("INSERT INTO t VALUES (?, ?)", ["a", 1]);
+assert.equal(h.get("SELECT v FROM t WHERE id = ?", ["a"]).v, 1);
+assert.throws(() => h.tx(r => { r.run("INSERT INTO t VALUES ('b', 2)"); r.run("INSERT INTO t VALUES ('a', 3)"); }));
+assert.equal(h.all("SELECT * FROM t").length, 1, "transaction rolled back");
+h.close(); assert.ok(fs.existsSync(dbPath()));
+const h2 = await openDb(); assert.equal(h2.all("SELECT * FROM t").length, 1, "data persisted to file"); h2.close();
