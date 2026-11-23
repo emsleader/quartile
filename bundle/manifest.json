@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "quartile",
   "display_name": "Quartile",
-  "version": "0.18.0",
+  "version": "0.19.0",
   "description": "Write at Q1. Keep every number. Manuscript checks for business and economics research: hallucination guard, desk-rejection screen, statistics recomputation, references and journal bank.",
   "long_description": "Quartile checks academic manuscripts without changing their science. verify_rewrite blocks any revision that adds or changes numbers, citations, protected constructs, names or causal claims. check_statistics recomputes p-values from reported t, F, r, chi-square and z, and checks coefficient/SE against reported t, p and significance stars. analyze_manuscript and desk_screen run the five usual desk-rejection checks. Results appear as an interactive Quartile card. All checks run locally on your computer; nothing is sent anywhere. The optional full-text corpus (a private folder, for example in Google Drive) lets Quartile learn section-level patterns from up to 500 open-access Q1 papers; it is used for patterns only and every inspired rewrite is checked for copied wording.",
   "author": {
@@ -34,72 +34,264 @@
   },
   "tools": [
     {
+      "name": "fer_literature_index",
+      "description": "Search the 100 Scite-DOI-verified research paper CANDIDATES by title, DOI, journal, topic group or year."
+    },
+    {
+      "name": "fer_equation_catalog",
+      "description": "Twelve explicit econometric estimands and diagnostic equations used in the Hungarian WBES FER major revision, with their eligibility, identifying assumptions, tests and anti-causality caveats."
+    },
+    {
+      "name": "fer_replication_audit",
+      "description": "Evaluate FER weighted shares, paired changes, exact McNemar, 3-term survey composition identity, Logit beta/OR/CI, HC1 LPM coherence, observed IPW ESS/balance and bootstrap CI formatting."
+    },
+    {
       "name": "q1_style_guide",
-      "description": "Q1-Q4 writing, argument and framing standard"
+      "description": "Writing, argument and framing standard for a target tier (Q1-Q4), writing type (A empirical finance, B theory model, C small business, D service and management theory) and section role."
     },
     {
       "name": "analyze_manuscript",
-      "description": "Full deterministic manuscript audit"
+      "description": "Full deterministic audit of a manuscript in plain text or markdown (headings as '# Heading'): sections and roles, word count, AI-style density, research design, Q1 rule flags, business-research gaps, terminology consi..."
     },
     {
       "name": "desk_screen",
-      "description": "Desk-rejection screen with fixes"
+      "description": "Rule-based screen of the five usual desk-rejection reasons (contribution, structure, writing, literature grounding, fit), with a risk level and a fix for each failed check."
     },
     {
       "name": "check_statistics",
-      "description": "Recompute p-values and check regression tables"
+      "description": "statcheck-style recomputation of p from t, F, r, chi-square and z; coefficient/SE vs reported t, p and significance stars; impossible values (R2, adjusted R2, alpha, AVE, r, p = .000); p-value clustering below .05; la..."
     },
     {
       "name": "check_references",
-      "description": "Cross-check citations and the reference list"
+      "description": "Cross-checks in-text citations against the reference list: cited but missing, listed but never cited, numeric or author-year style, references from the last five years."
     },
     {
       "name": "verify_rewrite",
-      "description": "Hallucination guard for any rewrite"
+      "description": "Compares an original passage with a revision."
     },
     {
       "name": "apply_replacements",
-      "description": "Apply only edits that pass the guard"
-    },
-    {
-      "name": "journal_lookup",
-      "description": "Journal quartile, SJR and difficulty from your bank"
-    },
-    {
-      "name": "journal_suggest",
-      "description": "Suggest journals by topic, quartile and difficulty"
+      "description": "Applies exact quote-to-replacement edits to a text and returns the new text."
     },
     {
       "name": "compare_style",
-      "description": "Compare the abstract with the 501-abstract Q1 profile"
+      "description": "Measures the manuscript's abstract (length, sentence length and variety, active 'we' voice, passive voice, hedging, causal verbs, stock words, numbers, sample-size clause, rhetorical moves) and compares it with Quarti..."
     },
     {
       "name": "corpus_status",
-      "description": "Status of your private full-text corpus"
+      "description": "Shows the private full-text corpus in the user's folder (for example a Google Drive folder synced to the computer): papers per field, how many are measured, and the progress of any running download or analysis."
     },
     {
       "name": "corpus_build",
-      "description": "Download and measure up to 500 open-access Q1 papers"
+      "description": "Starts a background job on the user's computer: downloads open-access, Creative-Commons-licensed Q1 articles (finance, small business, management; 2019 or later) as PDFs from the publishers' open-access copies into th..."
     },
     {
       "name": "corpus_analyse",
-      "description": "Re-measure every paper in the corpus folder"
+      "description": "Re-reads every PDF, DOCX, Markdown and text file in the corpus folder (including papers the user added) and rebuilds corpus-profile.json in the background (check corpus_status; resumes after a restart): section-by-sec..."
     },
     {
       "name": "corpus_compare",
-      "description": "Compare a manuscript section by section with the corpus"
+      "description": "Measures the manuscript section by section (introduction, literature, methods, results, discussion, conclusion) and compares each with the corpus papers of the same field: share of the paper, words per paragraph, cita..."
     },
     {
       "name": "corpus_search",
-      "description": "Find the closest corpus papers and passages"
+      "description": "Finds the corpus papers and passages closest to a topic or paragraph (TF-IDF), for positioning and for checking which close studies to read and cite."
     },
     {
       "name": "corpus_originality",
-      "description": "Flag sentences that copy 8+ words from the corpus"
+      "description": "Flags any sentence that shares 8 or more consecutive words with a paper in the corpus."
     },
     {
       "name": "integrity_screen",
-      "description": "COPE-aligned plagiarism and text-recycling screen before submission"
+      "description": "Pre-submission plagiarism and text-recycling screen aligned with the COPE flowchart 'Plagiarism in a submitted manuscript' (doi:10.24318/cope.2019.2.1)."
+    },
+    {
+      "name": "ai_style_check",
+      "description": "Scores surface patterns common in unedited AI prose (stock words, dashes, 'not X but Y' contrasts, three-item lists, staged openers, summary closers, uniform sentence length) against typical journal prose, with the fo..."
+    },
+    {
+      "name": "number_registry",
+      "description": "Lists every reported estimate, statistic and percentage in the manuscript and matches each to the raw software output you supply (R, Stata, SPSS, Python or EViews logs, or a CSV of estimates), allowing for rounding, d..."
+    },
+    {
+      "name": "submission_readiness",
+      "description": "A 0-100 pre-submission score built from the desk screen, statistics, references, business-research design, Q1 rules, AI-style signal and (if outputs are given) the number registry, with every penalty listed and the fo..."
+    },
+    {
+      "name": "prose_check",
+      "description": "Offline check of redundancy (Garner), wordy phrases, needless word variants, clichés, intensifiers and repeated words, with Flesch, Flesch-Kincaid and Gunning fog readability."
+    },
+    {
+      "name": "run_statistics",
+      "description": "Runs fixed, open statistical procedures in R on a dataset (CSV, Excel .xlsx or SPSS .sav): descriptives, frequencies, crosstab with chi-square/Fisher and Cramér's V, t-tests (independent with Welch, Student, Levene an..."
+    },
+    {
+      "name": "survey_plan",
+      "description": "Plans one survey that serves several papers."
+    },
+    {
+      "name": "egba_bounds",
+      "description": "Evidence-Graded Bounds Analysis in R."
+    },
+    {
+      "name": "egba_time",
+      "description": "Bounds the activation latency of each financing route from incomplete evidence and classifies it against the documented action window."
+    },
+    {
+      "name": "evidence_ledger",
+      "description": "Evidence ledger for empirical claims: one row per claim with source, observation unit, period, value, unit, currency, evidence grade A-E (A official filing or primary law; B official operator disclosure; C independent..."
+    },
+    {
+      "name": "claim_audit",
+      "description": "Reads a manuscript and flags sentences whose claims go beyond the evidence named in them: a snapshot or web-visible list read as market share, growth or resilience; a protocol called a preregistration after data explo..."
+    },
+    {
+      "name": "verify_references_live",
+      "description": "Checks every reference against Crossref: the DOI resolves, title, year and first author match the published record, and the work has no retraction, withdrawal or correction notice."
+    },
+    {
+      "name": "literature_overlap",
+      "description": "Searches exact 10-word phrases from the manuscript's most distinctive sentences in the OpenAlex full-text index of published scholarly works and lists the works where they appear."
+    },
+    {
+      "name": "grammar_check",
+      "description": "Grammar, punctuation and style check with the open-source LanguageTool rules (public API), skipping headings, tables and references."
+    },
+    {
+      "name": "benchmark_corpus",
+      "description": "Runs Quartile's error-injection benchmark on the newest papers in the corpus: injects a known error into each (a decision error in a test, a citation missing from the reference list, an abstract number absent from the..."
+    },
+    {
+      "name": "corpus_profile_export",
+      "description": "Returns the corpus profile (section-by-section measurements) and the list of source papers (DOI, title, journal, licence)."
+    },
+    {
+      "name": "journal_lookup",
+      "description": "Looks up a journal by title or ISSN in the local journal bank built from the user's own SCImago export: quartile, SJR, H-index, citations per document, output, and a difficulty score (0-100) within its main category."
+    },
+    {
+      "name": "journal_suggest",
+      "description": "Lists journals from the local bank by keyword in title or category, quartile and maximum difficulty, hardest first."
+    },
+    {
+      "name": "committee_review",
+      "description": "Simulated pre-submission review by six roles (editor-in-chief, methods, finance and statistics, business, production, ethics)."
+    },
+    {
+      "name": "contribution_test",
+      "description": "Simulated pre-submission review, not a journal decision."
+    },
+    {
+      "name": "ethics_check",
+      "description": "Simulated ethics and data office review (not a journal decision): ethics approval with body and reference number, informed consent, GDPR data protection for EU participants, conflict of interest with a dual-role flag ..."
+    },
+    {
+      "name": "file_check",
+      "description": "Reads a .docx you plan to submit and reports what its file properties show to editors and publisher systems, each as OK / WARN / FAIL with the measured values and a plain explanation: edit time against the real word c..."
+    },
+    {
+      "name": "grim_check",
+      "description": "GRIM test (Brown & Heathers 2017) for means of integer data: give a table of means with n (and optionally items, decimals, SD and scale bounds), or a text."
+    },
+    {
+      "name": "hypothesis_map",
+      "description": "Maps each hypothesis or proposition (H1, P1 ...) to the theory or cited finding before it and to the verdict in the results (supported, not supported, mixed, not found)."
+    },
+    {
+      "name": "library_add",
+      "description": "Add a reference to the local Quartile Library by DOI (Crossref, then OpenAlex; only the DOI is sent), or from a BibTeX, RIS or CSL-JSON string."
+    },
+    {
+      "name": "library_bibliography",
+      "description": "Build an APA 7 reference list (our own formatter; journal article, book, chapter, report, preprint, conference paper, dataset, software) for a collection, a list of item ids, or the library items cited in a manuscript."
+    },
+    {
+      "name": "library_card_search",
+      "description": "Full-text search over the paper cards saved in the local library (title, question and contribution, design and methods, findings, theory, data)."
+    },
+    {
+      "name": "library_cards_export",
+      "description": "Exports saved paper cards as one row per paper (title, DOI, design, countries, period, sample, methods, search and screening, theory, question, contribution, findings with evidence labels, limitations, funding, confli..."
+    },
+    {
+      "name": "library_dedupe",
+      "description": "List suggested merges: same DOI, or (without a DOI) title similarity >= 0.92, year within 1 and same first-author surname."
+    },
+    {
+      "name": "library_export",
+      "description": "Export the library, a collection or a tag as BibTeX (stable cite keys AuthorYearWord), RIS, CSL-JSON or a pandoc-ready .bib for [@key] citations."
+    },
+    {
+      "name": "library_import",
+      "description": "Import a BibTeX, RIS, CSL-JSON or Zotero export (CSL JSON, RIS or Zotero RDF with collections) into the local library."
+    },
+    {
+      "name": "library_match_manuscript",
+      "description": "Match every in-text citation (author-year or numbered) and every reference-list entry of a manuscript to the local library, and apply your citation policy (LIB-POL-*: Q1/Q2 rule, SLR rule, retractions; own-work and cl..."
+    },
+    {
+      "name": "library_screening",
+      "description": "Record title/abstract or full-text screening decisions per reviewer (include, exclude with a primary reason, maybe; reviewer 'consensus' for the agreed decision), get PRISMA 2020 counts from the table, or export the t..."
+    },
+    {
+      "name": "library_search",
+      "description": "Full-text search (title, authors, abstract, venue) of the local library with filters: collection, tag, quartile, type, year range."
+    },
+    {
+      "name": "library_verify",
+      "description": "Add a row to an item's verification log (history is kept)."
+    },
+    {
+      "name": "paper_card",
+      "description": "Reads a published paper (local PDF, DOCX or text file; or PDF/DOCX bytes as base64, for example a file downloaded from Google Drive) and builds an extractive card: research question, contribution claims, theory, hypot..."
+    },
+    {
+      "name": "record_event",
+      "description": "Add one event to a paper's history (action add), with optional local files copied into the record with SHA-256."
+    },
+    {
+      "name": "record_lessons",
+      "description": "List proposed and approved lessons (action list), propose scope 'all' for categories asked by two or more journals (propose_repeated), or record the owner's decision on one lesson: approve, edit (rule_yaml and/or scop..."
+    },
+    {
+      "name": "record_letter",
+      "description": "Add an editor or reviewer letter to a paper's record: stores it as a decision, review_received or desk_decision event, splits it into numbered requests (E1, R1.3 ...), proposes a category for each request and a lesson..."
+    },
+    {
+      "name": "record_paper",
+      "description": "Create a paper record in the local Quartile Record (action create), link it to a Library collection (link), or show one or all papers (get, list)."
+    },
+    {
+      "name": "record_requests",
+      "description": "List the requests found in a paper's letters (action list), list the open requests of one revision round (open), or update one request (update): status open | addressed | partly | declined, the location of the change ..."
+    },
+    {
+      "name": "record_stats",
+      "description": "Descriptive counts and dates from the owner's own record: time from submission to first decision per journal, decisions by journal, most frequent request categories, requests still open."
+    },
+    {
+      "name": "record_timeline",
+      "description": "Export the full history of one paper in date order as Markdown (format md) or DOCX (format docx, written to a local file)."
+    },
+    {
+      "name": "reporting_checklist",
+      "description": "Item-by-item reporting checklist for the manuscript's design (PRISMA 2020, STROBE, CHERRIES, conjoint, COREQ, AAPOR stub)."
+    },
+    {
+      "name": "response_tracker",
+      "description": "Splits a reviewer letter into numbered comments (Reviewer 1, R1.3, Comment 2:, 1."
+    },
+    {
+      "name": "rule_feedback",
+      "description": "Records a verdict on one finding in the local file $QUARTILE_HOME/feedback.jsonl (default ~/.quartile): false_positive (this flag is wrong), true_positive (this flag is right) or reset (the owner fixed the rule; count..."
+    },
+    {
+      "name": "rulebook_status",
+      "description": "Rules per source (rulebook/*.yaml), test coverage from tests/rules (positive and negative test files per rule; run_tests: true also runs them), precision per rule from local feedback (rule_feedback), and the rules dow..."
+    },
+    {
+      "name": "style_check",
+      "description": "Style findings for a manuscript: passive voice, readability, wordy phrases, clichés, intensifiers, repeated words, very long sentences, and distance from the measured Q1 abstract profile."
     }
   ],
   "prompts": [

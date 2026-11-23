@@ -1,6 +1,6 @@
 {
   "name": "q1-engine-mcp",
-  "version": "0.18.0",
+  "version": "0.19.0",
   "description": "MCP server for the Q1 Engine: deterministic academic-manuscript checks (hallucination guard, desk-rejection screen, statistics recomputation, references, Q1 style rules, journal bank) for Claude, ChatGPT and any MCP client.",
   "type": "module",
   "main": "mcp/server.js",
@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node mcp/server.js",
     "http": "node mcp/server.js --http",
-    "test": "node tests/run.js && node tests/rules/run.js && node tests/bugs/run.js && node tests/phases/run.js",
+    "test": "node tests/run.js && node tests/rules/run.js && node tests/bugs/run.js && node tests/phases/run.js && node tests/file_check/run.js",
     "lint": "node scripts/lint.js",
     "test:rules": "node tests/rules/run.js",
     "test:bugs": "node tests/bugs/run.js",
@@ -18,7 +18,8 @@
     "test:gold": "node tests/gold/run.js",
     "check:changelog": "node scripts/check-changelog.js",
     "check:licences": "node scripts/third-party.js --check",
-    "test:phases": "node tests/phases/run.js"
+    "test:phases": "node tests/phases/run.js",
+    "test:file-check": "node tests/file_check/run.js"
   },
   "engines": {
     "node": ">=20.10"
@@ -40,6 +41,7 @@
     "fast-xml-parser": "5.12.1",
     "franc": "6.2.0",
     "fuse.js": "7.5.0",
+    "jszip": "3.10.2",
     "mammoth": "1.13.0",
     "pdfjs-dist": "3.11.174",
     "retext": "9.0.0",
