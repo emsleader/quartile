@@ -183,8 +183,8 @@ Word lists from proselint (BSD-3-Clause) and other projects used as data are cre
 | is-weakmap | 2.0.2 | MIT |
 | is-weakref | 1.1.1 | MIT |
 | is-weakset | 2.0.4 | MIT |
-| isarray | 1.0.0 | MIT |
 | isarray | 2.0.5 | MIT |
+| isarray | 1.0.0 | MIT |
 | isexe | 2.0.0 | ISC |
 | jose | 6.2.17 | MIT |
 | json-schema-traverse | 1.0.0 | MIT |
