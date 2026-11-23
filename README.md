@@ -112,6 +112,7 @@ Difficulty = 0.45 × SJR percentile + 0.20 × H-index percentile + 0.20 × citat
 | Area | Tools |
 |---|---|
 | Committee | `committee_review`, `contribution_test`, `reporting_checklist`, `grim_check`, `hypothesis_map`, `ethics_check`, `style_check`, `response_tracker`, `rulebook_status`, `rule_feedback` |
+| Paper cards (0.18.0) | `paper_card`, `library_card_search`, `library_cards_export`: extractive summaries of published papers (question, data, methods, findings with evidence labels, limitations), kept in the local library |
 | Quartile Library (local reference library) | `library_add`, `library_import`, `library_export`, `library_search`, `library_verify`, `library_match_manuscript`, `library_bibliography`, `library_dedupe`, `library_screening` |
 | Quartile Record (paper history and learning) | `record_paper`, `record_event`, `record_letter`, `record_requests`, `record_lessons`, `record_timeline`, `record_stats` |
 

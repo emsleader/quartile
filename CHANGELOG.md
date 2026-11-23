@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.18.0 (2026-11-23)
+- New tool `paper_card`: reads a published paper (local PDF, DOCX or text; or PDF/DOCX bytes as base64, for example a file downloaded from Google Drive) and builds an extractive card: research question, contribution claims, theory, hypotheses with verdicts, data (sample, countries, period, unit of analysis), methods, search and screening for reviews, findings with an evidence label (FACT/OBSERVED, DERIVED, CONDITIONAL MODEL RESULT, NOT IDENTIFIED; heuristic, low confidence), limitations, funding and conflicts. Every entry is a sentence copied from the paper with its section and offsets; nothing is paraphrased or generated. Emphasis `slr`, `citing` or `both`.
+- Cards are saved in the local Quartile Library (new `cards` table with an FTS4 index), linked to the library item with the same DOI. On the hosted server they are saved only when asked.
+- New tool `library_card_search`: full-text search over the cards, by field or design.
+- New tool `library_cards_export`: one row per paper as Excel or CSV, for an SLR extraction table or a literature matrix.
+
 ## 0.17.1 (2026-11-22)
 - Tests no longer hard-code the Q1 style-profile limits: `tests/phases/phase6-rulebook.test.js` reads them from `data/style-profile.json`, so a rebuild of the profile by the style-brain workflow cannot break CI again (0.17.0 failed after the rebuild of 22 November moved the abstract-length fence from 315 to 323.5 words). The positive example of `Q1C-LEN-01` is longer (about 450 words) so it stays well above the fence. `rulebook/q1corpus.yaml` documents the 2026-11-22 profile.
 - The style-brain workflow now opens a pull request with the rebuilt profile instead of committing to main, so the tests run before it is merged.
