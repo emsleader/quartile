@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "quartile",
   "display_name": "Quartile",
-  "version": "0.20.0",
+  "version": "0.21.0",
   "description": "Write at Q1. Keep every number. Checks for business and economics manuscripts: meaning guard, simulated review committee, statistics validated against R, references, local library, paper history and file properties.",
   "long_description": "Quartile checks academic manuscripts without changing their science. verify_rewrite blocks any revision that adds or changes numbers, citations, protected constructs, names or causal claims. check_statistics recomputes p-values from reported t, F, r, chi-square and z, and checks coefficient/SE against reported t, p and significance stars. analyze_manuscript and desk_screen run the five usual desk-rejection checks. Results appear as an interactive Quartile card. All checks run locally on your computer; nothing is sent anywhere. The optional full-text corpus (a private folder, for example in Google Drive) lets Quartile learn section-level patterns from up to 500 open-access Q1 papers; it is used for patterns only and every inspired rewrite is checked for copied wording.",
   "author": {
@@ -184,6 +184,10 @@
     {
       "name": "ethics_check",
       "description": "Simulated ethics and data office review (not a journal decision): ethics approval with body and reference number, informed consent, GDPR data protection for EU participants, conflict of interest with a dual-role flag ..."
+    },
+    {
+      "name": "factory_run",
+      "description": "Research Factory: runs one paper through ten stages in order, with Quartile checks at each and a human gate approved by a named person; hard quality gates before the submission pack."
     },
     {
       "name": "file_check",

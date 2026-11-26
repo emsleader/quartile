@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.21.0 (2026-11-26)
+- New tool `factory_run`: the Research Factory. One paper moves through ten stages in order: 0 brief, 1 novelty scan, 2 evidence base, 3 ledger and numbers, 4 draft, 5 verification, 6 voice and pattern control, 7 internal committee, 8 submission pack, 9 memory. Actions `start`, `run`, `approve`, `status`, `reopen`, `list`, `stages`.
+  - Each stage runs its Quartile checks (`evidence_ledger` and `number_registry` at Stage 3; `verify_references_live` with `live: true`, `claim_audit` and `check_statistics` at Stage 5; `ai_style_check` against the targets at Stage 6; `committee_review` at Stage 7; `file_check` and the quality gates at Stage 8) and stops at its human gate. Only Stage 6 has no human gate: it passes when the pattern score is in the low band and the mean sentence length is 21 to 27 words.
+  - Approval needs a named person and goes in order. Stage 1 records go, reframe (back to the brief) or stop. Stage 2 needs a named second reviewer who is not the approver. Approving Stage 3 locks the ledger by its SHA-256.
+  - Hard gates at Stage 8: every number in the manuscript found in the attached statistical output; every reference verified in Crossref (now, or at Stage 5 on the same manuscript file); pattern score in the low band; ledger unchanged since it was locked; no FAIL in `file_check`. Stage 8 cannot be approved while any gate fails.
+  - Quartile never approves a gate, never writes the draft and never changes an input file: it records each file's path and SHA-256. One status file per paper in `$QUARTILE_HOME/factory/<paper_id>.json`, every stage result in `factory/<paper_id>/stage-<n>.json`.
+
 ## 0.20.0 (2026-11-26)
 - New tool `proofread_submission`: a full proofreading pass over every submission file of a paper, in the order given, in two steps.
   - `plan`: builds the author's voice profile from their own approved papers (sentence-length distribution, person and voice, preferred verbs, paragraph openings, frequent terms; counts only) and lists every paragraph with issues (stock words, forced triads, uniform rhythm against the author's own variation, empty transitions, causal claims beyond the design, dash chains, generic openings and closings, term drift against `locked_terms`, wordiness), with the hard constraints of each (numbers, citations, locked terms, claim strength). Disclosure statements are locked.

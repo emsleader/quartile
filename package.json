@@ -1,6 +1,6 @@
 {
   "name": "quartile",
-  "version": "0.20.0",
+  "version": "0.21.0",
   "description": "Quartile MCP server: deterministic checks for business, management, finance and economics manuscripts (meaning guard, simulated review committee, statistics validated against R, references, local library, paper history, file properties) for Claude, ChatGPT and any MCP client.",
   "type": "module",
   "main": "mcp/server.js",
