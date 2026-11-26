@@ -1,0 +1,2964 @@
+{
+ "id": "alavi-core-2026",
+ "title": "Core reference set: financial flexibility, investment reversibility, SME finance and firm survival",
+ "curator": {
+  "name": "Seyed Mehdi Alavi",
+  "affiliation": "EMS Leader",
+  "orcid": "0009-0003-8430-211X"
+ },
+ "curated": "2026-11-26",
+ "note": "A set selected for the curator's research field. The papers are the work of their own authors; the curator selected them and is not their author.",
+ "method": "Seminal and highly cited journal articles on the field's core topics, resolved in OpenAlex by title, kept only when the journal is Q1 in the owner's SCImago bank, DOI verified in Crossref, no retraction notice. Citation counts are OpenAlex counts on 26 November 2026. Quartiles are the bank's best quartile: check the quartile for the year of publication before citing.",
+ "count": 100,
+ "topics": {
+  "financial flexibility": 12,
+  "financing constraints": 9,
+  "investment irreversibility and real options": 13,
+  "collateral and redeployability": 9,
+  "leasing": 5,
+  "SME finance": 27,
+  "trade credit": 6,
+  "firm survival": 15,
+  "firm growth": 4
+ },
+ "items": [
+  {
+   "key": "Graham2001Practice",
+   "topic": "financial flexibility",
+   "doi": "10.1016/s0304-405x(01)00044-7",
+   "title": "The theory and practice of corporate finance: evidence from the field",
+   "authors": [
+    {
+     "family": "Graham",
+     "given": "John R"
+    },
+    {
+     "family": "Harvey",
+     "given": "Campbell R"
+    }
+   ],
+   "year": 2001,
+   "journal": "Journal of Financial Economics",
+   "issn": "0304-405X",
+   "volume": "60",
+   "issue": "2-3",
+   "pages": "187-243",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 17.669,
+   "cited_by_openalex_2026_11_26": 7429,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Opler1999Determinants",
+   "topic": "financial flexibility",
+   "doi": "10.1016/s0304-405x(99)00003-3",
+   "title": "The determinants and implications of corporate cash holdings",
+   "authors": [
+    {
+     "family": "Opler",
+     "given": "Tim"
+    },
+    {
+     "family": "Pinkowitz",
+     "given": "Lee"
+    },
+    {
+     "family": "Stulz",
+     "given": "René"
+    },
+    {
+     "family": "Williamson",
+     "given": "Rohan"
+    }
+   ],
+   "year": 1999,
+   "journal": "Journal of Financial Economics",
+   "issn": "0304-405X",
+   "volume": "52",
+   "issue": "1",
+   "pages": "3-46",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 17.669,
+   "cited_by_openalex_2026_11_26": 4686,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false,
+   "note": "Crossref and OpenAlex list only the first author; the four authors are taken from the article."
+  },
+  {
+   "key": "Almeida2004Cash",
+   "topic": "financial flexibility",
+   "doi": "10.1111/j.1540-6261.2004.00679.x",
+   "title": "The Cash Flow Sensitivity of Cash",
+   "authors": [
+    {
+     "family": "Almeida",
+     "given": "Heitor"
+    },
+    {
+     "family": "Campello",
+     "given": "Murillo"
+    },
+    {
+     "family": "Weisbach",
+     "given": "Michael S."
+    }
+   ],
+   "year": 2004,
+   "journal": "The Journal of Finance",
+   "issn": "0022-1082",
+   "volume": "59",
+   "issue": "4",
+   "pages": "1777-1804",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 22.836,
+   "cited_by_openalex_2026_11_26": 4051,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Bates2009Firms",
+   "topic": "financial flexibility",
+   "doi": "10.1111/j.1540-6261.2009.01492.x",
+   "title": "Why Do U.S. Firms Hold So Much More Cash than They Used To?",
+   "authors": [
+    {
+     "family": "Bates",
+     "given": "Thomas W."
+    },
+    {
+     "family": "Kahle",
+     "given": "Kathleen M."
+    },
+    {
+     "family": "Stulz",
+     "given": "René M."
+    }
+   ],
+   "year": 2009,
+   "journal": "The Journal of Finance",
+   "issn": "0022-1082",
+   "volume": "64",
+   "issue": "5",
+   "pages": "1985-2021",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 22.836,
+   "cited_by_openalex_2026_11_26": 3769,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Stephens2000Financial",
+   "topic": "financial flexibility",
+   "doi": "10.1016/s0304-405x(00)00061-1",
+   "title": "Financial flexibility and the choice between dividends and stock repurchases",
+   "authors": [
+    {
+     "family": "Stephens",
+     "given": "Clifford P."
+    },
+    {
+     "family": "Jagannathan",
+     "given": "Murali"
+    },
+    {
+     "family": "Weisbach",
+     "given": "Michael S."
+    }
+   ],
+   "year": 2000,
+   "journal": "Journal of Financial Economics",
+   "issn": "0304-405X",
+   "volume": "57",
+   "issue": "3",
+   "pages": "355-384",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 17.669,
+   "cited_by_openalex_2026_11_26": 1314,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Sufi2007Bank",
+   "topic": "financial flexibility",
+   "doi": "10.1093/revfin/hhm007",
+   "title": "Bank Lines of Credit in Corporate Finance: An Empirical Analysis",
+   "authors": [
+    {
+     "family": "Sufi",
+     "given": "Amir"
+    }
+   ],
+   "year": 2007,
+   "journal": "Review of Financial Studies",
+   "issn": "0893-9454",
+   "volume": "22",
+   "issue": "3",
+   "pages": "1057-1088",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 16.546,
+   "cited_by_openalex_2026_11_26": 1060,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Gamba2008Value",
+   "topic": "financial flexibility",
+   "doi": "10.1111/j.1540-6261.2008.01397.x",
+   "title": "The Value of Financial Flexibility",
+   "authors": [
+    {
+     "family": "Gamba",
+     "given": "Andrea"
+    },
+    {
+     "family": "Triantis",
+     "given": "Alexander"
+    }
+   ],
+   "year": 2008,
+   "journal": "The Journal of Finance",
+   "issn": "0022-1082",
+   "volume": "63",
+   "issue": "5",
+   "pages": "2263-2296",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 22.836,
+   "cited_by_openalex_2026_11_26": 907,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Campello2011Liquidity",
+   "topic": "financial flexibility",
+   "doi": "10.1093/rfs/hhq131",
+   "title": "Liquidity Management and Corporate Investment During a Financial Crisis",
+   "authors": [
+    {
+     "family": "Campello",
+     "given": "Murillo"
+    },
+    {
+     "family": "Giambona",
+     "given": "Erasmo"
+    },
+    {
+     "family": "Graham",
+     "given": "John R."
+    },
+    {
+     "family": "Harvey",
+     "given": "Campbell R."
+    }
+   ],
+   "year": 2011,
+   "journal": "Review of Financial Studies",
+   "issn": "0893-9454",
+   "volume": "24",
+   "issue": "6",
+   "pages": "1944-1979",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 16.546,
+   "cited_by_openalex_2026_11_26": 837,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Denis2012Debt",
+   "topic": "financial flexibility",
+   "doi": "10.1093/rfs/hhs005",
+   "title": "Debt Financing and Financial Flexibility Evidence from Proactive Leverage Increases",
+   "authors": [
+    {
+     "family": "Denis",
+     "given": "David J."
+    },
+    {
+     "family": "McKeon",
+     "given": "Stephen B."
+    }
+   ],
+   "year": 2012,
+   "journal": "Review of Financial Studies",
+   "issn": "0893-9454",
+   "volume": "25",
+   "issue": "6",
+   "pages": "1897-1929",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 16.546,
+   "cited_by_openalex_2026_11_26": 477,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Duchin2017Precautionary",
+   "topic": "financial flexibility",
+   "doi": "10.1111/jofi.12490",
+   "title": "Precautionary Savings with Risky Assets: When Cash Is Not Cash",
+   "authors": [
+    {
+     "family": "Duchin",
+     "given": "Ran"
+    },
+    {
+     "family": "Gilbert",
+     "given": "Thomas"
+    },
+    {
+     "family": "Harford",
+     "given": "Jarrad"
+    },
+    {
+     "family": "Hrdlicka",
+     "given": "Christopher"
+    }
+   ],
+   "year": 2017,
+   "journal": "The Journal of Finance",
+   "issn": "0022-1082",
+   "volume": "72",
+   "issue": "2",
+   "pages": "793-852",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 22.836,
+   "cited_by_openalex_2026_11_26": 391,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Almeida2014Corporate",
+   "topic": "financial flexibility",
+   "doi": "10.1146/annurev-financial-110613-034502",
+   "title": "Corporate Liquidity Management: A Conceptual Framework and Survey",
+   "authors": [
+    {
+     "family": "Almeida",
+     "given": "Heitor"
+    },
+    {
+     "family": "Campello",
+     "given": "Murillo"
+    },
+    {
+     "family": "Cunha",
+     "given": "Igor"
+    },
+    {
+     "family": "Weisbach",
+     "given": "Michael S."
+    }
+   ],
+   "year": 2014,
+   "journal": "Annual Review of Financial Economics",
+   "issn": "1941-1367",
+   "volume": "6",
+   "issue": "1",
+   "pages": "135-162",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 6.062,
+   "cited_by_openalex_2026_11_26": 308,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Demiroglu2011Bank",
+   "topic": "financial flexibility",
+   "doi": "10.1016/j.jbankfin.2010.10.020",
+   "title": "The use of bank lines of credit in corporate liquidity management: A review of empirical evidence",
+   "authors": [
+    {
+     "family": "Demiroglu",
+     "given": "Cem"
+    },
+    {
+     "family": "James",
+     "given": "Christopher"
+    }
+   ],
+   "year": 2011,
+   "journal": "Journal of Banking &amp; Finance",
+   "issn": "0378-4266",
+   "volume": "35",
+   "issue": "4",
+   "pages": "775-782",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 1.816,
+   "cited_by_openalex_2026_11_26": 122,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Jensen1976Firm",
+   "topic": "financing constraints",
+   "doi": "10.1016/0304-405x(76)90026-x",
+   "title": "Theory of the firm: Managerial behavior, agency costs and ownership structure",
+   "authors": [
+    {
+     "family": "Jensen",
+     "given": "Michael C."
+    },
+    {
+     "family": "Meckling",
+     "given": "William H."
+    }
+   ],
+   "year": 1976,
+   "journal": "Journal of Financial Economics",
+   "issn": "0304-405X",
+   "volume": "3",
+   "issue": "4",
+   "pages": "305-360",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 17.669,
+   "cited_by_openalex_2026_11_26": 111021,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Myers1984Corporate",
+   "topic": "financing constraints",
+   "doi": "10.1016/0304-405x(84)90023-0",
+   "title": "Corporate financing and investment decisions when firms have information that investors do not have",
+   "authors": [
+    {
+     "family": "Myers",
+     "given": "Stewart C."
+    },
+    {
+     "family": "Majluf",
+     "given": "Nicholas S."
+    }
+   ],
+   "year": 1984,
+   "journal": "Journal of Financial Economics",
+   "issn": "0304-405X",
+   "volume": "13",
+   "issue": "2",
+   "pages": "187-221",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 17.669,
+   "cited_by_openalex_2026_11_26": 26603,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Myers1977Determinants",
+   "topic": "financing constraints",
+   "doi": "10.1016/0304-405x(77)90015-0",
+   "title": "Determinants of corporate borrowing",
+   "authors": [
+    {
+     "family": "Myers",
+     "given": "Stewart C."
+    }
+   ],
+   "year": 1977,
+   "journal": "Journal of Financial Economics",
+   "issn": "0304-405X",
+   "volume": "5",
+   "issue": "2",
+   "pages": "147-175",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 17.669,
+   "cited_by_openalex_2026_11_26": 16006,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Rajan1995Know",
+   "topic": "financing constraints",
+   "doi": "10.1111/j.1540-6261.1995.tb05184.x",
+   "title": "What Do We Know about Capital Structure? Some Evidence from International Data",
+   "authors": [
+    {
+     "family": "Rajan",
+     "given": "Raghuram G."
+    },
+    {
+     "family": "Zingales",
+     "given": "Luigi"
+    }
+   ],
+   "year": 1995,
+   "journal": "The Journal of Finance",
+   "issn": "0022-1082",
+   "volume": "50",
+   "issue": "5",
+   "pages": "1421-1460",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 22.836,
+   "cited_by_openalex_2026_11_26": 9668,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Kaplan1997Investment",
+   "topic": "financing constraints",
+   "doi": "10.1162/003355397555163",
+   "title": "Do Investment-Cash Flow Sensitivities Provide Useful Measures of Financing Constraints?",
+   "authors": [
+    {
+     "family": "Kaplan",
+     "given": "S. N."
+    },
+    {
+     "family": "Zingales",
+     "given": "L."
+    }
+   ],
+   "year": 1997,
+   "journal": "The Quarterly Journal of Economics",
+   "issn": "0033-5533",
+   "volume": "112",
+   "issue": "1",
+   "pages": "169-215",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 35.995,
+   "cited_by_openalex_2026_11_26": 7638,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Fazzari1988Financing",
+   "topic": "financing constraints",
+   "doi": "10.2307/2534426",
+   "title": "Financing Constraints and Corporate Investment",
+   "authors": [
+    {
+     "family": "Fazzari",
+     "given": "Steven M."
+    },
+    {
+     "family": "Hubbard",
+     "given": "R. Glenn"
+    },
+    {
+     "family": "Petersen",
+     "given": "Bruce C."
+    },
+    {
+     "family": "Blinder",
+     "given": "Alan S."
+    },
+    {
+     "family": "Poterba",
+     "given": "James M."
+    }
+   ],
+   "year": 1988,
+   "journal": "Brookings Papers on Economic Activity",
+   "issn": "0007-2303",
+   "volume": "1988",
+   "issue": "1",
+   "pages": "141",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 3.884,
+   "cited_by_openalex_2026_11_26": 7619,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Hadlock2010Measuring",
+   "topic": "financing constraints",
+   "doi": "10.1093/rfs/hhq009",
+   "title": "New Evidence on Measuring Financial Constraints: Moving Beyond the KZ Index",
+   "authors": [
+    {
+     "family": "Hadlock",
+     "given": "Charles J."
+    },
+    {
+     "family": "Pierce",
+     "given": "Joshua R."
+    }
+   ],
+   "year": 2010,
+   "journal": "Review of Financial Studies",
+   "issn": "0893-9454",
+   "volume": "23",
+   "issue": "5",
+   "pages": "1909-1940",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 16.546,
+   "cited_by_openalex_2026_11_26": 6216,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Whited2006Financial",
+   "topic": "financing constraints",
+   "doi": "10.1093/rfs/hhj012",
+   "title": "Financial Constraints Risk",
+   "authors": [
+    {
+     "family": "Whited",
+     "given": "Toni M."
+    },
+    {
+     "family": "Wu",
+     "given": "Guojun"
+    }
+   ],
+   "year": 2006,
+   "journal": "Review of Financial Studies",
+   "issn": "0893-9454",
+   "volume": "19",
+   "issue": "2",
+   "pages": "531-559",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 16.546,
+   "cited_by_openalex_2026_11_26": 4088,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Campello2010Real",
+   "topic": "financing constraints",
+   "doi": "10.1016/j.jfineco.2010.02.009",
+   "title": "The real effects of financial constraints: Evidence from a financial crisis",
+   "authors": [
+    {
+     "family": "Campello",
+     "given": "Murillo"
+    },
+    {
+     "family": "Graham",
+     "given": "John R."
+    },
+    {
+     "family": "Harvey",
+     "given": "Campbell R."
+    }
+   ],
+   "year": 2010,
+   "journal": "Journal of Financial Economics",
+   "issn": "0304-405X",
+   "volume": "97",
+   "issue": "3",
+   "pages": "470-487",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 17.669,
+   "cited_by_openalex_2026_11_26": 3072,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Baker2016Measuring",
+   "topic": "investment irreversibility and real options",
+   "doi": "10.1093/qje/qjw024",
+   "title": "Measuring Economic Policy Uncertainty",
+   "authors": [
+    {
+     "family": "Baker",
+     "given": "Scott R."
+    },
+    {
+     "family": "Bloom",
+     "given": "Nicholas"
+    },
+    {
+     "family": "Davis",
+     "given": "Steven J."
+    }
+   ],
+   "year": 2016,
+   "journal": "The Quarterly Journal of Economics",
+   "issn": "0033-5533",
+   "volume": "131",
+   "issue": "4",
+   "pages": "1593-1636",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 35.995,
+   "cited_by_openalex_2026_11_26": 14588,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Bloom2009Impact",
+   "topic": "investment irreversibility and real options",
+   "doi": "10.3982/ecta6248",
+   "title": "The Impact of Uncertainty Shocks",
+   "authors": [
+    {
+     "family": "Bloom",
+     "given": "Nicholas"
+    }
+   ],
+   "year": 2009,
+   "journal": "Econometrica",
+   "issn": "0012-9682",
+   "volume": "77",
+   "issue": "3",
+   "pages": "623-685",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 21.091,
+   "cited_by_openalex_2026_11_26": 7724,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Bernanke1983Irreversibility",
+   "topic": "investment irreversibility and real options",
+   "doi": "10.2307/1885568",
+   "title": "Irreversibility, Uncertainty, and Cyclical Investment",
+   "authors": [
+    {
+     "family": "Bernanke",
+     "given": "Ben S."
+    }
+   ],
+   "year": 1983,
+   "journal": "The Quarterly Journal of Economics",
+   "issn": "0033-5533",
+   "volume": "98",
+   "issue": "1",
+   "pages": "85",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 35.995,
+   "cited_by_openalex_2026_11_26": 4824,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Gulen2015Policy",
+   "topic": "investment irreversibility and real options",
+   "doi": "10.1093/rfs/hhv050",
+   "title": "Policy Uncertainty and Corporate Investment",
+   "authors": [
+    {
+     "family": "Gulen",
+     "given": "Huseyin"
+    },
+    {
+     "family": "Ion",
+     "given": "Mihai"
+    }
+   ],
+   "year": 2015,
+   "journal": "Review of Financial Studies",
+   "issn": "0893-9454",
+   "volume": null,
+   "issue": null,
+   "pages": null,
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 16.546,
+   "cited_by_openalex_2026_11_26": 3208,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false,
+   "note": "Crossref lists only the advance-access record (2015); check the print volume and pages before citing."
+  },
+  {
+   "key": "Dixit1989Entry",
+   "topic": "investment irreversibility and real options",
+   "doi": "10.1086/261619",
+   "title": "Entry and Exit Decisions under Uncertainty",
+   "authors": [
+    {
+     "family": "Dixit",
+     "given": "Avinash"
+    }
+   ],
+   "year": 1989,
+   "journal": "Journal of Political Economy",
+   "issn": "0022-3808",
+   "volume": "97",
+   "issue": "3",
+   "pages": "620-638",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 17.087,
+   "cited_by_openalex_2026_11_26": 2736,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Julio2012Political",
+   "topic": "investment irreversibility and real options",
+   "doi": "10.1111/j.1540-6261.2011.01707.x",
+   "title": "Political Uncertainty and Corporate Investment Cycles",
+   "authors": [
+    {
+     "family": "Julio",
+     "given": "Brandon"
+    },
+    {
+     "family": "Yook",
+     "given": "Youngsuk"
+    }
+   ],
+   "year": 2012,
+   "journal": "The Journal of Finance",
+   "issn": "0022-1082",
+   "volume": "67",
+   "issue": "1",
+   "pages": "45-83",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 22.836,
+   "cited_by_openalex_2026_11_26": 2496,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Cooper2006Nature",
+   "topic": "investment irreversibility and real options",
+   "doi": "10.1111/j.1467-937x.2006.00389.x",
+   "title": "On the Nature of Capital Adjustment Costs",
+   "authors": [
+    {
+     "family": "Cooper",
+     "given": "Russell W."
+    },
+    {
+     "family": "Haltiwanger",
+     "given": "John C."
+    }
+   ],
+   "year": 2006,
+   "journal": "Review of Economic Studies",
+   "issn": "0034-6527",
+   "volume": "73",
+   "issue": "3",
+   "pages": "611-633",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 19.166,
+   "cited_by_openalex_2026_11_26": 1324,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Leahy1996Effect",
+   "topic": "investment irreversibility and real options",
+   "doi": "10.2307/2077967",
+   "title": "The Effect of Uncertainty on Investment: Some Stylized Facts",
+   "authors": [
+    {
+     "family": "Leahy",
+     "given": "John V."
+    },
+    {
+     "family": "Whited",
+     "given": "Toni M."
+    }
+   ],
+   "year": 1996,
+   "journal": "Journal of Money, Credit and Banking",
+   "issn": "0022-2879",
+   "volume": "28",
+   "issue": "1",
+   "pages": "64",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 1.933,
+   "cited_by_openalex_2026_11_26": 961,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Guiso1999Investment",
+   "topic": "investment irreversibility and real options",
+   "doi": "10.1162/003355399555981",
+   "title": "Investment and Demand Uncertainty",
+   "authors": [
+    {
+     "family": "Guiso",
+     "given": "L."
+    },
+    {
+     "family": "Parigi",
+     "given": "G."
+    }
+   ],
+   "year": 1999,
+   "journal": "The Quarterly Journal of Economics",
+   "issn": "0033-5533",
+   "volume": "114",
+   "issue": "1",
+   "pages": "185-227",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 35.995,
+   "cited_by_openalex_2026_11_26": 960,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Bloom2007Uncertainty",
+   "topic": "investment irreversibility and real options",
+   "doi": "10.1111/j.1467-937x.2007.00426.x",
+   "title": "Uncertainty and Investment Dynamics",
+   "authors": [
+    {
+     "family": "Bloom",
+     "given": "Nick"
+    },
+    {
+     "family": "Bond",
+     "given": "Stephen"
+    },
+    {
+     "family": "Van Reenen",
+     "given": "John"
+    }
+   ],
+   "year": 2007,
+   "journal": "Review of Economic Studies",
+   "issn": "0034-6527",
+   "volume": "74",
+   "issue": "2",
+   "pages": "391-415",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 19.166,
+   "cited_by_openalex_2026_11_26": 923,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Abel1996Optimal",
+   "topic": "investment irreversibility and real options",
+   "doi": "10.2307/2297794",
+   "title": "Optimal Investment with Costly Reversibility",
+   "authors": [
+    {
+     "family": "Abel",
+     "given": "A. B."
+    },
+    {
+     "family": "Eberly",
+     "given": "J. C."
+    }
+   ],
+   "year": 1996,
+   "journal": "The Review of Economic Studies",
+   "issn": "0034-6527",
+   "volume": "63",
+   "issue": "4",
+   "pages": "581-593",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 19.166,
+   "cited_by_openalex_2026_11_26": 712,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Mauer1995Investment",
+   "topic": "investment irreversibility and real options",
+   "doi": "10.2307/2331278",
+   "title": "Investment under Uncertainty: The Case of Replacement Investment Decisions",
+   "authors": [
+    {
+     "family": "Mauer",
+     "given": "David C."
+    },
+    {
+     "family": "Ott",
+     "given": "Steven H."
+    }
+   ],
+   "year": 1995,
+   "journal": "The Journal of Financial and Quantitative Analysis",
+   "issn": "0022-1090",
+   "volume": "30",
+   "issue": "4",
+   "pages": "581",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 4.465,
+   "cited_by_openalex_2026_11_26": 200,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Pawlina2005Investment",
+   "topic": "investment irreversibility and real options",
+   "doi": "10.1016/j.jedc.2004.07.002",
+   "title": "Investment under uncertainty and policy change",
+   "authors": [
+    {
+     "family": "Pawlina",
+     "given": "Grzegorz"
+    },
+    {
+     "family": "Kort",
+     "given": "Peter M."
+    }
+   ],
+   "year": 2005,
+   "journal": "Journal of Economic Dynamics and Control",
+   "issn": "0165-1889",
+   "volume": "29",
+   "issue": "7",
+   "pages": "1193-1209",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 1.714,
+   "cited_by_openalex_2026_11_26": 61,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Shleifer1992Liquidation",
+   "topic": "collateral and redeployability",
+   "doi": "10.1111/j.1540-6261.1992.tb04661.x",
+   "title": "Liquidation Values and Debt Capacity: A Market Equilibrium Approach",
+   "authors": [
+    {
+     "family": "Shleifer",
+     "given": "Andrei"
+    },
+    {
+     "family": "Vishny",
+     "given": "Robert W."
+    }
+   ],
+   "year": 1992,
+   "journal": "The Journal of Finance",
+   "issn": "0022-1082",
+   "volume": "47",
+   "issue": "4",
+   "pages": "1343-1366",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 22.836,
+   "cited_by_openalex_2026_11_26": 3287,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Almeida2007Financial",
+   "topic": "collateral and redeployability",
+   "doi": "10.1093/rfs/hhm019",
+   "title": "Financial Constraints, Asset Tangibility, and Corporate Investment",
+   "authors": [
+    {
+     "family": "Almeida",
+     "given": "Heitor"
+    },
+    {
+     "family": "Campello",
+     "given": "Murillo"
+    }
+   ],
+   "year": 2007,
+   "journal": "Review of Financial Studies",
+   "issn": "0893-9454",
+   "volume": "20",
+   "issue": "5",
+   "pages": "1429-1460",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 16.546,
+   "cited_by_openalex_2026_11_26": 2025,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Chaney2012Collateral",
+   "topic": "collateral and redeployability",
+   "doi": "10.1257/aer.102.6.2381",
+   "title": "The Collateral Channel: How Real Estate Shocks Affect Corporate Investment",
+   "authors": [
+    {
+     "family": "Chaney",
+     "given": "Thomas"
+    },
+    {
+     "family": "Sraer",
+     "given": "David"
+    },
+    {
+     "family": "Thesmar",
+     "given": "David"
+    }
+   ],
+   "year": 2012,
+   "journal": "American Economic Review",
+   "issn": "0002-8282",
+   "volume": "102",
+   "issue": "6",
+   "pages": "2381-2409",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 25.102,
+   "cited_by_openalex_2026_11_26": 1154,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Kim2016Asset",
+   "topic": "collateral and redeployability",
+   "doi": "10.1093/rfs/hhv076",
+   "title": "The Asset Redeployability Channel: How Uncertainty Affects Corporate Investment",
+   "authors": [
+    {
+     "family": "Kim",
+     "given": "Hyunseob"
+    },
+    {
+     "family": "Kung",
+     "given": "Howard"
+    }
+   ],
+   "year": 2016,
+   "journal": "Review of Financial Studies",
+   "issn": "0893-9454",
+   "volume": "30",
+   "issue": "1",
+   "pages": "245-280",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 16.546,
+   "cited_by_openalex_2026_11_26": 674,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Ramey2001Displaced",
+   "topic": "collateral and redeployability",
+   "doi": "10.1086/322828",
+   "title": "Displaced Capital: A Study of Aerospace Plant Closings",
+   "authors": [
+    {
+     "family": "Ramey",
+     "given": "Valerie A."
+    },
+    {
+     "family": "Shapiro",
+     "given": "Matthew D."
+    }
+   ],
+   "year": 2001,
+   "journal": "Journal of Political Economy",
+   "issn": "0022-3808",
+   "volume": "109",
+   "issue": "5",
+   "pages": "958-992",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 17.087,
+   "cited_by_openalex_2026_11_26": 482,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Benmelech2009Collateral",
+   "topic": "collateral and redeployability",
+   "doi": "10.1016/j.jfineco.2008.03.003",
+   "title": "Collateral pricing",
+   "authors": [
+    {
+     "family": "Benmelech",
+     "given": "Efraim"
+    },
+    {
+     "family": "Bergman",
+     "given": "Nittai K."
+    }
+   ],
+   "year": 2009,
+   "journal": "Journal of Financial Economics",
+   "issn": "0304-405X",
+   "volume": "91",
+   "issue": "3",
+   "pages": "339-360",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 17.669,
+   "cited_by_openalex_2026_11_26": 401,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Cerqueiro2016Collateralization",
+   "topic": "collateral and redeployability",
+   "doi": "10.1111/jofi.12214",
+   "title": "Collateralization, Bank Loan Rates, and Monitoring",
+   "authors": [
+    {
+     "family": "Cerqueiro",
+     "given": "Geraldo"
+    },
+    {
+     "family": "Ongena",
+     "given": "Steven"
+    },
+    {
+     "family": "Roszbach",
+     "given": "Kasper"
+    }
+   ],
+   "year": 2016,
+   "journal": "The Journal of Finance",
+   "issn": "0022-1082",
+   "volume": "71",
+   "issue": "3",
+   "pages": "1295-1322",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 22.836,
+   "cited_by_openalex_2026_11_26": 313,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Benmelech2005Liquidation",
+   "topic": "collateral and redeployability",
+   "doi": "10.1093/qje/120.3.1121",
+   "title": "Do Liquidation Values Affect Financial Contracts? Evidence from Commercial Loan Contracts and Zoning Regulation",
+   "authors": [
+    {
+     "family": "Benmelech",
+     "given": "E."
+    },
+    {
+     "family": "Garmaise",
+     "given": "M. J."
+    },
+    {
+     "family": "Moskowitz",
+     "given": "T. J."
+    }
+   ],
+   "year": 2005,
+   "journal": "The Quarterly Journal of Economics",
+   "issn": "0033-5533",
+   "volume": "120",
+   "issue": "3",
+   "pages": "1121-1154",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 35.995,
+   "cited_by_openalex_2026_11_26": 186,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Docherty2010Tangibility",
+   "topic": "collateral and redeployability",
+   "doi": "10.1111/j.1467-629x.2010.00348.x",
+   "title": "Tangibility and investment irreversibility in asset pricing",
+   "authors": [
+    {
+     "family": "Docherty",
+     "given": "Paul"
+    },
+    {
+     "family": "Chan",
+     "given": "Howard"
+    },
+    {
+     "family": "Easton",
+     "given": "Steve"
+    }
+   ],
+   "year": 2010,
+   "journal": "Accounting &amp; Finance",
+   "issn": "0810-5391",
+   "volume": "50",
+   "issue": "4",
+   "pages": "809-827",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 0.895,
+   "cited_by_openalex_2026_11_26": 19,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Graham1998Debt",
+   "topic": "leasing",
+   "doi": "10.1111/0022-1082.55404",
+   "title": "Debt, Leases, Taxes, and the Endogeneity of Corporate Tax Status",
+   "authors": [
+    {
+     "family": "Graham",
+     "given": "John R."
+    },
+    {
+     "family": "Lemmon",
+     "given": "Michael L."
+    },
+    {
+     "family": "Schallheim",
+     "given": "James S."
+    }
+   ],
+   "year": 1998,
+   "journal": "The Journal of Finance",
+   "issn": "0022-1082",
+   "volume": "53",
+   "issue": "1",
+   "pages": "131-162",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 22.836,
+   "cited_by_openalex_2026_11_26": 673,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Rampini2013Collateral",
+   "topic": "leasing",
+   "doi": "10.1016/j.jfineco.2013.03.002",
+   "title": "Collateral and capital structure",
+   "authors": [
+    {
+     "family": "Rampini",
+     "given": "Adriano A."
+    },
+    {
+     "family": "Viswanathan",
+     "given": "S."
+    }
+   ],
+   "year": 2013,
+   "journal": "Journal of Financial Economics",
+   "issn": "0304-405X",
+   "volume": "109",
+   "issue": "2",
+   "pages": "466-492",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 17.669,
+   "cited_by_openalex_2026_11_26": 576,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Eisfeldt2008Leasing",
+   "topic": "leasing",
+   "doi": "10.1093/rfs/hhn026",
+   "title": "Leasing, Ability to Repossess, and Debt Capacity",
+   "authors": [
+    {
+     "family": "Eisfeldt",
+     "given": "Andrea L."
+    },
+    {
+     "family": "Rampini",
+     "given": "Adriano A."
+    }
+   ],
+   "year": 2008,
+   "journal": "Review of Financial Studies",
+   "issn": "0893-9454",
+   "volume": "22",
+   "issue": "4",
+   "pages": "1621-1657",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 16.546,
+   "cited_by_openalex_2026_11_26": 469,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Sharpe1995Capital",
+   "topic": "leasing",
+   "doi": "10.1016/0304-405x(95)00830-8",
+   "title": "Capital market imperfections and the incentive to lease",
+   "authors": [
+    {
+     "family": "Sharpe",
+     "given": "Steven A."
+    },
+    {
+     "family": "Nguyen",
+     "given": "Hien H."
+    }
+   ],
+   "year": 1995,
+   "journal": "Journal of Financial Economics",
+   "issn": "0304-405X",
+   "volume": "39",
+   "issue": "2-3",
+   "pages": "271-294",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 17.669,
+   "cited_by_openalex_2026_11_26": 356,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Ang1984Leasing",
+   "topic": "leasing",
+   "doi": "10.1111/j.1540-6261.1984.tb03892.x",
+   "title": "The Leasing Puzzle",
+   "authors": [
+    {
+     "family": "Ang",
+     "given": "James"
+    },
+    {
+     "family": "Peterson",
+     "given": "Pamela P."
+    }
+   ],
+   "year": 1984,
+   "journal": "The Journal of Finance",
+   "issn": "0022-1082",
+   "volume": "39",
+   "issue": "4",
+   "pages": "1055-1065",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 22.836,
+   "cited_by_openalex_2026_11_26": 268,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Petersen1994Benefits",
+   "topic": "SME finance",
+   "doi": "10.1111/j.1540-6261.1994.tb04418.x",
+   "title": "The Benefits of Lending Relationships: Evidence from Small Business Data",
+   "authors": [
+    {
+     "family": "Petersen",
+     "given": "Mitchell A."
+    },
+    {
+     "family": "Rajan",
+     "given": "Raghuram G."
+    }
+   ],
+   "year": 1994,
+   "journal": "The Journal of Finance",
+   "issn": "0022-1082",
+   "volume": "49",
+   "issue": "1",
+   "pages": "3-37",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 22.836,
+   "cited_by_openalex_2026_11_26": 6426,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "NBerger1998Economics",
+   "topic": "SME finance",
+   "doi": "10.1016/s0378-4266(98)00038-7",
+   "title": "The economics of small business finance: The roles of private equity and debt markets in the financial growth cycle",
+   "authors": [
+    {
+     "family": "N. Berger",
+     "given": "Allen"
+    },
+    {
+     "family": "F. Udell",
+     "given": "Gregory"
+    }
+   ],
+   "year": 1998,
+   "journal": "Journal of Banking &amp; Finance",
+   "issn": "0378-4266",
+   "volume": "22",
+   "issue": "6-8",
+   "pages": "613-673",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 1.816,
+   "cited_by_openalex_2026_11_26": 5102,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Petersen1995Effect",
+   "topic": "SME finance",
+   "doi": "10.2307/2118445",
+   "title": "The Effect of Credit Market Competition on Lending Relationships",
+   "authors": [
+    {
+     "family": "Petersen",
+     "given": "M. A."
+    },
+    {
+     "family": "Rajan",
+     "given": "R. G."
+    }
+   ],
+   "year": 1995,
+   "journal": "The Quarterly Journal of Economics",
+   "issn": "0033-5533",
+   "volume": "110",
+   "issue": "2",
+   "pages": "407-443",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 35.995,
+   "cited_by_openalex_2026_11_26": 3853,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Belleflamme2014Crowdfunding",
+   "topic": "SME finance",
+   "doi": "10.1016/j.jbusvent.2013.07.003",
+   "title": "Crowdfunding: Tapping the right crowd",
+   "authors": [
+    {
+     "family": "Belleflamme",
+     "given": "Paul"
+    },
+    {
+     "family": "Lambert",
+     "given": "Thomas"
+    },
+    {
+     "family": "Schwienbacher",
+     "given": "Armin"
+    }
+   ],
+   "year": 2014,
+   "journal": "Journal of Business Venturing",
+   "issn": "0883-9026",
+   "volume": "29",
+   "issue": "5",
+   "pages": "585-609",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 6.234,
+   "cited_by_openalex_2026_11_26": 3636,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Beck2005Financial",
+   "topic": "SME finance",
+   "doi": "10.1111/j.1540-6261.2005.00727.x",
+   "title": "Financial and Legal Constraints to Growth: Does Firm Size Matter?",
+   "authors": [
+    {
+     "family": "Beck",
+     "given": "Thorsten"
+    },
+    {
+     "family": "Demirgüç‐Kunt",
+     "given": "Asli"
+    },
+    {
+     "family": "Maksimovic",
+     "given": "Vojislav"
+    }
+   ],
+   "year": 2005,
+   "journal": "The Journal of Finance",
+   "issn": "0022-1082",
+   "volume": "60",
+   "issue": "1",
+   "pages": "137-177",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 22.836,
+   "cited_by_openalex_2026_11_26": 3413,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Berger2006More",
+   "topic": "SME finance",
+   "doi": "10.1016/j.jbankfin.2006.05.008",
+   "title": "A more complete conceptual framework for SME finance",
+   "authors": [
+    {
+     "family": "Berger",
+     "given": "Allen N."
+    },
+    {
+     "family": "Udell",
+     "given": "Gregory F."
+    }
+   ],
+   "year": 2006,
+   "journal": "Journal of Banking &amp; Finance",
+   "issn": "0378-4266",
+   "volume": "30",
+   "issue": "11",
+   "pages": "2945-2966",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 1.816,
+   "cited_by_openalex_2026_11_26": 2748,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Berger2002Small",
+   "topic": "SME finance",
+   "doi": "10.1111/1468-0297.00682",
+   "title": "Small Business Credit Availability and Relationship Lending: The Importance of Bank Organisational Structure",
+   "authors": [
+    {
+     "family": "Berger",
+     "given": "Allen N."
+    },
+    {
+     "family": "Udell",
+     "given": "Gregory F."
+    }
+   ],
+   "year": 2002,
+   "journal": "The Economic Journal",
+   "issn": "0013-0133",
+   "volume": "112",
+   "issue": "477",
+   "pages": "F32-F53",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 5.371,
+   "cited_by_openalex_2026_11_26": 2372,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Berger2005Function",
+   "topic": "SME finance",
+   "doi": "10.1016/j.jfineco.2004.06.003",
+   "title": "Does function follow organizational form? Evidence from the lending practices of large and small banks",
+   "authors": [
+    {
+     "family": "Berger",
+     "given": "Allen N."
+    },
+    {
+     "family": "Miller",
+     "given": "Nathan H."
+    },
+    {
+     "family": "Petersen",
+     "given": "Mitchell A."
+    },
+    {
+     "family": "Rajan",
+     "given": "Raghuram G."
+    },
+    {
+     "family": "Stein",
+     "given": "Jeremy C."
+    }
+   ],
+   "year": 2005,
+   "journal": "Journal of Financial Economics",
+   "issn": "0304-405X",
+   "volume": "76",
+   "issue": "2",
+   "pages": "237-269",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 17.669,
+   "cited_by_openalex_2026_11_26": 2127,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Beck2008Financing",
+   "topic": "SME finance",
+   "doi": "10.1016/j.jfineco.2007.10.005",
+   "title": "Financing patterns around the world: Are small firms different?",
+   "authors": [
+    {
+     "family": "Beck",
+     "given": "T"
+    },
+    {
+     "family": "Demirguckunt",
+     "given": "A"
+    },
+    {
+     "family": "Maksimovic",
+     "given": "V"
+    }
+   ],
+   "year": 2008,
+   "journal": "Journal of Financial Economics",
+   "issn": "0304-405X",
+   "volume": "89",
+   "issue": "3",
+   "pages": "467-487",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 17.669,
+   "cited_by_openalex_2026_11_26": 1764,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Ayyagari2007Small",
+   "topic": "SME finance",
+   "doi": "10.1007/s11187-006-9002-5",
+   "title": "Small and Medium Enterprises Across the Globe",
+   "authors": [
+    {
+     "family": "Ayyagari",
+     "given": "Meghana"
+    },
+    {
+     "family": "Beck",
+     "given": "Thorsten"
+    },
+    {
+     "family": "Demirguc-Kunt",
+     "given": "Asli"
+    }
+   ],
+   "year": 2007,
+   "journal": "Small Business Economics",
+   "issn": "0921-898X",
+   "volume": "29",
+   "issue": "4",
+   "pages": "415-434",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 3.025,
+   "cited_by_openalex_2026_11_26": 1619,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Carpenter2002Growth",
+   "topic": "SME finance",
+   "doi": "10.1162/003465302317411541",
+   "title": "Is the Growth of Small Firms Constrained by Internal Finance?",
+   "authors": [
+    {
+     "family": "Carpenter",
+     "given": "Robert E."
+    },
+    {
+     "family": "Petersen",
+     "given": "Bruce C."
+    }
+   ],
+   "year": 2002,
+   "journal": "Review of Economics and Statistics",
+   "issn": "0034-6535",
+   "volume": "84",
+   "issue": "2",
+   "pages": "298-309",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 7.425,
+   "cited_by_openalex_2026_11_26": 1472,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Jimenez2012Credit",
+   "topic": "SME finance",
+   "doi": "10.1257/aer.102.5.2301",
+   "title": "Credit Supply and Monetary Policy: Identifying the Bank Balance-Sheet Channel with Loan Applications",
+   "authors": [
+    {
+     "family": "Jiménez",
+     "given": "Gabriel"
+    },
+    {
+     "family": "Ongena",
+     "given": "Steven"
+    },
+    {
+     "family": "Peydró",
+     "given": "José-Luis"
+    },
+    {
+     "family": "Saurina",
+     "given": "Jesús"
+    }
+   ],
+   "year": 2012,
+   "journal": "American Economic Review",
+   "issn": "0002-8282",
+   "volume": "102",
+   "issue": "5",
+   "pages": "2301-2326",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 25.102,
+   "cited_by_openalex_2026_11_26": 1345,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Robb2012Capital",
+   "topic": "SME finance",
+   "doi": "10.1093/rfs/hhs072",
+   "title": "The Capital Structure Decisions of New Firms",
+   "authors": [
+    {
+     "family": "Robb",
+     "given": "Alicia M."
+    },
+    {
+     "family": "Robinson",
+     "given": "David T."
+    }
+   ],
+   "year": 2012,
+   "journal": "Review of Financial Studies",
+   "issn": "0893-9454",
+   "volume": "27",
+   "issue": "1",
+   "pages": "153-179",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 16.546,
+   "cited_by_openalex_2026_11_26": 1128,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Cassar2003Capital",
+   "topic": "SME finance",
+   "doi": "10.1111/1467-629x.t01-1-00085",
+   "title": "Capital structure and financing of SMEs: Australian evidence",
+   "authors": [
+    {
+     "family": "Cassar",
+     "given": "Gavin"
+    },
+    {
+     "family": "Holmes",
+     "given": "Scott"
+    }
+   ],
+   "year": 2003,
+   "journal": "Accounting &amp; Finance",
+   "issn": "0810-5391",
+   "volume": "43",
+   "issue": "2",
+   "pages": "123-147",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 0.895,
+   "cited_by_openalex_2026_11_26": 863,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Hall2004Determinants",
+   "topic": "SME finance",
+   "doi": "10.1111/j.0306-686x.2004.00554.x",
+   "title": "Determinants of the Capital Structures of European SMEs",
+   "authors": [
+    {
+     "family": "Hall",
+     "given": "Graham C."
+    },
+    {
+     "family": "Hutchinson",
+     "given": "Patrick J."
+    },
+    {
+     "family": "Michaelas",
+     "given": "Nicos"
+    }
+   ],
+   "year": 2004,
+   "journal": "Journal of Business Finance &amp; Accounting",
+   "issn": "0306-686X",
+   "volume": "31",
+   "issue": "5-6",
+   "pages": "711-728",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 1.263,
+   "cited_by_openalex_2026_11_26": 780,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Ayyagari2008Important",
+   "topic": "SME finance",
+   "doi": "10.1093/wber/lhn018",
+   "title": "How Important Are Financing Constraints? The Role of Finance in the Business Environment",
+   "authors": [
+    {
+     "family": "Ayyagari",
+     "given": "Meghana"
+    },
+    {
+     "family": "Demirgüç-Kunt",
+     "given": "Asli"
+    },
+    {
+     "family": "Maksimovic",
+     "given": "Vojislav"
+    }
+   ],
+   "year": 2008,
+   "journal": "The World Bank Economic Review",
+   "issn": "0258-6770",
+   "volume": "22",
+   "issue": "3",
+   "pages": "483-516",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 2.11,
+   "cited_by_openalex_2026_11_26": 659,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "SogorbMira2005Uniqueness",
+   "topic": "SME finance",
+   "doi": "10.1007/s11187-004-6486-8",
+   "title": "How SME Uniqueness Affects Capital Structure: Evidence From A 1994–1998 Spanish Data Panel",
+   "authors": [
+    {
+     "family": "Sogorb-Mira",
+     "given": "Francisco"
+    }
+   ],
+   "year": 2005,
+   "journal": "Small Business Economics",
+   "issn": "0921-898X",
+   "volume": "25",
+   "issue": "5",
+   "pages": "447-457",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 3.025,
+   "cited_by_openalex_2026_11_26": 628,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "LopezGracia2008Testing",
+   "topic": "SME finance",
+   "doi": "10.1007/s11187-007-9088-4",
+   "title": "Testing trade-off and pecking order theories financing SMEs",
+   "authors": [
+    {
+     "family": "López-Gracia",
+     "given": "José"
+    },
+    {
+     "family": "Sogorb-Mira",
+     "given": "Francisco"
+    }
+   ],
+   "year": 2008,
+   "journal": "Small Business Economics",
+   "issn": "0921-898X",
+   "volume": "31",
+   "issue": "2",
+   "pages": "117-136",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 3.025,
+   "cited_by_openalex_2026_11_26": 611,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Degryse2010Impact",
+   "topic": "SME finance",
+   "doi": "10.1007/s11187-010-9281-8",
+   "title": "The impact of firm and industry characteristics on small firms’ capital structure",
+   "authors": [
+    {
+     "family": "Degryse",
+     "given": "Hans"
+    },
+    {
+     "family": "de Goeij",
+     "given": "Peter"
+    },
+    {
+     "family": "Kappert",
+     "given": "Peter"
+    }
+   ],
+   "year": 2010,
+   "journal": "Small Business Economics",
+   "issn": "0921-898X",
+   "volume": "38",
+   "issue": "4",
+   "pages": "431-447",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 3.025,
+   "cited_by_openalex_2026_11_26": 610,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Kon2003Discouraged",
+   "topic": "SME finance",
+   "doi": "10.1023/a:1024447603600",
+   "title": "A Theory of Discouraged Borrowers",
+   "authors": [
+    {
+     "family": "Kon",
+     "given": "Y."
+    },
+    {
+     "family": "Storey",
+     "given": "D.J."
+    }
+   ],
+   "year": 2003,
+   "journal": "Small Business Economics",
+   "issn": "0921-898X",
+   "volume": "21",
+   "issue": "1",
+   "pages": "37-49",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 3.025,
+   "cited_by_openalex_2026_11_26": 597,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Popov2012Cross",
+   "topic": "SME finance",
+   "doi": "10.1016/j.jinteco.2012.01.008",
+   "title": "Cross-border banking, credit access, and the financial crisis",
+   "authors": [
+    {
+     "family": "Popov",
+     "given": "Alexander"
+    },
+    {
+     "family": "Udell",
+     "given": "Gregory F."
+    }
+   ],
+   "year": 2012,
+   "journal": "Journal of International Economics",
+   "issn": "0022-1996",
+   "volume": "87",
+   "issue": "1",
+   "pages": "147-161",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 4.321,
+   "cited_by_openalex_2026_11_26": 550,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Cowling2012Small",
+   "topic": "SME finance",
+   "doi": "10.1177/0266242611435516",
+   "title": "Small business financing in the UK before and during the current financial crisis",
+   "authors": [
+    {
+     "family": "Cowling",
+     "given": "Marc"
+    },
+    {
+     "family": "Liu",
+     "given": "Weixi"
+    },
+    {
+     "family": "Ledger",
+     "given": "Andrew"
+    }
+   ],
+   "year": 2012,
+   "journal": "International Small Business Journal: Researching Entrepreneurship",
+   "issn": "0266-2426",
+   "volume": "30",
+   "issue": "7",
+   "pages": "778-800",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 1.956,
+   "cited_by_openalex_2026_11_26": 472,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Ferrando2013Firms",
+   "topic": "SME finance",
+   "doi": "10.1016/j.jbankfin.2013.02.013",
+   "title": "Do firms use the trade credit channel to manage growth?",
+   "authors": [
+    {
+     "family": "Ferrando",
+     "given": "Annalisa"
+    },
+    {
+     "family": "Mulier",
+     "given": "Klaas"
+    }
+   ],
+   "year": 2013,
+   "journal": "Journal of Banking &amp; Finance",
+   "issn": "0378-4266",
+   "volume": "37",
+   "issue": "8",
+   "pages": "3035-3046",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 1.816,
+   "cited_by_openalex_2026_11_26": 362,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Clarke2005Bank",
+   "topic": "SME finance",
+   "doi": "10.1353/mcb.2005.0003",
+   "title": "Bank Lending to Small Businesses in Latin America: Does Bank Origin Matter?",
+   "authors": [
+    {
+     "family": "Clarke",
+     "given": "George R. G."
+    },
+    {
+     "family": "Cull",
+     "given": "Robert J."
+    },
+    {
+     "family": "Martinez Peria",
+     "given": "Maria Soledad"
+    },
+    {
+     "family": "Sanchez",
+     "given": "Susana M."
+    }
+   ],
+   "year": 2005,
+   "journal": "Journal of Money, Credit, and Banking",
+   "issn": "0022-2879",
+   "volume": "37",
+   "issue": "1",
+   "pages": "83-118",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 1.933,
+   "cited_by_openalex_2026_11_26": 175,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Moscalu2019Smes",
+   "topic": "SME finance",
+   "doi": "10.1080/00472778.2019.1668722",
+   "title": "SMEs’ growth under financing constraints and banking markets integration in the euro area",
+   "authors": [
+    {
+     "family": "Moscalu",
+     "given": "Maricica"
+    },
+    {
+     "family": "Girardone",
+     "given": "Claudia"
+    },
+    {
+     "family": "Calabrese",
+     "given": "Raffaella"
+    }
+   ],
+   "year": 2019,
+   "journal": "Journal of Small Business Management",
+   "issn": "0047-2778",
+   "volume": "58",
+   "issue": "4",
+   "pages": "707-746",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 2.149,
+   "cited_by_openalex_2026_11_26": 158,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Ferrando2017Sovereign",
+   "topic": "SME finance",
+   "doi": "10.1016/j.jbankfin.2017.04.012",
+   "title": "Sovereign stress and SMEs’ access to finance: Evidence from the ECB's SAFE survey",
+   "authors": [
+    {
+     "family": "Ferrando",
+     "given": "Annalisa"
+    },
+    {
+     "family": "Popov",
+     "given": "Alexander"
+    },
+    {
+     "family": "Udell",
+     "given": "Gregory F."
+    }
+   ],
+   "year": 2017,
+   "journal": "Journal of Banking &amp; Finance",
+   "issn": "0378-4266",
+   "volume": "81",
+   "issue": null,
+   "pages": "65-80",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 1.816,
+   "cited_by_openalex_2026_11_26": 157,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Kirschenmann2016Credit",
+   "topic": "SME finance",
+   "doi": "10.1016/j.jfi.2015.11.001",
+   "title": "Credit rationing in small firm-bank relationships",
+   "authors": [
+    {
+     "family": "Kirschenmann",
+     "given": "Karolin"
+    }
+   ],
+   "year": 2016,
+   "journal": "Journal of Financial Intermediation",
+   "issn": "1042-9573",
+   "volume": "26",
+   "issue": null,
+   "pages": "68-99",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 3.204,
+   "cited_by_openalex_2026_11_26": 146,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Petersen1997Trade",
+   "topic": "trade credit",
+   "doi": "10.1093/rfs/10.3.661",
+   "title": "Trade Credit: Theories and Evidence",
+   "authors": [
+    {
+     "family": "Petersen",
+     "given": "Mitchell A."
+    },
+    {
+     "family": "Rajan",
+     "given": "Raghuram G."
+    }
+   ],
+   "year": 1997,
+   "journal": "Review of Financial Studies",
+   "issn": "0893-9454",
+   "volume": "10",
+   "issue": "3",
+   "pages": "661-691",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 16.546,
+   "cited_by_openalex_2026_11_26": 3257,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Fisman2003Trade",
+   "topic": "trade credit",
+   "doi": "10.1111/1540-6261.00527",
+   "title": "Trade Credit, Financial Intermediary Development, and Industry Growth",
+   "authors": [
+    {
+     "family": "Fisman",
+     "given": "Raymond"
+    },
+    {
+     "family": "Love",
+     "given": "Inessa"
+    }
+   ],
+   "year": 2003,
+   "journal": "The Journal of Finance",
+   "issn": "0022-1082",
+   "volume": "58",
+   "issue": "1",
+   "pages": "353-374",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 22.836,
+   "cited_by_openalex_2026_11_26": 1245,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Cunat2006Trade",
+   "topic": "trade credit",
+   "doi": "10.1093/rfs/hhl015",
+   "title": "Trade Credit: Suppliers as Debt Collectors and Insurance Providers",
+   "authors": [
+    {
+     "family": "Cuñat",
+     "given": "Vicente"
+    }
+   ],
+   "year": 2006,
+   "journal": "Review of Financial Studies",
+   "issn": "0893-9454",
+   "volume": "20",
+   "issue": "2",
+   "pages": "491-527",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 16.546,
+   "cited_by_openalex_2026_11_26": 1213,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Burkart2004Kind",
+   "topic": "trade credit",
+   "doi": "10.1257/0002828041464579",
+   "title": "In-Kind Finance: A Theory of Trade Credit",
+   "authors": [
+    {
+     "family": "Burkart",
+     "given": "Mike"
+    },
+    {
+     "family": "Ellingsen",
+     "given": "Tore"
+    }
+   ],
+   "year": 2004,
+   "journal": "American Economic Review",
+   "issn": "0002-8282",
+   "volume": "94",
+   "issue": "3",
+   "pages": "569-590",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 25.102,
+   "cited_by_openalex_2026_11_26": 1153,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Biais1997Trade",
+   "topic": "trade credit",
+   "doi": "10.1093/rfs/10.4.903",
+   "title": "Trade Credit and Credit Rationing",
+   "authors": [
+    {
+     "family": "Biais",
+     "given": "Bruno"
+    },
+    {
+     "family": "Gollier",
+     "given": "Christian"
+    }
+   ],
+   "year": 1997,
+   "journal": "Review of Financial Studies",
+   "issn": "0893-9454",
+   "volume": "10",
+   "issue": "4",
+   "pages": "903-937",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 16.546,
+   "cited_by_openalex_2026_11_26": 1132,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Love2007Trade",
+   "topic": "trade credit",
+   "doi": "10.1016/j.jfineco.2005.11.002",
+   "title": "Trade credit and bank credit: Evidence from recent financial crises",
+   "authors": [
+    {
+     "family": "Love",
+     "given": "Inessa"
+    },
+    {
+     "family": "Preve",
+     "given": "Lorenzo A."
+    },
+    {
+     "family": "Sarria-Allende",
+     "given": "Virginia"
+    }
+   ],
+   "year": 2007,
+   "journal": "Journal of Financial Economics",
+   "issn": "0304-405X",
+   "volume": "83",
+   "issue": "2",
+   "pages": "453-469",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 17.669,
+   "cited_by_openalex_2026_11_26": 874,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Evans1989Estimated",
+   "topic": "firm survival",
+   "doi": "10.1086/261629",
+   "title": "An Estimated Model of Entrepreneurial Choice under Liquidity Constraints",
+   "authors": [
+    {
+     "family": "Evans",
+     "given": "David S."
+    },
+    {
+     "family": "Jovanovic",
+     "given": "Boyan"
+    }
+   ],
+   "year": 1989,
+   "journal": "Journal of Political Economy",
+   "issn": "0022-3808",
+   "volume": "97",
+   "issue": "4",
+   "pages": "808-827",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 17.087,
+   "cited_by_openalex_2026_11_26": 4030,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Geroski1995Know",
+   "topic": "firm survival",
+   "doi": "10.1016/0167-7187(95)00498-x",
+   "title": "What do we know about entry?",
+   "authors": [
+    {
+     "family": "Geroski",
+     "given": "P.A."
+    }
+   ],
+   "year": 1995,
+   "journal": "International Journal of Industrial Organization",
+   "issn": "0167-7187",
+   "volume": "13",
+   "issue": "4",
+   "pages": "421-440",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 0.95,
+   "cited_by_openalex_2026_11_26": 2375,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Bates1990Entrepreneur",
+   "topic": "firm survival",
+   "doi": "10.2307/2109594",
+   "title": "Entrepreneur Human Capital Inputs and Small Business Longevity",
+   "authors": [
+    {
+     "family": "Bates",
+     "given": "Timothy"
+    }
+   ],
+   "year": 1990,
+   "journal": "The Review of Economics and Statistics",
+   "issn": "0034-6535",
+   "volume": "72",
+   "issue": "4",
+   "pages": "551",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 7.425,
+   "cited_by_openalex_2026_11_26": 1603,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Hurst2004Liquidity",
+   "topic": "firm survival",
+   "doi": "10.1086/381478",
+   "title": "Liquidity Constraints, Household Wealth, and Entrepreneurship",
+   "authors": [
+    {
+     "family": "Hurst",
+     "given": "Erik"
+    },
+    {
+     "family": "Lusardi",
+     "given": "Annamaria"
+    }
+   ],
+   "year": 2004,
+   "journal": "Journal of Political Economy",
+   "issn": "0022-3808",
+   "volume": "112",
+   "issue": "2",
+   "pages": "319-347",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 17.087,
+   "cited_by_openalex_2026_11_26": 1597,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Cabral2003Evolution",
+   "topic": "firm survival",
+   "doi": "10.1257/000282803769206205",
+   "title": "On the Evolution of the Firm Size Distribution: Facts and Theory",
+   "authors": [
+    {
+     "family": "Cabral",
+     "given": "Luís M. B"
+    },
+    {
+     "family": "Mata",
+     "given": "José"
+    }
+   ],
+   "year": 2003,
+   "journal": "American Economic Review",
+   "issn": "0002-8282",
+   "volume": "93",
+   "issue": "4",
+   "pages": "1075-1090",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 25.102,
+   "cited_by_openalex_2026_11_26": 1249,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "HoltzEakin1994Sticking",
+   "topic": "firm survival",
+   "doi": "10.1086/261921",
+   "title": "Sticking it Out: Entrepreneurial Survival and Liquidity Constraints",
+   "authors": [
+    {
+     "family": "Holtz-Eakin",
+     "given": "Douglas"
+    },
+    {
+     "family": "Joulfaian",
+     "given": "David"
+    },
+    {
+     "family": "Rosen",
+     "given": "Harvey S."
+    }
+   ],
+   "year": 1994,
+   "journal": "Journal of Political Economy",
+   "issn": "0022-3808",
+   "volume": "102",
+   "issue": "1",
+   "pages": "53-75",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 17.087,
+   "cited_by_openalex_2026_11_26": 1240,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Audretsch1995Firm",
+   "topic": "firm survival",
+   "doi": "10.2307/2109995",
+   "title": "New Firm Survival: New Results Using a Hazard Function",
+   "authors": [
+    {
+     "family": "Audretsch",
+     "given": "David B."
+    },
+    {
+     "family": "Mahmood",
+     "given": "Talat"
+    }
+   ],
+   "year": 1995,
+   "journal": "The Review of Economics and Statistics",
+   "issn": "0034-6535",
+   "volume": "77",
+   "issue": "1",
+   "pages": "97",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 7.425,
+   "cited_by_openalex_2026_11_26": 1208,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Audretsch1991Firm",
+   "topic": "firm survival",
+   "doi": "10.2307/2109568",
+   "title": "New-Firm Survival and the Technological Regime",
+   "authors": [
+    {
+     "family": "Audretsch",
+     "given": "David B."
+    }
+   ],
+   "year": 1991,
+   "journal": "The Review of Economics and Statistics",
+   "issn": "0034-6535",
+   "volume": "73",
+   "issue": "3",
+   "pages": "441",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 7.425,
+   "cited_by_openalex_2026_11_26": 1027,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Mata1994Life",
+   "topic": "firm survival",
+   "doi": "10.2307/2950567",
+   "title": "Life Duration of New Firms",
+   "authors": [
+    {
+     "family": "Mata",
+     "given": "Jose"
+    },
+    {
+     "family": "Portugal",
+     "given": "Pedro"
+    }
+   ],
+   "year": 1994,
+   "journal": "The Journal of Industrial Economics",
+   "issn": "0022-1821",
+   "volume": "42",
+   "issue": "3",
+   "pages": "227",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 1.486,
+   "cited_by_openalex_2026_11_26": 994,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Cressy1996Business",
+   "topic": "firm survival",
+   "doi": "10.2307/2235519",
+   "title": "Are Business Startups Debt-Rationed?",
+   "authors": [
+    {
+     "family": "Cressy",
+     "given": "Robert"
+    }
+   ],
+   "year": 1996,
+   "journal": "The Economic Journal",
+   "issn": "0013-0133",
+   "volume": "106",
+   "issue": "438",
+   "pages": "1253",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 5.371,
+   "cited_by_openalex_2026_11_26": 645,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Wagner1994Post",
+   "topic": "firm survival",
+   "doi": "10.2307/2950486",
+   "title": "The Post-Entry Performance of New Small Firms in German Manufacturing Industries",
+   "authors": [
+    {
+     "family": "Wagner",
+     "given": "Joachim"
+    }
+   ],
+   "year": 1994,
+   "journal": "The Journal of Industrial Economics",
+   "issn": "0022-1821",
+   "volume": "42",
+   "issue": "2",
+   "pages": "141",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 1.486,
+   "cited_by_openalex_2026_11_26": 467,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "MasVerdu2015Firm",
+   "topic": "firm survival",
+   "doi": "10.1016/j.jbusres.2014.11.030",
+   "title": "Firm survival: The role of incubators and business characteristics",
+   "authors": [
+    {
+     "family": "Mas-Verdú",
+     "given": "Francisco"
+    },
+    {
+     "family": "Ribeiro-Soriano",
+     "given": "Domingo"
+    },
+    {
+     "family": "Roig-Tierno",
+     "given": "Norat"
+    }
+   ],
+   "year": 2015,
+   "journal": "Journal of Business Research",
+   "issn": "0148-2963",
+   "volume": "68",
+   "issue": "4",
+   "pages": "793-796",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 3.499,
+   "cited_by_openalex_2026_11_26": 418,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Disney2003Entry",
+   "topic": "firm survival",
+   "doi": "10.1111/1467-6451.00193",
+   "title": "Entry, Exit and Establishment Survival in UK Manufacturing",
+   "authors": [
+    {
+     "family": "Disney",
+     "given": "Richard"
+    },
+    {
+     "family": "Haskel",
+     "given": "Jonathan"
+    },
+    {
+     "family": "Heden",
+     "given": "Ylva"
+    }
+   ],
+   "year": 2003,
+   "journal": "The Journal of Industrial Economics",
+   "issn": "0022-1821",
+   "volume": "51",
+   "issue": "1",
+   "pages": "91-112",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 1.486,
+   "cited_by_openalex_2026_11_26": 416,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Bottazzi2012Financial",
+   "topic": "firm survival",
+   "doi": "10.1007/s11187-012-9465-5",
+   "title": "Financial constraints and firm dynamics",
+   "authors": [
+    {
+     "family": "Bottazzi",
+     "given": "Giulio"
+    },
+    {
+     "family": "Secchi",
+     "given": "Angelo"
+    },
+    {
+     "family": "Tamagni",
+     "given": "Federico"
+    }
+   ],
+   "year": 2012,
+   "journal": "Small Business Economics",
+   "issn": "0921-898X",
+   "volume": "42",
+   "issue": "1",
+   "pages": "99-116",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 3.025,
+   "cited_by_openalex_2026_11_26": 224,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Gorg2014Financial",
+   "topic": "firm survival",
+   "doi": "10.1111/ecca.12080",
+   "title": "Financial Health, Exports and Firm Survival: Evidence from UK and French Firms",
+   "authors": [
+    {
+     "family": "Görg",
+     "given": "Holger"
+    },
+    {
+     "family": "Spaliara",
+     "given": "Marina‐Eliza"
+    }
+   ],
+   "year": 2014,
+   "journal": "Economica",
+   "issn": "0013-0427",
+   "volume": "81",
+   "issue": "323",
+   "pages": "419-444",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 1.453,
+   "cited_by_openalex_2026_11_26": 78,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "LaPorta1997Legal",
+   "topic": "firm growth",
+   "doi": "10.1111/j.1540-6261.1997.tb02727.x",
+   "title": "Legal Determinants of External Finance",
+   "authors": [
+    {
+     "family": "La Porta",
+     "given": "Rafael"
+    },
+    {
+     "family": "Lopez‐De‐Silanes",
+     "given": "Florencio"
+    },
+    {
+     "family": "Shleifer",
+     "given": "Andrei"
+    },
+    {
+     "family": "Vishny",
+     "given": "Robert W."
+    }
+   ],
+   "year": 1997,
+   "journal": "The Journal of Finance",
+   "issn": "0022-1082",
+   "volume": "52",
+   "issue": "3",
+   "pages": "1131-1150",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 22.836,
+   "cited_by_openalex_2026_11_26": 12034,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "King1993Finance",
+   "topic": "firm growth",
+   "doi": "10.2307/2118406",
+   "title": "Finance and Growth: Schumpeter Might Be Right",
+   "authors": [
+    {
+     "family": "King",
+     "given": "R. G."
+    },
+    {
+     "family": "Levine",
+     "given": "R."
+    }
+   ],
+   "year": 1993,
+   "journal": "The Quarterly Journal of Economics",
+   "issn": "0033-5533",
+   "volume": "108",
+   "issue": "3",
+   "pages": "717-737",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 35.995,
+   "cited_by_openalex_2026_11_26": 10955,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "DemirgucKunt1998Finance",
+   "topic": "firm growth",
+   "doi": "10.1111/0022-1082.00084",
+   "title": "Law, Finance, and Firm Growth",
+   "authors": [
+    {
+     "family": "Demirgüç-Kunt",
+     "given": "Asli"
+    },
+    {
+     "family": "Maksimovic",
+     "given": "Vojislav"
+    }
+   ],
+   "year": 1998,
+   "journal": "The Journal of Finance",
+   "issn": "0022-1082",
+   "volume": "53",
+   "issue": "6",
+   "pages": "2107-2137",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 22.836,
+   "cited_by_openalex_2026_11_26": 2981,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  },
+  {
+   "key": "Haltiwanger2013Creates",
+   "topic": "firm growth",
+   "doi": "10.1162/rest_a_00288",
+   "title": "Who Creates Jobs? Small versus Large versus Young",
+   "authors": [
+    {
+     "family": "Haltiwanger",
+     "given": "John"
+    },
+    {
+     "family": "Jarmin",
+     "given": "Ron S."
+    },
+    {
+     "family": "Miranda",
+     "given": "Javier"
+    }
+   ],
+   "year": 2013,
+   "journal": "Review of Economics and Statistics",
+   "issn": "0034-6535",
+   "volume": "95",
+   "issue": "2",
+   "pages": "347-361",
+   "quartile": "Q1",
+   "quartile_source": "owner's SCImago journal bank (data/bank.json), best quartile",
+   "sjr": 7.425,
+   "cited_by_openalex_2026_11_26": 2661,
+   "doi_verified": "Crossref, 2026-11-26",
+   "retraction_notice": false
+  }
+ ]
+}

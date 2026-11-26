@@ -250,6 +250,10 @@
       "description": "Professional proofreading pass over every submission file of a paper (manuscript, abstract, cover letter, title page, supplements, captions), in the order given."
     },
     {
+      "name": "reference_set",
+      "description": "List, show or load curated reference sets (alavi-core-2026: 100 DOI-verified Q1 articles, curated by Seyed Mehdi Alavi) into the local library."
+    },
+    {
       "name": "record_event",
       "description": "Add one event to a paper's history (action add), with optional local files copied into the record with SHA-256."
     },
