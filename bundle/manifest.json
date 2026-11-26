@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "quartile",
   "display_name": "Quartile",
-  "version": "0.19.0",
+  "version": "0.20.0",
   "description": "Write at Q1. Keep every number. Manuscript checks for business and economics research: hallucination guard, desk-rejection screen, statistics recomputation, references and journal bank.",
   "long_description": "Quartile checks academic manuscripts without changing their science. verify_rewrite blocks any revision that adds or changes numbers, citations, protected constructs, names or causal claims. check_statistics recomputes p-values from reported t, F, r, chi-square and z, and checks coefficient/SE against reported t, p and significance stars. analyze_manuscript and desk_screen run the five usual desk-rejection checks. Results appear as an interactive Quartile card. All checks run locally on your computer; nothing is sent anywhere. The optional full-text corpus (a private folder, for example in Google Drive) lets Quartile learn section-level patterns from up to 500 open-access Q1 papers; it is used for patterns only and every inspired rewrite is checked for copied wording.",
   "author": {
@@ -244,6 +244,10 @@
     {
       "name": "paper_card",
       "description": "Reads a published paper (local PDF, DOCX or text file; or PDF/DOCX bytes as base64, for example a file downloaded from Google Drive) and builds an extractive card: research question, contribution claims, theory, hypot..."
+    },
+    {
+      "name": "proofread_submission",
+      "description": "Professional proofreading pass over every submission file of a paper (manuscript, abstract, cover letter, title page, supplements, captions), in the order given."
     },
     {
       "name": "record_event",

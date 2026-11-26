@@ -112,6 +112,7 @@ Difficulty = 0.45 × SJR percentile + 0.20 × H-index percentile + 0.20 × citat
 | Area | Tools |
 |---|---|
 | Committee | `committee_review`, `contribution_test`, `reporting_checklist`, `grim_check`, `hypothesis_map`, `ethics_check`, `style_check`, `response_tracker`, `rulebook_status`, `rule_feedback` |
+| Proofreading (0.20.0) | `proofread_submission`: plan (issues per paragraph, your voice profile, hard constraints) and apply (keeps a revision only if numbers, citations, locked terms and claims are unchanged and no wording is copied; then claims, references, numbers, file properties, readiness). Disclosure statements and file properties are never changed |
 | File check (0.19.0) | `file_check`: reads a .docx and reports edit time, stale word count, same or impossible dates, default author fields, generator defaults, blinding leaks, hidden content and identical files. Read only: it never changes the file |
 | Paper cards (0.18.0) | `paper_card`, `library_card_search`, `library_cards_export`: extractive summaries of published papers (question, data, methods, findings with evidence labels, limitations), kept in the local library |
 | Quartile Library (local reference library) | `library_add`, `library_import`, `library_export`, `library_search`, `library_verify`, `library_match_manuscript`, `library_bibliography`, `library_dedupe`, `library_screening` |
