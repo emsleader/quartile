@@ -114,6 +114,7 @@ Difficulty = 0.45 × SJR percentile + 0.20 × H-index percentile + 0.20 × citat
 | Committee | `committee_review`, `contribution_test`, `reporting_checklist`, `grim_check`, `hypothesis_map`, `ethics_check`, `style_check`, `response_tracker`, `rulebook_status`, `rule_feedback` |
 | Proofreading (0.20.0) | `proofread_submission`: plan (issues per paragraph, your voice profile, hard constraints) and apply (keeps a revision only if numbers, citations, locked terms and claims are unchanged and no wording is copied; then claims, references, numbers, file properties, readiness). Disclosure statements and file properties are never changed |
 | Reference sets (0.20.0) | `reference_set`: list, show or load curated sets into your library. `alavi-core-2026`: 100 DOI-verified Q1 articles on financial flexibility, investment reversibility, SME finance and firm survival, curated by Seyed Mehdi Alavi (the papers are their authors' work); also as BibTeX in `data/reference-sets/` |
+| Research Factory (0.21.0) | `factory_run`: one paper from brief to submission pack in ten stages, each with its checks and a human gate approved by a named person; hard gates before submission (numbers traced to output, references verified, low pattern score, ledger locked, no file_check FAIL). One status file per paper |
 | File check (0.19.0) | `file_check`: reads a .docx and reports edit time, stale word count, same or impossible dates, default author fields, generator defaults, blinding leaks, hidden content and identical files. Read only: it never changes the file |
 | Paper cards (0.18.0) | `paper_card`, `library_card_search`, `library_cards_export`: extractive summaries of published papers (question, data, methods, findings with evidence labels, limitations), kept in the local library |
 | Quartile Library (local reference library) | `library_add`, `library_import`, `library_export`, `library_search`, `library_verify`, `library_match_manuscript`, `library_bibliography`, `library_dedupe`, `library_screening` |
@@ -139,7 +140,7 @@ Covers the p-value functions against known values, each statistics check, the gu
 The statistics recomputation follows the logic of statcheck (Nuijten et al., 2016, *Behavior Research Methods*; Epskamp & Nuijten, R package statcheck). The writing rules come from a profile of 80 Q1 abstracts in finance, small business, service and management research and from papers by faculty of 20 DBA-awarding schools.
 
 ## Citation
-Alavi, S. M. (2026). *Quartile: a meaning-preserving Q1 academic writing engine with a simulated review committee and statistics checks* (Version 0.20.0) [Computer software]. EMS Leader. Zenodo. https://doi.org/10.5281/zenodo.24443341
+Alavi, S. M. (2026). *Quartile: a meaning-preserving Q1 academic writing engine with a simulated review committee and statistics checks* (Version 0.21.0) [Computer software]. EMS Leader. Zenodo. https://doi.org/10.5281/zenodo.24443341
 
 See also `CITATION.cff`. Each GitHub release is archived on Zenodo.
 
