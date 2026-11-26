@@ -3,7 +3,7 @@
   "name": "quartile",
   "display_name": "Quartile",
   "version": "0.20.0",
-  "description": "Write at Q1. Keep every number. Manuscript checks for business and economics research: hallucination guard, desk-rejection screen, statistics recomputation, references and journal bank.",
+  "description": "Write at Q1. Keep every number. Checks for business and economics manuscripts: meaning guard, simulated review committee, statistics validated against R, references, local library, paper history and file properties.",
   "long_description": "Quartile checks academic manuscripts without changing their science. verify_rewrite blocks any revision that adds or changes numbers, citations, protected constructs, names or causal claims. check_statistics recomputes p-values from reported t, F, r, chi-square and z, and checks coefficient/SE against reported t, p and significance stars. analyze_manuscript and desk_screen run the five usual desk-rejection checks. Results appear as an interactive Quartile card. All checks run locally on your computer; nothing is sent anywhere. The optional full-text corpus (a private folder, for example in Google Drive) lets Quartile learn section-level patterns from up to 500 open-access Q1 papers; it is used for patterns only and every inspired rewrite is checked for copied wording.",
   "author": {
     "name": "Seyed Mehdi Alavi",
@@ -119,11 +119,11 @@
     },
     {
       "name": "prose_check",
-      "description": "Offline check of redundancy (Garner), wordy phrases, needless word variants, clichés, intensifiers and repeated words, with Flesch, Flesch-Kincaid and Gunning fog readability."
+      "description": "Offline check of redundancy (Garner), wordy phrases, needless word variants, clich\u00e9s, intensifiers and repeated words, with Flesch, Flesch-Kincaid and Gunning fog readability."
     },
     {
       "name": "run_statistics",
-      "description": "Runs fixed, open statistical procedures in R on a dataset (CSV, Excel .xlsx or SPSS .sav): descriptives, frequencies, crosstab with chi-square/Fisher and Cramér's V, t-tests (independent with Welch, Student, Levene an..."
+      "description": "Runs fixed, open statistical procedures in R on a dataset (CSV, Excel .xlsx or SPSS .sav): descriptives, frequencies, crosstab with chi-square/Fisher and Cram\u00e9r's V, t-tests (independent with Welch, Student, Levene an..."
     },
     {
       "name": "survey_plan",
@@ -295,7 +295,7 @@
     },
     {
       "name": "style_check",
-      "description": "Style findings for a manuscript: passive voice, readability, wordy phrases, clichés, intensifiers, repeated words, very long sentences, and distance from the measured Q1 abstract profile."
+      "description": "Style findings for a manuscript: passive voice, readability, wordy phrases, clich\u00e9s, intensifiers, repeated words, very long sentences, and distance from the measured Q1 abstract profile."
     }
   ],
   "prompts": [
