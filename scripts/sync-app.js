@@ -11,6 +11,9 @@ for (const [name, src] of [["Core", "core.js"], ["Stats", "stats.js"]]) {
   const body = fs.readFileSync(path.join(R, "core", src), "utf8").replace(/\nexport default \w+;\s*$/, "\n").trim();
   const start = html.indexOf(`const ${name} = (() => {`); if (start < 0) throw new Error(name + " not found");
   const end = html.indexOf("\n})();", start) + "\n})();".length;
-  html = html.slice(0, start) + body + html.slice(end);
+  html = html.slice(0, start) + body.slice(body.indexOf(`const ${name} = (() => {`)) + html.slice(end);
 }
+// the version shown in the app is the package version
+const version = JSON.parse(fs.readFileSync(path.join(R, "package.json"), "utf8")).version;
+html = html.replace(/(<span class="tag">)v[\d.]+(<\/span>)/, `$1v${version}$2`).replace(/Quartile v[\d.]+ ·/, `Quartile v${version} ·`);
 fs.writeFileSync(file, html); console.log("synced", file);

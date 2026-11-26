@@ -1,8 +1,8 @@
 <p align="center"><img src="assets/logo.svg" width="96" alt="Quartile logo"></p>
 
 <h1 align="center">Quartile</h1>
-<p align="center"><a href="https://doi.org/10.5281/zenodo.24143278"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.24143278.svg" alt="DOI 10.5281/zenodo.24143278"></a></p>
-<p align="center"><b>Write at Q1. Keep every number.</b><br>Meaning-preserving academic editing, journal-editor simulation and statistics checks for business, management, finance and economics research.</p>
+<p align="center"><a href="https://doi.org/10.5281/zenodo.24443341"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.24443341.svg" alt="DOI 10.5281/zenodo.24443341"></a></p>
+<p align="center"><b>Write at Q1. Keep every number.</b><br>Meaning-preserving academic editing, a simulated review committee and statistics checks for business, management, finance and economics research.</p>
 
 ---
 
@@ -112,6 +112,8 @@ Difficulty = 0.45 × SJR percentile + 0.20 × H-index percentile + 0.20 × citat
 | Area | Tools |
 |---|---|
 | Committee | `committee_review`, `contribution_test`, `reporting_checklist`, `grim_check`, `hypothesis_map`, `ethics_check`, `style_check`, `response_tracker`, `rulebook_status`, `rule_feedback` |
+| Proofreading (0.20.0) | `proofread_submission`: plan (issues per paragraph, your voice profile, hard constraints) and apply (keeps a revision only if numbers, citations, locked terms and claims are unchanged and no wording is copied; then claims, references, numbers, file properties, readiness). Disclosure statements and file properties are never changed |
+| Reference sets (0.20.0) | `reference_set`: list, show or load curated sets into your library. `alavi-core-2026`: 100 DOI-verified Q1 articles on financial flexibility, investment reversibility, SME finance and firm survival, curated by Seyed Mehdi Alavi (the papers are their authors' work); also as BibTeX in `data/reference-sets/` |
 | File check (0.19.0) | `file_check`: reads a .docx and reports edit time, stale word count, same or impossible dates, default author fields, generator defaults, blinding leaks, hidden content and identical files. Read only: it never changes the file |
 | Paper cards (0.18.0) | `paper_card`, `library_card_search`, `library_cards_export`: extractive summaries of published papers (question, data, methods, findings with evidence labels, limitations), kept in the local library |
 | Quartile Library (local reference library) | `library_add`, `library_import`, `library_export`, `library_search`, `library_verify`, `library_match_manuscript`, `library_bibliography`, `library_dedupe`, `library_screening` |
@@ -137,7 +139,7 @@ Covers the p-value functions against known values, each statistics check, the gu
 The statistics recomputation follows the logic of statcheck (Nuijten et al., 2016, *Behavior Research Methods*; Epskamp & Nuijten, R package statcheck). The writing rules come from a profile of 80 Q1 abstracts in finance, small business, service and management research and from papers by faculty of 20 DBA-awarding schools.
 
 ## Citation
-Alavi, S. M. (2026). *Quartile: a meaning-preserving Q1 academic writing engine with journal-editor simulation and statistics checks* (Version 0.8.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.24143278
+Alavi, S. M. (2026). *Quartile: a meaning-preserving Q1 academic writing engine with a simulated review committee and statistics checks* (Version 0.20.0) [Computer software]. EMS Leader. Zenodo. https://doi.org/10.5281/zenodo.24443341
 
 See also `CITATION.cff`. Each GitHub release is archived on Zenodo.
 

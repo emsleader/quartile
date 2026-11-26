@@ -1,4 +1,4 @@
-// Statistical reporting checks for the Q1 engine.
+// Statistical reporting checks for Quartile.
 // statcheck-style recomputation of p-values (t, F, r, chi-square, z), regression-table consistency
 // (coefficient / SE / t / p / stars), impossible values, and software-output fingerprints.
 // These are consistency and plausibility checks. They cannot prove who or what produced a number.

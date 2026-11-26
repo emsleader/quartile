@@ -9,6 +9,7 @@ cp -r "$ROOT/core" "$OUT/server/"
 cp "$ROOT/mcp/server.js" "$ROOT/mcp/corpus.js" "$ROOT/mcp/widget.html" "$OUT/server/mcp/"
 cp "$ROOT/package.json" "$ROOT/package-lock.json" "$OUT/server/"
 cp "$ROOT"/data/*.json "$ROOT/data/README.md" "$OUT/server/data/" 2>/dev/null || true
+mkdir -p "$OUT/server/data/reference-sets" && cp "$ROOT"/data/reference-sets/* "$OUT/server/data/reference-sets/"
 (cd "$OUT/server" && npm ci --omit=dev)
 cp "$ROOT/bundle/manifest.json" "$ROOT/bundle/icon.png" "$OUT/"
 npx -y @anthropic-ai/mcpb@2.1.2 pack "$OUT" "$ROOT/Quartile.mcpb"
